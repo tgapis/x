@@ -21,7 +21,8 @@ account.updateEmojiStatus#fbd3de6b emoji_status:<a href="../../types/emoji_statu
 <strong>with</strong> TelegramClient(name, api_id, api_hash) <strong>as</strong> client:
     result = client(functions.account.UpdateEmojiStatusRequest(
         emoji_status=types.EmojiStatus(
-            document_id=-12398745604826
+            document_id=-12398745604826,
+            until=datetime.datetime(2018, 6, 25)
         )
     ))
     print(result)</pre><textarea id="c" class="invisible"></textarea><script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script></div><script>prependPath = "../../";</script><script src="../../js/search.js"></script></body></html>
