@@ -3,7 +3,7 @@
 	<title>Type Language Differ</title>
 	<link href="https://telegramplayground.github.io/TG-APIs/TL/diff/tdatom.xml" rel="self" type="application/atom+xml"/>
     <link href="https://telegramplayground.github.io/TG-APIs/TL/diff/"/>
-    <updated>2025-06-16T12:52:48+00:00</updated>
+    <updated>2025-07-31T15:13:41+00:00</updated>
     <id>https://telegramplayground.github.io/TG-APIs/TL/diff/tdatom.xml</id><entry xml:lang="en">
         <title>Layer ??? Revision 2</title>
         <published>2017-12-31T20:08:40+00:00</published>
@@ -2000,6 +2000,33 @@
         <link href="https://telegramplayground.github.io/TG-APIs/TL/diff/" type="text/html"/>
         <id>https://telegramplayground.github.io/TG-APIs/TL/diff/1750078368</id>
         <content type="html">&lt;p&gt;11 added, 1 removed, 7 changed&lt;/p&gt;</content>
+        <author><name>TL Differ Team</name></author>
+    </entry>
+<entry xml:lang="en">
+        <title>Layer 206</title>
+        <published>2025-07-06T07:54:13+00:00</published>
+        <updated>2025-07-06T07:54:13+00:00</updated>
+        <link href="https://telegramplayground.github.io/TG-APIs/TL/diff/" type="text/html"/>
+        <id>https://telegramplayground.github.io/TG-APIs/TL/diff/1751788453</id>
+        <content type="html">&lt;p&gt;8 added, 11 removed, 14 changed&lt;/p&gt;</content>
+        <author><name>TL Differ Team</name></author>
+    </entry>
+<entry xml:lang="en">
+        <title>Layer 207</title>
+        <published>2025-07-31T14:39:19+00:00</published>
+        <updated>2025-07-31T14:39:19+00:00</updated>
+        <link href="https://telegramplayground.github.io/TG-APIs/TL/diff/" type="text/html"/>
+        <id>https://telegramplayground.github.io/TG-APIs/TL/diff/1753972759</id>
+        <content type="html">&lt;p&gt;0 added, 0 removed, 3 changed&lt;/p&gt;</content>
+        <author><name>TL Differ Team</name></author>
+    </entry>
+<entry xml:lang="en">
+        <title>Layer 208</title>
+        <published>2025-07-31T15:13:41+00:00</published>
+        <updated>2025-07-31T15:13:41+00:00</updated>
+        <link href="https://telegramplayground.github.io/TG-APIs/TL/diff/" type="text/html"/>
+        <id>https://telegramplayground.github.io/TG-APIs/TL/diff/1753974821</id>
+        <content type="html">&lt;p&gt;0 added, 0 removed, 2 changed&lt;/p&gt;</content>
         <author><name>TL Differ Team</name></author>
     </entry>
 </feed>
