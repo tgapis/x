@@ -24,7 +24,14 @@ contacts.importContacts#2c800be5 contacts:<a href="../../index.html#vector">Vect
             client_id=random.randrange(-2**63, 2**63),
             phone=<em>'some string here'</em>,
             first_name=<em>'some string here'</em>,
-            last_name=<em>'some string here'</em>
+            last_name=<em>'some string here'</em>,
+            note=types.TextWithEntities(
+                text=<em>'some string here'</em>,
+                entities=[types.MessageEntityUnknown(
+                    offset=42,
+                    length=42
+                )]
+            )
         )]
     ))
     print(result.stringify())</pre><textarea id="c" class="invisible"></textarea><script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script></div><script>prependPath = "../../";</script><script src="../../js/search.js"></script></body></html>
