@@ -1,30 +1,76 @@
-on:
-  workflow_dispatch: {} # Allow manually kicking off builds
-  schedule:
-    - cron:  '0 */5 * * *'
 name: Scrape Telegram API Schemas
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */5 * * *'   # every 5 hours (UTC)
+
 jobs:
-  build:
+  scrape:
     name: Scrape
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 1
-        ref: data
+      - name: Checkout data branch
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          ref: data
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.9'
+      - name: Record commit before scrape
+        id: before
+        run: |
+          echo "sha=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+          echo "▶ Before SHA: $(git rev-parse HEAD)"
 
-    - name: Set up NodeJS
-      uses: actions/setup-node@v3
-      with:
-        node-version: 16
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
 
-    - name: scrape preparations
-      run: |
+      - name: Set up NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Scrape Telegram schemas
+        run: |
           pip install --upgrade pip setuptools wheel
-          wget https://github.com/TelegramPlayGround/TG-APIs/raw/9f47269/deploy.sh -O deploy.sh
+          wget https://github.com/tgapis/x/raw/9f47269/deploy.sh -O deploy.sh
           bash deploy.sh
+
+      - name: Detect data updates (commit-based)
+        id: changes
+        run: |
+          BEFORE="${{ steps.before.outputs.sha }}"
+          AFTER="$(git rev-parse HEAD)"
+
+          echo "▶ After SHA : $AFTER"
+
+          if [ "$BEFORE" != "$AFTER" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "✓ New commit detected"
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "⏭ No new commit"
+          fi
+
+      - name: Notify tgapis pipeline
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          TGAPIS_PAT: ${{ secrets.TGAPIS_PAT }}
+        run: |
+          echo "▶ Triggering tgapis/pipeline via repository_dispatch"
+
+          curl -s -X POST \
+            -H "Authorization: token ${TGAPIS_PAT}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/tgapis/pipeline/dispatches \
+            -d '{
+              "event_type": "x-data-updated",
+              "client_payload": {
+                "source": "tgapis/x",
+                "branch": "data",
+                "commit": "'"$(git rev-parse HEAD)"'"
+              }
+            }'
