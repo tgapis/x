@@ -78,7 +78,7 @@ jobs:
           echo "▶ Triggering ankit-chaubey/tgbotrs via repository_dispatch"
 
           curl -s -X POST \
-            -H "Authorization: token ${TGAPIS_PAT}" \
+            -H "Authorization: token ${AC_PAT}" \
             -H "Accept: application/vnd.github+json" \
             https://api.github.com/repos/ankit-chaubey/tgbotrs/dispatches \
             -d '{
