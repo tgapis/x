@@ -1,0 +1,64 @@
+name: Scrape
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */5 * * *'
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Record data SHA
+        id: before
+        run: |
+          git fetch origin data
+          echo "sha=$(git rev-parse origin/data)" >> $GITHUB_OUTPUT
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Run
+        run: bash deploy.sh
+
+      - name: Check for changes
+        id: changes
+        run: |
+          BEFORE="${{ steps.before.outputs.sha }}"
+          AFTER="$(git rev-parse origin/data)"
+          if [ "$BEFORE" != "$AFTER" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Notify pipeline
+        if: steps.changes.outputs.changed == 'true'
+        env:
+          TGAPIS_PAT: ${{ secrets.TGAPIS_PAT }}
+        run: |
+          curl -s -X POST \
+            -H "Authorization: token ${TGAPIS_PAT}" \
+            -H "Accept: application/vnd.github+json" \
+            https://api.github.com/repos/tgapis/pipeline/dispatches \
+            -d '{
+              "event_type": "x-data-updated",
+              "client_payload": {
+                "source": "tgapis/x",
+                "branch": "data",
+                "commit": "'"$(git rev-parse origin/data)"'"
+              }
+            }'
