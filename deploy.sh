@@ -28,8 +28,19 @@ node /tmp/bin.js corefork.tl  corefork.json
 node /tmp/bin.js blogfork.tl  blogfork.json
 node /tmp/bin.js tdlib.tl     tdlib.json
 
+# stash generated data files before switching branches
+# (untracked files on main would block checkout to data)
+cp botapi.json botapi.min.json /tmp/
+cp core.tl core.json corefork.tl corefork.json blogfork.tl blogfork.json /tmp/
+cp tdesktop.tl tdesktop.json tdlib.tl tdlib.json /tmp/
+
 git fetch origin data
 git checkout data
+
+# restore generated files into data branch worktree
+cp /tmp/botapi.json /tmp/botapi.min.json .
+cp /tmp/core.tl /tmp/core.json /tmp/corefork.tl /tmp/corefork.json /tmp/blogfork.tl /tmp/blogfork.json .
+cp /tmp/tdesktop.tl /tmp/tdesktop.json /tmp/tdlib.tl /tmp/tdlib.json .
 
 git config --global user.email "igor.beatle@gmail.com"
 git config --global user.name "GitHub Action <Igor Zhukov>"
