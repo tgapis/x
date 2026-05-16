@@ -26,13 +26,14 @@ node /tmp/bin.js corefork.tl  corefork.json
 node /tmp/bin.js blogfork.tl  blogfork.json
 node /tmp/bin.js tdlib.tl     tdlib.json
 
-# stash generated files (untracked on main blocks checkout)
+# stash then remove generated files (untracked files block checkout)
 cp botapi.json botapi.min.json /tmp/
 cp core.tl core.json corefork.tl corefork.json blogfork.tl blogfork.json /tmp/
 cp tdesktop.tl tdesktop.json tdlib.tl tdlib.json /tmp/
+rm -f botapi.json botapi.min.json \
+      core.tl core.json corefork.tl corefork.json blogfork.tl blogfork.json \
+      tdesktop.tl tdesktop.json tdlib.tl tdlib.json
 
-# switch to data branch
-# -B creates or resets the local branch to the remote tip
 git fetch origin data
 git checkout -B data origin/data
 
