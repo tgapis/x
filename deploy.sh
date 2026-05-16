@@ -63,12 +63,11 @@ git add core.tl core.json corefork.tl corefork.json blogfork.tl blogfork.json
 git commit -m "update OW (3) API scheme" || true
 
 # Telethon docs
-git clone -q --depth=1 https://github.com/LonamiWebs/Telethon /tmp/Telethon/
+git clone -q --depth=1 --branch v1 https://github.com/LonamiWebs/Telethon /tmp/Telethon/
 a=$(pwd)
 rm -rf telethon
 mkdir -p telethon
 cd /tmp/Telethon/
-git checkout v1
 cp "${a}/tdesktop.tl" /tmp/Telethon/telethon_generator/data/api.tl
 python setup.py gen docs
 mv docs/* "${a}/telethon/"
@@ -105,7 +104,7 @@ rm -rf tdesktop schemes
 cd "${a}"
 rm -rf /tmp/tldiff/
 
-git add TL -A
+git add -A TL/
 git config --global user.email "Lonami@users.noreply.github.com"
 git config --global user.name "GitHub Action <Lonami Exo> | GitHub Action <John Preston>"
 git commit -m "update TL diff" || true
