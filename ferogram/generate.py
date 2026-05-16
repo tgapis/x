@@ -11,7 +11,7 @@ from collections import defaultdict
 from pathlib import Path
 from typing import NamedTuple
 
-# --- TL Parser
+# TL parser
 
 TL_LINE = re.compile(
     r"^([\w.][\w.]*)"
@@ -80,7 +80,7 @@ def parse_layer(path: Path) -> int:
     return 0
 
 
-# --- Naming helpers
+# Naming helpers
 
 def tl_ns(tl_name: str) -> str:
     parts = tl_name.split(".")
@@ -146,7 +146,7 @@ def import_func(item: TLItem) -> str:
     return f"from ferogram.raw.functions.{ns} import {cls}"
 
 
-# --- Field type linkifier
+# Field type linkifier
 
 PRIMITIVES = {
     "int", "long", "double", "string", "bytes", "Bool",
@@ -183,7 +183,7 @@ def render_tl_def(item: TLItem, known_types: set[str], depth: str) -> str:
     return f"{header}\n{''.join(parts)} = {ret_linked}"
 
 
-# --- CSS
+# CSS
 
 CSS = """\
 :root {
@@ -342,7 +342,7 @@ ul.together li { padding: 2px 0; font-size: 13px; break-inside: avoid; }
 }
 """
 
-# --- HTML helpers
+# HTML helpers
 
 FONTS = '<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">'
 
@@ -398,7 +398,7 @@ def type_link_row(abstract: str, depth: str) -> str:
     return f'<tr><td><a href="{url}">{html.escape(abstract)}</a></td></tr>'
 
 
-# --- Page generators
+# Page generators
 
 def gen_constructor_page(
     item: TLItem,
@@ -585,7 +585,7 @@ def gen_section_index(
     dest.write_text(page(section.title(), depth, body), encoding="utf-8")
 
 
-# --- search.js
+# search.js
 
 def gen_search_js(
     types_list: list[TLItem],
@@ -707,7 +707,7 @@ if (qParam) {{ searchBox.value = qParam; updateSearch({{}}); }}
     (out / "js" / "search.js").write_text(js, encoding="utf-8")
 
 
-# --- Root index
+# Root index
 
 def gen_root_index(
     layer: int,
@@ -753,7 +753,7 @@ def gen_404(out: Path) -> None:
     (out / "404.html").write_text(page("404", "", body, show_search=False), encoding="utf-8")
 
 
-# --- Main
+# Main
 
 def main() -> None:
     tl_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("ferogram/raw_api.tl")
