@@ -8,20 +8,46 @@ import itertools
 from pathlib import Path
 from subprocess import run, PIPE
 
-# Layers which don't specify themselves in the common place
 KNOWN_LAYERS = {
     1401439999: b'15',
     1404472374: b'16',
     1414003143: b'19',
 }
 
-tl = {}  # date: file contents
+FQDN = os.environ.get('FQDN', 'https://diff.telethon.dev')
 
-tdesktop = Path('tdesktop').resolve()
+TDLIBGH = os.environ.get('TDLIBGH', '')
+GH = os.environ.get('GH', 'https://github.com/telegramdesktop/tdesktop')
+
+tdlib_mode = bool(TDLIBGH)
+
+if tdlib_mode:
+    repo_url = TDLIBGH.rstrip('/') + '.git' if not TDLIBGH.endswith('.git') else TDLIBGH
+    clone_dir = Path('td').resolve()
+    tl_paths_rel = ['td/generate/scheme/telegram_api.tl']
+    layer_file_rel = 'td/telegram/Version.h'
+    layer_re = re.compile(rb'MTPROTO_LAYER\s*=\s*(\d+)')
+    default_branch = 'master'
+    out_diff = 'tddiff.js'
+    out_atom = 'tdatom.xml'
+else:
+    repo_url = GH.rstrip('/') + '.git' if not GH.endswith('.git') else GH
+    clone_dir = Path('tdesktop').resolve()
+    tl_paths_rel = [
+        'Telegram/SourceFiles/mtproto/scheme/api.tl',
+        'Telegram/Resources/tl/api.tl',
+        'Telegram/Resources/scheme.tl',
+        'Telegram/SourceFiles/mtproto/scheme.tl',
+    ]
+    layer_file_rel = 'Telegram/SourceFiles/mtproto/mtpCoreTypes.h'
+    layer_re = re.compile(rb'static const mtpPrime mtpCurrentLayer = (\d+);')
+    default_branch = 'dev'
+    out_diff = 'diff.js'
+    out_atom = 'atom.xml'
+
+tl = {}
 schemes = Path('schemes').resolve()
-
-# we start not knowing in which branch we are
-in_dev_branch = False
+in_default_branch = False
 
 if not schemes.is_dir():
     schemes.mkdir(parents=True)
@@ -34,7 +60,6 @@ def in_dir(which):
             try:
                 if not which.is_dir():
                     which.mkdir(parents=True)
-
                 os.chdir(which)
                 function(*args, **kwargs)
             finally:
@@ -65,7 +90,7 @@ class Definition:
 
         left, right = line.split(maxsplit=1)
         if '#' in left:
-            self.name, self.id, *_ = left.split('#')  # there's a mess up with multiple #ids, hence the glob
+            self.name, self.id, *_ = left.split('#')
             self.id = int(self.id, 16)
         else:
             self.name, self.id = left, None
@@ -124,51 +149,45 @@ class Scheme:
     def __repr__(self):
         return '\n'.join(map(repr, self.definitions.values()))
 
-def ensure_dev_branch():
-    global in_dev_branch
-    if not in_dev_branch:
-        run(('git', 'checkout', 'dev', '--force'))
-        in_dev_branch = True
+def ensure_default_branch():
+    global in_default_branch
+    if not in_default_branch:
+        run(('git', 'checkout', default_branch, '--force'))
+        in_default_branch = True
 
-@in_dir(tdesktop)
+@in_dir(clone_dir)
 def pull():
-    if not (tdesktop / '.git').is_dir():
-        run(('git', 'clone', 'https://github.com/telegramdesktop/tdesktop.git', '.'))
-
-    ensure_dev_branch()
+    if not (clone_dir / '.git').is_dir():
+        run(('git', 'clone', repo_url, '.'))
+    ensure_default_branch()
     run(('git', 'reset', '--hard', 'HEAD'))
     run(('git', 'pull'))
 
-
-@in_dir(tdesktop)
+@in_dir(clone_dir)
 def extract():
-    global in_dev_branch
-    tl_paths = list(map(Path, (
-        'Telegram/SourceFiles/mtproto/scheme/api.tl',
-        'Telegram/Resources/tl/api.tl',
-        'Telegram/Resources/scheme.tl',
-        'Telegram/SourceFiles/mtproto/scheme.tl'
-    )))
-
+    global in_default_branch
+    tl_paths = list(map(Path, tl_paths_rel))
+    layer_file = Path(layer_file_rel)
     git_log = ['git', 'log', '--format=format:%H %ct', '--']
-    layer_file = Path('Telegram/SourceFiles/mtproto/mtpCoreTypes.h')
-    layer_re = re.compile(rb'static const mtpPrime mtpCurrentLayer = (\d+);')
 
     for tl_path in tl_paths:
-        ensure_dev_branch()
+        ensure_default_branch()
         layer_tl_path = tl_path.with_name('layer.tl')
 
-        for line in run(git_log + [tl_path], stdout=PIPE).stdout.decode().split('\n'):
+        log_out = run(git_log + [tl_path], stdout=PIPE).stdout.decode()
+        for line in log_out.split('\n'):
+            if not line.strip():
+                continue
             commit, date = line.split()
             date = int(date)
             out_path = schemes / f'{date}.tl'
             if out_path.is_file():
-                continue  # we already have this scheme cached
+                continue
 
             run(('git', 'checkout', commit, '--force'))
-            in_dev_branch = False
+            in_default_branch = False
             if not tl_path.is_file():
-                continue  # last commit when this file was renamed
+                continue
 
             layer = KNOWN_LAYERS.get(date)
             if layer is None and layer_file.is_file():
@@ -266,8 +285,8 @@ def gen_rss(deltas):
         <title>Layer {delta['layer'] or '???'}{revision}</title>
         <published>{date}</published>
         <updated>{date}</updated>
-        <link href="https://diff.telethon.dev/" type="text/html"/>
-        <id>https://diff.telethon.dev/{delta['date']}</id>
+        <link href="{FQDN}/" type="text/html"/>
+        <id>{FQDN}/{delta['date']}</id>
         <content type="html">&lt;p&gt;{added} added, {removed} removed, {changed} changed&lt;/p&gt;</content>
         <author><name>TL Differ Team</name></author>
     </entry>
@@ -278,20 +297,20 @@ def main():
     extract()
     load_tl()
     deltas = gen_index()
-    with open('diff.js', 'w') as fd:
+    with open(out_diff, 'w') as fd:
         fd.write('DIFF=JSON.parse(')
         fd.write(repr(json.dumps(deltas, separators=(',', ':'), sort_keys=True)))
         fd.write(');\n')
 
     now = datetime.datetime.now(datetime.timezone.utc)
-    with open('atom.xml', 'w') as fd:
+    with open(out_atom, 'w') as fd:
         fd.write(f'''<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-	<title>Type Language Differ</title>
-	<link href="https://diff.telethon.dev/atom.xml" rel="self" type="application/atom+xml"/>
-    <link href="https://diff.telethon.dev/"/>
+\t<title>Type Language Differ</title>
+\t<link href="{FQDN}/{out_atom}" rel="self" type="application/atom+xml"/>
+    <link href="{FQDN}/"/>
     <updated>{now.isoformat()}</updated>
-    <id>https://diff.telethon.dev/atom.xml</id>''')
+    <id>{FQDN}/{out_atom}</id>''')
         for entry in gen_rss(deltas):
             fd.write(entry)
         fd.write('</feed>')
