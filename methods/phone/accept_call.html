@@ -42,6 +42,7 @@ phone.acceptCall<span style="color:var(--tl-cid)">#3bd2b4a0</span> peer:<a href=
 <tr><td>protocol</td><td><a href="../../types/phone_call_protocol.html">PhoneCallProtocol</a></td><td><span class="tag-req">required</span></td></tr>
 </table>
 <h3>Example</h3>
+<p class="example-note">Examples show the correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs) with real data before running.</p>
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Example</summary>
   <pre class="python">import asyncio
@@ -52,9 +53,9 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app.raw.phone.AcceptCall(
-        peer=raw.types.InputPhoneCall(),
+        peer=raw.types.InputPhoneCall(id=0, access_hash=0),
         g_b=b&#x27;arbitrary\x7f data&#x27;,
-        protocol=raw.types.PhoneCallProtocol()
+        protocol=raw.types.PhoneCallProtocol(min_layer=0, max_layer=0, library_versions=[])
     )
     print(result)
 
@@ -96,11 +97,13 @@ function toast(){
     el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
   }
   function addCopyIcon(pre){
+    var code=(pre.textContent||pre.innerText).replace(/
+$/,'');
     var btn=document.createElement('button');
     btn.className='copy-icon';btn.textContent='copy';
     btn.addEventListener('click',function(ev){
       ev.stopPropagation();
-      cp(pre.textContent||pre.innerText);
+      cp(code);
       btn.textContent='\u2713';toast();
       setTimeout(function(){btn.textContent='copy';},1300);
     });

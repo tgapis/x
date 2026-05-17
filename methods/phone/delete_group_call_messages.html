@@ -42,6 +42,7 @@ phone.deleteGroupCallMessages<span style="color:var(--tl-cid)">#f64f54f7</span> 
 <tr><td>messages</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#int">int</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
 </table>
 <h3>Example</h3>
+<p class="example-note">Examples show the correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs) with real data before running.</p>
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
@@ -52,8 +53,8 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app.raw.phone.DeleteGroupCallMessages(
-        call=raw.types.InputGroupCall(),
-        messages=raw.types.Vector&lt;int&gt;()
+        call=raw.types.InputGroupCallSlug(slug=&#x27;&#x27;),
+        messages=[42]
     )
     print(result)
 
@@ -71,8 +72,8 @@ async def main():
     await app.start()
     result = await app(raw.functions.phone.DeleteGroupCallMessages(
         report_spam=True,
-        call=raw.types.InputGroupCall(),
-        messages=raw.types.Vector&lt;int&gt;()
+        call=raw.types.InputGroupCallSlug(slug=&#x27;&#x27;),
+        messages=[42]
     ))
     print(result)
 
@@ -114,11 +115,13 @@ function toast(){
     el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
   }
   function addCopyIcon(pre){
+    var code=(pre.textContent||pre.innerText).replace(/
+$/,'');
     var btn=document.createElement('button');
     btn.className='copy-icon';btn.textContent='copy';
     btn.addEventListener('click',function(ev){
       ev.stopPropagation();
-      cp(pre.textContent||pre.innerText);
+      cp(code);
       btn.textContent='\u2713';toast();
       setTimeout(function(){btn.textContent='copy';},1300);
     });

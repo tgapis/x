@@ -42,6 +42,7 @@ messages.togglePaidReactionPrivacy<span style="color:var(--tl-cid)">#435885b5</s
 <tr><td>private</td><td><a href="../../types/paid_reaction_privacy.html">PaidReactionPrivacy</a></td><td><span class="tag-req">required</span></td></tr>
 </table>
 <h3>Example</h3>
+<p class="example-note">Examples show the correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs) with real data before running.</p>
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Example</summary>
   <pre class="python">import asyncio
@@ -54,7 +55,7 @@ async def main():
     result = await app.raw.messages.TogglePaidReactionPrivacy(
         peer=&#x27;username&#x27;,
         msg_id=42,
-        private=raw.types.PaidReactionPrivacy()
+        private=raw.types.PaidReactionPrivacyDefault()
     )
     print(result)
 
@@ -96,11 +97,13 @@ function toast(){
     el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
   }
   function addCopyIcon(pre){
+    var code=(pre.textContent||pre.innerText).replace(/
+$/,'');
     var btn=document.createElement('button');
     btn.className='copy-icon';btn.textContent='copy';
     btn.addEventListener('click',function(ev){
       ev.stopPropagation();
-      cp(pre.textContent||pre.innerText);
+      cp(code);
       btn.textContent='\u2713';toast();
       setTimeout(function(){btn.textContent='copy';},1300);
     });

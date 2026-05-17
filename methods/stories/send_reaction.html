@@ -43,6 +43,7 @@ stories.sendReaction<span style="color:var(--tl-cid)">#7fd736b2</span> add_to_re
 <tr><td>reaction</td><td><a href="../../types/reaction.html">Reaction</a></td><td><span class="tag-req">required</span></td></tr>
 </table>
 <h3>Example</h3>
+<p class="example-note">Examples show the correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs) with real data before running.</p>
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
@@ -55,7 +56,7 @@ async def main():
     result = await app.raw.stories.SendReaction(
         peer=&#x27;username&#x27;,
         story_id=42,
-        reaction=raw.types.Reaction()
+        reaction=raw.types.ReactionEmpty()
     )
     print(result)
 
@@ -75,7 +76,7 @@ async def main():
         add_to_recent=True,
         peer=raw.types.InputPeerSelf(),
         story_id=42,
-        reaction=raw.types.Reaction()
+        reaction=raw.types.ReactionEmpty()
     ))
     print(result)
 
@@ -117,11 +118,13 @@ function toast(){
     el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
   }
   function addCopyIcon(pre){
+    var code=(pre.textContent||pre.innerText).replace(/
+$/,'');
     var btn=document.createElement('button');
     btn.className='copy-icon';btn.textContent='copy';
     btn.addEventListener('click',function(ev){
       ev.stopPropagation();
-      cp(pre.textContent||pre.innerText);
+      cp(code);
       btn.textContent='\u2713';toast();
       setTimeout(function(){btn.textContent='copy';},1300);
     });

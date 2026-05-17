@@ -44,10 +44,11 @@ phone.createGroupCall<span style="color:var(--tl-cid)">#48cdc6d8</span> rtmp_str
 <tr><td>schedule_date</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table>
 <h3>Example</h3>
+<p class="example-note">Examples show the correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs) with real data before running.</p>
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client, raw
+from ferogram import Client
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -118,11 +119,13 @@ function toast(){
     el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
   }
   function addCopyIcon(pre){
+    var code=(pre.textContent||pre.innerText).replace(/
+$/,'');
     var btn=document.createElement('button');
     btn.className='copy-icon';btn.textContent='copy';
     btn.addEventListener('click',function(ev){
       ev.stopPropagation();
-      cp(pre.textContent||pre.innerText);
+      cp(code);
       btn.textContent='\u2713';toast();
       setTimeout(function(){btn.textContent='copy';},1300);
     });

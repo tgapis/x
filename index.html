@@ -53,53 +53,218 @@
   <a class="pill" href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py (Python)</a>
 </div>
 
-<h3>5 ways to call a raw method</h3>
+<h3>Index</h3>
+<ul>
+  <li><a href="#methods">Methods</a> (<a href="methods/index.html">full list</a>)</li>
+  <li><a href="#types">Types</a> (<a href="types/index.html">full list</a>)</li>
+  <li><a href="#constructors">Constructors</a> (<a href="constructors/index.html">full list</a>)</li>
+  <li><a href="#tl">TL definition</a></li>
+  <li><a href="#core">Core types</a></li>
+  <li><a href="#example">Full example</a></li>
+</ul>
+
+<h3 id="tl">TL definition</h3>
+<p>When you see this on a method or constructor page:</p>
+<pre class="tl">---functions---
+users.getUsers#0d91a548 id:Vector&lt;InputUser&gt; = Vector&lt;User&gt;</pre>
+<p>
+  This is <strong>not</strong> Python code. It's the "TL definition" : an easy-to-read line that gives
+  a quick overview of the parameters and their result type. You don't need to worry about it beyond
+  reading the parameter names and types.
+</p>
+
+<h3 id="methods">Methods</h3>
+<p>
+  Currently there are <strong>772 methods</strong> available for Layer 225.
+  <a href="methods/index.html">See the complete method list</a>.
+</p>
+<p>
+  Methods, also known as <em>requests</em>, are used to interact with the Telegram API itself and are
+  invoked through <code>await client(Request(...))</code> or via the raw proxy shorthand.
+  <strong>Only these</strong> can be invoked . You cannot invoke types or constructors, only requests.
+  After this, Telegram will return a <code>result</code>, which may be a bunch of messages,
+  some dialogs, users, etc.
+</p>
+
+<h3 id="types">Types</h3>
+<p>
+  Currently there are <strong>594 types</strong>.
+  <a href="types/index.html">See the complete list of types</a>.
+</p>
+<p>
+  Telegram types are the <em>abstract</em> results you receive after invoking a request. They are
+  "abstract" because they can have multiple constructors. For instance, the abstract type
+  <code>User</code> can be either <code>UserEmpty</code> or <code>User</code>. You should, most of the
+  time, make sure you received the desired type by using the
+  <code>isinstance(result, Constructor)</code> Python function.
+  When a request needs a Telegram type as argument, create an instance using one of its constructors.
+</p>
+
+<h3 id="constructors">Constructors</h3>
+<p>
+  Currently there are <strong>1573 constructors</strong>.
+  <a href="constructors/index.html">See the list of all constructors</a>.
+</p>
+<p>
+  Constructors are the way you create instances of the abstract types described above, and also the
+  concrete instances actually returned from functions (they all share a common abstract type).
+</p>
+
+<h3>6 ways to call a raw method</h3>
 <div class="tabs">
   <button class="tab active" onclick="switchWayTab(0)">1. Callable</button>
   <button class="tab" onclick="switchWayTab(1)">2. invoke()</button>
   <button class="tab" onclick="switchWayTab(2)">3. ns import</button>
   <button class="tab" onclick="switchWayTab(3)">4. raw proxy</button>
   <button class="tab" onclick="switchWayTab(4)">5. handler</button>
+  <button class="tab" onclick="switchWayTab(5)">6. dict</button>
 </div>
-<div class="way-content active" id="w0"><pre class="python"># Recommended: call the client directly
+<div class="way-content active" id="w0"><pre class="python"># Recommended: call the client directly with a typed TL object
 from ferogram import Client, raw
 app = Client("my_session", api_id=12345, api_hash="...")
 result = await app(raw.functions.messages.GetHistory(peer=..., limit=100))</pre></div>
-<div class="way-content" id="w1"><pre class="python"># Explicit invoke() - same result
+<div class="way-content" id="w1"><pre class="python"># Explicit invoke() - identical to way 1, just more descriptive
 from ferogram import Client, raw
 app = Client("my_session", api_id=12345, api_hash="...")
 result = await app.invoke(raw.functions.messages.GetHistory(peer=..., limit=100))</pre></div>
-<div class="way-content" id="w2"><pre class="python"># Namespace import - shorter call site
+<div class="way-content" id="w2"><pre class="python"># Namespace import - keeps the call site short, good for repeated use
 from ferogram import Client
 from ferogram.raw.functions.messages import GetHistory
 app = Client("my_session", api_id=12345, api_hash="...")
 result = await app(GetHistory(peer=..., limit=100))</pre></div>
-<div class="way-content" id="w3"><pre class="python"># Raw proxy: resolves peer strings automatically
+<div class="way-content" id="w3"><pre class="python"># Raw proxy - peer strings auto-resolved, primitives get safe defaults
+# Add raw only when a field takes a TL object (e.g. InputMedia)
 from ferogram import Client
 app = Client("my_session", api_id=12345, api_hash="...")
 result = await app.raw.messages.GetHistory(peer="@username", limit=5)</pre></div>
-<div class="way-content" id="w4"><pre class="python"># Inside an update handler
+<div class="way-content" id="w4"><pre class="python"># Inside an update handler - use client, not app
 from ferogram import Client, filters, raw
 app = Client("my_session", api_id=12345, api_hash="...")
 
-@app.on(filters.text)
+@app.on_message(filters.text)
 async def handler(client, message):
     result = await client(raw.functions.messages.GetHistory(
         peer=message.chat_id, limit=10
     ))
     print(result)</pre></div>
+<div class="way-content" id="w5"><pre class="python"># Dict invoke - no generated types needed, plain Python dicts
+# "_" key is the TL name in camelCase. Used internally by the proxy layer.
+from ferogram import Client
+app = Client("my_session", api_id=12345, api_hash="...")
+result = await app.invoke({
+    "_": "messages.getHistory",
+    "peer": {"_": "inputPeerSelf"},
+    "limit": 10,
+    "offset_id": 0,
+    "offset_date": 0,
+    "add_offset": 0,
+    "max_id": 0,
+    "min_id": 0,
+    "hash": 0,
+})</pre></div>
 
-<h3 id="int">Core types</h3>
-<table>
-<tr><td><b>int</b></td><td>32-bit signed integer.</td></tr>
-<tr><td><b id="long">long</b></td><td>64-bit signed integer.</td></tr>
-<tr><td><b id="bool">bool</b> / <b id="true">true</b></td><td>Boolean value.</td></tr>
-<tr><td><b id="string">string</b></td><td>UTF-8 string.</td></tr>
-<tr><td><b id="bytes">bytes</b></td><td>Arbitrary binary data.</td></tr>
-<tr><td><b id="double">double</b></td><td>64-bit float.</td></tr>
-<tr><td><b id="date">date</b></td><td>Unix timestamp stored as int.</td></tr>
-<tr><td><b id="vector">Vector&lt;T&gt;</b></td><td>List of T.</td></tr>
+<h3>Which way should I use?</h3>
+<table class="cmp-table">
+<thead>
+<tr>
+  <th>Way</th>
+  <th>Import needed</th>
+  <th>Peer strings</th>
+  <th>Type safety</th>
+  <th>Verdict</th>
+  <th>Use when</th>
+  <th>Avoid when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1. Callable<br><code>await app(...)</code></td>
+  <td><code>Client, raw</code></td>
+  <td>&#10007; manual</td>
+  <td>&#10003; full</td>
+  <td><span class="badge badge-rec">&#10003; recommended</span></td>
+  <td>Default choice for scripts, bots, userbots. IDE autocomplete works. Errors are caught at construction time.</td>
+  <td>Nothing. This is the safe default.</td>
+</tr>
+<tr>
+  <td>2. invoke()<br><code>await app.invoke(...)</code></td>
+  <td><code>Client, raw</code></td>
+  <td>&#10007; manual</td>
+  <td>&#10003; full</td>
+  <td><span class="badge badge-ok">&#9654; situational</span></td>
+  <td>When you want to be explicit that a network call is happening, or when passing the method object around before invoking.</td>
+  <td>Everyday use. Way 1 is shorter and identical.</td>
+</tr>
+<tr>
+  <td>3. ns import<br><code>from ferogram.raw...</code></td>
+  <td><code>Client</code> + specific class</td>
+  <td>&#10007; manual</td>
+  <td>&#10003; full</td>
+  <td><span class="badge badge-ok">&#9654; situational</span></td>
+  <td>When you call the same method many times in one file and want to avoid repeating <code>raw.functions.messages.</code>.</td>
+  <td>Scripts that call many different methods. The import block grows fast.</td>
+</tr>
+<tr>
+  <td>4. raw proxy<br><code>await app.raw.ns.Method(...)</code></td>
+  <td><code>Client</code> (+ <code>raw</code> if TL objects needed)</td>
+  <td>&#10003; auto</td>
+  <td>&#9651; partial</td>
+  <td><span class="badge badge-ok">&#9654; situational</span></td>
+  <td>Quick scripts and exploration. Passing <code>"@username"</code> or <code>"me"</code> directly without resolving peers manually. Required primitives auto-fill to safe defaults.</td>
+  <td>Production bots. Missing required TL-object fields silently get empty defaults, which can cause unexpected Telegram errors.</td>
+</tr>
+<tr>
+  <td>5. handler<br><code>@app.on_message</code></td>
+  <td><code>Client, filters, raw</code></td>
+  <td>&#10007; manual</td>
+  <td>&#10003; full</td>
+  <td><span class="badge badge-rec">&#10003; recommended</span></td>
+  <td>All event-driven code. Use <code>client</code> (the handler argument), not the outer <code>app</code>, so the correct session context is used.</td>
+  <td>Never call <code>await app(...)</code> inside a handler. Use <code>await client(...)</code>.</td>
+</tr>
+<tr>
+  <td>6. dict<br><code>await app.invoke({"_": ...})</code></td>
+  <td><code>Client</code> only</td>
+  <td>&#10007; manual</td>
+  <td>&#10007; none</td>
+  <td><span class="badge badge-warn">&#9651; advanced</span></td>
+  <td>Dynamic dispatch. Use when the method name or fields are only known at runtime. Building generic tools or proxies on top of ferogram. No generated types required.</td>
+  <td>Normal bot or userbot code. No autocomplete, no type checking, typos in <code>"_"</code> fail at runtime only.</td>
+</tr>
+</tbody>
 </table>
+<p style="color:var(--muted);font-size:13px;">
+  <strong style="color:var(--text)">Rule of thumb:</strong>
+  use way 1 by default. Switch to way 4 (proxy) for quick scripts where peer strings save time.
+  Use way 5 in all handlers. Reach for way 6 only when the method name is dynamic.
+</p>
+
+<h3 id="core">Core types</h3>
+<p>Core types are the primitives from which all other Telegram types are built:</p>
+<table>
+<tr><td><strong id="int">int</strong></td><td>32-bit signed integer. Check bit length with <code>a.bit_length()</code>.</td></tr>
+<tr><td><strong id="long">long</strong></td><td>64-bit signed integer.</td></tr>
+<tr><td><strong id="int128">int128</strong></td><td>128-bit integer. Pass as a Python <code>int</code> with at most 128 bits.</td></tr>
+<tr><td><strong id="int256">int256</strong></td><td>256-bit integer. Pass as a Python <code>int</code> with at most 256 bits.</td></tr>
+<tr><td><strong id="double">double</strong></td><td>64-bit float, such as <code>123.456</code>.</td></tr>
+<tr><td><strong id="string">string</strong></td><td>Valid UTF-8 string. Python strings work as-is, no extra encoding needed.</td></tr>
+<tr><td><strong id="bytes">bytes</strong></td><td>Arbitrary binary data, e.g. <code>b'hello'</code>.</td></tr>
+<tr><td><strong id="bool">bool</strong> / <strong id="true">true</strong></td><td><code>True</code> or <code>False</code>. <code>true</code> flag fields are not sent. Any truthy value enables the flag; use <code>True</code> or omit entirely.</td></tr>
+<tr><td><strong id="date">date</strong></td><td>Unix timestamp stored as <code>int</code>. You can also pass a <code>datetime</code> or <code>date</code> object. The library uses UTC+0.</td></tr>
+<tr><td><strong id="vector">Vector&lt;T&gt;</strong></td><td>A Python <code>list</code> of <code>T</code>. For example, a valid value for <code>Vector&lt;int&gt;</code> is <code>[1, 2, 3]</code>.</td></tr>
+</table>
+
+<h3 id="example">Full example</h3>
+<p>
+  All methods shown here have dummy examples on how to write them, so you don't get confused with
+  their TL definition. However, this may not always run as-is. They are just there to show the
+  correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs, placeholder
+  TL objects) with real data before running.
+</p>
+<p>
+  See the <a href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py README</a>
+  for a complete working example.
+</p>
 
 <textarea id="c" class="invisible"></textarea>
 <script>
@@ -136,11 +301,13 @@ function toast(){
     el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
   }
   function addCopyIcon(pre){
+    var code=(pre.textContent||pre.innerText).replace(/
+$/,'');
     var btn=document.createElement('button');
     btn.className='copy-icon';btn.textContent='copy';
     btn.addEventListener('click',function(ev){
       ev.stopPropagation();
-      cp(pre.textContent||pre.innerText);
+      cp(code);
       btn.textContent='\u2713';toast();
       setTimeout(function(){btn.textContent='copy';},1300);
     });

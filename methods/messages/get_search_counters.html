@@ -43,6 +43,7 @@ messages.getSearchCounters<span style="color:var(--tl-cid)">#1bbcf300</span> pee
 <tr><td>filters</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/messages_filter.html">MessagesFilter</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
 </table>
 <h3>Example</h3>
+<p class="example-note">Examples show the correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs) with real data before running.</p>
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
@@ -54,7 +55,7 @@ async def main():
     await app.start()
     result = await app.raw.messages.GetSearchCounters(
         peer=&#x27;username&#x27;,
-        filters=raw.types.Vector&lt;MessagesFilter&gt;()
+        filters=[raw.types.InputMessagesFilterEmpty()]
     )
     print(result)
 
@@ -74,7 +75,7 @@ async def main():
         peer=raw.types.InputPeerSelf(),
         saved_peer_id=raw.types.InputPeerSelf(),
         top_msg_id=42,
-        filters=raw.types.Vector&lt;MessagesFilter&gt;()
+        filters=[raw.types.InputMessagesFilterEmpty()]
     ))
     print(result)
 
@@ -116,11 +117,13 @@ function toast(){
     el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
   }
   function addCopyIcon(pre){
+    var code=(pre.textContent||pre.innerText).replace(/
+$/,'');
     var btn=document.createElement('button');
     btn.className='copy-icon';btn.textContent='copy';
     btn.addEventListener('click',function(ev){
       ev.stopPropagation();
-      cp(pre.textContent||pre.innerText);
+      cp(code);
       btn.textContent='\u2713';toast();
       setTimeout(function(){btn.textContent='copy';},1300);
     });

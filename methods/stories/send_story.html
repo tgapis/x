@@ -54,6 +54,7 @@ stories.sendStory<span style="color:var(--tl-cid)">#8f9e6898</span> pinned:flags
 <tr><td>music</td><td><a href="../../types/input_document.html">InputDocument</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table>
 <h3>Example</h3>
+<p class="example-note">Examples show the correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs) with real data before running.</p>
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
@@ -67,7 +68,7 @@ async def main():
     result = await app.raw.stories.SendStory(
         peer=&#x27;username&#x27;,
         media=raw.types.InputMediaEmpty(),
-        privacy_rules=raw.types.Vector&lt;InputPrivacyRule&gt;(),
+        privacy_rules=[raw.types.InputPrivacyValueAllowAll()],
         random_id=random.randrange(-2**63, 2**63)
     )
     print(result)
@@ -91,15 +92,15 @@ async def main():
         fwd_modified=True,
         peer=raw.types.InputPeerSelf(),
         media=raw.types.InputMediaEmpty(),
-        media_areas=raw.types.Vector&lt;MediaArea&gt;(),
+        media_areas=[raw.types.MediaArea()],
         caption=&#x27;some string here&#x27;,
-        entities=raw.types.Vector&lt;MessageEntity&gt;(),
-        privacy_rules=raw.types.Vector&lt;InputPrivacyRule&gt;(),
+        entities=[raw.types.MessageEntityUnknown(offset=0, length=1)],
+        privacy_rules=[raw.types.InputPrivacyValueAllowAll()],
         random_id=random.randrange(-2**63, 2**63),
         period=42,
         fwd_from_id=raw.types.InputPeerSelf(),
         fwd_from_story=42,
-        albums=raw.types.Vector&lt;int&gt;(),
+        albums=[42],
         music=raw.types.InputDocumentEmpty()
     ))
     print(result)
@@ -142,11 +143,13 @@ function toast(){
     el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
   }
   function addCopyIcon(pre){
+    var code=(pre.textContent||pre.innerText).replace(/
+$/,'');
     var btn=document.createElement('button');
     btn.className='copy-icon';btn.textContent='copy';
     btn.addEventListener('click',function(ev){
       ev.stopPropagation();
-      cp(pre.textContent||pre.innerText);
+      cp(code);
       btn.textContent='\u2713';toast();
       setTimeout(function(){btn.textContent='copy';},1300);
     });
