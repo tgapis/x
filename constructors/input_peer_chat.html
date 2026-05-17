@@ -305,6 +305,9 @@ $/,'');
   function init(){
     document.querySelectorAll('pre.python').forEach(function(p){p.innerHTML=hlPy(p.textContent);});
     document.querySelectorAll('pre').forEach(function(el){addCopyIcon(el);attachLongPress(el);});
+    document.querySelectorAll('.tabs .tab').forEach(function(btn,i){
+      btn.addEventListener('touchend',function(e){e.preventDefault();switchWayTab(i);});
+    });
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
