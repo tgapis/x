@@ -183,6 +183,13 @@ details.example[open] > summary .arrow { transform: rotate(90deg); }
 .cmp-table td:first-child { font-weight: 700; font-family: 'Source Code Pro', monospace; color: var(--accent-light); font-size: 12px; white-space: nowrap; }
 .cmp-table td code { font-size: 12px; font-family: 'Source Code Pro', monospace; }
 .cmp-table tr:hover td { background: var(--surface); }
+.tab-dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    margin-right: 5px; vertical-align: middle; position: relative; top: -1px;
+}
+.tab-dot-rec  { background: var(--tag-req-text); }
+.tab-dot-ok   { background: var(--tag-opt-text); }
+.tab-dot-warn { background: var(--warn-text, #d4a040); }
 body { background: var(--bg); color: var(--text); }
 a { color: var(--link); } a:hover { color: var(--link-hover); }
 pre { background: var(--code-bg); color: var(--code-text); border-color: var(--border); }

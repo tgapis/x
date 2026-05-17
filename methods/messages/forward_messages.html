@@ -171,11 +171,9 @@ $/,'');
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
-  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
-  _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
-  _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
+  document.querySelectorAll('.tabs .tab').forEach(function(t,i){t.classList.toggle('active',i===n);});
+  document.querySelectorAll('.way-content').forEach(function(c,i){c.classList.toggle('active',i===n);});
 }
 </script>
 </div>
