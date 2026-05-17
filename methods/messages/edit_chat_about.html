@@ -41,19 +41,20 @@ messages.editChatAbout#def60797 peer:<a href="../../types/input_peer.html">Input
 <tr><td>about</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
 </table>
 <h3>Example</h3><pre>import asyncio
-from ferogram import Client, raw
+from ferogram import Client
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
-    result = await app(raw.functions.messages.EditChatAbout(
+    result = await app.raw.messages.EditChatAbout(
         peer=&#x27;username&#x27;,
         about=&#x27;some string here&#x27;
-    ))
+    )
     print(result)
 
 asyncio.run(main())</pre>
+<p class="example-note">This is the recommended way to call this method. If you need more control over the parameters or want to see how the method is structured, expand <strong>Full API</strong> below.</p>
 
 <textarea id="c" class="invisible"></textarea>
 <script>
@@ -77,6 +78,12 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
+var _wayTabs=document.querySelectorAll('.tabs .tab');
+var _wayCon=document.querySelectorAll('.way-content');
+function switchWayTab(n){
+  _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
+  _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
+}
 </script>
 </div>
 <script>prependPath="../../";</script><script src="../../js/search.js"></script>

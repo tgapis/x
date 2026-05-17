@@ -113,6 +113,14 @@ details.example > summary { cursor: pointer; font-size: 13px; user-select: none;
 details.example > summary::-webkit-details-marker { display: none; }
 details.example > summary::marker { display: none; }
 details.example { margin-bottom: 12px; }
+.example-note { font-size: 13px; color: var(--muted); margin: 6px 0 14px; font-family: 'Source Code Pro', monospace; }
+.example-note strong { color: var(--accent-light); }
+.tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; margin-bottom: 0; }
+.tab { padding: 7px 14px; font-size: 12px; cursor: pointer; font-family: 'Source Code Pro', monospace; color: var(--muted); border: none; background: none; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.way-content { display: none; }
+.way-content.active { display: block; }
+.way-content pre { border-top: none; border-radius: 0 0 8px 8px; margin-top: 0; }
 @media (max-width: 600px) {
     ul.together { column-count: 1; }
     h1 { font-size: 1.3rem; }

@@ -36,41 +36,58 @@
   <a href="methods/index.html">Methods</a> (772)
   &middot; <a href="types/index.html">Types</a> (594)
   &middot; <a href="constructors/index.html">Constructors</a> (1573)
-  &middot; <a href="https://github.com/ankit-chaubey/ferogram" target="_blank">ferogram (Rust)</a>
-  &middot; <a href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py</a>
 </p>
 
 <h3>What is ferogram?</h3>
 <p>
-  <strong>ferogram</strong> is a from-scratch Rust implementation of the Telegram MTProto protocol.
-  <strong>ferogram-py</strong> wraps it with Python bindings so you can write Telegram bots and
-  userbots in Python with a high-level API, while raw TL functions (listed on this site) remain
-  fully accessible for anything the high-level API does not cover.
+  <strong>ferogram</strong> is a modern Telegram MTProto library written in Rust, designed for speed,
+  reliability, and handling complex tasks with ease, while providing full access to Telegram's protocol.
+</p>
+<p>
+  <strong>ferogram-py</strong>, a Python wrapper for ferogram, lets you build Telegram bots and userbots
+  using a clean and easy high-level API, while still giving you direct access to raw TL functions for
+  advanced features and complete MTProto control whenever needed.
+</p>
+<p>
+  <a href="https://github.com/ankit-chaubey/ferogram" target="_blank">ferogram (Rust)</a>
+  &middot; <a href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py</a>
 </p>
 
 <h3>5 ways to call a raw method</h3>
-<pre># 1. Callable shorthand (recommended)
+<div class="tabs">
+  <button class="tab active" onclick="switchWayTab(0)">1. Callable</button>
+  <button class="tab" onclick="switchWayTab(1)">2. invoke()</button>
+  <button class="tab" onclick="switchWayTab(2)">3. ns import</button>
+  <button class="tab" onclick="switchWayTab(3)">4. raw proxy</button>
+  <button class="tab" onclick="switchWayTab(4)">5. handler</button>
+</div>
+<div class="way-content active" id="w0"><pre><span style="color:var(--muted)"># Recommended: call the client directly</span>
 from ferogram import Client, raw
 app = Client("my_session", api_id=12345, api_hash="...")
-result = await app(raw.functions.messages.GetHistory(peer=..., limit=100))
-
-# 2. Explicit invoke()
-result = await app.invoke(raw.functions.messages.GetHistory(peer=..., limit=100))
-
-# 3. Namespace import - shorter call site
+result = await app(raw.functions.messages.GetHistory(peer=..., limit=100))</pre></div>
+<div class="way-content" id="w1"><pre><span style="color:var(--muted)"># Explicit invoke() - same result</span>
+from ferogram import Client, raw
+app = Client("my_session", api_id=12345, api_hash="...")
+result = await app.invoke(raw.functions.messages.GetHistory(peer=..., limit=100))</pre></div>
+<div class="way-content" id="w2"><pre><span style="color:var(--muted)"># Namespace import - shorter call site</span>
+from ferogram import Client
 from ferogram.raw.functions.messages import GetHistory
-result = await app(GetHistory(peer=..., limit=100))
+app = Client("my_session", api_id=12345, api_hash="...")
+result = await app(GetHistory(peer=..., limit=100))</pre></div>
+<div class="way-content" id="w3"><pre><span style="color:var(--muted)"># Raw proxy: resolves peer strings automatically</span>
+from ferogram import Client
+app = Client("my_session", api_id=12345, api_hash="...")
+result = await app.raw.messages.GetHistory(peer="@username", limit=5)</pre></div>
+<div class="way-content" id="w4"><pre><span style="color:var(--muted)"># Inside an update handler</span>
+from ferogram import Client, filters, raw
+app = Client("my_session", api_id=12345, api_hash="...")
 
-# 4. Raw proxy (auto-resolves peer strings)
-result = await app.raw.messages.GetHistory(peer="@username", limit=5)
-
-# 5. Inside a handler
 @app.on(filters.text)
 async def handler(client, message):
     result = await client(raw.functions.messages.GetHistory(
         peer=message.chat_id, limit=10
     ))
-    print(result)</pre>
+    print(result)</pre></div>
 
 <h3 id="int">Core types</h3>
 <table>
@@ -106,6 +123,12 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
+var _wayTabs=document.querySelectorAll('.tabs .tab');
+var _wayCon=document.querySelectorAll('.way-content');
+function switchWayTab(n){
+  _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
+  _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
+}
 </script>
 </div>
 <script>prependPath="";</script><script src="js/search.js"></script>
