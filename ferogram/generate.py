@@ -152,14 +152,17 @@ def link_type(ftype: str, known_types: set[str], depth: str) -> str:
 def render_tl_def(item: TLItem, known_types: set[str], depth: str) -> str:
     header = "---functions---" if item.is_function else "---types---"
     cid_hex = f"{item.cid:08x}"
-    parts = [html.escape(f"{item.tl_name}#{cid_hex}")]
+    name_part = html.escape(item.tl_name)
+    cid_part = f'<span style="color:var(--tl-cid)">#{cid_hex}</span>'
+    parts = [f"{name_part}{cid_part}"]
     for f in item.fields:
         if f.flag_bit is not None:
             parts.append(f" {html.escape(f.name)}:flags.{f.flag_bit}?{link_type(f.ftype, known_types, depth)}")
         else:
             parts.append(f" {html.escape(f.name)}:{link_type(f.ftype, known_types, depth)}")
     ret_linked = link_type(item.ret, known_types, depth)
-    return f"{header}\n{''.join(parts)} = {ret_linked}"
+    header_html = f'<span style="color:var(--muted)">{header}</span>'
+    return f"{header_html}\n{''.join(parts)} = {ret_linked}"
 
 
 
@@ -413,6 +416,7 @@ CSS_DARK_VARS = """\
     --tag-opt-bg: #1a3040; --tag-opt-text: #5db8e8;
     --tag-req-bg: #1a2e1a; --tag-req-text: #6ecb6e;
     --btn-bg: #251f4a; --btn-border: #7c6af7; --btn-text: #a99ff8; --btn-hover: #321f7a;
+    --tl-cid: #c08858;
 }
 """
 
@@ -449,6 +453,7 @@ CSS_LIGHT_VARS = """\
     --tag-opt-bg: #dbeafe; --tag-opt-text: #1d4ed8;
     --tag-req-bg: #dcfce7; --tag-req-text: #166534;
     --btn-bg: #ede9ff; --btn-border: #7c6af7; --btn-text: #5b4fcf; --btn-hover: #ddd6ff;
+    --tl-cid: #a0560a;
 }
 """
 
@@ -485,6 +490,7 @@ CSS_AMOLED_VARS = """\
     --tag-opt-bg: #0d1020; --tag-opt-text: #60a5fa;
     --tag-req-bg: #0a1a0a; --tag-req-text: #4ade80;
     --btn-bg: #150e2a; --btn-border: #a78bfa; --btn-text: #c4b5fd; --btn-hover: #1e1040;
+    --tl-cid: #d4a06a;
 }
 """
 
@@ -562,9 +568,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }
