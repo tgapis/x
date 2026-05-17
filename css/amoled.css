@@ -7,6 +7,7 @@
     --tag-req-bg: #0a1a0a; --tag-req-text: #4ade80;
     --btn-bg: #150e2a; --btn-border: #a78bfa; --btn-text: #c4b5fd; --btn-hover: #1e1040;
     --tl-cid: #d4a06a;
+    --hl-kw: #d4a4fc; --hl-str: #86d0aa; --hl-cmt: #3a3e5a; --hl-num: #f0b478;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
@@ -127,6 +128,36 @@ details.example { margin-bottom: 12px; }
     h1 { font-size: 1.3rem; }
     #theme-btn { top: 8px; right: 8px; }
 }
+.pill {
+    padding: 5px 13px; border-radius: 20px;
+    border-width: 1px; border-style: solid;
+    font-size: 13px; text-decoration: none;
+    display: inline-block; transition: background .15s, border-color .15s;
+}
+.pill:hover { text-decoration: none; }
+.links-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+pre { position: relative; }
+.copy-icon {
+    position: absolute; top: 8px; right: 8px;
+    opacity: 0; transition: opacity .15s;
+    border-radius: 4px; padding: 2px 8px; font-size: 11px;
+    cursor: pointer; border-width: 1px; border-style: solid;
+    font-family: 'Source Code Pro', monospace; line-height: 1.6;
+}
+pre:hover .copy-icon { opacity: 1; }
+details.example > summary .arrow {
+    display: inline-block; transition: transform .18s; margin-right: 4px;
+}
+details.example[open] > summary .arrow { transform: rotate(90deg); }
+.hint {
+    font-size: 11px; margin-bottom: 18px;
+    font-family: 'Source Code Pro', monospace;
+    padding: 5px 10px; border-radius: 6px; display: inline-block;
+}
+.py-k { color: var(--hl-kw); }
+.py-s { color: var(--hl-str); }
+.py-c { color: var(--hl-cmt); font-style: italic; }
+.py-n { color: var(--hl-num); }
 body { background: var(--bg); color: var(--text); }
 a { color: var(--link); } a:hover { color: var(--link-hover); }
 pre { background: var(--code-bg); color: var(--code-text); border-color: var(--border); }
@@ -148,3 +179,8 @@ button.copy-btn:hover { background: var(--btn-hover); }
 #searchDiv summary.title { color: var(--muted); }
 #exactMatch { background: var(--surface); border-color: var(--accent); }
 h3 { color: var(--muted); }
+.pill { background: var(--surface); border-color: var(--border); color: var(--link); }
+.pill:hover { background: var(--btn-bg); border-color: var(--accent); }
+.copy-icon { background: var(--surface); border-color: var(--border); color: var(--muted); }
+.copy-icon:hover { border-color: var(--accent); color: var(--accent-light); }
+.hint { background: var(--surface); color: var(--muted); }

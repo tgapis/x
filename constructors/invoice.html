@@ -30,7 +30,7 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>Invoice</li></ul>
 <h1>Invoice</h1>
-<pre><span style="color:var(--muted)">---types---</span>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
 invoice<span style="color:var(--tl-cid)">#049ee584</span> test:flags.0?<a href="../index.html#true">true</a> name_requested:flags.1?<a href="../index.html#true">true</a> phone_requested:flags.2?<a href="../index.html#true">true</a> email_requested:flags.3?<a href="../index.html#true">true</a> shipping_address_requested:flags.4?<a href="../index.html#true">true</a> flexible:flags.5?<a href="../index.html#true">true</a> phone_to_provider:flags.6?<a href="../index.html#true">true</a> email_to_provider:flags.7?<a href="../index.html#true">true</a> recurring:flags.9?<a href="../index.html#true">true</a> currency:<a href="../index.html#string">string</a> prices:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/labeled_price.html">LabeledPrice</a>&gt; max_tip_amount:flags.8?<a href="../index.html#long">long</a> suggested_tip_amounts:flags.8?<a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#long">long</a>&gt; terms_url:flags.10?<a href="../index.html#string">string</a> subscription_period:flags.11?<a href="../index.html#int">int</a> = <a href="../types/invoice.html">Invoice</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import Invoice')">Copy import</button>
 <h3>Belongs to</h3>
@@ -57,23 +57,52 @@ invoice<span style="color:var(--tl-cid)">#049ee584</span> test:flags.0?<a href="
 <textarea id="c" class="invisible"></textarea>
 <script>
 function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}
+/* Python syntax highlighter */
+function hlPy(t){
+  var K='import|from|as|async|def|await|return|class|if|elif|else|for|in|not|and|or|None|True|False|pass|with|try|except|raise|yield|lambda'.split('|');
+  function e(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  var o='',i=0,n=t.length;
+  while(i<n){
+    var c=t[i];
+    if(c==='#'){var j=t.indexOf('\n',i);j=j<0?n:j;o+='<span class="py-c">'+e(t.slice(i,j))+'</span>';i=j;continue;}
+    if(c==='"'||c==="'"){var q=c,j=i+1;while(j<n&&t[j]!==q){if(t[j]==='\\')j++;j++;}j++;o+='<span class="py-s">'+e(t.slice(i,j))+'</span>';i=j;continue;}
+    if(/[a-zA-Z_]/.test(c)){var j=i;while(j<n&&/[a-zA-Z0-9_]/.test(t[j]))j++;var w=t.slice(i,j);o+=K.indexOf(w)>=0?'<span class="py-k">'+w+'</span>':e(w);i=j;continue;}
+    if(/[0-9]/.test(c)&&(i===0||!/[a-zA-Z_]/.test(t[i-1]))){var j=i;while(j<n&&/[0-9a-fA-FxXbBoO._]/.test(t[j]))j++;o+='<span class="py-n">'+t.slice(i,j)+'</span>';i=j;continue;}
+    o+=e(c);i++;
+  }
+  return o;
+}
+function toast(){
+  var d=document.createElement('div');
+  d.textContent='Copied!';
+  d.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px;font-family:monospace;z-index:9999;pointer-events:none;opacity:1;transition:opacity .4s';
+  document.body.appendChild(d);
+  setTimeout(function(){d.style.opacity='0';setTimeout(function(){d.remove();},400);},1200);
+}
 (function(){
   var _lpt=null;
-  function toast(){
-    var d=document.createElement('div');
-    d.textContent='Copied!';
-    d.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#a78bfa;color:#000;padding:6px 16px;border-radius:20px;font-size:13px;font-family:monospace;z-index:9999;pointer-events:none;opacity:1;transition:opacity .4s';
-    document.body.appendChild(d);
-    setTimeout(function(){d.style.opacity='0';setTimeout(function(){d.remove();},400);},1200);
-  }
-  function attach(el){
+  function attachLongPress(el){
     el.addEventListener('touchstart',function(){
       _lpt=setTimeout(function(){cp(el.innerText||el.textContent);toast();},600);
     },{passive:true});
     el.addEventListener('touchend',function(){clearTimeout(_lpt);});
     el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
   }
-  function init(){document.querySelectorAll('pre').forEach(attach);}
+  function addCopyIcon(pre){
+    var btn=document.createElement('button');
+    btn.className='copy-icon';btn.textContent='copy';
+    btn.addEventListener('click',function(ev){
+      ev.stopPropagation();
+      cp(pre.textContent||pre.innerText);
+      btn.textContent='\u2713';toast();
+      setTimeout(function(){btn.textContent='copy';},1300);
+    });
+    pre.appendChild(btn);
+  }
+  function init(){
+    document.querySelectorAll('pre.python').forEach(function(p){p.innerHTML=hlPy(p.textContent);});
+    document.querySelectorAll('pre').forEach(function(el){addCopyIcon(el);attachLongPress(el);});
+  }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
 var _wayTabs=null,_wayCon=null;

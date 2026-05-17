@@ -2,7 +2,7 @@
 root = document.getElementById("main_div");
 root.innerHTML = `
 <input id="searchBox" type="text" onkeyup="updateSearch(event)"
-       placeholder="Search methods and types…" />
+       placeholder="Search methods and types…  (press / to focus)" />
 <div id="searchDiv" style="display:none">
   <div id="exactMatch" style="display:none">
     <b>Exact match:</b>
@@ -85,3 +85,12 @@ function updateSearch(event) {
 
 var qParam = new URLSearchParams(window.location.search).get("q");
 if (qParam) { searchBox.value = qParam; updateSearch({}); }
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === '/' && document.activeElement !== searchBox) {
+    e.preventDefault(); searchBox.focus();
+  }
+  if (e.key === 'Escape' && document.activeElement === searchBox) {
+    searchBox.blur(); searchBox.value = ''; updateSearch({});
+  }
+});
