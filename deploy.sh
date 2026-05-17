@@ -10,6 +10,8 @@ cp bin.js                 /tmp/bin.js
 cp index.js               /tmp/index.js
 cp ferogram/generate.py   /tmp/ferogram_generate.py
 cp get-all-tl.py          /tmp/get-all-tl.py
+cp tl/index.html          /tmp/tl_index.html
+cp tl/app.js              /tmp/tl_app.js
 
 IFS="
 "
@@ -81,28 +83,29 @@ git commit -m "update telethon docs" || true
 cd "${a}"
 
 # TL diff: run twice with different env vars (tdesktop, then TDLib)
-git clone -q https://codeberg.org/Lonami/tl-differ /tmp/tldiff/
+# app.js and index.html are vendored in tl/ on the main branch (stashed to /tmp/).
 a=$(pwd)
 rm -rf TL/
 mkdir -p TL/diff/
-cd /tmp/tldiff/
+mkdir -p /tmp/tldiff
+cd /tmp/tldiff
 
 FQDN="https://tgapis.github.io/x/TL/diff" GH="https://github.com/telegramdesktop/tdesktop/" python /tmp/get-all-tl.py
-cp app.js atom.xml diff.js "${a}/TL/diff/"
-mv index.html "${a}/TL/diff/tdesktop.html"
+cp /tmp/tl_app.js atom.xml diff.js "${a}/TL/diff/"
+cp /tmp/tl_index.html "${a}/TL/diff/tdesktop.html"
 mkdir -p "${a}/TL/diff/schemes/tDesktop"
 mv schemes/* "${a}/TL/diff/schemes/tDesktop/"
 rm -rf tdesktop schemes
 
 FQDN="https://tgapis.github.io/x/TL/diff" TDLIBGH="https://github.com/tdlib/td" python /tmp/get-all-tl.py
 cp tdatom.xml tddiff.js "${a}/TL/diff/"
-mv index.html "${a}/TL/diff/tdlib.html"
-mv app.js "${a}/TL/diff/tdapp.js"
+cp /tmp/tl_index.html "${a}/TL/diff/tdlib.html"
+cp /tmp/tl_app.js "${a}/TL/diff/tdapp.js"
 mkdir -p "${a}/TL/diff/schemes/TDLib"
 mv schemes/* "${a}/TL/diff/schemes/TDLib/"
-rm -rf tdesktop schemes
+rm -rf td schemes
 cd "${a}"
-rm -rf /tmp/tldiff/
+rm -rf /tmp/tldiff
 
 git add -A TL/
 git config --global user.email "Lonami@users.noreply.github.com"
