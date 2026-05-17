@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ferogram API - ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="css/docs.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="main_div">
+
+<h1>ferogram API <span style="color:var(--muted);font-size:1rem">Layer 225</span></h1>
+<p>Raw Telegram MTProto API reference, auto-generated from <code>raw_api.tl</code> (Layer 225).
+Use the search box below or browse by section.</p>
+<p>
+  <a href="methods/index.html">Methods</a> (772) ·
+  <a href="types/index.html">Types</a> (594) ·
+  <a href="constructors/index.html">Constructors</a> (1573)
+</p>
+<h3>Usage</h3>
+<pre># namespace style
+from ferogram.raw.functions.messages import GetHistory
+result = await client(GetHistory(peer=..., limit=100, ...))
+
+# flat style
+from ferogram import raw
+result = await client(raw.functions.messages.GetHistory(peer=..., limit=100, ...))</pre>
+
+<h3 id="vector">Core types</h3>
+<table>
+<tr><td><b id="int">int</b></td><td>A 32-bit integer.</td></tr>
+<tr><td><b id="long">long</b></td><td>A 64-bit integer.</td></tr>
+<tr><td><b>bool</b> / <b>true</b></td><td>A boolean value.</td></tr>
+<tr><td><b>string</b></td><td>A UTF-8 string.</td></tr>
+<tr><td><b>bytes</b></td><td>Arbitrary binary data.</td></tr>
+<tr><td><b>double</b></td><td>A 64-bit float.</td></tr>
+<tr><td><b id="vector">Vector&lt;T&gt;</b></td><td>A list of T.</td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>
+</div>
+<script>prependPath="";</script><script src="js/search.js"></script>
+</body>
+</html>

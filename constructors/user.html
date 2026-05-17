@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>User - ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../css/docs.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>User</li></ul>
+<h1>User</h1>
+<pre>---types---
+user#31774388 self:flags.10?<a href="../index.html#true">true</a> contact:flags.11?<a href="../index.html#true">true</a> mutual_contact:flags.12?<a href="../index.html#true">true</a> deleted:flags.13?<a href="../index.html#true">true</a> bot:flags.14?<a href="../index.html#true">true</a> bot_chat_history:flags.15?<a href="../index.html#true">true</a> bot_nochats:flags.16?<a href="../index.html#true">true</a> verified:flags.17?<a href="../index.html#true">true</a> restricted:flags.18?<a href="../index.html#true">true</a> min:flags.20?<a href="../index.html#true">true</a> bot_inline_geo:flags.21?<a href="../index.html#true">true</a> support:flags.23?<a href="../index.html#true">true</a> scam:flags.24?<a href="../index.html#true">true</a> apply_min_photo:flags.25?<a href="../index.html#true">true</a> fake:flags.26?<a href="../index.html#true">true</a> bot_attach_menu:flags.27?<a href="../index.html#true">true</a> premium:flags.28?<a href="../index.html#true">true</a> attach_menu_enabled:flags.29?<a href="../index.html#true">true</a> bot_can_edit:flags2.1?true close_friend:flags2.2?true stories_hidden:flags2.3?true stories_unavailable:flags2.4?true contact_require_premium:flags2.10?true bot_business:flags2.11?true bot_has_main_app:flags2.13?true bot_forum_view:flags2.16?true bot_forum_can_manage_topics:flags2.17?true bot_can_manage_bots:flags2.18?true bot_guestchat:flags2.19?true id:<a href="../index.html#long">long</a> access_hash:flags.0?<a href="../index.html#long">long</a> first_name:flags.1?<a href="../index.html#string">string</a> last_name:flags.2?<a href="../index.html#string">string</a> username:flags.3?<a href="../index.html#string">string</a> phone:flags.4?<a href="../index.html#string">string</a> photo:flags.5?<a href="../types/user_profile_photo.html">UserProfilePhoto</a> status:flags.6?<a href="../types/user_status.html">UserStatus</a> bot_info_version:flags.14?<a href="../index.html#int">int</a> restriction_reason:flags.18?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/restriction_reason.html">RestrictionReason</a>&gt; bot_inline_placeholder:flags.19?<a href="../index.html#string">string</a> lang_code:flags.22?<a href="../index.html#string">string</a> emoji_status:flags.30?<a href="../types/emoji_status.html">EmojiStatus</a> usernames:flags2.0?Vector&lt;Username&gt; stories_max_id:flags2.5?RecentStory color:flags2.8?PeerColor profile_color:flags2.9?PeerColor bot_active_users:flags2.12?int bot_verification_icon:flags2.14?long send_paid_messages_stars:flags2.15?long = <a href="../types/user.html">User</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types import User')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/user.html">User</a></td></tr></table>
+<h3>Members</h3>
+<table><tr><td>self</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>contact</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>mutual_contact</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>deleted</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>bot</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>bot_chat_history</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>bot_nochats</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>verified</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>restricted</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>min</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>bot_inline_geo</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>support</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>scam</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>apply_min_photo</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>fake</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>bot_attach_menu</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>premium</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>attach_menu_enabled</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>bot_can_edit</td><td>flags2.1?true</td><td>Required.</td></tr>
+<tr><td>close_friend</td><td>flags2.2?true</td><td>Required.</td></tr>
+<tr><td>stories_hidden</td><td>flags2.3?true</td><td>Required.</td></tr>
+<tr><td>stories_unavailable</td><td>flags2.4?true</td><td>Required.</td></tr>
+<tr><td>contact_require_premium</td><td>flags2.10?true</td><td>Required.</td></tr>
+<tr><td>bot_business</td><td>flags2.11?true</td><td>Required.</td></tr>
+<tr><td>bot_has_main_app</td><td>flags2.13?true</td><td>Required.</td></tr>
+<tr><td>bot_forum_view</td><td>flags2.16?true</td><td>Required.</td></tr>
+<tr><td>bot_forum_can_manage_topics</td><td>flags2.17?true</td><td>Required.</td></tr>
+<tr><td>bot_can_manage_bots</td><td>flags2.18?true</td><td>Required.</td></tr>
+<tr><td>bot_guestchat</td><td>flags2.19?true</td><td>Required.</td></tr>
+<tr><td>id</td><td><a href="../index.html#long">long</a></td><td>Required.</td></tr>
+<tr><td>access_hash</td><td><a href="../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>first_name</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>last_name</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>username</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>phone</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>photo</td><td><a href="../types/user_profile_photo.html">UserProfilePhoto</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>status</td><td><a href="../types/user_status.html">UserStatus</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>bot_info_version</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>restriction_reason</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/restriction_reason.html">RestrictionReason</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>bot_inline_placeholder</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>lang_code</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>emoji_status</td><td><a href="../types/emoji_status.html">EmojiStatus</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>usernames</td><td>flags2.0?Vector&lt;Username&gt;</td><td>Required.</td></tr>
+<tr><td>stories_max_id</td><td>flags2.5?RecentStory</td><td>Required.</td></tr>
+<tr><td>color</td><td>flags2.8?PeerColor</td><td>Required.</td></tr>
+<tr><td>profile_color</td><td>flags2.9?PeerColor</td><td>Required.</td></tr>
+<tr><td>bot_active_users</td><td>flags2.12?int</td><td>Required.</td></tr>
+<tr><td>bot_verification_icon</td><td>flags2.14?long</td><td>Required.</td></tr>
+<tr><td>send_paid_messages_stars</td><td>flags2.15?long</td><td>Required.</td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

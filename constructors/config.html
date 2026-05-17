@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Config - ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="../css/docs.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>Config</li></ul>
+<h1>Config</h1>
+<pre>---types---
+config#cc1a241e default_p2p_contacts:flags.3?<a href="../index.html#true">true</a> preload_featured_stickers:flags.4?<a href="../index.html#true">true</a> revoke_pm_inbox:flags.6?<a href="../index.html#true">true</a> blocked_mode:flags.8?<a href="../index.html#true">true</a> force_try_ipv6:flags.14?<a href="../index.html#true">true</a> date:<a href="../index.html#int">int</a> expires:<a href="../index.html#int">int</a> test_mode:<a href="../index.html#bool">Bool</a> this_dc:<a href="../index.html#int">int</a> dc_options:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/dc_option.html">DcOption</a>&gt; dc_txt_domain_name:<a href="../index.html#string">string</a> chat_size_max:<a href="../index.html#int">int</a> megagroup_size_max:<a href="../index.html#int">int</a> forwarded_count_max:<a href="../index.html#int">int</a> online_update_period_ms:<a href="../index.html#int">int</a> offline_blur_timeout_ms:<a href="../index.html#int">int</a> offline_idle_timeout_ms:<a href="../index.html#int">int</a> online_cloud_timeout_ms:<a href="../index.html#int">int</a> notify_cloud_delay_ms:<a href="../index.html#int">int</a> notify_default_delay_ms:<a href="../index.html#int">int</a> push_chat_period_ms:<a href="../index.html#int">int</a> push_chat_limit:<a href="../index.html#int">int</a> edit_time_limit:<a href="../index.html#int">int</a> revoke_time_limit:<a href="../index.html#int">int</a> revoke_pm_time_limit:<a href="../index.html#int">int</a> rating_e_decay:<a href="../index.html#int">int</a> stickers_recent_limit:<a href="../index.html#int">int</a> channels_read_media_period:<a href="../index.html#int">int</a> tmp_sessions:flags.0?<a href="../index.html#int">int</a> call_receive_timeout_ms:<a href="../index.html#int">int</a> call_ring_timeout_ms:<a href="../index.html#int">int</a> call_connect_timeout_ms:<a href="../index.html#int">int</a> call_packet_timeout_ms:<a href="../index.html#int">int</a> me_url_prefix:<a href="../index.html#string">string</a> autoupdate_url_prefix:flags.7?<a href="../index.html#string">string</a> gif_search_username:flags.9?<a href="../index.html#string">string</a> venue_search_username:flags.10?<a href="../index.html#string">string</a> img_search_username:flags.11?<a href="../index.html#string">string</a> static_maps_provider:flags.12?<a href="../index.html#string">string</a> caption_length_max:<a href="../index.html#int">int</a> message_length_max:<a href="../index.html#int">int</a> webfile_dc_id:<a href="../index.html#int">int</a> suggested_lang_code:flags.2?<a href="../index.html#string">string</a> lang_pack_version:flags.2?<a href="../index.html#int">int</a> base_lang_pack_version:flags.2?<a href="../index.html#int">int</a> reactions_default:flags.15?<a href="../types/reaction.html">Reaction</a> autologin_token:flags.16?<a href="../index.html#string">string</a> = <a href="../types/config.html">Config</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types import Config')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/config.html">Config</a></td></tr></table>
+<h3>Members</h3>
+<table><tr><td>default_p2p_contacts</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>preload_featured_stickers</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>revoke_pm_inbox</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>blocked_mode</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>force_try_ipv6</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>date</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>expires</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>test_mode</td><td><a href="../index.html#bool">Bool</a></td><td>Required.</td></tr>
+<tr><td>this_dc</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>dc_options</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/dc_option.html">DcOption</a>&gt;</td><td>Required.</td></tr>
+<tr><td>dc_txt_domain_name</td><td><a href="../index.html#string">string</a></td><td>Required.</td></tr>
+<tr><td>chat_size_max</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>megagroup_size_max</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>forwarded_count_max</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>online_update_period_ms</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>offline_blur_timeout_ms</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>offline_idle_timeout_ms</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>online_cloud_timeout_ms</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>notify_cloud_delay_ms</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>notify_default_delay_ms</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>push_chat_period_ms</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>push_chat_limit</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>edit_time_limit</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>revoke_time_limit</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>revoke_pm_time_limit</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>rating_e_decay</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>stickers_recent_limit</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>channels_read_media_period</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>tmp_sessions</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>call_receive_timeout_ms</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>call_ring_timeout_ms</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>call_connect_timeout_ms</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>call_packet_timeout_ms</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>me_url_prefix</td><td><a href="../index.html#string">string</a></td><td>Required.</td></tr>
+<tr><td>autoupdate_url_prefix</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>gif_search_username</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>venue_search_username</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>img_search_username</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>static_maps_provider</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>caption_length_max</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>message_length_max</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>webfile_dc_id</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>suggested_lang_code</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>lang_pack_version</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>base_lang_pack_version</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>reactions_default</td><td><a href="../types/reaction.html">Reaction</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>autologin_token</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>
