@@ -231,7 +231,7 @@ def build_example(item: TLItem, required_only: bool) -> str:
         args = [f for f in item.fields if f.name != "flags"]
 
     if required_only:
-        # Minimal example: way 4 — raw proxy (auto-resolves peers, no import needed)
+        # Minimal example: way 4 - raw proxy (auto-resolves peers, no import needed)
         proxy_ns = f"raw.{ns}" if ns != "_base" else "raw"
         if not args:
             call_line = f"    result = await app.{proxy_ns}.{cls}()"
@@ -257,7 +257,7 @@ def build_example(item: TLItem, required_only: bool) -> str:
             "asyncio.run(main())",
         ]
     else:
-        # Full example: way 1 — direct callable with explicit raw import
+        # Full example: way 1 - direct callable with explicit raw import
         if not args:
             call_line = f"    result = await app(raw.{mod}.{cls}())"
         else:
@@ -405,6 +405,36 @@ details.example { margin-bottom: 12px; }
     h1 { font-size: 1.3rem; }
     #theme-btn { top: 8px; right: 8px; }
 }
+.pill {
+    padding: 5px 13px; border-radius: 20px;
+    border-width: 1px; border-style: solid;
+    font-size: 13px; text-decoration: none;
+    display: inline-block; transition: background .15s, border-color .15s;
+}
+.pill:hover { text-decoration: none; }
+.links-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 22px; }
+pre { position: relative; }
+.copy-icon {
+    position: absolute; top: 8px; right: 8px;
+    opacity: 0; transition: opacity .15s;
+    border-radius: 4px; padding: 2px 8px; font-size: 11px;
+    cursor: pointer; border-width: 1px; border-style: solid;
+    font-family: 'Source Code Pro', monospace; line-height: 1.6;
+}
+pre:hover .copy-icon { opacity: 1; }
+details.example > summary .arrow {
+    display: inline-block; transition: transform .18s; margin-right: 4px;
+}
+details.example[open] > summary .arrow { transform: rotate(90deg); }
+.hint {
+    font-size: 11px; margin-bottom: 18px;
+    font-family: 'Source Code Pro', monospace;
+    padding: 5px 10px; border-radius: 6px; display: inline-block;
+}
+.py-k { color: var(--hl-kw); }
+.py-s { color: var(--hl-str); }
+.py-c { color: var(--hl-cmt); font-style: italic; }
+.py-n { color: var(--hl-num); }
 """
 
 CSS_DARK_VARS = """\
@@ -417,6 +447,7 @@ CSS_DARK_VARS = """\
     --tag-req-bg: #1a2e1a; --tag-req-text: #6ecb6e;
     --btn-bg: #251f4a; --btn-border: #7c6af7; --btn-text: #a99ff8; --btn-hover: #321f7a;
     --tl-cid: #c08858;
+    --hl-kw: #bb8af7; --hl-str: #7ec898; --hl-cmt: #5c6380; --hl-num: #e8a87c;
 }
 """
 
@@ -442,6 +473,11 @@ button.copy-btn:hover { background: var(--btn-hover); }
 #searchDiv summary.title { color: var(--muted); }
 #exactMatch { background: var(--surface); border-color: var(--accent); }
 h3 { color: var(--muted); }
+.pill { background: var(--surface); border-color: var(--border); color: var(--link); }
+.pill:hover { background: var(--btn-bg); border-color: var(--accent); }
+.copy-icon { background: var(--surface); border-color: var(--border); color: var(--muted); }
+.copy-icon:hover { border-color: var(--accent); color: var(--accent-light); }
+.hint { background: var(--surface); color: var(--muted); }
 """
 
 CSS_LIGHT_VARS = """\
@@ -454,6 +490,7 @@ CSS_LIGHT_VARS = """\
     --tag-req-bg: #dcfce7; --tag-req-text: #166534;
     --btn-bg: #ede9ff; --btn-border: #7c6af7; --btn-text: #5b4fcf; --btn-hover: #ddd6ff;
     --tl-cid: #a0560a;
+    --hl-kw: #7335b8; --hl-str: #267f56; --hl-cmt: #8b8fa8; --hl-num: #b5520a;
 }
 """
 
@@ -479,6 +516,11 @@ button.copy-btn:hover { background: var(--btn-hover); }
 #searchDiv summary.title { color: var(--muted); }
 #exactMatch { background: var(--surface); border-color: var(--accent); }
 h3 { color: var(--muted); }
+.pill { background: var(--surface); border-color: var(--border); color: var(--link); }
+.pill:hover { background: var(--btn-bg); border-color: var(--accent); }
+.copy-icon { background: var(--surface); border-color: var(--border); color: var(--muted); }
+.copy-icon:hover { border-color: var(--accent); color: var(--accent); }
+.hint { background: var(--surface); color: var(--muted); }
 """
 
 CSS_AMOLED_VARS = """\
@@ -491,6 +533,7 @@ CSS_AMOLED_VARS = """\
     --tag-req-bg: #0a1a0a; --tag-req-text: #4ade80;
     --btn-bg: #150e2a; --btn-border: #a78bfa; --btn-text: #c4b5fd; --btn-hover: #1e1040;
     --tl-cid: #d4a06a;
+    --hl-kw: #d4a4fc; --hl-str: #86d0aa; --hl-cmt: #3a3e5a; --hl-num: #f0b478;
 }
 """
 
@@ -516,6 +559,11 @@ button.copy-btn:hover { background: var(--btn-hover); }
 #searchDiv summary.title { color: var(--muted); }
 #exactMatch { background: var(--surface); border-color: var(--accent); }
 h3 { color: var(--muted); }
+.pill { background: var(--surface); border-color: var(--border); color: var(--link); }
+.pill:hover { background: var(--btn-bg); border-color: var(--accent); }
+.copy-icon { background: var(--surface); border-color: var(--border); color: var(--muted); }
+.copy-icon:hover { border-color: var(--accent); color: var(--accent-light); }
+.hint { background: var(--surface); color: var(--muted); }
 """
 
 CSS_DARK   = CSS_DARK_VARS   + CSS_COMMON + CSS_DARK_RULES
@@ -549,23 +597,52 @@ THEME_BTN = """<button id="theme-btn" onclick="(function(){
 CP_SCRIPT = """<textarea id="c" class="invisible"></textarea>
 <script>
 function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}
+/* Python syntax highlighter */
+function hlPy(t){
+  var K='import|from|as|async|def|await|return|class|if|elif|else|for|in|not|and|or|None|True|False|pass|with|try|except|raise|yield|lambda'.split('|');
+  function e(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+  var o='',i=0,n=t.length;
+  while(i<n){
+    var c=t[i];
+    if(c==='#'){var j=t.indexOf('\\n',i);j=j<0?n:j;o+='<span class="py-c">'+e(t.slice(i,j))+'</span>';i=j;continue;}
+    if(c==='"'||c==="'"){var q=c,j=i+1;while(j<n&&t[j]!==q){if(t[j]==='\\\\')j++;j++;}j++;o+='<span class="py-s">'+e(t.slice(i,j))+'</span>';i=j;continue;}
+    if(/[a-zA-Z_]/.test(c)){var j=i;while(j<n&&/[a-zA-Z0-9_]/.test(t[j]))j++;var w=t.slice(i,j);o+=K.indexOf(w)>=0?'<span class="py-k">'+w+'</span>':e(w);i=j;continue;}
+    if(/[0-9]/.test(c)&&(i===0||!/[a-zA-Z_]/.test(t[i-1]))){var j=i;while(j<n&&/[0-9a-fA-FxXbBoO._]/.test(t[j]))j++;o+='<span class="py-n">'+t.slice(i,j)+'</span>';i=j;continue;}
+    o+=e(c);i++;
+  }
+  return o;
+}
+function toast(){
+  var d=document.createElement('div');
+  d.textContent='Copied!';
+  d.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px;font-family:monospace;z-index:9999;pointer-events:none;opacity:1;transition:opacity .4s';
+  document.body.appendChild(d);
+  setTimeout(function(){d.style.opacity='0';setTimeout(function(){d.remove();},400);},1200);
+}
 (function(){
   var _lpt=null;
-  function toast(){
-    var d=document.createElement('div');
-    d.textContent='Copied!';
-    d.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#a78bfa;color:#000;padding:6px 16px;border-radius:20px;font-size:13px;font-family:monospace;z-index:9999;pointer-events:none;opacity:1;transition:opacity .4s';
-    document.body.appendChild(d);
-    setTimeout(function(){d.style.opacity='0';setTimeout(function(){d.remove();},400);},1200);
-  }
-  function attach(el){
+  function attachLongPress(el){
     el.addEventListener('touchstart',function(){
       _lpt=setTimeout(function(){cp(el.innerText||el.textContent);toast();},600);
     },{passive:true});
     el.addEventListener('touchend',function(){clearTimeout(_lpt);});
     el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
   }
-  function init(){document.querySelectorAll('pre').forEach(attach);}
+  function addCopyIcon(pre){
+    var btn=document.createElement('button');
+    btn.className='copy-icon';btn.textContent='copy';
+    btn.addEventListener('click',function(ev){
+      ev.stopPropagation();
+      cp(pre.textContent||pre.innerText);
+      btn.textContent='\\u2713';toast();
+      setTimeout(function(){btn.textContent='copy';},1300);
+    });
+    pre.appendChild(btn);
+  }
+  function init(){
+    document.querySelectorAll('pre.python').forEach(function(p){p.innerHTML=hlPy(p.textContent);});
+    document.querySelectorAll('pre').forEach(function(el){addCopyIcon(el);attachLongPress(el);});
+  }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
 var _wayTabs=null,_wayCon=null;
@@ -662,7 +739,7 @@ def gen_constructor_page(
     body = f"""
 {breadcrumb(crumbs)}
 <h1>{html.escape(cls)}</h1>
-<pre>{render_tl_def(item, known_types, depth)}</pre>
+<pre class="tl">{render_tl_def(item, known_types, depth)}</pre>
 <button class="copy-btn" onclick="cp('{imp}')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="{ret_url}">{html.escape(item.ret)}</a></td></tr></table>
@@ -728,27 +805,31 @@ def gen_method_page(item: TLItem, known_types: set[str], out: Path) -> None:
     ex_full = html.escape(build_example(item, required_only=False))
     has_optional = any(f.optional for f in item.fields if f.name != "flags")
 
-    note_html = """<p class="example-note">This is the recommended way to call this method. If you need more control over the parameters or want to see how the method is structured, expand <strong>Full API</strong> below.</p>"""
+    note_html = """<p class="example-note">Minimal uses the raw proxy shorthand. To see the full method signature with all parameters, expand <strong>Full API</strong> below.</p>"""
 
     if has_optional:
         examples_html = f"""<h3>Example</h3>
 <details class="example" open>
-  <summary>&#9654; Minimal</summary>
-  <pre>{ex_min}</pre>
+  <summary><span class="arrow">&#9654;</span> Minimal</summary>
+  <pre class="python">{ex_min}</pre>
 </details>
 {note_html}
 <details class="example">
-  <summary>&#9654; Full API</summary>
-  <pre>{ex_full}</pre>
+  <summary><span class="arrow">&#9654;</span> Full API</summary>
+  <pre class="python">{ex_full}</pre>
 </details>"""
     else:
-        examples_html = f"<h3>Example</h3><pre>{ex_min}</pre>\n{note_html}"
+        examples_html = f"""<h3>Example</h3>
+<details class="example" open>
+  <summary><span class="arrow">&#9654;</span> Example</summary>
+  <pre class="python">{ex_min}</pre>
+</details>"""
 
     body = f"""
 {breadcrumb(crumbs)}
 <h1>{html.escape(cls)}</h1>
 <p>Both users and bots can use this request.</p>
-<pre>{render_tl_def(item, known_types, depth)}</pre>
+<pre class="tl">{render_tl_def(item, known_types, depth)}</pre>
 <button class="copy-btn" onclick="cp('{imp}')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td>{ret_linked}</td></tr></table>
@@ -827,7 +908,7 @@ def gen_search_js(types_list: list, funcs_list: list, abstract_types: list, out:
 root = document.getElementById("main_div");
 root.innerHTML = `
 <input id="searchBox" type="text" onkeyup="updateSearch(event)"
-       placeholder="Search methods and types\u2026" />
+       placeholder="Search methods and types\u2026  (press / to focus)" />
 <div id="searchDiv" style="display:none">
   <div id="exactMatch" style="display:none">
     <b>Exact match:</b>
@@ -910,6 +991,15 @@ function updateSearch(event) {{
 
 var qParam = new URLSearchParams(window.location.search).get("q");
 if (qParam) {{ searchBox.value = qParam; updateSearch({{}}); }}
+
+document.addEventListener('keydown', function(e) {{
+  if (e.key === '/' && document.activeElement !== searchBox) {{
+    e.preventDefault(); searchBox.focus();
+  }}
+  if (e.key === 'Escape' && document.activeElement === searchBox) {{
+    searchBox.blur(); searchBox.value = ''; updateSearch({{}});
+  }}
+}});
 """
     (out / "js").mkdir(parents=True, exist_ok=True)
     (out / "js" / "search.js").write_text(js, encoding="utf-8")
@@ -919,15 +1009,15 @@ if (qParam) {{ searchBox.value = qParam; updateSearch({{}}); }}
 def gen_root_index(layer: int, n_types: int, n_constructors: int, n_methods: int, out: Path) -> None:
     body = f"""\
 <h1>ferogram API <span style="color:var(--muted);font-size:1rem">Layer {layer}</span></h1>
-<p>
+<p style="color:var(--muted)">
   Raw Telegram MTProto API reference, generated from the TL schema at Layer {layer}.
   Use the search box above or browse by section.
 </p>
-<p>
-  <a href="methods/index.html">Methods</a> ({n_methods})
-  &middot; <a href="types/index.html">Types</a> ({n_types})
-  &middot; <a href="constructors/index.html">Constructors</a> ({n_constructors})
-</p>
+<div class="links-row">
+  <a class="pill" href="methods/index.html">Methods ({n_methods})</a>
+  <a class="pill" href="types/index.html">Types ({n_types})</a>
+  <a class="pill" href="constructors/index.html">Constructors ({n_constructors})</a>
+</div>
 
 <h3>What is ferogram?</h3>
 <p>
@@ -939,10 +1029,10 @@ def gen_root_index(layer: int, n_types: int, n_constructors: int, n_methods: int
   using a clean and easy high-level API, while still giving you direct access to raw TL functions for
   advanced features and complete MTProto control whenever needed.
 </p>
-<p>
-  <a href="https://github.com/ankit-chaubey/ferogram" target="_blank">ferogram (Rust)</a>
-  &middot; <a href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py</a>
-</p>
+<div class="links-row">
+  <a class="pill" href="https://github.com/ankit-chaubey/ferogram" target="_blank">ferogram (Rust)</a>
+  <a class="pill" href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py (Python)</a>
+</div>
 
 <h3>5 ways to call a raw method</h3>
 <div class="tabs">
@@ -952,24 +1042,24 @@ def gen_root_index(layer: int, n_types: int, n_constructors: int, n_methods: int
   <button class="tab" onclick="switchWayTab(3)">4. raw proxy</button>
   <button class="tab" onclick="switchWayTab(4)">5. handler</button>
 </div>
-<div class="way-content active" id="w0"><pre><span style="color:var(--muted)"># Recommended: call the client directly</span>
+<div class="way-content active" id="w0"><pre class="python"># Recommended: call the client directly
 from ferogram import Client, raw
 app = Client("my_session", api_id=12345, api_hash="...")
 result = await app(raw.functions.messages.GetHistory(peer=..., limit=100))</pre></div>
-<div class="way-content" id="w1"><pre><span style="color:var(--muted)"># Explicit invoke() - same result</span>
+<div class="way-content" id="w1"><pre class="python"># Explicit invoke() - same result
 from ferogram import Client, raw
 app = Client("my_session", api_id=12345, api_hash="...")
 result = await app.invoke(raw.functions.messages.GetHistory(peer=..., limit=100))</pre></div>
-<div class="way-content" id="w2"><pre><span style="color:var(--muted)"># Namespace import - shorter call site</span>
+<div class="way-content" id="w2"><pre class="python"># Namespace import - shorter call site
 from ferogram import Client
 from ferogram.raw.functions.messages import GetHistory
 app = Client("my_session", api_id=12345, api_hash="...")
 result = await app(GetHistory(peer=..., limit=100))</pre></div>
-<div class="way-content" id="w3"><pre><span style="color:var(--muted)"># Raw proxy: resolves peer strings automatically</span>
+<div class="way-content" id="w3"><pre class="python"># Raw proxy: resolves peer strings automatically
 from ferogram import Client
 app = Client("my_session", api_id=12345, api_hash="...")
 result = await app.raw.messages.GetHistory(peer="@username", limit=5)</pre></div>
-<div class="way-content" id="w4"><pre><span style="color:var(--muted)"># Inside an update handler</span>
+<div class="way-content" id="w4"><pre class="python"># Inside an update handler
 from ferogram import Client, filters, raw
 app = Client("my_session", api_id=12345, api_hash="...")
 
