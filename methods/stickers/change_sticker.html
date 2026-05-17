@@ -46,14 +46,14 @@ stickers.changeSticker<span style="color:var(--tl-cid)">#f5537ebc</span> sticker
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.stickers.ChangeSticker(
-        sticker=types.InputDocument()
+        sticker=raw.types.InputDocumentEmpty()
     )
     print(result)
 
@@ -70,9 +70,9 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.stickers.ChangeSticker(
-        sticker=types.InputDocument(),
+        sticker=raw.types.InputDocumentEmpty(),
         emoji=&#x27;some string here&#x27;,
-        mask_coords=types.MaskCoords(),
+        mask_coords=raw.types.MaskCoords(),
         keywords=&#x27;some string here&#x27;
     ))
     print(result)

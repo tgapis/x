@@ -48,7 +48,7 @@ account.updateTheme<span style="color:var(--tl-cid)">#2bf40ccc</span> format:<a 
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -56,7 +56,7 @@ async def main():
     await app.start()
     result = await app.raw.account.UpdateTheme(
         format=&#x27;some string here&#x27;,
-        theme=types.InputTheme()
+        theme=raw.types.InputTheme()
     )
     print(result)
 
@@ -74,11 +74,11 @@ async def main():
     await app.start()
     result = await app(raw.functions.account.UpdateTheme(
         format=&#x27;some string here&#x27;,
-        theme=types.InputTheme(),
+        theme=raw.types.InputTheme(),
         slug=&#x27;some string here&#x27;,
         title=&#x27;My title&#x27;,
-        document=types.InputDocument(),
-        settings=types.Vector&lt;InputThemeSettings&gt;()
+        document=raw.types.InputDocumentEmpty(),
+        settings=raw.types.Vector&lt;InputThemeSettings&gt;()
     ))
     print(result)
 

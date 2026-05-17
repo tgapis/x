@@ -46,7 +46,7 @@ channels.editAdmin<span style="color:var(--tl-cid)">#9a98ad68</span> channel:<a 
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -55,7 +55,7 @@ async def main():
     result = await app.raw.channels.EditAdmin(
         channel=&#x27;username&#x27;,
         user_id=&#x27;username&#x27;,
-        admin_rights=types.ChatAdminRights()
+        admin_rights=raw.types.ChatAdminRights()
     )
     print(result)
 
@@ -72,9 +72,9 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.channels.EditAdmin(
-        channel=&#x27;username&#x27;,
-        user_id=&#x27;username&#x27;,
-        admin_rights=types.ChatAdminRights(),
+        channel=raw.types.InputPeerSelf(),
+        user_id=raw.types.InputPeerSelf(),
+        admin_rights=raw.types.ChatAdminRights(),
         rank=&#x27;some string here&#x27;
     ))
     print(result)

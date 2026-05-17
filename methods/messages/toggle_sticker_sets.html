@@ -46,14 +46,14 @@ messages.toggleStickerSets<span style="color:var(--tl-cid)">#b5052fea</span> uni
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.messages.ToggleStickerSets(
-        stickersets=types.Vector&lt;InputStickerSet&gt;()
+        stickersets=raw.types.Vector&lt;InputStickerSet&gt;()
     )
     print(result)
 
@@ -73,7 +73,7 @@ async def main():
         uninstall=True,
         archive=True,
         unarchive=True,
-        stickersets=types.Vector&lt;InputStickerSet&gt;()
+        stickersets=raw.types.Vector&lt;InputStickerSet&gt;()
     ))
     print(result)
 

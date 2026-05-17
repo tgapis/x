@@ -51,7 +51,7 @@ channels.createChannel<span style="color:var(--tl-cid)">#91006707</span> broadca
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -82,7 +82,7 @@ async def main():
         forum=True,
         title=&#x27;My title&#x27;,
         about=&#x27;some string here&#x27;,
-        geo_point=types.InputGeoPoint(),
+        geo_point=raw.types.InputGeoPointEmpty(),
         address=&#x27;some string here&#x27;,
         ttl_period=42
     ))

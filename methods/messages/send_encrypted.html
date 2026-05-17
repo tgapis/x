@@ -46,14 +46,15 @@ messages.sendEncrypted<span style="color:var(--tl-cid)">#44fa7a15</span> silent:
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+import random
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.messages.SendEncrypted(
-        peer=types.InputEncryptedChat(),
+        peer=raw.types.InputEncryptedChat(),
         random_id=random.randrange(-2**63, 2**63),
         data=b&#x27;arbitrary\x7f data&#x27;
     )
@@ -65,6 +66,7 @@ asyncio.run(main())</pre>
 <details class="example">
   <summary><span class="arrow">&#9654;</span> Full API</summary>
   <pre class="python">import asyncio
+import random
 from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
@@ -73,7 +75,7 @@ async def main():
     await app.start()
     result = await app(raw.functions.messages.SendEncrypted(
         silent=True,
-        peer=types.InputEncryptedChat(),
+        peer=raw.types.InputEncryptedChat(),
         random_id=random.randrange(-2**63, 2**63),
         data=b&#x27;arbitrary\x7f data&#x27;
     ))

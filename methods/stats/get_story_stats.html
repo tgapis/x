@@ -45,7 +45,7 @@ stats.getStoryStats<span style="color:var(--tl-cid)">#374fef40</span> dark:flags
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -71,7 +71,7 @@ async def main():
     await app.start()
     result = await app(raw.functions.stats.GetStoryStats(
         dark=True,
-        peer=&#x27;username&#x27;,
+        peer=raw.types.InputPeerSelf(),
         id=42
     ))
     print(result)

@@ -46,14 +46,14 @@ account.uploadTheme<span style="color:var(--tl-cid)">#1c3db333</span> file:<a hr
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.account.UploadTheme(
-        file=types.InputFile(),
+        file=raw.types.InputFile(),
         file_name=&#x27;some string here&#x27;,
         mime_type=&#x27;some string here&#x27;
     )
@@ -72,8 +72,8 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.account.UploadTheme(
-        file=types.InputFile(),
-        thumb=types.InputFile(),
+        file=raw.types.InputFile(),
+        thumb=raw.types.InputFile(),
         file_name=&#x27;some string here&#x27;,
         mime_type=&#x27;some string here&#x27;
     ))

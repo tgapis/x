@@ -46,16 +46,16 @@ account.uploadWallPaper<span style="color:var(--tl-cid)">#e39a8f03</span> for_ch
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.account.UploadWallPaper(
-        file=types.InputFile(),
+        file=raw.types.InputFile(),
         mime_type=&#x27;some string here&#x27;,
-        settings=types.WallPaperSettings()
+        settings=raw.types.WallPaperSettings()
     )
     print(result)
 
@@ -73,9 +73,9 @@ async def main():
     await app.start()
     result = await app(raw.functions.account.UploadWallPaper(
         for_chat=True,
-        file=types.InputFile(),
+        file=raw.types.InputFile(),
         mime_type=&#x27;some string here&#x27;,
-        settings=types.WallPaperSettings()
+        settings=raw.types.WallPaperSettings()
     ))
     print(result)
 

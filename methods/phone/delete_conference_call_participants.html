@@ -47,15 +47,15 @@ phone.deleteConferenceCallParticipants<span style="color:var(--tl-cid)">#8ca6052
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.phone.DeleteConferenceCallParticipants(
-        call=types.InputGroupCall(),
-        ids=types.Vector&lt;long&gt;(),
+        call=raw.types.InputGroupCall(),
+        ids=raw.types.Vector&lt;long&gt;(),
         block=b&#x27;arbitrary\x7f data&#x27;
     )
     print(result)
@@ -75,8 +75,8 @@ async def main():
     result = await app(raw.functions.phone.DeleteConferenceCallParticipants(
         only_left=True,
         kick=True,
-        call=types.InputGroupCall(),
-        ids=types.Vector&lt;long&gt;(),
+        call=raw.types.InputGroupCall(),
+        ids=raw.types.Vector&lt;long&gt;(),
         block=b&#x27;arbitrary\x7f data&#x27;
     ))
     print(result)

@@ -50,7 +50,7 @@ messages.getUnreadReactions<span style="color:var(--tl-cid)">#bd7f90ac</span> pe
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -79,9 +79,9 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.messages.GetUnreadReactions(
-        peer=&#x27;username&#x27;,
+        peer=raw.types.InputPeerSelf(),
         top_msg_id=42,
-        saved_peer_id=&#x27;username&#x27;,
+        saved_peer_id=raw.types.InputPeerSelf(),
         offset_id=42,
         add_offset=0,
         limit=100,

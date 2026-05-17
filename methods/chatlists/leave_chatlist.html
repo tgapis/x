@@ -44,15 +44,15 @@ chatlists.leaveChatlist<span style="color:var(--tl-cid)">#74fae13a</span> chatli
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Example</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.chatlists.LeaveChatlist(
-        chatlist=types.InputChatlist(),
-        peers=types.Vector&lt;InputPeer&gt;()
+        chatlist=raw.types.InputChatlist(),
+        peers=raw.types.Vector&lt;InputPeer&gt;()
     )
     print(result)
 

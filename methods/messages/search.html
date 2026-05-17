@@ -57,7 +57,7 @@ messages.search<span style="color:var(--tl-cid)">#29ee847a</span> peer:<a href="
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -66,7 +66,7 @@ async def main():
     result = await app.raw.messages.Search(
         peer=&#x27;username&#x27;,
         q=&#x27;some string here&#x27;,
-        filter=types.MessagesFilter(),
+        filter=raw.types.MessagesFilter(),
         min_date=42,
         max_date=42,
         offset_id=42,
@@ -91,13 +91,13 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.messages.Search(
-        peer=&#x27;username&#x27;,
+        peer=raw.types.InputPeerSelf(),
         q=&#x27;some string here&#x27;,
-        from_id=&#x27;username&#x27;,
-        saved_peer_id=&#x27;username&#x27;,
-        saved_reaction=types.Vector&lt;Reaction&gt;(),
+        from_id=raw.types.InputPeerSelf(),
+        saved_peer_id=raw.types.InputPeerSelf(),
+        saved_reaction=raw.types.Vector&lt;Reaction&gt;(),
         top_msg_id=42,
-        filter=types.MessagesFilter(),
+        filter=raw.types.MessagesFilter(),
         min_date=42,
         max_date=42,
         offset_id=42,

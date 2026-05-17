@@ -46,7 +46,7 @@ bots.createBot<span style="color:var(--tl-cid)">#e5b17f2b</span> via_deeplink:fl
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -75,7 +75,7 @@ async def main():
         via_deeplink=True,
         name=&#x27;some string here&#x27;,
         username=&#x27;some string here&#x27;,
-        manager_id=&#x27;username&#x27;
+        manager_id=raw.types.InputPeerSelf()
     ))
     print(result)
 

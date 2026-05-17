@@ -47,16 +47,16 @@ phone.discardCall<span style="color:var(--tl-cid)">#b2cbc1c0</span> video:flags.
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.phone.DiscardCall(
-        peer=types.InputPhoneCall(),
+        peer=raw.types.InputPhoneCall(),
         duration=42,
-        reason=types.PhoneCallDiscardReason(),
+        reason=raw.types.PhoneCallDiscardReason(),
         connection_id=-12398745604826
     )
     print(result)
@@ -75,9 +75,9 @@ async def main():
     await app.start()
     result = await app(raw.functions.phone.DiscardCall(
         video=True,
-        peer=types.InputPhoneCall(),
+        peer=raw.types.InputPhoneCall(),
         duration=42,
-        reason=types.PhoneCallDiscardReason(),
+        reason=raw.types.PhoneCallDiscardReason(),
         connection_id=-12398745604826
     ))
     print(result)

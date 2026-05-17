@@ -50,7 +50,7 @@ messages.setInlineBotResults<span style="color:var(--tl-cid)">#bb12a419</span> g
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -58,7 +58,7 @@ async def main():
     await app.start()
     result = await app.raw.messages.SetInlineBotResults(
         query_id=-12398745604826,
-        results=types.Vector&lt;InputBotInlineResult&gt;(),
+        results=raw.types.Vector&lt;InputBotInlineResult&gt;(),
         cache_time=42
     )
     print(result)
@@ -79,11 +79,11 @@ async def main():
         gallery=True,
         private=True,
         query_id=-12398745604826,
-        results=types.Vector&lt;InputBotInlineResult&gt;(),
+        results=raw.types.Vector&lt;InputBotInlineResult&gt;(),
         cache_time=42,
         next_offset=&#x27;some string here&#x27;,
-        switch_pm=types.InlineBotSwitchPM(),
-        switch_webview=types.InlineBotWebView()
+        switch_pm=raw.types.InlineBotSwitchPM(),
+        switch_webview=raw.types.InlineBotWebView()
     ))
     print(result)
 

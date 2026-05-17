@@ -47,14 +47,14 @@ account.saveAutoSaveSettings<span style="color:var(--tl-cid)">#d69b8361</span> u
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.account.SaveAutoSaveSettings(
-        settings=types.AutoSaveSettings()
+        settings=raw.types.AutoSaveSettings()
     )
     print(result)
 
@@ -74,8 +74,8 @@ async def main():
         users=True,
         chats=True,
         broadcasts=True,
-        peer=&#x27;username&#x27;,
-        settings=types.AutoSaveSettings()
+        peer=raw.types.InputPeerSelf(),
+        settings=raw.types.AutoSaveSettings()
     ))
     print(result)
 

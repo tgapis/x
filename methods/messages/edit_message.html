@@ -53,7 +53,7 @@ messages.editMessage<span style="color:var(--tl-cid)">#51e842e1</span> no_webpag
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -80,12 +80,12 @@ async def main():
     result = await app(raw.functions.messages.EditMessage(
         no_webpage=True,
         invert_media=True,
-        peer=&#x27;username&#x27;,
+        peer=raw.types.InputPeerSelf(),
         id=42,
         message=&#x27;Hello there!&#x27;,
-        media=types.InputMedia(),
-        reply_markup=types.ReplyMarkup(),
-        entities=types.Vector&lt;MessageEntity&gt;(),
+        media=raw.types.InputMediaEmpty(),
+        reply_markup=raw.types.ReplyKeyboardHide(),
+        entities=raw.types.Vector&lt;MessageEntity&gt;(),
         schedule_date=42,
         schedule_repeat_period=42,
         quick_reply_shortcut_id=42

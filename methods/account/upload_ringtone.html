@@ -45,14 +45,14 @@ account.uploadRingtone<span style="color:var(--tl-cid)">#831a83a2</span> file:<a
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Example</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.account.UploadRingtone(
-        file=types.InputFile(),
+        file=raw.types.InputFile(),
         file_name=&#x27;some string here&#x27;,
         mime_type=&#x27;some string here&#x27;
     )

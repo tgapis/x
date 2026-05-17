@@ -44,14 +44,14 @@ phone.sendGroupCallEncryptedMessage<span style="color:var(--tl-cid)">#e5afa56d</
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Example</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.phone.SendGroupCallEncryptedMessage(
-        call=types.InputGroupCall(),
+        call=raw.types.InputGroupCall(),
         encrypted_message=b&#x27;arbitrary\x7f data&#x27;
     )
     print(result)

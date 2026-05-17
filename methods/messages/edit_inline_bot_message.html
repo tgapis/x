@@ -49,14 +49,14 @@ messages.editInlineBotMessage<span style="color:var(--tl-cid)">#83557dba</span> 
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.messages.EditInlineBotMessage(
-        id=types.InputBotInlineMessageID()
+        id=raw.types.InputBotInlineMessageID()
     )
     print(result)
 
@@ -75,11 +75,11 @@ async def main():
     result = await app(raw.functions.messages.EditInlineBotMessage(
         no_webpage=True,
         invert_media=True,
-        id=types.InputBotInlineMessageID(),
+        id=raw.types.InputBotInlineMessageID(),
         message=&#x27;Hello there!&#x27;,
-        media=types.InputMedia(),
-        reply_markup=types.ReplyMarkup(),
-        entities=types.Vector&lt;MessageEntity&gt;()
+        media=raw.types.InputMediaEmpty(),
+        reply_markup=raw.types.ReplyKeyboardHide(),
+        entities=raw.types.Vector&lt;MessageEntity&gt;()
     ))
     print(result)
 

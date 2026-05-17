@@ -55,7 +55,8 @@ messages.sendInlineBotResult<span style="color:var(--tl-cid)">#c0cf7646</span> s
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+import random
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -75,6 +76,7 @@ asyncio.run(main())</pre>
 <details class="example">
   <summary><span class="arrow">&#9654;</span> Full API</summary>
   <pre class="python">import asyncio
+import random
 from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
@@ -86,14 +88,14 @@ async def main():
         background=True,
         clear_draft=True,
         hide_via=True,
-        peer=&#x27;username&#x27;,
-        reply_to=types.InputReplyTo(),
+        peer=raw.types.InputPeerSelf(),
+        reply_to=raw.types.InputReplyToMessage(reply_to_msg_id=42),
         random_id=random.randrange(-2**63, 2**63),
         query_id=-12398745604826,
         id=&#x27;some string here&#x27;,
         schedule_date=42,
-        send_as=&#x27;username&#x27;,
-        quick_reply_shortcut=types.InputQuickReplyShortcut(),
+        send_as=raw.types.InputPeerSelf(),
+        quick_reply_shortcut=raw.types.InputQuickReplyShortcutId(shortcut_id=0),
         allow_paid_stars=-12398745604826
     ))
     print(result)

@@ -54,7 +54,7 @@ messages.requestWebView<span style="color:var(--tl-cid)">#269dc2c1</span> from_b
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -84,14 +84,14 @@ async def main():
         silent=True,
         compact=True,
         fullscreen=True,
-        peer=&#x27;username&#x27;,
-        bot=&#x27;username&#x27;,
+        peer=raw.types.InputPeerSelf(),
+        bot=raw.types.InputPeerSelf(),
         url=&#x27;some string here&#x27;,
         start_param=&#x27;some string here&#x27;,
-        theme_params=types.DataJSON(),
+        theme_params=raw.types.DataJSON(),
         platform=&#x27;some string here&#x27;,
-        reply_to=types.InputReplyTo(),
-        send_as=&#x27;username&#x27;
+        reply_to=raw.types.InputReplyToMessage(reply_to_msg_id=42),
+        send_as=raw.types.InputPeerSelf()
     ))
     print(result)
 

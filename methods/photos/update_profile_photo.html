@@ -45,14 +45,14 @@ photos.updateProfilePhoto<span style="color:var(--tl-cid)">#09e82039</span> fall
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.photos.UpdateProfilePhoto(
-        id=types.InputPhoto()
+        id=raw.types.InputPhotoEmpty()
     )
     print(result)
 
@@ -70,8 +70,8 @@ async def main():
     await app.start()
     result = await app(raw.functions.photos.UpdateProfilePhoto(
         fallback=True,
-        bot=&#x27;username&#x27;,
-        id=types.InputPhoto()
+        bot=raw.types.InputPeerSelf(),
+        id=raw.types.InputPhotoEmpty()
     ))
     print(result)
 

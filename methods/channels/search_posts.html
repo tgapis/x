@@ -49,7 +49,7 @@ channels.searchPosts<span style="color:var(--tl-cid)">#f2c4f24d</span> hashtag:f
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -79,7 +79,7 @@ async def main():
         hashtag=&#x27;some string here&#x27;,
         query=&#x27;some string here&#x27;,
         offset_rate=42,
-        offset_peer=&#x27;username&#x27;,
+        offset_peer=raw.types.InputPeerSelf(),
         offset_id=42,
         limit=100,
         allow_paid_stars=-12398745604826

@@ -45,7 +45,7 @@ messages.initHistoryImport<span style="color:var(--tl-cid)">#34090c3b</span> pee
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Example</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -53,7 +53,7 @@ async def main():
     await app.start()
     result = await app.raw.messages.InitHistoryImport(
         peer=&#x27;username&#x27;,
-        file=types.InputFile(),
+        file=raw.types.InputFile(),
         media_count=42
     )
     print(result)

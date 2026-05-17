@@ -43,7 +43,7 @@ payments.getStarsGiftOptions<span style="color:var(--tl-cid)">#d3c96bc8</span> u
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -65,7 +65,7 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.payments.GetStarsGiftOptions(
-        user_id=&#x27;username&#x27;
+        user_id=raw.types.InputPeerSelf()
     ))
     print(result)
 

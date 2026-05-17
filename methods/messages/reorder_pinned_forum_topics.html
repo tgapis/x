@@ -45,7 +45,7 @@ messages.reorderPinnedForumTopics<span style="color:var(--tl-cid)">#0e7841f0</sp
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -53,7 +53,7 @@ async def main():
     await app.start()
     result = await app.raw.messages.ReorderPinnedForumTopics(
         peer=&#x27;username&#x27;,
-        order=types.Vector&lt;int&gt;()
+        order=raw.types.Vector&lt;int&gt;()
     )
     print(result)
 
@@ -71,8 +71,8 @@ async def main():
     await app.start()
     result = await app(raw.functions.messages.ReorderPinnedForumTopics(
         force=True,
-        peer=&#x27;username&#x27;,
-        order=types.Vector&lt;int&gt;()
+        peer=raw.types.InputPeerSelf(),
+        order=raw.types.Vector&lt;int&gt;()
     ))
     print(result)
 

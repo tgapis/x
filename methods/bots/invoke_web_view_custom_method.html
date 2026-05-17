@@ -45,7 +45,7 @@ bots.invokeWebViewCustomMethod<span style="color:var(--tl-cid)">#087fc5e7</span>
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Example</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -54,7 +54,7 @@ async def main():
     result = await app.raw.bots.InvokeWebViewCustomMethod(
         bot=&#x27;username&#x27;,
         custom_method=&#x27;some string here&#x27;,
-        params=types.DataJSON()
+        params=raw.types.DataJSON()
     )
     print(result)
 

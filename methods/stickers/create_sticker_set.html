@@ -51,7 +51,7 @@ stickers.createStickerSet<span style="color:var(--tl-cid)">#9021ab67</span> mask
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -61,7 +61,7 @@ async def main():
         user_id=&#x27;username&#x27;,
         title=&#x27;My title&#x27;,
         short_name=&#x27;some string here&#x27;,
-        stickers=types.Vector&lt;InputStickerSetItem&gt;()
+        stickers=raw.types.Vector&lt;InputStickerSetItem&gt;()
     )
     print(result)
 
@@ -81,11 +81,11 @@ async def main():
         masks=True,
         emojis=True,
         text_color=True,
-        user_id=&#x27;username&#x27;,
+        user_id=raw.types.InputPeerSelf(),
         title=&#x27;My title&#x27;,
         short_name=&#x27;some string here&#x27;,
-        thumb=types.InputDocument(),
-        stickers=types.Vector&lt;InputStickerSetItem&gt;(),
+        thumb=raw.types.InputDocumentEmpty(),
+        stickers=raw.types.Vector&lt;InputStickerSetItem&gt;(),
         software=&#x27;some string here&#x27;
     ))
     print(result)

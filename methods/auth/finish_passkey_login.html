@@ -45,14 +45,14 @@ auth.finishPasskeyLogin<span style="color:var(--tl-cid)">#9857ad07</span> creden
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.auth.FinishPasskeyLogin(
-        credential=types.InputPasskeyCredential()
+        credential=raw.types.InputPasskeyCredential()
     )
     print(result)
 
@@ -69,7 +69,7 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.auth.FinishPasskeyLogin(
-        credential=types.InputPasskeyCredential(),
+        credential=raw.types.InputPasskeyCredential(),
         from_dc_id=42,
         from_auth_key_id=-12398745604826
     ))

@@ -50,7 +50,7 @@ stories.getStoryViewsList<span style="color:var(--tl-cid)">#7ed23c57</span> just
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -80,7 +80,7 @@ async def main():
         just_contacts=True,
         reactions_first=True,
         forwards_first=True,
-        peer=&#x27;username&#x27;,
+        peer=raw.types.InputPeerSelf(),
         q=&#x27;some string here&#x27;,
         id=42,
         offset=&#x27;some string here&#x27;,

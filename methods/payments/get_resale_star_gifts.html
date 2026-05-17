@@ -51,7 +51,7 @@ payments.getResaleStarGifts<span style="color:var(--tl-cid)">#7a5fa236</span> so
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -83,7 +83,7 @@ async def main():
         stars_only=True,
         attributes_hash=-12398745604826,
         gift_id=-12398745604826,
-        attributes=types.Vector&lt;StarGiftAttributeId&gt;(),
+        attributes=raw.types.Vector&lt;StarGiftAttributeId&gt;(),
         offset=&#x27;some string here&#x27;,
         limit=100
     ))

@@ -49,7 +49,7 @@ channels.getAdminLog<span style="color:var(--tl-cid)">#33ddf480</span> channel:<
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -77,10 +77,10 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.channels.GetAdminLog(
-        channel=&#x27;username&#x27;,
+        channel=raw.types.InputPeerSelf(),
         q=&#x27;some string here&#x27;,
-        events_filter=types.ChannelAdminLogEventsFilter(),
-        admins=types.Vector&lt;InputUser&gt;(),
+        events_filter=raw.types.ChannelAdminLogEventsFilter(),
+        admins=raw.types.Vector&lt;InputUser&gt;(),
         max_id=0,
         min_id=0,
         limit=100

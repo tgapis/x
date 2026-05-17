@@ -50,7 +50,7 @@ stories.editStory<span style="color:var(--tl-cid)">#2c63a72b</span> peer:<a href
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -75,14 +75,14 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.stories.EditStory(
-        peer=&#x27;username&#x27;,
+        peer=raw.types.InputPeerSelf(),
         id=42,
-        media=types.InputMedia(),
-        media_areas=types.Vector&lt;MediaArea&gt;(),
+        media=raw.types.InputMediaEmpty(),
+        media_areas=raw.types.Vector&lt;MediaArea&gt;(),
         caption=&#x27;some string here&#x27;,
-        entities=types.Vector&lt;MessageEntity&gt;(),
-        privacy_rules=types.Vector&lt;InputPrivacyRule&gt;(),
-        music=types.InputDocument()
+        entities=raw.types.Vector&lt;MessageEntity&gt;(),
+        privacy_rules=raw.types.Vector&lt;InputPrivacyRule&gt;(),
+        music=raw.types.InputDocumentEmpty()
     ))
     print(result)
 

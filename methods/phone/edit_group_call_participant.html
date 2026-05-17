@@ -50,14 +50,14 @@ phone.editGroupCallParticipant<span style="color:var(--tl-cid)">#a5273abf</span>
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.phone.EditGroupCallParticipant(
-        call=types.InputGroupCall(),
+        call=raw.types.InputGroupCall(),
         participant=&#x27;username&#x27;
     )
     print(result)
@@ -75,8 +75,8 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.phone.EditGroupCallParticipant(
-        call=types.InputGroupCall(),
-        participant=&#x27;username&#x27;,
+        call=raw.types.InputGroupCall(),
+        participant=raw.types.InputPeerSelf(),
         muted=False,
         volume=42,
         raise_hand=False,

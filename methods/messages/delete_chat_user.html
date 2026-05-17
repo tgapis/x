@@ -45,7 +45,7 @@ messages.deleteChatUser<span style="color:var(--tl-cid)">#a2185cab</span> revoke
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -72,7 +72,7 @@ async def main():
     result = await app(raw.functions.messages.DeleteChatUser(
         revoke_history=True,
         chat_id=-12398745604826,
-        user_id=&#x27;username&#x27;
+        user_id=raw.types.InputPeerSelf()
     ))
     print(result)
 

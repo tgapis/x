@@ -47,14 +47,14 @@ messages.setInlineGameScore<span style="color:var(--tl-cid)">#15ad9f64</span> ed
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.messages.SetInlineGameScore(
-        id=types.InputBotInlineMessageID(),
+        id=raw.types.InputBotInlineMessageID(),
         user_id=&#x27;username&#x27;,
         score=42
     )
@@ -75,8 +75,8 @@ async def main():
     result = await app(raw.functions.messages.SetInlineGameScore(
         edit_message=True,
         force=True,
-        id=types.InputBotInlineMessageID(),
-        user_id=&#x27;username&#x27;,
+        id=raw.types.InputBotInlineMessageID(),
+        user_id=raw.types.InputPeerSelf(),
         score=42
     ))
     print(result)

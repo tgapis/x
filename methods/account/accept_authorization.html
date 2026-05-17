@@ -47,7 +47,7 @@ account.acceptAuthorization<span style="color:var(--tl-cid)">#f3ed4c73</span> bo
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Example</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -57,8 +57,8 @@ async def main():
         bot_id=-12398745604826,
         scope=&#x27;some string here&#x27;,
         public_key=&#x27;some string here&#x27;,
-        value_hashes=types.Vector&lt;SecureValueHash&gt;(),
-        credentials=types.SecureCredentialsEncrypted()
+        value_hashes=raw.types.Vector&lt;SecureValueHash&gt;(),
+        credentials=raw.types.SecureCredentialsEncrypted()
     )
     print(result)
 

@@ -45,7 +45,7 @@ payments.createStarGiftCollection<span style="color:var(--tl-cid)">#1f4a0e87</sp
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Example</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -54,7 +54,7 @@ async def main():
     result = await app.raw.payments.CreateStarGiftCollection(
         peer=&#x27;username&#x27;,
         title=&#x27;My title&#x27;,
-        stargift=types.Vector&lt;InputSavedStarGift&gt;()
+        stargift=raw.types.Vector&lt;InputSavedStarGift&gt;()
     )
     print(result)
 

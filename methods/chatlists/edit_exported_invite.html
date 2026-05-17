@@ -46,14 +46,14 @@ chatlists.editExportedInvite<span style="color:var(--tl-cid)">#653db63d</span> c
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.chatlists.EditExportedInvite(
-        chatlist=types.InputChatlist(),
+        chatlist=raw.types.InputChatlist(),
         slug=&#x27;some string here&#x27;
     )
     print(result)
@@ -71,10 +71,10 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.chatlists.EditExportedInvite(
-        chatlist=types.InputChatlist(),
+        chatlist=raw.types.InputChatlist(),
         slug=&#x27;some string here&#x27;,
         title=&#x27;My title&#x27;,
-        peers=types.Vector&lt;InputPeer&gt;()
+        peers=raw.types.Vector&lt;InputPeer&gt;()
     ))
     print(result)
 

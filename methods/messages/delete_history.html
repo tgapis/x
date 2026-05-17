@@ -48,7 +48,7 @@ messages.deleteHistory<span style="color:var(--tl-cid)">#b08f922a</span> just_cl
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -75,7 +75,7 @@ async def main():
     result = await app(raw.functions.messages.DeleteHistory(
         just_clear=True,
         revoke=True,
-        peer=&#x27;username&#x27;,
+        peer=raw.types.InputPeerSelf(),
         max_id=0,
         min_date=42,
         max_date=42

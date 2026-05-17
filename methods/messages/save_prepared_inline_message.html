@@ -45,14 +45,14 @@ messages.savePreparedInlineMessage<span style="color:var(--tl-cid)">#f21f7f2f</s
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.messages.SavePreparedInlineMessage(
-        result=types.InputBotInlineResult(),
+        result=raw.types.InputBotInlineResult(),
         user_id=&#x27;username&#x27;
     )
     print(result)
@@ -70,9 +70,9 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.messages.SavePreparedInlineMessage(
-        result=types.InputBotInlineResult(),
-        user_id=&#x27;username&#x27;,
-        peer_types=types.Vector&lt;InlineQueryPeerType&gt;()
+        result=raw.types.InputBotInlineResult(),
+        user_id=raw.types.InputPeerSelf(),
+        peer_types=raw.types.Vector&lt;InlineQueryPeerType&gt;()
     ))
     print(result)
 

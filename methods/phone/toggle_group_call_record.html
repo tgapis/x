@@ -47,14 +47,14 @@ phone.toggleGroupCallRecord<span style="color:var(--tl-cid)">#f128c708</span> st
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
 async def main():
     await app.start()
     result = await app.raw.phone.ToggleGroupCallRecord(
-        call=types.InputGroupCall()
+        call=raw.types.InputGroupCall()
     )
     print(result)
 
@@ -73,7 +73,7 @@ async def main():
     result = await app(raw.functions.phone.ToggleGroupCallRecord(
         start=True,
         video=True,
-        call=types.InputGroupCall(),
+        call=raw.types.InputGroupCall(),
         title=&#x27;My title&#x27;,
         video_portrait=False
     ))

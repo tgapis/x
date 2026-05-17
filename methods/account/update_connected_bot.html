@@ -46,7 +46,7 @@ account.updateConnectedBot<span style="color:var(--tl-cid)">#66a08c7e</span> del
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -54,7 +54,7 @@ async def main():
     await app.start()
     result = await app.raw.account.UpdateConnectedBot(
         bot=&#x27;username&#x27;,
-        recipients=types.InputBusinessBotRecipients()
+        recipients=raw.types.InputBusinessBotRecipients()
     )
     print(result)
 
@@ -72,9 +72,9 @@ async def main():
     await app.start()
     result = await app(raw.functions.account.UpdateConnectedBot(
         deleted=True,
-        rights=types.BusinessBotRights(),
-        bot=&#x27;username&#x27;,
-        recipients=types.InputBusinessBotRecipients()
+        rights=raw.types.BusinessBotRights(),
+        bot=raw.types.InputPeerSelf(),
+        recipients=raw.types.InputBusinessBotRecipients()
     ))
     print(result)
 

@@ -55,7 +55,7 @@ payments.getSavedStarGifts<span style="color:var(--tl-cid)">#a319e569</span> exc
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -90,7 +90,7 @@ async def main():
         exclude_unupgradable=True,
         peer_color_available=True,
         exclude_hosted=True,
-        peer=&#x27;username&#x27;,
+        peer=raw.types.InputPeerSelf(),
         collection_id=42,
         offset=&#x27;some string here&#x27;,
         limit=100

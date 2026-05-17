@@ -48,7 +48,7 @@ stories.getStoryReactionsList<span style="color:var(--tl-cid)">#b9b2881f</span> 
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
-from ferogram import Client
+from ferogram import Client, raw
 
 app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
 
@@ -75,9 +75,9 @@ async def main():
     await app.start()
     result = await app(raw.functions.stories.GetStoryReactionsList(
         forwards_first=True,
-        peer=&#x27;username&#x27;,
+        peer=raw.types.InputPeerSelf(),
         id=42,
-        reaction=types.Reaction(),
+        reaction=raw.types.Reaction(),
         offset=&#x27;some string here&#x27;,
         limit=100
     ))
