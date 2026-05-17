@@ -11,7 +11,9 @@ from collections import defaultdict
 from pathlib import Path
 from typing import NamedTuple
 
+# ---------------------------------------------------------------------------
 # TL parser
+# ---------------------------------------------------------------------------
 
 TL_LINE = re.compile(
     r"^([\w.][\w.]*)"
@@ -65,9 +67,7 @@ def parse_tl(path: Path) -> tuple[list[TLItem], list[TLItem]]:
         if not m:
             continue
         name, cid_hex, fields_raw, ret = m.groups()
-        cid = int(cid_hex, 16)
-        fields = parse_fields(fields_raw)
-        item = TLItem(name, cid, fields, ret, in_functions)
+        item = TLItem(name, int(cid_hex, 16), parse_fields(fields_raw), ret, in_functions)
         (funcs if in_functions else types).append(item)
     return types, funcs
 
@@ -80,7 +80,9 @@ def parse_layer(path: Path) -> int:
     return 0
 
 
+# ---------------------------------------------------------------------------
 # Naming helpers
+# ---------------------------------------------------------------------------
 
 def tl_ns(tl_name: str) -> str:
     parts = tl_name.split(".")
@@ -98,8 +100,7 @@ def py_class(tl_name: str) -> str:
 
 def camel_to_snake(name: str) -> str:
     s = re.sub(r"(.)([A-Z][a-z]+)", r"\1_\2", name)
-    s = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", s)
-    return s.lower()
+    return re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", s).lower()
 
 
 def url_slug(tl_name: str) -> str:
@@ -109,62 +110,51 @@ def url_slug(tl_name: str) -> str:
 def constructor_url(item: TLItem, depth: str = "") -> str:
     ns = tl_ns(item.tl_name)
     slug = url_slug(item.tl_name)
-    if ns == "_base":
-        return f"{depth}constructors/{slug}"
-    return f"{depth}constructors/{ns}/{slug}"
+    return f"{depth}constructors/{ns}/{slug}" if ns != "_base" else f"{depth}constructors/{slug}"
 
 
 def abstract_type_url(abstract: str, depth: str = "") -> str:
     ns = tl_ns(abstract)
     slug = camel_to_snake(tl_base(abstract)) + ".html"
-    if ns == "_base":
-        return f"{depth}types/{slug}"
-    return f"{depth}types/{ns}/{slug}"
+    return f"{depth}types/{ns}/{slug}" if ns != "_base" else f"{depth}types/{slug}"
 
 
 def method_url(item: TLItem, depth: str = "") -> str:
     ns = tl_ns(item.tl_name)
     slug = url_slug(item.tl_name)
-    if ns == "_base":
-        return f"{depth}methods/{slug}"
-    return f"{depth}methods/{ns}/{slug}"
+    return f"{depth}methods/{ns}/{slug}" if ns != "_base" else f"{depth}methods/{slug}"
 
 
 def import_type(item: TLItem) -> str:
     ns = tl_ns(item.tl_name)
     cls = py_class(item.tl_name)
-    if ns == "_base":
-        return f"from ferogram.raw.types import {cls}"
-    return f"from ferogram.raw.types.{ns} import {cls}"
+    return f"from ferogram.raw.types.{ns} import {cls}" if ns != "_base" else f"from ferogram.raw.types import {cls}"
 
 
 def import_func(item: TLItem) -> str:
     ns = tl_ns(item.tl_name)
     cls = py_class(item.tl_name)
-    if ns == "_base":
-        return f"from ferogram.raw.functions import {cls}"
-    return f"from ferogram.raw.functions.{ns} import {cls}"
+    return f"from ferogram.raw.functions.{ns} import {cls}" if ns != "_base" else f"from ferogram.raw.functions import {cls}"
 
 
+# ---------------------------------------------------------------------------
 # Field type linkifier
+# ---------------------------------------------------------------------------
 
 PRIMITIVES = {
     "int", "long", "double", "string", "bytes", "Bool",
-    "int128", "int256", "true", "True", "Int", "Long", "bool",
+    "int128", "int256", "true", "True", "Int", "Long", "bool", "date",
 }
 
 
 def link_type(ftype: str, known_types: set[str], depth: str) -> str:
-    """Return HTML with linked type names."""
     if ftype.startswith("Vector<") or ftype.startswith("vector<"):
         inner = ftype[7:-1]
         return f'<a href="{depth}index.html#vector">Vector</a>&lt;{link_type(inner, known_types, depth)}&gt;'
     if ftype in PRIMITIVES:
         return f'<a href="{depth}index.html#{ftype.lower()}">{html.escape(ftype)}</a>'
-    # Could be an abstract type
     if ftype in known_types:
-        url = abstract_type_url(ftype, depth)
-        return f'<a href="{url}">{html.escape(ftype)}</a>'
+        return f'<a href="{abstract_type_url(ftype, depth)}">{html.escape(ftype)}</a>'
     return html.escape(ftype)
 
 
@@ -174,194 +164,325 @@ def render_tl_def(item: TLItem, known_types: set[str], depth: str) -> str:
     parts = [html.escape(f"{item.tl_name}#{cid_hex}")]
     for f in item.fields:
         if f.flag_bit is not None:
-            ftype_raw = f"flags.{f.flag_bit}?{f.ftype}"
-            linked = f" {html.escape(f.name)}:flags.{f.flag_bit}?{link_type(f.ftype, known_types, depth)}"
+            parts.append(f" {html.escape(f.name)}:flags.{f.flag_bit}?{link_type(f.ftype, known_types, depth)}")
         else:
-            linked = f" {html.escape(f.name)}:{link_type(f.ftype, known_types, depth)}"
-        parts.append(linked)
+            parts.append(f" {html.escape(f.name)}:{link_type(f.ftype, known_types, depth)}")
     ret_linked = link_type(item.ret, known_types, depth)
     return f"{header}\n{''.join(parts)} = {ret_linked}"
 
 
-# CSS
+# ---------------------------------------------------------------------------
+# Example value generation
+# ---------------------------------------------------------------------------
 
-CSS = """\
-:root {
-    --bg: #0f1117;
-    --surface: #1a1d27;
-    --border: #2a2d3a;
-    --text: #e2e4f0;
-    --muted: #8b8fa8;
-    --accent: #7c6af7;
-    --accent-light: #a99ff8;
-    --code-bg: #161923;
-    --code-text: #c9d1e0;
-    --link: #7c6af7;
-    --link-hover: #a99ff8;
-    --tag-bg: #251f4a;
-    --tag-opt: #1a3040;
-    --tag-opt-text: #5db8e8;
+KNOWN_NAMED = {
+    ("message", "string"): "'Hello there!'",
+    ("title", "string"): "'My title'",
+    ("hash", "int"): "0",
+    ("hash", "long"): "0",
+    ("limit", "int"): "100",
+    ("offset", "int"): "0",
+    ("min_id", "int"): "0",
+    ("max_id", "int"): "0",
+    ("min_id", "long"): "0",
+    ("max_id", "long"): "0",
+    ("add_offset", "int"): "0",
+    ("random_id", "long"): "random.randrange(-2**63, 2**63)",
 }
+
+KNOWN_TYPED = {
+    "int": "42",
+    "long": "-12398745604826",
+    "string": "'some string here'",
+    "bytes": "b'arbitrary\\x7f data'",
+    "Bool": "False",
+    "true": "True",
+    "bool": "False",
+    "double": "7.13",
+    "int128": "int.from_bytes(os.urandom(16), 'big')",
+    "int256": "int.from_bytes(os.urandom(32), 'big')",
+    "date": "datetime.datetime(2024, 1, 1)",
+    "InputPeer": "'username'",
+    "InputUser": "'username'",
+    "InputChannel": "'username'",
+}
+
+SYNONYMS = {
+    "InputUser": "InputPeer",
+    "InputChannel": "InputPeer",
+    "InputDialogPeer": "InputPeer",
+    "InputNotifyPeer": "InputPeer",
+    "InputMessage": "int",
+}
+
+
+def example_value(fname: str, ftype: str) -> str:
+    key = (fname, ftype)
+    if key in KNOWN_NAMED:
+        return KNOWN_NAMED[key]
+    ftype2 = SYNONYMS.get(ftype, ftype)
+    if ftype2 in KNOWN_TYPED:
+        return KNOWN_TYPED[ftype2]
+    if ftype in KNOWN_TYPED:
+        return KNOWN_TYPED[ftype]
+    cls = py_class(ftype) if ftype and ftype[0].isupper() else ftype
+    return f"types.{cls}()"
+
+
+def build_example(item: TLItem, required_only: bool) -> str:
+    ns = tl_ns(item.tl_name)
+    mod = f"functions.{ns}" if ns != "_base" else "functions"
+    cls = py_class(item.tl_name)
+    lines = ["from ferogram import raw, types", ""]
+    if required_only:
+        args = [f for f in item.fields if not f.optional and f.name != "flags"]
+    else:
+        args = [f for f in item.fields if f.name != "flags"]
+    if not args:
+        lines.append(f"result = await client(raw.{mod}.{cls}())")
+    else:
+        lines.append(f"result = await client(raw.{mod}.{cls}(")
+        for i, f in enumerate(args):
+            comma = "," if i < len(args) - 1 else ""
+            lines.append(f"    {f.name}={example_value(f.name, f.ftype)}{comma}")
+        lines.append("))")
+    lines.append("print(result)")
+    return "\n".join(lines)
+
+
+# ---------------------------------------------------------------------------
+# CSS (dark + light, shared structure)
+# ---------------------------------------------------------------------------
+
+CSS_COMMON = """\
+* { box-sizing: border-box; }
 body {
     font-family: 'Nunito', system-ui, sans-serif;
-    background: var(--bg);
-    color: var(--text);
     font-size: 15px;
     line-height: 1.6;
     margin: 0;
     padding: 0;
+    transition: background 0.2s, color 0.2s;
 }
-a { color: var(--link); text-decoration: none; }
-a:hover { color: var(--link-hover); text-decoration: underline; }
+a { text-decoration: none; }
+a:hover { text-decoration: underline; }
 #main_div {
     max-width: 900px;
     margin: 0 auto;
     padding: 24px 20px 60px;
 }
-h1 {
-    font-size: 1.8rem;
-    color: var(--text);
-    font-weight: 700;
-    margin: 12px 0 20px;
-}
+h1 { font-size: 1.8rem; font-weight: 700; margin: 12px 0 20px; }
 h3 {
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
-    color: var(--muted);
     margin: 28px 0 10px;
 }
 pre {
     font-family: 'Source Code Pro', monospace;
     font-size: 13px;
-    background: var(--code-bg);
-    color: var(--code-text);
     padding: 14px 16px;
     border-radius: 6px;
     overflow-x: auto;
-    border: 1px solid var(--border);
+    border-width: 1px;
+    border-style: solid;
     line-height: 1.6;
 }
 code { font-family: 'Source Code Pro', monospace; font-size: 13px; }
 table { width: 100%; border-collapse: collapse; margin: 0; }
 table td {
-    border-top: 1px solid var(--border);
+    border-top-width: 1px;
+    border-top-style: solid;
     padding: 9px 12px;
     vertical-align: top;
     font-size: 14px;
 }
-table td:first-child { color: var(--text); font-weight: 600; font-family: monospace; font-size: 13px; }
-table td:nth-child(2) { color: var(--accent-light); }
-table td:last-child { color: var(--muted); font-size: 13px; }
-.horizontal {
+table td:first-child { font-weight: 600; font-family: monospace; font-size: 13px; }
+ul.horizontal {
     list-style: none;
     padding: 8px 14px;
     margin: 0 0 20px;
-    background: var(--surface);
     border-radius: 6px;
-    border: 1px solid var(--border);
+    border-width: 1px;
+    border-style: solid;
     display: flex;
     align-items: center;
     gap: 6px;
     font-size: 13px;
     flex-wrap: wrap;
 }
-.horizontal li { display: inline; color: var(--muted); }
-.horizontal li a { color: var(--link); }
-.sep { color: var(--border); user-select: none; }
+ul.horizontal li { display: inline; }
+.sep { user-select: none; }
 button.copy-btn {
     display: inline-block;
     margin: 12px 0 20px;
     padding: 7px 14px;
-    background: var(--tag-bg);
-    color: var(--accent-light);
-    border: 1px solid var(--accent);
+    border-width: 1px;
+    border-style: solid;
     border-radius: 5px;
     font-size: 13px;
     font-family: 'Source Code Pro', monospace;
     cursor: pointer;
     transition: background 0.15s;
 }
-button.copy-btn:hover { background: #321f7a; }
-.invisible { position: absolute; left: -9999px; top: -9999px; }
-/* Search UI */
-#searchBox {
-    width: 100%;
-    box-sizing: border-box;
-    padding: 11px 14px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    color: var(--text);
-    font-size: 15px;
+.tag-opt { border-radius: 3px; padding: 1px 5px; font-size: 11px; font-family: monospace; }
+.tag-req { border-radius: 3px; padding: 1px 5px; font-size: 11px; font-family: monospace; }
+#theme-btn {
+    position: fixed; top: 14px; right: 16px;
+    padding: 5px 12px; border-radius: 20px;
+    border-width: 1px; border-style: solid;
+    font-size: 12px; cursor: pointer; z-index: 999;
     font-family: 'Nunito', sans-serif;
-    margin-bottom: 18px;
-    outline: none;
+    transition: background 0.2s, color 0.2s;
 }
-#searchBox:focus { border-color: var(--accent); }
+#searchBox {
+    width: 100%; padding: 11px 14px;
+    border-radius: 6px; border-width: 1px; border-style: solid;
+    font-size: 15px; font-family: 'Nunito', sans-serif;
+    margin-bottom: 18px; outline: none;
+}
 #searchDiv details { margin-bottom: 16px; }
 #searchDiv summary.title {
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    font-size: 12px;
-    color: var(--muted);
-    cursor: pointer;
-    user-select: none;
-    padding: 6px 0;
-    list-style: none;
+    font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; font-size: 12px;
+    cursor: pointer; user-select: none; padding: 6px 0; list-style: none;
 }
 #searchDiv summary.title::-webkit-details-marker { display: none; }
 ul.together {
-    list-style: none;
-    padding: 0;
-    margin: 6px 0 0;
-    column-count: 2;
-    column-gap: 16px;
+    list-style: none; padding: 0; margin: 6px 0 0;
+    column-count: 2; column-gap: 16px;
 }
 ul.together li { padding: 2px 0; font-size: 13px; break-inside: avoid; }
-#exactMatch {
-    background: var(--surface);
-    border: 1px solid var(--accent);
-    border-radius: 6px;
-    padding: 10px 14px;
-    margin-bottom: 16px;
-}
-.tag-opt {
-    background: var(--tag-opt);
-    color: var(--tag-opt-text);
-    border-radius: 3px;
-    padding: 1px 5px;
-    font-size: 11px;
-    font-family: monospace;
-}
+#exactMatch { border-radius: 6px; padding: 10px 14px; margin-bottom: 16px; border-width: 1px; border-style: solid; }
+.invisible { position: absolute; left: -9999px; top: -9999px; }
+details.example > summary { cursor: pointer; font-size: 13px; user-select: none; margin-bottom: 6px; font-family: 'Source Code Pro', monospace; }
+details.example { margin-bottom: 12px; }
 @media (max-width: 600px) {
     ul.together { column-count: 1; }
     h1 { font-size: 1.3rem; }
+    #theme-btn { top: 8px; right: 8px; }
 }
 """
 
+CSS_DARK_VARS = """\
+:root {
+    --bg: #0f1117; --surface: #1a1d27; --border: #2a2d3a;
+    --text: #e2e4f0; --muted: #8b8fa8; --accent: #7c6af7;
+    --accent-light: #a99ff8; --code-bg: #161923; --code-text: #c9d1e0;
+    --link: #7c6af7; --link-hover: #a99ff8;
+    --tag-opt-bg: #1a3040; --tag-opt-text: #5db8e8;
+    --tag-req-bg: #1a2e1a; --tag-req-text: #6ecb6e;
+    --btn-bg: #251f4a; --btn-border: #7c6af7; --btn-text: #a99ff8; --btn-hover: #321f7a;
+}
+"""
+
+CSS_DARK_RULES = """\
+body { background: var(--bg); color: var(--text); }
+a { color: var(--link); } a:hover { color: var(--link-hover); }
+pre { background: var(--code-bg); color: var(--code-text); border-color: var(--border); }
+table td { border-top-color: var(--border); }
+table td:first-child { color: var(--text); }
+table td:nth-child(2) { color: var(--accent-light); }
+table td:last-child { color: var(--muted); font-size: 13px; }
+ul.horizontal { background: var(--surface); border-color: var(--border); }
+ul.horizontal li { color: var(--muted); } ul.horizontal li a { color: var(--link); }
+.sep { color: var(--border); }
+button.copy-btn { background: var(--btn-bg); color: var(--btn-text); border-color: var(--btn-border); }
+button.copy-btn:hover { background: var(--btn-hover); }
+.tag-opt { background: var(--tag-opt-bg); color: var(--tag-opt-text); }
+.tag-req { background: var(--tag-req-bg); color: var(--tag-req-text); }
+#theme-btn { background: var(--surface); border-color: var(--border); color: var(--muted); }
+#theme-btn:hover { border-color: var(--accent); color: var(--accent-light); }
+#searchBox { background: var(--surface); border-color: var(--border); color: var(--text); }
+#searchBox:focus { border-color: var(--accent); }
+#searchDiv summary.title { color: var(--muted); }
+#exactMatch { background: var(--surface); border-color: var(--accent); }
+h3 { color: var(--muted); }
+"""
+
+CSS_LIGHT_VARS = """\
+:root {
+    --bg: #ffffff; --surface: #f5f6fa; --border: #d0d3e0;
+    --text: #1a1c2e; --muted: #6b6f87; --accent: #5b4fcf;
+    --accent-light: #7c6af7; --code-bg: #f0f1f8; --code-text: #2a2d4a;
+    --link: #5b4fcf; --link-hover: #7c6af7;
+    --tag-opt-bg: #dbeafe; --tag-opt-text: #1d4ed8;
+    --tag-req-bg: #dcfce7; --tag-req-text: #166534;
+    --btn-bg: #ede9ff; --btn-border: #7c6af7; --btn-text: #5b4fcf; --btn-hover: #ddd6ff;
+}
+"""
+
+CSS_LIGHT_RULES = """\
+body { background: var(--bg); color: var(--text); }
+a { color: var(--link); } a:hover { color: var(--link-hover); }
+pre { background: var(--code-bg); color: var(--code-text); border-color: var(--border); }
+table td { border-top-color: var(--border); }
+table td:first-child { color: var(--text); }
+table td:nth-child(2) { color: var(--accent); }
+table td:last-child { color: var(--muted); font-size: 13px; }
+ul.horizontal { background: var(--surface); border-color: var(--border); }
+ul.horizontal li { color: var(--muted); } ul.horizontal li a { color: var(--link); }
+.sep { color: var(--border); }
+button.copy-btn { background: var(--btn-bg); color: var(--btn-text); border-color: var(--btn-border); }
+button.copy-btn:hover { background: var(--btn-hover); }
+.tag-opt { background: var(--tag-opt-bg); color: var(--tag-opt-text); }
+.tag-req { background: var(--tag-req-bg); color: var(--tag-req-text); }
+#theme-btn { background: var(--surface); border-color: var(--border); color: var(--muted); }
+#theme-btn:hover { border-color: var(--accent); color: var(--accent); }
+#searchBox { background: var(--surface); border-color: var(--border); color: var(--text); }
+#searchBox:focus { border-color: var(--accent); }
+#searchDiv summary.title { color: var(--muted); }
+#exactMatch { background: var(--surface); border-color: var(--accent); }
+h3 { color: var(--muted); }
+"""
+
+CSS_DARK = CSS_DARK_VARS + CSS_COMMON + CSS_DARK_RULES
+CSS_LIGHT = CSS_LIGHT_VARS + CSS_COMMON + CSS_LIGHT_RULES
+
+# ---------------------------------------------------------------------------
 # HTML helpers
+# ---------------------------------------------------------------------------
 
 FONTS = '<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">'
+
+THEME_INIT = """\
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>"""
+
+THEME_BTN = """<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>"""
 
 CP_SCRIPT = """<textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>"""
 
 
 def page(title: str, depth: str, body: str, *, show_search: bool = True) -> str:
-    search_script = f'<script>prependPath="{depth}";</script><script src="{depth}js/search.js"></script>' if show_search else ""
+    search_script = (
+        f'<script>prependPath="{depth}";</script>'
+        f'<script src="{depth}js/search.js"></script>'
+    ) if show_search else ""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <title>{html.escape(title)} - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="{depth}css/docs.css">
+<link id="style" rel="stylesheet" href="{depth}css/dark.css">
 {FONTS}
 </head>
 <body>
+{THEME_BTN}
+{THEME_INIT}
 <div id="main_div">
 {body}
 {CP_SCRIPT}
@@ -388,21 +509,33 @@ def fields_table(item: TLItem, known_types: set[str], depth: str) -> str:
         return "<p>This item has no parameters.</p>"
     rows = ""
     for f in item.fields:
-        note = '<span class="tag-opt">optional</span>' if f.optional else "Required."
-        rows += f"<tr><td>{html.escape(f.name)}</td><td>{link_type(f.ftype, known_types, depth)}</td><td>{note}</td></tr>\n"
+        badge = '<span class="tag-opt">optional</span>' if f.optional else '<span class="tag-req">required</span>'
+        rows += f"<tr><td>{html.escape(f.name)}</td><td>{link_type(f.ftype, known_types, depth)}</td><td>{badge}</td></tr>\n"
     return f"<table>{rows}</table>"
 
 
-def type_link_row(abstract: str, depth: str) -> str:
-    url = abstract_type_url(abstract, depth)
-    return f'<tr><td><a href="{url}">{html.escape(abstract)}</a></td></tr>'
+def item_table(items: list[TLItem], url_fn, depth: str) -> str:
+    rows = ""
+    for item in sorted(items, key=lambda i: py_class(i.tl_name)):
+        url = url_fn(item, depth)
+        rows += f'<tr><td><a href="{url}">{html.escape(py_class(item.tl_name))}</a></td></tr>\n'
+    return f"<table>{rows}</table>" if rows else ""
 
 
+def maybe_section(heading: str, items: list[TLItem], url_fn, depth: str) -> str:
+    if not items:
+        return f"<h3>{heading}</h3><p>None.</p>"
+    return f"<h3>{heading}</h3>{item_table(items, url_fn, depth)}"
+
+
+# ---------------------------------------------------------------------------
 # Page generators
+# ---------------------------------------------------------------------------
 
 def gen_constructor_page(
     item: TLItem,
     known_types: set[str],
+    funcs_accepting: list[TLItem],
     out: Path,
 ) -> None:
     ns = tl_ns(item.tl_name)
@@ -414,20 +547,20 @@ def gen_constructor_page(
         crumbs.append((ns.title(), f"{depth}constructors/{ns}/index.html"))
     crumbs.append((cls, None))
 
-    tl_def = render_tl_def(item, known_types, depth)
     imp = html.escape(import_type(item))
-    fields_html = fields_table(item, known_types, depth)
-    ret_row = type_link_row(item.ret, depth)
+    ret_url = abstract_type_url(item.ret, depth)
+    using = f"<h3>Used by</h3>{item_table(funcs_accepting, method_url, depth)}" if funcs_accepting else ""
 
     body = f"""
 {breadcrumb(crumbs)}
 <h1>{html.escape(cls)}</h1>
-<pre>{tl_def}</pre>
+<pre>{render_tl_def(item, known_types, depth)}</pre>
 <button class="copy-btn" onclick="cp('{imp}')">Copy import</button>
 <h3>Belongs to</h3>
-<table>{ret_row}</table>
+<table><tr><td><a href="{ret_url}">{html.escape(item.ret)}</a></td></tr></table>
 <h3>Members</h3>
-{fields_html}
+{fields_table(item, known_types, depth)}
+{using}
 """
     dest = out / constructor_url(item)
     dest.parent.mkdir(parents=True, exist_ok=True)
@@ -437,11 +570,12 @@ def gen_constructor_page(
 def gen_abstract_type_page(
     abstract: str,
     constructors: list[TLItem],
+    funcs_returning: list[TLItem],
+    funcs_accepting: list[TLItem],
+    types_with_member: list[TLItem],
     out: Path,
 ) -> None:
     ns = tl_ns(abstract)
-    base = tl_base(abstract)
-    cls = py_class(abstract)
     depth = "../../" if ns != "_base" else "../"
 
     crumbs = [("API", f"{depth}index.html"), ("Types", f"{depth}types/index.html")]
@@ -449,28 +583,27 @@ def gen_abstract_type_page(
         crumbs.append((ns.title(), f"{depth}types/{ns}/index.html"))
     crumbs.append((abstract, None))
 
-    rows = ""
-    for c in constructors:
-        url = constructor_url(c, depth)
-        rows += f'<tr><td><a href="{url}">{html.escape(py_class(c.tl_name))}</a></td></tr>\n'
+    cons_rows = "".join(
+        f'<tr><td><a href="{constructor_url(c, depth)}">{html.escape(py_class(c.tl_name))}</a></td></tr>\n'
+        for c in sorted(constructors, key=lambda c: py_class(c.tl_name))
+    )
 
     body = f"""
 {breadcrumb(crumbs)}
 <h1>{html.escape(abstract)}</h1>
 <h3>Constructors</h3>
 <p>This type can be an instance of:</p>
-<table>{rows}</table>
+<table>{cons_rows}</table>
+{maybe_section("Requests returning this type", funcs_returning, method_url, depth)}
+{maybe_section("Requests accepting this type as input", funcs_accepting, method_url, depth)}
+{maybe_section("Other types containing this type", types_with_member, constructor_url, depth)}
 """
     dest = out / abstract_type_url(abstract)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(page(abstract, depth, body), encoding="utf-8")
 
 
-def gen_method_page(
-    item: TLItem,
-    known_types: set[str],
-    out: Path,
-) -> None:
+def gen_method_page(item: TLItem, known_types: set[str], out: Path) -> None:
     ns = tl_ns(item.tl_name)
     cls = py_class(item.tl_name)
     depth = "../../" if ns != "_base" else "../"
@@ -480,92 +613,77 @@ def gen_method_page(
         crumbs.append((ns.title(), f"{depth}methods/{ns}/index.html"))
     crumbs.append((cls, None))
 
-    tl_def = render_tl_def(item, known_types, depth)
     imp = html.escape(import_func(item))
-    fields_html = fields_table(item, known_types, depth)
     ret_linked = link_type(item.ret, known_types, depth)
+
+    ex_min = html.escape(build_example(item, required_only=True))
+    ex_full = html.escape(build_example(item, required_only=False))
+    has_optional = any(f.optional for f in item.fields if f.name != "flags")
+
+    if has_optional:
+        examples_html = f"""<h3>Example</h3>
+<details class="example" open>
+  <summary>&#9654; Minimal (required fields only)</summary>
+  <pre>{ex_min}</pre>
+</details>
+<details class="example">
+  <summary>&#9654; Full (all fields)</summary>
+  <pre>{ex_full}</pre>
+</details>"""
+    else:
+        examples_html = f"<h3>Example</h3><pre>{ex_min}</pre>"
 
     body = f"""
 {breadcrumb(crumbs)}
 <h1>{html.escape(cls)}</h1>
-<pre>{tl_def}</pre>
+<p>Both users and bots can use this request.</p>
+<pre>{render_tl_def(item, known_types, depth)}</pre>
 <button class="copy-btn" onclick="cp('{imp}')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td>{ret_linked}</td></tr></table>
 <h3>Parameters</h3>
-{fields_html}
+{fields_table(item, known_types, depth)}
+{examples_html}
 """
     dest = out / method_url(item)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(page(cls, depth, body), encoding="utf-8")
 
 
-def gen_ns_index(
-    section: str,
-    ns: str,
-    items: list[TLItem | tuple],
-    out: Path,
-    depth: str = "../../",
-    label_fn=None,
-    url_fn=None,
-) -> None:
+def gen_ns_index(section: str, ns: str, items: list, out: Path) -> None:
+    depth = "../../"
     rows = ""
     for item in sorted(items, key=lambda i: tl_base(i.tl_name if hasattr(i, "tl_name") else i[0])):
         if hasattr(item, "tl_name"):
             cls = py_class(item.tl_name)
-            if section == "constructors":
-                url = constructor_url(item, depth)
-            else:
-                url = method_url(item, depth)
+            url = (constructor_url if section == "constructors" else method_url)(item, depth)
         else:
             abstract, _ = item
             cls = abstract
             url = abstract_type_url(abstract, depth)
         rows += f'<li><a href="{url}">{html.escape(cls)}</a></li>\n'
-
-    title = f"{ns.title()} - {section.title()}"
-    crumbs = [
-        ("API", f"{depth}index.html"),
-        (section.title(), f"{depth}{section}/index.html"),
-        (ns.title(), None),
-    ]
-    body = f"""
-{breadcrumb(crumbs)}
-<h1>{html.escape(ns.title())}</h1>
-<ul class="together">
-{rows}
-</ul>
-"""
+    crumbs = [("API", f"{depth}index.html"), (section.title(), f"{depth}{section}/index.html"), (ns.title(), None)]
+    body = f"{breadcrumb(crumbs)}\n<h1>{html.escape(ns.title())}</h1>\n<ul class='together'>\n{rows}</ul>"
     dest = out / section / ns / "index.html"
     dest.parent.mkdir(parents=True, exist_ok=True)
-    dest.write_text(page(title, depth, body), encoding="utf-8")
+    dest.write_text(page(f"{ns.title()} - {section.title()}", depth, body), encoding="utf-8")
 
 
-def gen_section_index(
-    section: str,
-    ns_map: dict[str, list],
-    out: Path,
-    depth: str = "../",
-    url_fn=None,
-) -> None:
+def gen_section_index(section: str, ns_map: dict, out: Path) -> None:
+    depth = "../"
     ns_list = sorted(ns for ns in ns_map if ns != "_base")
     base_items = ns_map.get("_base", [])
 
     ns_rows = "".join(
-        f'<li><a href="{depth}{section}/{ns}/index.html">{html.escape(ns)}</a> '
-        f'<span style="color:var(--muted)">({len(ns_map[ns])})</span></li>\n'
+        f'<li><a href="{depth}{section}/{ns}/index.html">{html.escape(ns)}</a>'
+        f' <span style="color:var(--muted)">({len(ns_map[ns])})</span></li>\n'
         for ns in ns_list
     )
     base_rows = ""
     for item in sorted(base_items, key=lambda i: tl_base(i.tl_name if hasattr(i, "tl_name") else i[0])):
         if hasattr(item, "tl_name"):
             cls = py_class(item.tl_name)
-            if section == "constructors":
-                url = constructor_url(item, depth)
-            elif section == "methods":
-                url = method_url(item, depth)
-            else:
-                url = abstract_type_url(item.tl_name, depth)
+            url = (constructor_url if section == "constructors" else method_url)(item, depth)
         else:
             abstract, _ = item
             cls = abstract
@@ -585,27 +703,24 @@ def gen_section_index(
     dest.write_text(page(section.title(), depth, body), encoding="utf-8")
 
 
+# ---------------------------------------------------------------------------
 # search.js
+# ---------------------------------------------------------------------------
 
-def gen_search_js(
-    types_list: list[TLItem],
-    funcs_list: list[TLItem],
-    abstract_types: list[str],
-    out: Path,
-) -> None:
+def gen_search_js(types_list: list, funcs_list: list, abstract_types: list, out: Path) -> None:
     requests = json.dumps([py_class(f.tl_name) for f in funcs_list])
     requestsu = json.dumps([method_url(f) for f in funcs_list])
-    types_names = json.dumps(abstract_types)
-    typesu_list = json.dumps([abstract_type_url(t) for t in abstract_types])
+    type_names = json.dumps(abstract_types)
+    typesu = json.dumps([abstract_type_url(t) for t in abstract_types])
     constructors = json.dumps([py_class(t.tl_name) for t in types_list])
     constructorsu = json.dumps([constructor_url(t) for t in types_list])
 
-    js = f"""/* ferogram API search - auto-generated, do not edit */
+    js = f"""/* ferogram API search - auto-generated */
 root = document.getElementById("main_div");
 root.innerHTML = `
 <input id="searchBox" type="text" onkeyup="updateSearch(event)"
-       placeholder="Search methods and types…" />
-<div id="searchDiv">
+       placeholder="Search methods and types\u2026" />
+<div id="searchDiv" style="display:none">
   <div id="exactMatch" style="display:none">
     <b>Exact match:</b>
     <ul id="exactList" class="together"></ul>
@@ -626,30 +741,21 @@ root.innerHTML = `
 var contentDiv = document.getElementById("contentDiv");
 var searchDiv  = document.getElementById("searchDiv");
 var searchBox  = document.getElementById("searchBox");
-
-var methodsDetails     = document.getElementById("methods");
-var methodsList        = document.getElementById("methodsList");
-var methodsCount       = document.getElementById("methodsCount");
-
-var typesDetails  = document.getElementById("types");
-var typesList     = document.getElementById("typesList");
-var typesCount    = document.getElementById("typesCount");
-
-var constructorsDetails = document.getElementById("constructors");
-var constructorsList    = document.getElementById("constructorsList");
-var constructorsCount   = document.getElementById("constructorsCount");
-
+var methodsList = document.getElementById("methodsList");
+var methodsCount = document.getElementById("methodsCount");
+var typesList = document.getElementById("typesList");
+var typesCount = document.getElementById("typesCount");
+var constructorsList = document.getElementById("constructorsList");
+var constructorsCount = document.getElementById("constructorsCount");
 var exactMatch = document.getElementById("exactMatch");
 var exactList  = document.getElementById("exactList");
 
-try {{
-    var requests     = {requests};
-    var types        = {types_names};
-    var constructors = {constructors};
-    var requestsu    = {requestsu};
-    var typesu       = {typesu_list};
-    var constructorsu = {constructorsu};
-}} catch(e) {{}}
+var requests     = {requests};
+var types        = {type_names};
+var constructors = {constructors};
+var requestsu    = {requestsu};
+var typesu       = {typesu};
+var constructorsu = {constructorsu};
 
 var prependPath = (typeof prependPath !== "undefined") ? prependPath : "";
 
@@ -667,34 +773,29 @@ function updateSearch(event) {{
     contentDiv.style.display = "none";
     searchDiv.style.display  = "";
 
-    var exact = [];
-    var mList = [], tList = [], cList = [];
-
+    var exact = [], mList = [], tList = [], cList = [];
     for (var i = 0; i < requests.length; i++) {{
-        var n = requests[i]; var lower = n.toLowerCase();
+        var n = requests[i], lower = n.toLowerCase();
         if (lower === q) exact.push(makeLink(n, requestsu[i]));
         else if (lower.includes(q)) mList.push(makeLink(n, requestsu[i]));
     }}
     for (var i = 0; i < types.length; i++) {{
-        var n = types[i]; var lower = n.toLowerCase();
+        var n = types[i], lower = n.toLowerCase();
         if (lower === q) exact.push(makeLink(n, typesu[i]));
         else if (lower.includes(q)) tList.push(makeLink(n, typesu[i]));
     }}
     for (var i = 0; i < constructors.length; i++) {{
-        var n = constructors[i]; var lower = n.toLowerCase();
+        var n = constructors[i], lower = n.toLowerCase();
         if (lower === q) exact.push(makeLink(n, constructorsu[i]));
         else if (lower.includes(q)) cList.push(makeLink(n, constructorsu[i]));
     }}
 
     exactMatch.style.display = exact.length ? "" : "none";
     exactList.innerHTML = exact.map(function(x){{return "<li>"+x+"</li>";}}).join("");
-
     methodsList.innerHTML = mList.map(function(x){{return "<li>"+x+"</li>";}}).join("");
     methodsCount.textContent = mList.length;
-
     typesList.innerHTML = tList.map(function(x){{return "<li>"+x+"</li>";}}).join("");
     typesCount.textContent = tList.length;
-
     constructorsList.innerHTML = cList.map(function(x){{return "<li>"+x+"</li>";}}).join("");
     constructorsCount.textContent = cList.length;
 }}
@@ -702,58 +803,55 @@ function updateSearch(event) {{
 var qParam = new URLSearchParams(window.location.search).get("q");
 if (qParam) {{ searchBox.value = qParam; updateSearch({{}}); }}
 """
-
     (out / "js").mkdir(parents=True, exist_ok=True)
     (out / "js" / "search.js").write_text(js, encoding="utf-8")
 
 
-# Root index
+# ---------------------------------------------------------------------------
+# Root index + 404
+# ---------------------------------------------------------------------------
 
-def gen_root_index(
-    layer: int,
-    n_types: int,
-    n_constructors: int,
-    n_methods: int,
-    out: Path,
-) -> None:
+def gen_root_index(layer: int, n_types: int, n_constructors: int, n_methods: int, out: Path) -> None:
     body = f"""
 <h1>ferogram API <span style="color:var(--muted);font-size:1rem">Layer {layer}</span></h1>
-<p>Raw Telegram MTProto API reference, auto-generated from <code>raw_api.tl</code> (Layer {layer}).
-Use the search box below or browse by section.</p>
+<p>Raw Telegram MTProto API reference, auto-generated from TL schema (Layer {layer}).
+Search above or browse by section.</p>
 <p>
-  <a href="methods/index.html">Methods</a> ({n_methods}) ·
-  <a href="types/index.html">Types</a> ({n_types}) ·
+  <a href="methods/index.html">Methods</a> ({n_methods}) &middot;
+  <a href="types/index.html">Types</a> ({n_types}) &middot;
   <a href="constructors/index.html">Constructors</a> ({n_constructors})
 </p>
 <h3>Usage</h3>
-<pre># namespace style
+<pre># namespace import
 from ferogram.raw.functions.messages import GetHistory
 result = await client(GetHistory(peer=..., limit=100, ...))
 
-# flat style
+# flat import
 from ferogram import raw
 result = await client(raw.functions.messages.GetHistory(peer=..., limit=100, ...))</pre>
-
-<h3 id="vector">Core types</h3>
+<h3 id="int">Core types</h3>
 <table>
-<tr><td><b id="int">int</b></td><td>A 32-bit integer.</td></tr>
-<tr><td><b id="long">long</b></td><td>A 64-bit integer.</td></tr>
-<tr><td><b>bool</b> / <b>true</b></td><td>A boolean value.</td></tr>
-<tr><td><b>string</b></td><td>A UTF-8 string.</td></tr>
-<tr><td><b>bytes</b></td><td>Arbitrary binary data.</td></tr>
-<tr><td><b>double</b></td><td>A 64-bit float.</td></tr>
-<tr><td><b id="vector">Vector&lt;T&gt;</b></td><td>A list of T.</td></tr>
+<tr><td><b>int</b></td><td>32-bit integer.</td></tr>
+<tr><td><b id="long">long</b></td><td>64-bit integer.</td></tr>
+<tr><td><b id="bool">bool</b> / <b id="true">true</b></td><td>Boolean value.</td></tr>
+<tr><td><b id="string">string</b></td><td>UTF-8 string.</td></tr>
+<tr><td><b id="bytes">bytes</b></td><td>Arbitrary binary data.</td></tr>
+<tr><td><b id="double">double</b></td><td>64-bit float.</td></tr>
+<tr><td><b id="date">date</b></td><td>Unix timestamp (int).</td></tr>
+<tr><td><b id="vector">Vector&lt;T&gt;</b></td><td>List of T.</td></tr>
 </table>
 """
     (out / "index.html").write_text(page("ferogram API", "", body), encoding="utf-8")
 
 
 def gen_404(out: Path) -> None:
-    body = """<h1>404</h1><p>Page not found. <a href="index.html">Go home</a>.</p>"""
+    body = '<h1>404</h1><p>Page not found. <a href="index.html">Go home</a>.</p>'
     (out / "404.html").write_text(page("404", "", body, show_search=False), encoding="utf-8")
 
 
+# ---------------------------------------------------------------------------
 # Main
+# ---------------------------------------------------------------------------
 
 def main() -> None:
     tl_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("ferogram/raw_api.tl")
@@ -763,46 +861,66 @@ def main() -> None:
         print(f"ERROR: TL file not found: {tl_path}", file=sys.stderr)
         sys.exit(1)
 
-    print(f"Reading {tl_path} …")
+    print(f"Reading {tl_path} ...")
     types_list, funcs_list = parse_tl(tl_path)
     layer = parse_layer(tl_path)
     print(f"  Layer {layer}: {len(types_list)} constructors, {len(funcs_list)} functions")
 
-    # Build set of all abstract type names (ret values of types)
     abstract_types_map: dict[str, list[TLItem]] = defaultdict(list)
     for t in types_list:
         abstract_types_map[t.ret].append(t)
     abstract_types_sorted = sorted(abstract_types_map.keys())
     known_types: set[str] = set(abstract_types_map.keys())
 
-    # Output dir
+    type_to_funcs_ret: dict[str, list[TLItem]] = defaultdict(list)
+    for f in funcs_list:
+        type_to_funcs_ret[f.ret].append(f)
+
+    type_to_funcs_acc: dict[str, list[TLItem]] = defaultdict(list)
+    for f in funcs_list:
+        seen = set()
+        for field in f.fields:
+            if field.ftype in known_types and field.ftype not in seen:
+                type_to_funcs_acc[field.ftype].append(f)
+                seen.add(field.ftype)
+
+    type_to_types_member: dict[str, list[TLItem]] = defaultdict(list)
+    for t in types_list:
+        seen = set()
+        for field in t.fields:
+            if field.ftype in known_types and field.ftype not in seen:
+                type_to_types_member[field.ftype].append(t)
+                seen.add(field.ftype)
+
     if out_dir.exists():
         shutil.rmtree(out_dir)
     out_dir.mkdir(parents=True)
 
-    # CSS
-    (out_dir / "css").mkdir()
-    (out_dir / "css" / "docs.css").write_text(CSS, encoding="utf-8")
+    css_dir = out_dir / "css"
+    css_dir.mkdir()
+    (css_dir / "dark.css").write_text(CSS_DARK, encoding="utf-8")
+    (css_dir / "light.css").write_text(CSS_LIGHT, encoding="utf-8")
 
-    # search.js
     gen_search_js(types_list, funcs_list, abstract_types_sorted, out_dir)
 
-    # Constructor pages
     cons_ns_map: dict[str, list[TLItem]] = defaultdict(list)
     for t in types_list:
-        gen_constructor_page(t, known_types, out_dir)
+        gen_constructor_page(t, known_types, type_to_funcs_acc.get(t.ret, []), out_dir)
         cons_ns_map[tl_ns(t.tl_name)].append(t)
-    print(f"  {len(types_list)} constructor pages")
-
-    # Constructor ns indexes
     for ns, items in cons_ns_map.items():
         if ns != "_base":
             gen_ns_index("constructors", ns, items, out_dir)
     gen_section_index("constructors", cons_ns_map, out_dir)
+    print(f"  {len(types_list)} constructor pages")
 
-    # Abstract type pages
     for abstract, constructors in abstract_types_map.items():
-        gen_abstract_type_page(abstract, constructors, out_dir)
+        gen_abstract_type_page(
+            abstract, constructors,
+            type_to_funcs_ret.get(abstract, []),
+            type_to_funcs_acc.get(abstract, []),
+            type_to_types_member.get(abstract, []),
+            out_dir,
+        )
     types_ns_map: dict[str, list] = defaultdict(list)
     for abstract in abstract_types_sorted:
         types_ns_map[tl_ns(abstract)].append((abstract, abstract_types_map[abstract]))
@@ -812,7 +930,6 @@ def main() -> None:
     gen_section_index("types", types_ns_map, out_dir)
     print(f"  {len(abstract_types_map)} type pages")
 
-    # Method pages
     method_ns_map: dict[str, list[TLItem]] = defaultdict(list)
     for f in funcs_list:
         gen_method_page(f, known_types, out_dir)
@@ -823,11 +940,10 @@ def main() -> None:
     gen_section_index("methods", method_ns_map, out_dir)
     print(f"  {len(funcs_list)} method pages")
 
-    # Root index + 404
     gen_root_index(layer, len(abstract_types_map), len(types_list), len(funcs_list), out_dir)
     gen_404(out_dir)
 
-    print(f"\nDone → {out_dir}/")
+    print(f"\nDone -> {out_dir}/")
 
 
 if __name__ == "__main__":
