@@ -227,30 +227,57 @@ def build_example(item: TLItem, required_only: bool) -> str:
     else:
         args = [f for f in item.fields if f.name != "flags"]
 
-    # Build the raw call lines
-    if not args:
-        call_line = f"    result = await app(raw.{mod}.{cls}())"
-    else:
-        call_lines = [f"    result = await app(raw.{mod}.{cls}("]
-        for i, f in enumerate(args):
-            comma = "," if i < len(args) - 1 else ""
-            call_lines.append(f"        {f.name}={example_value(f.name, f.ftype)}{comma}")
-        call_lines.append("    ))")
-        call_line = "\n".join(call_lines)
+    if required_only:
+        # Minimal example: way 4 — raw proxy (auto-resolves peers, no import needed)
+        proxy_ns = f"raw.{ns}" if ns != "_base" else "raw"
+        if not args:
+            call_line = f"    result = await app.{proxy_ns}.{cls}()"
+        else:
+            call_lines = [f"    result = await app.{proxy_ns}.{cls}("]
+            for i, f in enumerate(args):
+                comma = "," if i < len(args) - 1 else ""
+                call_lines.append(f"        {f.name}={example_value(f.name, f.ftype)}{comma}")
+            call_lines.append("    )")
+            call_line = "\n".join(call_lines)
 
-    lines = [
-        "import asyncio",
-        "from ferogram import Client, raw",
-        "",
-        'app = Client("my_session", api_id=12345, api_hash="0123456789abcdef0123456789abcdef")',
-        "",
-        "async def main():",
-        "    await app.start()",
-        call_line,
-        "    print(result)",
-        "",
-        "asyncio.run(main())",
-    ]
+        lines = [
+            "import asyncio",
+            "from ferogram import Client",
+            "",
+            'app = Client("my_session", api_id=12345, api_hash="0123456789abcdef0123456789abcdef")',
+            "",
+            "async def main():",
+            "    await app.start()",
+            call_line,
+            "    print(result)",
+            "",
+            "asyncio.run(main())",
+        ]
+    else:
+        # Full example: way 1 — direct callable with explicit raw import
+        if not args:
+            call_line = f"    result = await app(raw.{mod}.{cls}())"
+        else:
+            call_lines = [f"    result = await app(raw.{mod}.{cls}("]
+            for i, f in enumerate(args):
+                comma = "," if i < len(args) - 1 else ""
+                call_lines.append(f"        {f.name}={example_value(f.name, f.ftype)}{comma}")
+            call_lines.append("    ))")
+            call_line = "\n".join(call_lines)
+
+        lines = [
+            "import asyncio",
+            "from ferogram import Client, raw",
+            "",
+            'app = Client("my_session", api_id=12345, api_hash="0123456789abcdef0123456789abcdef")',
+            "",
+            "async def main():",
+            "    await app.start()",
+            call_line,
+            "    print(result)",
+            "",
+            "asyncio.run(main())",
+        ]
     return "\n".join(lines)
 
 
@@ -362,6 +389,14 @@ details.example > summary { cursor: pointer; font-size: 13px; user-select: none;
 details.example > summary::-webkit-details-marker { display: none; }
 details.example > summary::marker { display: none; }
 details.example { margin-bottom: 12px; }
+.example-note { font-size: 13px; color: var(--muted); margin: 6px 0 14px; font-family: 'Source Code Pro', monospace; }
+.example-note strong { color: var(--accent-light); }
+.tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; margin-bottom: 0; }
+.tab { padding: 7px 14px; font-size: 12px; cursor: pointer; font-family: 'Source Code Pro', monospace; color: var(--muted); border: none; background: none; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
+.tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+.way-content { display: none; }
+.way-content.active { display: block; }
+.way-content pre { border-top: none; border-radius: 0 0 8px 8px; margin-top: 0; }
 @media (max-width: 600px) {
     ul.together { column-count: 1; }
     h1 { font-size: 1.3rem; }
@@ -527,6 +562,12 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
+var _wayTabs=document.querySelectorAll('.tabs .tab');
+var _wayCon=document.querySelectorAll('.way-content');
+function switchWayTab(n){
+  _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
+  _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
+}
 </script>"""
 
 
@@ -681,18 +722,21 @@ def gen_method_page(item: TLItem, known_types: set[str], out: Path) -> None:
     ex_full = html.escape(build_example(item, required_only=False))
     has_optional = any(f.optional for f in item.fields if f.name != "flags")
 
+    note_html = """<p class="example-note">This is the recommended way to call this method. If you need more control over the parameters or want to see how the method is structured, expand <strong>Full API</strong> below.</p>"""
+
     if has_optional:
         examples_html = f"""<h3>Example</h3>
 <details class="example" open>
-  <summary>&#9654; Minimal (required fields only)</summary>
+  <summary>&#9654; Minimal</summary>
   <pre>{ex_min}</pre>
 </details>
+{note_html}
 <details class="example">
-  <summary>&#9654; Full (all fields)</summary>
+  <summary>&#9654; Full API</summary>
   <pre>{ex_full}</pre>
 </details>"""
     else:
-        examples_html = f"<h3>Example</h3><pre>{ex_min}</pre>"
+        examples_html = f"<h3>Example</h3><pre>{ex_min}</pre>\n{note_html}"
 
     body = f"""
 {breadcrumb(crumbs)}
@@ -877,41 +921,58 @@ def gen_root_index(layer: int, n_types: int, n_constructors: int, n_methods: int
   <a href="methods/index.html">Methods</a> ({n_methods})
   &middot; <a href="types/index.html">Types</a> ({n_types})
   &middot; <a href="constructors/index.html">Constructors</a> ({n_constructors})
-  &middot; <a href="https://github.com/ankit-chaubey/ferogram" target="_blank">ferogram (Rust)</a>
-  &middot; <a href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py</a>
 </p>
 
 <h3>What is ferogram?</h3>
 <p>
-  <strong>ferogram</strong> is a from-scratch Rust implementation of the Telegram MTProto protocol.
-  <strong>ferogram-py</strong> wraps it with Python bindings so you can write Telegram bots and
-  userbots in Python with a high-level API, while raw TL functions (listed on this site) remain
-  fully accessible for anything the high-level API does not cover.
+  <strong>ferogram</strong> is a modern Telegram MTProto library written in Rust, designed for speed,
+  reliability, and handling complex tasks with ease, while providing full access to Telegram's protocol.
+</p>
+<p>
+  <strong>ferogram-py</strong>, a Python wrapper for ferogram, lets you build Telegram bots and userbots
+  using a clean and easy high-level API, while still giving you direct access to raw TL functions for
+  advanced features and complete MTProto control whenever needed.
+</p>
+<p>
+  <a href="https://github.com/ankit-chaubey/ferogram" target="_blank">ferogram (Rust)</a>
+  &middot; <a href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py</a>
 </p>
 
 <h3>5 ways to call a raw method</h3>
-<pre># 1. Callable shorthand (recommended)
+<div class="tabs">
+  <button class="tab active" onclick="switchWayTab(0)">1. Callable</button>
+  <button class="tab" onclick="switchWayTab(1)">2. invoke()</button>
+  <button class="tab" onclick="switchWayTab(2)">3. ns import</button>
+  <button class="tab" onclick="switchWayTab(3)">4. raw proxy</button>
+  <button class="tab" onclick="switchWayTab(4)">5. handler</button>
+</div>
+<div class="way-content active" id="w0"><pre><span style="color:var(--muted)"># Recommended: call the client directly</span>
 from ferogram import Client, raw
 app = Client("my_session", api_id=12345, api_hash="...")
-result = await app(raw.functions.messages.GetHistory(peer=..., limit=100))
-
-# 2. Explicit invoke()
-result = await app.invoke(raw.functions.messages.GetHistory(peer=..., limit=100))
-
-# 3. Namespace import - shorter call site
+result = await app(raw.functions.messages.GetHistory(peer=..., limit=100))</pre></div>
+<div class="way-content" id="w1"><pre><span style="color:var(--muted)"># Explicit invoke() - same result</span>
+from ferogram import Client, raw
+app = Client("my_session", api_id=12345, api_hash="...")
+result = await app.invoke(raw.functions.messages.GetHistory(peer=..., limit=100))</pre></div>
+<div class="way-content" id="w2"><pre><span style="color:var(--muted)"># Namespace import - shorter call site</span>
+from ferogram import Client
 from ferogram.raw.functions.messages import GetHistory
-result = await app(GetHistory(peer=..., limit=100))
+app = Client("my_session", api_id=12345, api_hash="...")
+result = await app(GetHistory(peer=..., limit=100))</pre></div>
+<div class="way-content" id="w3"><pre><span style="color:var(--muted)"># Raw proxy: resolves peer strings automatically</span>
+from ferogram import Client
+app = Client("my_session", api_id=12345, api_hash="...")
+result = await app.raw.messages.GetHistory(peer="@username", limit=5)</pre></div>
+<div class="way-content" id="w4"><pre><span style="color:var(--muted)"># Inside an update handler</span>
+from ferogram import Client, filters, raw
+app = Client("my_session", api_id=12345, api_hash="...")
 
-# 4. Raw proxy (auto-resolves peer strings)
-result = await app.raw.messages.GetHistory(peer="@username", limit=5)
-
-# 5. Inside a handler
 @app.on(filters.text)
 async def handler(client, message):
     result = await client(raw.functions.messages.GetHistory(
         peer=message.chat_id, limit=10
     ))
-    print(result)</pre>
+    print(result)</pre></div>
 
 <h3 id="int">Core types</h3>
 <table>
