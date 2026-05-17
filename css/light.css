@@ -6,6 +6,7 @@
     --tag-opt-bg: #dbeafe; --tag-opt-text: #1d4ed8;
     --tag-req-bg: #dcfce7; --tag-req-text: #166534;
     --btn-bg: #ede9ff; --btn-border: #7c6af7; --btn-text: #5b4fcf; --btn-hover: #ddd6ff;
+    --tl-cid: #a0560a;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }

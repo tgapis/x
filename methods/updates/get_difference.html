@@ -31,8 +31,8 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/updates/index.html">Updates</a></li><span class="sep">›</span><li>GetDifference</li></ul>
 <h1>GetDifference</h1>
 <p>Both users and bots can use this request.</p>
-<pre>---functions---
-updates.getDifference#19c2f763 pts:<a href="../../index.html#int">int</a> pts_limit:flags.1?<a href="../../index.html#int">int</a> pts_total_limit:flags.0?<a href="../../index.html#int">int</a> date:<a href="../../index.html#int">int</a> qts:<a href="../../index.html#int">int</a> qts_limit:flags.2?<a href="../../index.html#int">int</a> = <a href="../../types/updates/difference.html">updates.Difference</a></pre>
+<pre><span style="color:var(--muted)">---functions---</span>
+updates.getDifference<span style="color:var(--tl-cid)">#19c2f763</span> pts:<a href="../../index.html#int">int</a> pts_limit:flags.1?<a href="../../index.html#int">int</a> pts_total_limit:flags.0?<a href="../../index.html#int">int</a> date:<a href="../../index.html#int">int</a> qts:<a href="../../index.html#int">int</a> qts_limit:flags.2?<a href="../../index.html#int">int</a> = <a href="../../types/updates/difference.html">updates.Difference</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.updates import GetDifference')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/updates/difference.html">updates.Difference</a></td></tr></table>
@@ -108,9 +108,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

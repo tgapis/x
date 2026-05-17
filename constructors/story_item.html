@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>StoryItem</li></ul>
 <h1>StoryItem</h1>
-<pre>---types---
-storyItem#16a4b93c pinned:flags.5?<a href="../index.html#true">true</a> public:flags.7?<a href="../index.html#true">true</a> close_friends:flags.8?<a href="../index.html#true">true</a> min:flags.9?<a href="../index.html#true">true</a> noforwards:flags.10?<a href="../index.html#true">true</a> edited:flags.11?<a href="../index.html#true">true</a> contacts:flags.12?<a href="../index.html#true">true</a> selected_contacts:flags.13?<a href="../index.html#true">true</a> out:flags.16?<a href="../index.html#true">true</a> id:<a href="../index.html#int">int</a> date:<a href="../index.html#int">int</a> from_id:flags.18?<a href="../types/peer.html">Peer</a> fwd_from:flags.17?<a href="../types/story_fwd_header.html">StoryFwdHeader</a> expire_date:<a href="../index.html#int">int</a> caption:flags.0?<a href="../index.html#string">string</a> entities:flags.1?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/message_entity.html">MessageEntity</a>&gt; media:<a href="../types/message_media.html">MessageMedia</a> media_areas:flags.14?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/media_area.html">MediaArea</a>&gt; privacy:flags.2?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/privacy_rule.html">PrivacyRule</a>&gt; views:flags.3?<a href="../types/story_views.html">StoryViews</a> sent_reaction:flags.15?<a href="../types/reaction.html">Reaction</a> albums:flags.19?<a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#int">int</a>&gt; music:flags.20?<a href="../types/document.html">Document</a> = <a href="../types/story_item.html">StoryItem</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+storyItem<span style="color:var(--tl-cid)">#16a4b93c</span> pinned:flags.5?<a href="../index.html#true">true</a> public:flags.7?<a href="../index.html#true">true</a> close_friends:flags.8?<a href="../index.html#true">true</a> min:flags.9?<a href="../index.html#true">true</a> noforwards:flags.10?<a href="../index.html#true">true</a> edited:flags.11?<a href="../index.html#true">true</a> contacts:flags.12?<a href="../index.html#true">true</a> selected_contacts:flags.13?<a href="../index.html#true">true</a> out:flags.16?<a href="../index.html#true">true</a> id:<a href="../index.html#int">int</a> date:<a href="../index.html#int">int</a> from_id:flags.18?<a href="../types/peer.html">Peer</a> fwd_from:flags.17?<a href="../types/story_fwd_header.html">StoryFwdHeader</a> expire_date:<a href="../index.html#int">int</a> caption:flags.0?<a href="../index.html#string">string</a> entities:flags.1?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/message_entity.html">MessageEntity</a>&gt; media:<a href="../types/message_media.html">MessageMedia</a> media_areas:flags.14?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/media_area.html">MediaArea</a>&gt; privacy:flags.2?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/privacy_rule.html">PrivacyRule</a>&gt; views:flags.3?<a href="../types/story_views.html">StoryViews</a> sent_reaction:flags.15?<a href="../types/reaction.html">Reaction</a> albums:flags.19?<a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#int">int</a>&gt; music:flags.20?<a href="../types/document.html">Document</a> = <a href="../types/story_item.html">StoryItem</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import StoryItem')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/story_item.html">StoryItem</a></td></tr></table>
@@ -84,9 +84,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

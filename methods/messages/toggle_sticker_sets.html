@@ -31,8 +31,8 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>ToggleStickerSets</li></ul>
 <h1>ToggleStickerSets</h1>
 <p>Both users and bots can use this request.</p>
-<pre>---functions---
-messages.toggleStickerSets#b5052fea uninstall:flags.0?<a href="../../index.html#true">true</a> archive:flags.1?<a href="../../index.html#true">true</a> unarchive:flags.2?<a href="../../index.html#true">true</a> stickersets:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/input_sticker_set.html">InputStickerSet</a>&gt; = <a href="../../index.html#bool">Bool</a></pre>
+<pre><span style="color:var(--muted)">---functions---</span>
+messages.toggleStickerSets<span style="color:var(--tl-cid)">#b5052fea</span> uninstall:flags.0?<a href="../../index.html#true">true</a> archive:flags.1?<a href="../../index.html#true">true</a> unarchive:flags.2?<a href="../../index.html#true">true</a> stickersets:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/input_sticker_set.html">InputStickerSet</a>&gt; = <a href="../../index.html#bool">Bool</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.messages import ToggleStickerSets')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../index.html#bool">Bool</a></td></tr></table>
@@ -102,9 +102,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

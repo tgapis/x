@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>BusinessBotRights</li></ul>
 <h1>BusinessBotRights</h1>
-<pre>---types---
-businessBotRights#a0624cf7 reply:flags.0?<a href="../index.html#true">true</a> read_messages:flags.1?<a href="../index.html#true">true</a> delete_sent_messages:flags.2?<a href="../index.html#true">true</a> delete_received_messages:flags.3?<a href="../index.html#true">true</a> edit_name:flags.4?<a href="../index.html#true">true</a> edit_bio:flags.5?<a href="../index.html#true">true</a> edit_profile_photo:flags.6?<a href="../index.html#true">true</a> edit_username:flags.7?<a href="../index.html#true">true</a> view_gifts:flags.8?<a href="../index.html#true">true</a> sell_gifts:flags.9?<a href="../index.html#true">true</a> change_gift_settings:flags.10?<a href="../index.html#true">true</a> transfer_and_upgrade_gifts:flags.11?<a href="../index.html#true">true</a> transfer_stars:flags.12?<a href="../index.html#true">true</a> manage_stories:flags.13?<a href="../index.html#true">true</a> = <a href="../types/business_bot_rights.html">BusinessBotRights</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+businessBotRights<span style="color:var(--tl-cid)">#a0624cf7</span> reply:flags.0?<a href="../index.html#true">true</a> read_messages:flags.1?<a href="../index.html#true">true</a> delete_sent_messages:flags.2?<a href="../index.html#true">true</a> delete_received_messages:flags.3?<a href="../index.html#true">true</a> edit_name:flags.4?<a href="../index.html#true">true</a> edit_bio:flags.5?<a href="../index.html#true">true</a> edit_profile_photo:flags.6?<a href="../index.html#true">true</a> edit_username:flags.7?<a href="../index.html#true">true</a> view_gifts:flags.8?<a href="../index.html#true">true</a> sell_gifts:flags.9?<a href="../index.html#true">true</a> change_gift_settings:flags.10?<a href="../index.html#true">true</a> transfer_and_upgrade_gifts:flags.11?<a href="../index.html#true">true</a> transfer_stars:flags.12?<a href="../index.html#true">true</a> manage_stories:flags.13?<a href="../index.html#true">true</a> = <a href="../types/business_bot_rights.html">BusinessBotRights</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import BusinessBotRights')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/business_bot_rights.html">BusinessBotRights</a></td></tr></table>
@@ -76,9 +76,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

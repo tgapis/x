@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>Chat</li></ul>
 <h1>Chat</h1>
-<pre>---types---
-chat#41cbf256 creator:flags.0?<a href="../index.html#true">true</a> left:flags.2?<a href="../index.html#true">true</a> deactivated:flags.5?<a href="../index.html#true">true</a> call_active:flags.23?<a href="../index.html#true">true</a> call_not_empty:flags.24?<a href="../index.html#true">true</a> noforwards:flags.25?<a href="../index.html#true">true</a> id:<a href="../index.html#long">long</a> title:<a href="../index.html#string">string</a> photo:<a href="../types/chat_photo.html">ChatPhoto</a> participants_count:<a href="../index.html#int">int</a> date:<a href="../index.html#int">int</a> version:<a href="../index.html#int">int</a> migrated_to:flags.6?<a href="../types/input_channel.html">InputChannel</a> admin_rights:flags.14?<a href="../types/chat_admin_rights.html">ChatAdminRights</a> default_banned_rights:flags.18?<a href="../types/chat_banned_rights.html">ChatBannedRights</a> = <a href="../types/chat.html">Chat</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+chat<span style="color:var(--tl-cid)">#41cbf256</span> creator:flags.0?<a href="../index.html#true">true</a> left:flags.2?<a href="../index.html#true">true</a> deactivated:flags.5?<a href="../index.html#true">true</a> call_active:flags.23?<a href="../index.html#true">true</a> call_not_empty:flags.24?<a href="../index.html#true">true</a> noforwards:flags.25?<a href="../index.html#true">true</a> id:<a href="../index.html#long">long</a> title:<a href="../index.html#string">string</a> photo:<a href="../types/chat_photo.html">ChatPhoto</a> participants_count:<a href="../index.html#int">int</a> date:<a href="../index.html#int">int</a> version:<a href="../index.html#int">int</a> migrated_to:flags.6?<a href="../types/input_channel.html">InputChannel</a> admin_rights:flags.14?<a href="../types/chat_admin_rights.html">ChatAdminRights</a> default_banned_rights:flags.18?<a href="../types/chat_banned_rights.html">ChatBannedRights</a> = <a href="../types/chat.html">Chat</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import Chat')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/chat.html">Chat</a></td></tr></table>
@@ -76,9 +76,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

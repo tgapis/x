@@ -31,8 +31,8 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>SearchGlobal</li></ul>
 <h1>SearchGlobal</h1>
 <p>Both users and bots can use this request.</p>
-<pre>---functions---
-messages.searchGlobal#4bc6589a broadcasts_only:flags.1?<a href="../../index.html#true">true</a> groups_only:flags.2?<a href="../../index.html#true">true</a> users_only:flags.3?<a href="../../index.html#true">true</a> folder_id:flags.0?<a href="../../index.html#int">int</a> q:<a href="../../index.html#string">string</a> filter:<a href="../../types/messages_filter.html">MessagesFilter</a> min_date:<a href="../../index.html#int">int</a> max_date:<a href="../../index.html#int">int</a> offset_rate:<a href="../../index.html#int">int</a> offset_peer:<a href="../../types/input_peer.html">InputPeer</a> offset_id:<a href="../../index.html#int">int</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/messages/messages.html">messages.Messages</a></pre>
+<pre><span style="color:var(--muted)">---functions---</span>
+messages.searchGlobal<span style="color:var(--tl-cid)">#4bc6589a</span> broadcasts_only:flags.1?<a href="../../index.html#true">true</a> groups_only:flags.2?<a href="../../index.html#true">true</a> users_only:flags.3?<a href="../../index.html#true">true</a> folder_id:flags.0?<a href="../../index.html#int">int</a> q:<a href="../../index.html#string">string</a> filter:<a href="../../types/messages_filter.html">MessagesFilter</a> min_date:<a href="../../index.html#int">int</a> max_date:<a href="../../index.html#int">int</a> offset_rate:<a href="../../index.html#int">int</a> offset_peer:<a href="../../types/input_peer.html">InputPeer</a> offset_id:<a href="../../index.html#int">int</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/messages/messages.html">messages.Messages</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.messages import SearchGlobal')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/messages/messages.html">messages.Messages</a></td></tr></table>
@@ -125,9 +125,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

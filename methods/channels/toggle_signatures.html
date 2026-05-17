@@ -31,8 +31,8 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/channels/index.html">Channels</a></li><span class="sep">›</span><li>ToggleSignatures</li></ul>
 <h1>ToggleSignatures</h1>
 <p>Both users and bots can use this request.</p>
-<pre>---functions---
-channels.toggleSignatures#418d549c signatures_enabled:flags.0?<a href="../../index.html#true">true</a> profiles_enabled:flags.1?<a href="../../index.html#true">true</a> channel:<a href="../../types/input_channel.html">InputChannel</a> = <a href="../../types/updates.html">Updates</a></pre>
+<pre><span style="color:var(--muted)">---functions---</span>
+channels.toggleSignatures<span style="color:var(--tl-cid)">#418d549c</span> signatures_enabled:flags.0?<a href="../../index.html#true">true</a> profiles_enabled:flags.1?<a href="../../index.html#true">true</a> channel:<a href="../../types/input_channel.html">InputChannel</a> = <a href="../../types/updates.html">Updates</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.channels import ToggleSignatures')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/updates.html">Updates</a></td></tr></table>
@@ -100,9 +100,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

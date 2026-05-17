@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li><a href="../../constructors/payments/index.html">Payments</a></li><span class="sep">›</span><li>PaymentForm</li></ul>
 <h1>PaymentForm</h1>
-<pre>---types---
-payments.paymentForm#a0058751 can_save_credentials:flags.2?<a href="../../index.html#true">true</a> password_missing:flags.3?<a href="../../index.html#true">true</a> form_id:<a href="../../index.html#long">long</a> bot_id:<a href="../../index.html#long">long</a> title:<a href="../../index.html#string">string</a> description:<a href="../../index.html#string">string</a> photo:flags.5?<a href="../../types/web_document.html">WebDocument</a> invoice:<a href="../../types/invoice.html">Invoice</a> provider_id:<a href="../../index.html#long">long</a> url:<a href="../../index.html#string">string</a> native_provider:flags.4?<a href="../../index.html#string">string</a> native_params:flags.4?<a href="../../types/data_json.html">DataJSON</a> additional_methods:flags.6?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/payment_form_method.html">PaymentFormMethod</a>&gt; saved_info:flags.0?<a href="../../types/payment_requested_info.html">PaymentRequestedInfo</a> saved_credentials:flags.1?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/payment_saved_credentials.html">PaymentSavedCredentials</a>&gt; users:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/user.html">User</a>&gt; = <a href="../../types/payments/payment_form.html">payments.PaymentForm</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+payments.paymentForm<span style="color:var(--tl-cid)">#a0058751</span> can_save_credentials:flags.2?<a href="../../index.html#true">true</a> password_missing:flags.3?<a href="../../index.html#true">true</a> form_id:<a href="../../index.html#long">long</a> bot_id:<a href="../../index.html#long">long</a> title:<a href="../../index.html#string">string</a> description:<a href="../../index.html#string">string</a> photo:flags.5?<a href="../../types/web_document.html">WebDocument</a> invoice:<a href="../../types/invoice.html">Invoice</a> provider_id:<a href="../../index.html#long">long</a> url:<a href="../../index.html#string">string</a> native_provider:flags.4?<a href="../../index.html#string">string</a> native_params:flags.4?<a href="../../types/data_json.html">DataJSON</a> additional_methods:flags.6?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/payment_form_method.html">PaymentFormMethod</a>&gt; saved_info:flags.0?<a href="../../types/payment_requested_info.html">PaymentRequestedInfo</a> saved_credentials:flags.1?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/payment_saved_credentials.html">PaymentSavedCredentials</a>&gt; users:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/user.html">User</a>&gt; = <a href="../../types/payments/payment_form.html">payments.PaymentForm</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types.payments import PaymentForm')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../../types/payments/payment_form.html">payments.PaymentForm</a></td></tr></table>
@@ -77,9 +77,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>ForumTopic</li></ul>
 <h1>ForumTopic</h1>
-<pre>---types---
-forumTopic#fcdad815 my:flags.1?<a href="../index.html#true">true</a> closed:flags.2?<a href="../index.html#true">true</a> pinned:flags.3?<a href="../index.html#true">true</a> short:flags.5?<a href="../index.html#true">true</a> hidden:flags.6?<a href="../index.html#true">true</a> title_missing:flags.7?<a href="../index.html#true">true</a> id:<a href="../index.html#int">int</a> date:<a href="../index.html#int">int</a> peer:<a href="../types/peer.html">Peer</a> title:<a href="../index.html#string">string</a> icon_color:<a href="../index.html#int">int</a> icon_emoji_id:flags.0?<a href="../index.html#long">long</a> top_message:<a href="../index.html#int">int</a> read_inbox_max_id:<a href="../index.html#int">int</a> read_outbox_max_id:<a href="../index.html#int">int</a> unread_count:<a href="../index.html#int">int</a> unread_mentions_count:<a href="../index.html#int">int</a> unread_reactions_count:<a href="../index.html#int">int</a> unread_poll_votes_count:<a href="../index.html#int">int</a> from_id:<a href="../types/peer.html">Peer</a> notify_settings:<a href="../types/peer_notify_settings.html">PeerNotifySettings</a> draft:flags.4?<a href="../types/draft_message.html">DraftMessage</a> = <a href="../types/forum_topic.html">ForumTopic</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+forumTopic<span style="color:var(--tl-cid)">#fcdad815</span> my:flags.1?<a href="../index.html#true">true</a> closed:flags.2?<a href="../index.html#true">true</a> pinned:flags.3?<a href="../index.html#true">true</a> short:flags.5?<a href="../index.html#true">true</a> hidden:flags.6?<a href="../index.html#true">true</a> title_missing:flags.7?<a href="../index.html#true">true</a> id:<a href="../index.html#int">int</a> date:<a href="../index.html#int">int</a> peer:<a href="../types/peer.html">Peer</a> title:<a href="../index.html#string">string</a> icon_color:<a href="../index.html#int">int</a> icon_emoji_id:flags.0?<a href="../index.html#long">long</a> top_message:<a href="../index.html#int">int</a> read_inbox_max_id:<a href="../index.html#int">int</a> read_outbox_max_id:<a href="../index.html#int">int</a> unread_count:<a href="../index.html#int">int</a> unread_mentions_count:<a href="../index.html#int">int</a> unread_reactions_count:<a href="../index.html#int">int</a> unread_poll_votes_count:<a href="../index.html#int">int</a> from_id:<a href="../types/peer.html">Peer</a> notify_settings:<a href="../types/peer_notify_settings.html">PeerNotifySettings</a> draft:flags.4?<a href="../types/draft_message.html">DraftMessage</a> = <a href="../types/forum_topic.html">ForumTopic</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import ForumTopic')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/forum_topic.html">ForumTopic</a></td></tr></table>
@@ -83,9 +83,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

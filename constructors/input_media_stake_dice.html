@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputMediaStakeDice</li></ul>
 <h1>InputMediaStakeDice</h1>
-<pre>---types---
-inputMediaStakeDice#f3a9244a game_hash:<a href="../index.html#string">string</a> ton_amount:<a href="../index.html#long">long</a> client_seed:<a href="../index.html#bytes">bytes</a> = <a href="../types/input_media.html">InputMedia</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+inputMediaStakeDice<span style="color:var(--tl-cid)">#f3a9244a</span> game_hash:<a href="../index.html#string">string</a> ton_amount:<a href="../index.html#long">long</a> client_seed:<a href="../index.html#bytes">bytes</a> = <a href="../types/input_media.html">InputMedia</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import InputMediaStakeDice')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/input_media.html">InputMedia</a></td></tr></table>
@@ -75,9 +75,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

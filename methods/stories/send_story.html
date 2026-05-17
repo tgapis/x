@@ -31,8 +31,8 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/stories/index.html">Stories</a></li><span class="sep">›</span><li>SendStory</li></ul>
 <h1>SendStory</h1>
 <p>Both users and bots can use this request.</p>
-<pre>---functions---
-stories.sendStory#8f9e6898 pinned:flags.2?<a href="../../index.html#true">true</a> noforwards:flags.4?<a href="../../index.html#true">true</a> fwd_modified:flags.7?<a href="../../index.html#true">true</a> peer:<a href="../../types/input_peer.html">InputPeer</a> media:<a href="../../types/input_media.html">InputMedia</a> media_areas:flags.5?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/media_area.html">MediaArea</a>&gt; caption:flags.0?<a href="../../index.html#string">string</a> entities:flags.1?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message_entity.html">MessageEntity</a>&gt; privacy_rules:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/input_privacy_rule.html">InputPrivacyRule</a>&gt; random_id:<a href="../../index.html#long">long</a> period:flags.3?<a href="../../index.html#int">int</a> fwd_from_id:flags.6?<a href="../../types/input_peer.html">InputPeer</a> fwd_from_story:flags.6?<a href="../../index.html#int">int</a> albums:flags.8?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#int">int</a>&gt; music:flags.9?<a href="../../types/input_document.html">InputDocument</a> = <a href="../../types/updates.html">Updates</a></pre>
+<pre><span style="color:var(--muted)">---functions---</span>
+stories.sendStory<span style="color:var(--tl-cid)">#8f9e6898</span> pinned:flags.2?<a href="../../index.html#true">true</a> noforwards:flags.4?<a href="../../index.html#true">true</a> fwd_modified:flags.7?<a href="../../index.html#true">true</a> peer:<a href="../../types/input_peer.html">InputPeer</a> media:<a href="../../types/input_media.html">InputMedia</a> media_areas:flags.5?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/media_area.html">MediaArea</a>&gt; caption:flags.0?<a href="../../index.html#string">string</a> entities:flags.1?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message_entity.html">MessageEntity</a>&gt; privacy_rules:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/input_privacy_rule.html">InputPrivacyRule</a>&gt; random_id:<a href="../../index.html#long">long</a> period:flags.3?<a href="../../index.html#int">int</a> fwd_from_id:flags.6?<a href="../../types/input_peer.html">InputPeer</a> fwd_from_story:flags.6?<a href="../../index.html#int">int</a> albums:flags.8?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#int">int</a>&gt; music:flags.9?<a href="../../types/input_document.html">InputDocument</a> = <a href="../../types/updates.html">Updates</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.stories import SendStory')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/updates.html">Updates</a></td></tr></table>
@@ -127,9 +127,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

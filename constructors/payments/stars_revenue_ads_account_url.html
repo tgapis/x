@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li><a href="../../constructors/payments/index.html">Payments</a></li><span class="sep">›</span><li>StarsRevenueAdsAccountUrl</li></ul>
 <h1>StarsRevenueAdsAccountUrl</h1>
-<pre>---types---
-payments.starsRevenueAdsAccountUrl#394e7f21 url:<a href="../../index.html#string">string</a> = <a href="../../types/payments/stars_revenue_ads_account_url.html">payments.StarsRevenueAdsAccountUrl</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+payments.starsRevenueAdsAccountUrl<span style="color:var(--tl-cid)">#394e7f21</span> url:<a href="../../index.html#string">string</a> = <a href="../../types/payments/stars_revenue_ads_account_url.html">payments.StarsRevenueAdsAccountUrl</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types.payments import StarsRevenueAdsAccountUrl')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../../types/payments/stars_revenue_ads_account_url.html">payments.StarsRevenueAdsAccountUrl</a></td></tr></table>
@@ -62,9 +62,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

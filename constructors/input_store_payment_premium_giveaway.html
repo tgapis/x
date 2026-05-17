@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputStorePaymentPremiumGiveaway</li></ul>
 <h1>InputStorePaymentPremiumGiveaway</h1>
-<pre>---types---
-inputStorePaymentPremiumGiveaway#160544ca only_new_subscribers:flags.0?<a href="../index.html#true">true</a> winners_are_visible:flags.3?<a href="../index.html#true">true</a> boost_peer:<a href="../types/input_peer.html">InputPeer</a> additional_peers:flags.1?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_peer.html">InputPeer</a>&gt; countries_iso2:flags.2?<a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#string">string</a>&gt; prize_description:flags.4?<a href="../index.html#string">string</a> random_id:<a href="../index.html#long">long</a> until_date:<a href="../index.html#int">int</a> currency:<a href="../index.html#string">string</a> amount:<a href="../index.html#long">long</a> = <a href="../types/input_store_payment_purpose.html">InputStorePaymentPurpose</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+inputStorePaymentPremiumGiveaway<span style="color:var(--tl-cid)">#160544ca</span> only_new_subscribers:flags.0?<a href="../index.html#true">true</a> winners_are_visible:flags.3?<a href="../index.html#true">true</a> boost_peer:<a href="../types/input_peer.html">InputPeer</a> additional_peers:flags.1?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_peer.html">InputPeer</a>&gt; countries_iso2:flags.2?<a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#string">string</a>&gt; prize_description:flags.4?<a href="../index.html#string">string</a> random_id:<a href="../index.html#long">long</a> until_date:<a href="../index.html#int">int</a> currency:<a href="../index.html#string">string</a> amount:<a href="../index.html#long">long</a> = <a href="../types/input_store_payment_purpose.html">InputStorePaymentPurpose</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import InputStorePaymentPremiumGiveaway')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/input_store_payment_purpose.html">InputStorePaymentPurpose</a></td></tr></table>
@@ -75,9 +75,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

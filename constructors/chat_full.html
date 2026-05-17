@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>ChatFull</li></ul>
 <h1>ChatFull</h1>
-<pre>---types---
-chatFull#2633421b can_set_username:flags.7?<a href="../index.html#true">true</a> has_scheduled:flags.8?<a href="../index.html#true">true</a> translations_disabled:flags.19?<a href="../index.html#true">true</a> id:<a href="../index.html#long">long</a> about:<a href="../index.html#string">string</a> participants:<a href="../types/chat_participants.html">ChatParticipants</a> chat_photo:flags.2?<a href="../types/photo.html">Photo</a> notify_settings:<a href="../types/peer_notify_settings.html">PeerNotifySettings</a> exported_invite:flags.13?<a href="../types/exported_chat_invite.html">ExportedChatInvite</a> bot_info:flags.3?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/bot_info.html">BotInfo</a>&gt; pinned_msg_id:flags.6?<a href="../index.html#int">int</a> folder_id:flags.11?<a href="../index.html#int">int</a> call:flags.12?<a href="../types/input_group_call.html">InputGroupCall</a> ttl_period:flags.14?<a href="../index.html#int">int</a> groupcall_default_join_as:flags.15?<a href="../types/peer.html">Peer</a> theme_emoticon:flags.16?<a href="../index.html#string">string</a> requests_pending:flags.17?<a href="../index.html#int">int</a> recent_requesters:flags.17?<a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#long">long</a>&gt; available_reactions:flags.18?<a href="../types/chat_reactions.html">ChatReactions</a> reactions_limit:flags.20?<a href="../index.html#int">int</a> = <a href="../types/chat_full.html">ChatFull</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+chatFull<span style="color:var(--tl-cid)">#2633421b</span> can_set_username:flags.7?<a href="../index.html#true">true</a> has_scheduled:flags.8?<a href="../index.html#true">true</a> translations_disabled:flags.19?<a href="../index.html#true">true</a> id:<a href="../index.html#long">long</a> about:<a href="../index.html#string">string</a> participants:<a href="../types/chat_participants.html">ChatParticipants</a> chat_photo:flags.2?<a href="../types/photo.html">Photo</a> notify_settings:<a href="../types/peer_notify_settings.html">PeerNotifySettings</a> exported_invite:flags.13?<a href="../types/exported_chat_invite.html">ExportedChatInvite</a> bot_info:flags.3?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/bot_info.html">BotInfo</a>&gt; pinned_msg_id:flags.6?<a href="../index.html#int">int</a> folder_id:flags.11?<a href="../index.html#int">int</a> call:flags.12?<a href="../types/input_group_call.html">InputGroupCall</a> ttl_period:flags.14?<a href="../index.html#int">int</a> groupcall_default_join_as:flags.15?<a href="../types/peer.html">Peer</a> theme_emoticon:flags.16?<a href="../index.html#string">string</a> requests_pending:flags.17?<a href="../index.html#int">int</a> recent_requesters:flags.17?<a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#long">long</a>&gt; available_reactions:flags.18?<a href="../types/chat_reactions.html">ChatReactions</a> reactions_limit:flags.20?<a href="../index.html#int">int</a> = <a href="../types/chat_full.html">ChatFull</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import ChatFull')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/chat_full.html">ChatFull</a></td></tr></table>
@@ -81,9 +81,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

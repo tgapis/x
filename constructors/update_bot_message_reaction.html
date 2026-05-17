@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>UpdateBotMessageReaction</li></ul>
 <h1>UpdateBotMessageReaction</h1>
-<pre>---types---
-updateBotMessageReaction#ac21d3ce peer:<a href="../types/peer.html">Peer</a> msg_id:<a href="../index.html#int">int</a> date:<a href="../index.html#int">int</a> actor:<a href="../types/peer.html">Peer</a> old_reactions:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/reaction.html">Reaction</a>&gt; new_reactions:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/reaction.html">Reaction</a>&gt; qts:<a href="../index.html#int">int</a> = <a href="../types/update.html">Update</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+updateBotMessageReaction<span style="color:var(--tl-cid)">#ac21d3ce</span> peer:<a href="../types/peer.html">Peer</a> msg_id:<a href="../index.html#int">int</a> date:<a href="../index.html#int">int</a> actor:<a href="../types/peer.html">Peer</a> old_reactions:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/reaction.html">Reaction</a>&gt; new_reactions:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/reaction.html">Reaction</a>&gt; qts:<a href="../index.html#int">int</a> = <a href="../types/update.html">Update</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import UpdateBotMessageReaction')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/update.html">Update</a></td></tr></table>
@@ -68,9 +68,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

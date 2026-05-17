@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>DialogFolder</li></ul>
 <h1>DialogFolder</h1>
-<pre>---types---
-dialogFolder#71bd134c pinned:flags.2?<a href="../index.html#true">true</a> folder:<a href="../types/folder.html">Folder</a> peer:<a href="../types/peer.html">Peer</a> top_message:<a href="../index.html#int">int</a> unread_muted_peers_count:<a href="../index.html#int">int</a> unread_unmuted_peers_count:<a href="../index.html#int">int</a> unread_muted_messages_count:<a href="../index.html#int">int</a> unread_unmuted_messages_count:<a href="../index.html#int">int</a> = <a href="../types/dialog.html">Dialog</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+dialogFolder<span style="color:var(--tl-cid)">#71bd134c</span> pinned:flags.2?<a href="../index.html#true">true</a> folder:<a href="../types/folder.html">Folder</a> peer:<a href="../types/peer.html">Peer</a> top_message:<a href="../index.html#int">int</a> unread_muted_peers_count:<a href="../index.html#int">int</a> unread_unmuted_peers_count:<a href="../index.html#int">int</a> unread_muted_messages_count:<a href="../index.html#int">int</a> unread_unmuted_messages_count:<a href="../index.html#int">int</a> = <a href="../types/dialog.html">Dialog</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import DialogFolder')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/dialog.html">Dialog</a></td></tr></table>
@@ -69,9 +69,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

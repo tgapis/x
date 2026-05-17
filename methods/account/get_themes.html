@@ -31,8 +31,8 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/account/index.html">Account</a></li><span class="sep">›</span><li>GetThemes</li></ul>
 <h1>GetThemes</h1>
 <p>Both users and bots can use this request.</p>
-<pre>---functions---
-account.getThemes#7206e458 format:<a href="../../index.html#string">string</a> hash:<a href="../../index.html#long">long</a> = <a href="../../types/account/themes.html">account.Themes</a></pre>
+<pre><span style="color:var(--muted)">---functions---</span>
+account.getThemes<span style="color:var(--tl-cid)">#7206e458</span> format:<a href="../../index.html#string">string</a> hash:<a href="../../index.html#long">long</a> = <a href="../../types/account/themes.html">account.Themes</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.account import GetThemes')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/account/themes.html">account.Themes</a></td></tr></table>
@@ -78,9 +78,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

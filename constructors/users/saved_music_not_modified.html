@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li><a href="../../constructors/users/index.html">Users</a></li><span class="sep">›</span><li>SavedMusicNotModified</li></ul>
 <h1>SavedMusicNotModified</h1>
-<pre>---types---
-users.savedMusicNotModified#e3878aa4 count:<a href="../../index.html#int">int</a> = <a href="../../types/users/saved_music.html">users.SavedMusic</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+users.savedMusicNotModified<span style="color:var(--tl-cid)">#e3878aa4</span> count:<a href="../../index.html#int">int</a> = <a href="../../types/users/saved_music.html">users.SavedMusic</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types.users import SavedMusicNotModified')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../../types/users/saved_music.html">users.SavedMusic</a></td></tr></table>
@@ -62,9 +62,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>UpdateChannelParticipant</li></ul>
 <h1>UpdateChannelParticipant</h1>
-<pre>---types---
-updateChannelParticipant#985d3abb via_chatlist:flags.3?<a href="../index.html#true">true</a> channel_id:<a href="../index.html#long">long</a> date:<a href="../index.html#int">int</a> actor_id:<a href="../index.html#long">long</a> user_id:<a href="../index.html#long">long</a> prev_participant:flags.0?<a href="../types/channel_participant.html">ChannelParticipant</a> new_participant:flags.1?<a href="../types/channel_participant.html">ChannelParticipant</a> invite:flags.2?<a href="../types/exported_chat_invite.html">ExportedChatInvite</a> qts:<a href="../index.html#int">int</a> = <a href="../types/update.html">Update</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+updateChannelParticipant<span style="color:var(--tl-cid)">#985d3abb</span> via_chatlist:flags.3?<a href="../index.html#true">true</a> channel_id:<a href="../index.html#long">long</a> date:<a href="../index.html#int">int</a> actor_id:<a href="../index.html#long">long</a> user_id:<a href="../index.html#long">long</a> prev_participant:flags.0?<a href="../types/channel_participant.html">ChannelParticipant</a> new_participant:flags.1?<a href="../types/channel_participant.html">ChannelParticipant</a> invite:flags.2?<a href="../types/exported_chat_invite.html">ExportedChatInvite</a> qts:<a href="../index.html#int">int</a> = <a href="../types/update.html">Update</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import UpdateChannelParticipant')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/update.html">Update</a></td></tr></table>
@@ -70,9 +70,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

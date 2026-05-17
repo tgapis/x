@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>MessageActionPinMessage</li></ul>
 <h1>MessageActionPinMessage</h1>
-<pre>---types---
-messageActionPinMessage#94bd38ed = <a href="../types/message_action.html">MessageAction</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+messageActionPinMessage<span style="color:var(--tl-cid)">#94bd38ed</span> = <a href="../types/message_action.html">MessageAction</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import MessageActionPinMessage')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/message_action.html">MessageAction</a></td></tr></table>
@@ -61,9 +61,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

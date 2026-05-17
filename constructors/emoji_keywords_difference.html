@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>EmojiKeywordsDifference</li></ul>
 <h1>EmojiKeywordsDifference</h1>
-<pre>---types---
-emojiKeywordsDifference#5cc761bd lang_code:<a href="../index.html#string">string</a> from_version:<a href="../index.html#int">int</a> version:<a href="../index.html#int">int</a> keywords:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/emoji_keyword.html">EmojiKeyword</a>&gt; = <a href="../types/emoji_keywords_difference.html">EmojiKeywordsDifference</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+emojiKeywordsDifference<span style="color:var(--tl-cid)">#5cc761bd</span> lang_code:<a href="../index.html#string">string</a> from_version:<a href="../index.html#int">int</a> version:<a href="../index.html#int">int</a> keywords:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/emoji_keyword.html">EmojiKeyword</a>&gt; = <a href="../types/emoji_keywords_difference.html">EmojiKeywordsDifference</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import EmojiKeywordsDifference')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/emoji_keywords_difference.html">EmojiKeywordsDifference</a></td></tr></table>
@@ -65,9 +65,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

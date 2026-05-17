@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>AttachMenuPeerTypePM</li></ul>
 <h1>AttachMenuPeerTypePM</h1>
-<pre>---types---
-attachMenuPeerTypePM#f146d31f = <a href="../types/attach_menu_peer_type.html">AttachMenuPeerType</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+attachMenuPeerTypePM<span style="color:var(--tl-cid)">#f146d31f</span> = <a href="../types/attach_menu_peer_type.html">AttachMenuPeerType</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import AttachMenuPeerTypePM')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/attach_menu_peer_type.html">AttachMenuPeerType</a></td></tr></table>
@@ -61,9 +61,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

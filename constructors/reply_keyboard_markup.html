@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>ReplyKeyboardMarkup</li></ul>
 <h1>ReplyKeyboardMarkup</h1>
-<pre>---types---
-replyKeyboardMarkup#85dd99d1 resize:flags.0?<a href="../index.html#true">true</a> single_use:flags.1?<a href="../index.html#true">true</a> selective:flags.2?<a href="../index.html#true">true</a> persistent:flags.4?<a href="../index.html#true">true</a> rows:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/keyboard_button_row.html">KeyboardButtonRow</a>&gt; placeholder:flags.3?<a href="../index.html#string">string</a> = <a href="../types/reply_markup.html">ReplyMarkup</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+replyKeyboardMarkup<span style="color:var(--tl-cid)">#85dd99d1</span> resize:flags.0?<a href="../index.html#true">true</a> single_use:flags.1?<a href="../index.html#true">true</a> selective:flags.2?<a href="../index.html#true">true</a> persistent:flags.4?<a href="../index.html#true">true</a> rows:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/keyboard_button_row.html">KeyboardButtonRow</a>&gt; placeholder:flags.3?<a href="../index.html#string">string</a> = <a href="../types/reply_markup.html">ReplyMarkup</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import ReplyKeyboardMarkup')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/reply_markup.html">ReplyMarkup</a></td></tr></table>
@@ -71,9 +71,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

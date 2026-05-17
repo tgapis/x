@@ -31,8 +31,8 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>SavePreparedInlineMessage</li></ul>
 <h1>SavePreparedInlineMessage</h1>
 <p>Both users and bots can use this request.</p>
-<pre>---functions---
-messages.savePreparedInlineMessage#f21f7f2f result:<a href="../../types/input_bot_inline_result.html">InputBotInlineResult</a> user_id:<a href="../../types/input_user.html">InputUser</a> peer_types:flags.0?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/inline_query_peer_type.html">InlineQueryPeerType</a>&gt; = <a href="../../types/messages/bot_prepared_inline_message.html">messages.BotPreparedInlineMessage</a></pre>
+<pre><span style="color:var(--muted)">---functions---</span>
+messages.savePreparedInlineMessage<span style="color:var(--tl-cid)">#f21f7f2f</span> result:<a href="../../types/input_bot_inline_result.html">InputBotInlineResult</a> user_id:<a href="../../types/input_user.html">InputUser</a> peer_types:flags.0?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/inline_query_peer_type.html">InlineQueryPeerType</a>&gt; = <a href="../../types/messages/bot_prepared_inline_message.html">messages.BotPreparedInlineMessage</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.messages import SavePreparedInlineMessage')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/messages/bot_prepared_inline_message.html">messages.BotPreparedInlineMessage</a></td></tr></table>
@@ -101,9 +101,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }

@@ -30,8 +30,8 @@
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>ReactionCustomEmoji</li></ul>
 <h1>ReactionCustomEmoji</h1>
-<pre>---types---
-reactionCustomEmoji#8935fc73 document_id:<a href="../index.html#long">long</a> = <a href="../types/reaction.html">Reaction</a></pre>
+<pre><span style="color:var(--muted)">---types---</span>
+reactionCustomEmoji<span style="color:var(--tl-cid)">#8935fc73</span> document_id:<a href="../index.html#long">long</a> = <a href="../types/reaction.html">Reaction</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import ReactionCustomEmoji')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/reaction.html">Reaction</a></td></tr></table>
@@ -67,9 +67,9 @@ function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{docum
   function init(){document.querySelectorAll('pre').forEach(attach);}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=document.querySelectorAll('.tabs .tab');
-var _wayCon=document.querySelectorAll('.way-content');
+var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
+  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
   _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
   _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
 }
