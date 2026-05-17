@@ -119,8 +119,7 @@ python /tmp/ferogram_generate.py tdesktop.tl /tmp/ferogram_site/
 cp -r /tmp/ferogram_site/constructors /tmp/ferogram_site/types /tmp/ferogram_site/methods \
       /tmp/ferogram_site/css /tmp/ferogram_site/js "${a}/"
 cp /tmp/ferogram_site/index.html /tmp/ferogram_site/404.html "${a}/"
-echo "tl.ferogram.dev" > "${a}/CNAME"
-git add constructors/ types/ methods/ css/ js/ index.html 404.html CNAME
+git add constructors/ types/ methods/ css/ js/ index.html 404.html
 git config --global user.email "ankitchaubey.dev@gmail.com"
 git config --global user.name "Ankit Chaubey"
 git commit -m "update ferogram raw API docs (Layer ${LAYER})" || true
