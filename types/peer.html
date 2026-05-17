@@ -172,8 +172,8 @@ function toast(){
   setTimeout(function(){d.style.opacity='0';setTimeout(function(){d.remove();},400);},1200);
 }
 (function(){
-  var _lpt=null;
   function attachLongPress(el){
+    var _lpt=null;
     el.addEventListener('touchstart',function(){
       _lpt=setTimeout(function(){cp(el.innerText||el.textContent);toast();},600);
     },{passive:true});
