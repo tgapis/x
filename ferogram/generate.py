@@ -181,7 +181,8 @@ KNOWN_NAMED = {
     ("random_id", "long"): "random.randrange(-2**63, 2**63)",
 }
 
-KNOWN_TYPED = {
+# Primitive types used in proxy-style (minimal) examples.
+KNOWN_TYPED_PROXY = {
     "int": "42",
     "long": "-12398745604826",
     "string": "'some string here'",
@@ -192,10 +193,37 @@ KNOWN_TYPED = {
     "double": "7.13",
     "int128": "int.from_bytes(os.urandom(16), 'big')",
     "int256": "int.from_bytes(os.urandom(32), 'big')",
-    "date": "datetime.datetime(2024, 1, 1)",
+    "date": "int(__import__('time').time())",
+    # Proxy auto-resolves these from strings:
     "InputPeer": "'username'",
     "InputUser": "'username'",
     "InputChannel": "'username'",
+}
+
+# In callable-style (full) examples InputPeer fields must be real TL objects.
+KNOWN_TYPED_CALLABLE = {
+    **KNOWN_TYPED_PROXY,
+    "InputPeer": "raw.types.InputPeerSelf()",
+    "InputUser": "raw.types.InputUserSelf()",
+    "InputChannel": "raw.types.InputChannelEmpty()",
+}
+
+# Simplest concrete constructor for abstract TL types not covered above.
+CONCRETE_DEFAULTS: dict[str, str] = {
+    "InputMedia":              "raw.types.InputMediaEmpty()",
+    "InputReplyTo":            "raw.types.InputReplyToMessage(reply_to_msg_id=42)",
+    "ReplyMarkup":             "raw.types.ReplyKeyboardHide()",
+    "InputQuickReplyShortcut": "raw.types.InputQuickReplyShortcutId(shortcut_id=0)",
+    "SuggestedPost":           "raw.types.SuggestedPost(date=0)",
+    "MessageEntity":           "raw.types.MessageEntityUnknown(offset=0, length=1)",
+    "InputPhoto":              "raw.types.InputPhotoEmpty()",
+    "InputDocument":           "raw.types.InputDocumentEmpty()",
+    "InputGeoPoint":           "raw.types.InputGeoPointEmpty()",
+    "InputNotifyPeer":         "raw.types.InputNotifyUsers()",
+    "InputCheckPasswordSRP":   "raw.types.InputCheckPasswordEmpty()",
+    "InputPrivacyKey":         "raw.types.InputPrivacyKeyStatusTimestamp()",
+    "InputPrivacyRule":        "raw.types.InputPrivacyValueAllowAll()",
+    "EmojiGroup":              "raw.types.EmojiGroupGreeting()",
 }
 
 SYNONYMS = {
@@ -206,18 +234,49 @@ SYNONYMS = {
     "InputMessage": "int",
 }
 
+_PEER_PROXY_TYPES = {"InputPeer", "InputUser", "InputChannel",
+                     "InputDialogPeer", "InputNotifyPeer"}
 
-def example_value(fname: str, ftype: str) -> str:
+
+def example_value(fname: str, ftype: str, *, proxy: bool) -> str:
+    """Return a Python expression for a field value in a code example.
+
+    proxy=True  -> minimal/proxy style (peer strings OK, no raw. prefix needed)
+    proxy=False -> callable style (all TL objects must be concrete raw.types.X())
+    """
     key = (fname, ftype)
     if key in KNOWN_NAMED:
         return KNOWN_NAMED[key]
+
+    typed = KNOWN_TYPED_PROXY if proxy else KNOWN_TYPED_CALLABLE
     ftype2 = SYNONYMS.get(ftype, ftype)
-    if ftype2 in KNOWN_TYPED:
-        return KNOWN_TYPED[ftype2]
-    if ftype in KNOWN_TYPED:
-        return KNOWN_TYPED[ftype]
+    if ftype2 in typed:
+        return typed[ftype2]
+    if ftype in typed:
+        return typed[ftype]
+
+    # Abstract TL type: use concrete default if known, else raw.types.X()
+    if ftype in CONCRETE_DEFAULTS:
+        return CONCRETE_DEFAULTS[ftype]
+    if ftype2 in CONCRETE_DEFAULTS:
+        return CONCRETE_DEFAULTS[ftype2]
+
     cls = py_class(ftype) if ftype and ftype[0].isupper() else ftype
-    return f"types.{cls}()"
+    return f"raw.types.{cls}()"
+
+
+def _needs_random(args: list) -> bool:
+    return any(
+        KNOWN_NAMED.get((f.name, f.ftype), "").startswith("random.")
+        for f in args
+    )
+
+
+def _needs_os(args: list) -> bool:
+    return any(
+        f.ftype in ("int128", "int256")
+        for f in args
+    )
 
 
 def build_example(item: TLItem, required_only: bool) -> str:
@@ -230,22 +289,32 @@ def build_example(item: TLItem, required_only: bool) -> str:
     else:
         args = [f for f in item.fields if f.name != "flags"]
 
+    need_random = _needs_random(args)
+    need_os     = _needs_os(args)
+
     if required_only:
-        # Minimal example: way 4 - raw proxy (auto-resolves peers, no import needed)
+        # Minimal: raw proxy style (way 4). Proxy auto-resolves peer strings.
         proxy_ns = f"raw.{ns}" if ns != "_base" else "raw"
+        imports = ["import asyncio"]
+        if need_random:
+            imports.append("import random")
+        if need_os:
+            imports.append("import os")
+        imports.append("from ferogram import Client, raw")
+
         if not args:
             call_line = f"    result = await app.{proxy_ns}.{cls}()"
         else:
             call_lines = [f"    result = await app.{proxy_ns}.{cls}("]
             for i, f in enumerate(args):
                 comma = "," if i < len(args) - 1 else ""
-                call_lines.append(f"        {f.name}={example_value(f.name, f.ftype)}{comma}")
+                call_lines.append(
+                    f"        {f.name}={example_value(f.name, f.ftype, proxy=True)}{comma}"
+                )
             call_lines.append("    )")
             call_line = "\n".join(call_lines)
 
-        lines = [
-            "import asyncio",
-            "from ferogram import Client",
+        lines = imports + [
             "",
             'app = Client("my_session", api_id=12345, api_hash="0123456789abcdef0123456789abcdef")',
             "",
@@ -257,20 +326,27 @@ def build_example(item: TLItem, required_only: bool) -> str:
             "asyncio.run(main())",
         ]
     else:
-        # Full example: way 1 - direct callable with explicit raw import
+        # Full: callable style (way 1). All TL objects must be concrete types.
+        imports = ["import asyncio"]
+        if need_random:
+            imports.append("import random")
+        if need_os:
+            imports.append("import os")
+        imports.append("from ferogram import Client, raw")
+
         if not args:
             call_line = f"    result = await app(raw.{mod}.{cls}())"
         else:
             call_lines = [f"    result = await app(raw.{mod}.{cls}("]
             for i, f in enumerate(args):
                 comma = "," if i < len(args) - 1 else ""
-                call_lines.append(f"        {f.name}={example_value(f.name, f.ftype)}{comma}")
+                call_lines.append(
+                    f"        {f.name}={example_value(f.name, f.ftype, proxy=False)}{comma}"
+                )
             call_lines.append("    ))")
             call_line = "\n".join(call_lines)
 
-        lines = [
-            "import asyncio",
-            "from ferogram import Client, raw",
+        lines = imports + [
             "",
             'app = Client("my_session", api_id=12345, api_hash="0123456789abcdef0123456789abcdef")',
             "",
