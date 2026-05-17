@@ -210,20 +210,115 @@ KNOWN_TYPED_CALLABLE = {
 
 # Simplest concrete constructor for abstract TL types not covered above.
 CONCRETE_DEFAULTS: dict[str, str] = {
-    "InputMedia":              "raw.types.InputMediaEmpty()",
-    "InputReplyTo":            "raw.types.InputReplyToMessage(reply_to_msg_id=42)",
-    "ReplyMarkup":             "raw.types.ReplyKeyboardHide()",
-    "InputQuickReplyShortcut": "raw.types.InputQuickReplyShortcutId(shortcut_id=0)",
-    "SuggestedPost":           "raw.types.SuggestedPost(date=0)",
-    "MessageEntity":           "raw.types.MessageEntityUnknown(offset=0, length=1)",
-    "InputPhoto":              "raw.types.InputPhotoEmpty()",
-    "InputDocument":           "raw.types.InputDocumentEmpty()",
-    "InputGeoPoint":           "raw.types.InputGeoPointEmpty()",
-    "InputNotifyPeer":         "raw.types.InputNotifyUsers()",
-    "InputCheckPasswordSRP":   "raw.types.InputCheckPasswordEmpty()",
-    "InputPrivacyKey":         "raw.types.InputPrivacyKeyStatusTimestamp()",
-    "InputPrivacyRule":        "raw.types.InputPrivacyValueAllowAll()",
-    "EmojiGroup":              "raw.types.EmojiGroupGreeting()",
+    # Original entries
+    "InputMedia":                  "raw.types.InputMediaEmpty()",
+    "InputReplyTo":                "raw.types.InputReplyToMessage(reply_to_msg_id=42)",
+    "ReplyMarkup":                 "raw.types.ReplyKeyboardHide()",
+    "InputQuickReplyShortcut":     "raw.types.InputQuickReplyShortcutId(shortcut_id=0)",
+    "SuggestedPost":               "raw.types.SuggestedPost(date=0)",
+    "MessageEntity":               "raw.types.MessageEntityUnknown(offset=0, length=1)",
+    "InputPhoto":                  "raw.types.InputPhotoEmpty()",
+    "InputDocument":               "raw.types.InputDocumentEmpty()",
+    "InputGeoPoint":               "raw.types.InputGeoPointEmpty()",
+    "InputNotifyPeer":             "raw.types.InputNotifyUsers()",
+    "InputCheckPasswordSRP":       "raw.types.InputCheckPasswordEmpty()",
+    "InputPrivacyKey":             "raw.types.InputPrivacyKeyStatusTimestamp()",
+    "InputPrivacyRule":            "raw.types.InputPrivacyValueAllowAll()",
+    "EmojiGroup":                  "raw.types.EmojiGroupGreeting()",
+    # Primitive-like wrappers
+    "TextWithEntities":            "raw.types.TextWithEntities(text='', entities=[])",
+    "DataJSON":                    "raw.types.DataJSON(data='')",
+    "JSONValue":                   "raw.types.JsonNull()",
+    # Account / settings
+    "AccountDaysTTL":              "raw.types.AccountDaysTTL(days=0)",
+    "AutoDownloadSettings":        "raw.types.AutoDownloadSettings(photo_size_max=0, video_size_max=0, file_size_max=0, video_upload_maxbitrate=0, small_queue_active_operations_max=0, large_queue_active_operations_max=0)",
+    "AutoSaveSettings":            "raw.types.AutoSaveSettings()",
+    "GlobalPrivacySettings":       "raw.types.GlobalPrivacySettings()",
+    "InputPeerNotifySettings":     "raw.types.InputPeerNotifySettings()",
+    "CodeSettings":                "raw.types.CodeSettings()",
+    # Chat / channel
+    "ChatAdminRights":             "raw.types.ChatAdminRights()",
+    "ChatBannedRights":            "raw.types.ChatBannedRights(until_date=0)",
+    "ChatReactions":               "raw.types.ChatReactionsNone()",
+    "ChannelMessagesFilter":       "raw.types.ChannelMessagesFilterEmpty()",
+    "ChannelParticipantsFilter":   "raw.types.ChannelParticipantsRecent()",
+    "MessagesFilter":              "raw.types.InputMessagesFilterEmpty()",
+    # User / contact
+    "Birthday":                    "raw.types.Birthday(day=0, month=0)",
+    "EmojiStatus":                 "raw.types.EmojiStatusEmpty()",
+    "InputContact":                "raw.types.InputPhoneContact(client_id=0, phone='', first_name='', last_name='')",
+    "ProfileTab":                  "raw.types.ProfileTabPosts()",
+    "TopPeerCategory":             "raw.types.TopPeerCategoryBotsPM()",
+    # Bots / inline
+    "BotCommand":                  "raw.types.BotCommand(command='', description='')",
+    "BotCommandScope":             "raw.types.BotCommandScopeDefault()",
+    "BotMenuButton":               "raw.types.BotMenuButtonDefault()",
+    "InputBotApp":                 "raw.types.InputBotAppID(id=0, access_hash=0)",
+    "InputBotInlineMessageID":     "raw.types.InputBotInlineMessageID(dc_id=0, id=0, access_hash=0)",
+    "InputBotInlineResult":        "raw.types.InputBotInlineResult(id='', type='', send_message=raw.types.InputBotInlineMessageGame())",
+    "KeyboardButton":              "raw.types.KeyboardButton(text='')",
+    # Reactions
+    "Reaction":                    "raw.types.ReactionEmpty()",
+    "ChatReactions":               "raw.types.ChatReactionsNone()",
+    "ReactionsNotifySettings":     "raw.types.ReactionsNotifySettings(sound=raw.types.NotificationSoundDefault(), show_previews=False)",
+    "PaidReactionPrivacy":         "raw.types.PaidReactionPrivacyDefault()",
+    # Files / media
+    "InputFile":                   "raw.types.InputFileStoryDocument(id=raw.types.InputDocumentEmpty())",
+    "InputFileLocation":           "raw.types.InputTakeoutFileLocation()",
+    "InputChatPhoto":              "raw.types.InputChatPhotoEmpty()",
+    "InputStickeredMedia":         "raw.types.InputStickeredMediaPhoto(id=raw.types.InputPhotoEmpty())",
+    "InputWallPaper":              "raw.types.InputWallPaperSlug(slug='')",
+    "WallPaperSettings":           "raw.types.WallPaperSettings()",
+    "InputWebFileLocation":        "raw.types.InputWebFileAudioAlbumThumbLocation()",
+    # Stickers / emoji
+    "InputStickerSet":             "raw.types.InputStickerSetEmpty()",
+    "InputStickerSetItem":         "raw.types.InputStickerSetItem(document=raw.types.InputDocumentEmpty(), emoji='')",
+    "EmojiGroup":                  "raw.types.EmojiGroupGreeting()",
+    # Payments / invoices
+    "InputInvoice":                "raw.types.InputInvoiceSlug(slug='')",
+    "InputPaymentCredentials":     "raw.types.InputPaymentCredentials(data=raw.types.DataJSON(data=''))",
+    "InputStorePaymentPurpose":    "raw.types.InputStorePaymentPremiumSubscription()",
+    "PaymentRequestedInfo":        "raw.types.PaymentRequestedInfo()",
+    "StarsAmount":                 "raw.types.StarsTonAmount(amount=0)",
+    "InputStarGiftAuction":        "raw.types.InputStarGiftAuction(gift_id=0)",
+    "InputSavedStarGift":          "raw.types.InputSavedStarGiftUser(msg_id=0)",
+    "InputStarsTransaction":       "raw.types.InputStarsTransaction(id='')",
+    # Messaging / polls
+    "InputSingleMedia":            "raw.types.InputSingleMedia(media=raw.types.InputMediaEmpty(), random_id=0, message='')",
+    "PollAnswer":                  "raw.types.InputPollAnswer(text=raw.types.TextWithEntities(text='', entities=[]))",
+    "SendMessageAction":           "raw.types.SendMessageTypingAction()",
+    "ReportReason":                "raw.types.InputReportReasonSpam()",
+    "TodoItem":                    "raw.types.TodoItem(id=0, title=raw.types.TextWithEntities(text='', entities=[]))",
+    # Phone / calls
+    "InputPhoneCall":              "raw.types.InputPhoneCall(id=0, access_hash=0)",
+    "PhoneCallDiscardReason":      "raw.types.PhoneCallDiscardReasonMissed()",
+    "PhoneCallProtocol":           "raw.types.PhoneCallProtocol(min_layer=0, max_layer=0, library_versions=[])",
+    # Groups / chatlists
+    "InputGroupCall":              "raw.types.InputGroupCallSlug(slug='')",
+    "InputChatlist":               "raw.types.InputChatlistDialogFilter(filter_id=0)",
+    "InputFolderPeer":             "raw.types.InputFolderPeer(peer=raw.types.InputPeerSelf(), folder_id=0)",
+    # Themes / appearance
+    "InputChatTheme":              "raw.types.InputChatThemeEmpty()",
+    "InputTheme":                  "raw.types.InputThemeSlug(slug='')",
+    # Encrypted chats
+    "InputEncryptedChat":          "raw.types.InputEncryptedChat(chat_id=0, access_hash=0)",
+    "InputEncryptedFile":          "raw.types.InputEncryptedFileEmpty()",
+    # Secure values (Telegram Passport)
+    "InputSecureValue":            "raw.types.InputSecureValue(type=raw.types.SecureValueTypePersonalDetails())",
+    "SecureCredentialsEncrypted":  "raw.types.SecureCredentialsEncrypted(data=b'', hash=b'', secret=b'')",
+    "SecureValueError":            "raw.types.SecureValueErrorFrontSide(type=raw.types.SecureValueTypePersonalDetails(), file_hash=b'', text='')",
+    "SecureValueHash":             "raw.types.SecureValueHash(type=raw.types.SecureValueTypePersonalDetails(), hash=b'')",
+    "SecureValueType":             "raw.types.SecureValueTypePersonalDetails()",
+    # Email
+    "EmailVerification":           "raw.types.EmailVerificationCode(code='')",
+    "EmailVerifyPurpose":          "raw.types.EmailVerifyPurposeLoginChange()",
+    # Misc
+    "InputAppEvent":               "raw.types.InputAppEvent(time=0.0, type='', peer=0, data=raw.types.DataJSON(data=''))",
+    "InputBusinessBotRecipients":  "raw.types.InputBusinessBotRecipients()",
+    "InputBusinessChatLink":       "raw.types.InputBusinessChatLink(message='')",
+    "InputCollectible":            "raw.types.InputCollectibleUsername(username='')",
+    "InputMessageReadMetric":      "raw.types.InputMessageReadMetric(msg_id=0, view_id=0, time_in_view_ms=0, active_time_in_view_ms=0, height_to_viewport_ratio_permille=0, seen_range_ratio_permille=0)",
+    "InputPasskeyCredential":      "raw.types.InputPasskeyCredentialFirebasePNV(pnv_token='')",
 }
 
 SYNONYMS = {
@@ -233,6 +328,8 @@ SYNONYMS = {
     "InputNotifyPeer": "InputPeer",
     "InputMessage": "int",
 }
+
+_VECTOR_RE = re.compile(r"[Vv]ector<(.+)>")
 
 _PEER_PROXY_TYPES = {"InputPeer", "InputUser", "InputChannel",
                      "InputDialogPeer", "InputNotifyPeer"}
@@ -261,6 +358,12 @@ def example_value(fname: str, ftype: str, *, proxy: bool) -> str:
     if ftype2 in CONCRETE_DEFAULTS:
         return CONCRETE_DEFAULTS[ftype2]
 
+    # Vector<X> → [<example_for_X>]
+    vec_m = _VECTOR_RE.match(ftype)
+    if vec_m:
+        inner = vec_m.group(1)
+        return f"[{example_value(fname, inner, proxy=proxy)}]"
+
     cls = py_class(ftype) if ftype and ftype[0].isupper() else ftype
     return f"raw.types.{cls}()"
 
@@ -279,6 +382,15 @@ def _needs_os(args: list) -> bool:
     )
 
 
+def _needs_raw(args: list, *, proxy: bool) -> bool:
+    """Return True if any example value contains a raw.types.* reference."""
+    for f in args:
+        v = example_value(f.name, f.ftype, proxy=proxy)
+        if "raw.types." in v or "raw.functions." in v:
+            return True
+    return False
+
+
 def build_example(item: TLItem, required_only: bool) -> str:
     ns = tl_ns(item.tl_name)
     mod = f"functions.{ns}" if ns != "_base" else "functions"
@@ -295,12 +407,16 @@ def build_example(item: TLItem, required_only: bool) -> str:
     if required_only:
         # Minimal: raw proxy style (way 4). Proxy auto-resolves peer strings.
         proxy_ns = f"raw.{ns}" if ns != "_base" else "raw"
+        need_raw = _needs_raw(args, proxy=True)
         imports = ["import asyncio"]
         if need_random:
             imports.append("import random")
         if need_os:
             imports.append("import os")
-        imports.append("from ferogram import Client, raw")
+        if need_raw:
+            imports.append("from ferogram import Client, raw")
+        else:
+            imports.append("from ferogram import Client")
 
         if not args:
             call_line = f"    result = await app.{proxy_ns}.{cls}()"
@@ -511,6 +627,29 @@ details.example[open] > summary .arrow { transform: rotate(90deg); }
 .py-s { color: var(--hl-str); }
 .py-c { color: var(--hl-cmt); font-style: italic; }
 .py-n { color: var(--hl-num); }
+.badge {
+    display: inline-block; border-radius: 4px; padding: 2px 8px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+    font-family: 'Source Code Pro', monospace; white-space: nowrap;
+}
+.badge-rec  { background: var(--tag-req-bg);  color: var(--tag-req-text); }
+.badge-ok   { background: var(--tag-opt-bg);  color: var(--tag-opt-text); }
+.badge-warn { background: var(--warn-bg, #2a2010); color: var(--warn-text, #c8922a); }
+.badge-skip { background: var(--skip-bg, #2a1010); color: var(--skip-text, #c85a5a); }
+.cmp-table { width: 100%; border-collapse: collapse; margin: 0 0 24px; font-size: 13px; }
+.cmp-table th {
+    text-align: left; padding: 8px 12px;
+    border-bottom: 2px solid var(--border);
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--muted);
+}
+.cmp-table td {
+    padding: 10px 12px; vertical-align: top;
+    border-top: 1px solid var(--border);
+}
+.cmp-table td:first-child { font-weight: 700; font-family: 'Source Code Pro', monospace; color: var(--accent-light); font-size: 12px; white-space: nowrap; }
+.cmp-table td code { font-size: 12px; font-family: 'Source Code Pro', monospace; }
+.cmp-table tr:hover td { background: var(--surface); }
 """
 
 CSS_DARK_VARS = """\
@@ -524,6 +663,8 @@ CSS_DARK_VARS = """\
     --btn-bg: #251f4a; --btn-border: #7c6af7; --btn-text: #a99ff8; --btn-hover: #321f7a;
     --tl-cid: #c08858;
     --hl-kw: #bb8af7; --hl-str: #7ec898; --hl-cmt: #5c6380; --hl-num: #e8a87c;
+    --warn-bg: #2a2010; --warn-text: #d4a040;
+    --skip-bg: #2a1010; --skip-text: #c85a5a;
 }
 """
 
@@ -567,6 +708,8 @@ CSS_LIGHT_VARS = """\
     --btn-bg: #ede9ff; --btn-border: #7c6af7; --btn-text: #5b4fcf; --btn-hover: #ddd6ff;
     --tl-cid: #a0560a;
     --hl-kw: #7335b8; --hl-str: #267f56; --hl-cmt: #8b8fa8; --hl-num: #b5520a;
+    --warn-bg: #fef3e0; --warn-text: #92600a;
+    --skip-bg: #fde8e8; --skip-text: #b91c1c;
 }
 """
 
@@ -610,6 +753,8 @@ CSS_AMOLED_VARS = """\
     --btn-bg: #150e2a; --btn-border: #a78bfa; --btn-text: #c4b5fd; --btn-hover: #1e1040;
     --tl-cid: #d4a06a;
     --hl-kw: #d4a4fc; --hl-str: #86d0aa; --hl-cmt: #3a3e5a; --hl-num: #f0b478;
+    --warn-bg: #1a1200; --warn-text: #e0a030;
+    --skip-bg: #1a0800; --skip-text: #e06060;
 }
 """
 
@@ -705,11 +850,12 @@ function toast(){
     el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
   }
   function addCopyIcon(pre){
+    var code=(pre.textContent||pre.innerText).replace(/\n$/,'');
     var btn=document.createElement('button');
     btn.className='copy-icon';btn.textContent='copy';
     btn.addEventListener('click',function(ev){
       ev.stopPropagation();
-      cp(pre.textContent||pre.innerText);
+      cp(code);
       btn.textContent='\\u2713';toast();
       setTimeout(function(){btn.textContent='copy';},1300);
     });
@@ -882,9 +1028,11 @@ def gen_method_page(item: TLItem, known_types: set[str], out: Path) -> None:
     has_optional = any(f.optional for f in item.fields if f.name != "flags")
 
     note_html = """<p class="example-note">Minimal uses the raw proxy shorthand. To see the full method signature with all parameters, expand <strong>Full API</strong> below.</p>"""
+    disclaimer = """<p class="example-note">Examples show the correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs) with real data before running.</p>"""
 
     if has_optional:
         examples_html = f"""<h3>Example</h3>
+{disclaimer}
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">{ex_min}</pre>
@@ -896,6 +1044,7 @@ def gen_method_page(item: TLItem, known_types: set[str], out: Path) -> None:
 </details>"""
     else:
         examples_html = f"""<h3>Example</h3>
+{disclaimer}
 <details class="example" open>
   <summary><span class="arrow">&#9654;</span> Example</summary>
   <pre class="python">{ex_min}</pre>
@@ -1110,53 +1259,218 @@ def gen_root_index(layer: int, n_types: int, n_constructors: int, n_methods: int
   <a class="pill" href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py (Python)</a>
 </div>
 
-<h3>5 ways to call a raw method</h3>
+<h3>Index</h3>
+<ul>
+  <li><a href="#methods">Methods</a> (<a href="methods/index.html">full list</a>)</li>
+  <li><a href="#types">Types</a> (<a href="types/index.html">full list</a>)</li>
+  <li><a href="#constructors">Constructors</a> (<a href="constructors/index.html">full list</a>)</li>
+  <li><a href="#tl">TL definition</a></li>
+  <li><a href="#core">Core types</a></li>
+  <li><a href="#example">Full example</a></li>
+</ul>
+
+<h3 id="tl">TL definition</h3>
+<p>When you see this on a method or constructor page:</p>
+<pre class="tl">---functions---
+users.getUsers#0d91a548 id:Vector&lt;InputUser&gt; = Vector&lt;User&gt;</pre>
+<p>
+  This is <strong>not</strong> Python code. It's the "TL definition" : an easy-to-read line that gives
+  a quick overview of the parameters and their result type. You don't need to worry about it beyond
+  reading the parameter names and types.
+</p>
+
+<h3 id="methods">Methods</h3>
+<p>
+  Currently there are <strong>{n_methods} methods</strong> available for Layer {layer}.
+  <a href="methods/index.html">See the complete method list</a>.
+</p>
+<p>
+  Methods, also known as <em>requests</em>, are used to interact with the Telegram API itself and are
+  invoked through <code>await client(Request(...))</code> or via the raw proxy shorthand.
+  <strong>Only these</strong> can be invoked . You cannot invoke types or constructors, only requests.
+  After this, Telegram will return a <code>result</code>, which may be a bunch of messages,
+  some dialogs, users, etc.
+</p>
+
+<h3 id="types">Types</h3>
+<p>
+  Currently there are <strong>{n_types} types</strong>.
+  <a href="types/index.html">See the complete list of types</a>.
+</p>
+<p>
+  Telegram types are the <em>abstract</em> results you receive after invoking a request. They are
+  "abstract" because they can have multiple constructors. For instance, the abstract type
+  <code>User</code> can be either <code>UserEmpty</code> or <code>User</code>. You should, most of the
+  time, make sure you received the desired type by using the
+  <code>isinstance(result, Constructor)</code> Python function.
+  When a request needs a Telegram type as argument, create an instance using one of its constructors.
+</p>
+
+<h3 id="constructors">Constructors</h3>
+<p>
+  Currently there are <strong>{n_constructors} constructors</strong>.
+  <a href="constructors/index.html">See the list of all constructors</a>.
+</p>
+<p>
+  Constructors are the way you create instances of the abstract types described above, and also the
+  concrete instances actually returned from functions (they all share a common abstract type).
+</p>
+
+<h3>6 ways to call a raw method</h3>
 <div class="tabs">
   <button class="tab active" onclick="switchWayTab(0)">1. Callable</button>
   <button class="tab" onclick="switchWayTab(1)">2. invoke()</button>
   <button class="tab" onclick="switchWayTab(2)">3. ns import</button>
   <button class="tab" onclick="switchWayTab(3)">4. raw proxy</button>
   <button class="tab" onclick="switchWayTab(4)">5. handler</button>
+  <button class="tab" onclick="switchWayTab(5)">6. dict</button>
 </div>
-<div class="way-content active" id="w0"><pre class="python"># Recommended: call the client directly
+<div class="way-content active" id="w0"><pre class="python"># Recommended: call the client directly with a typed TL object
 from ferogram import Client, raw
 app = Client("my_session", api_id=12345, api_hash="...")
 result = await app(raw.functions.messages.GetHistory(peer=..., limit=100))</pre></div>
-<div class="way-content" id="w1"><pre class="python"># Explicit invoke() - same result
+<div class="way-content" id="w1"><pre class="python"># Explicit invoke() - identical to way 1, just more descriptive
 from ferogram import Client, raw
 app = Client("my_session", api_id=12345, api_hash="...")
 result = await app.invoke(raw.functions.messages.GetHistory(peer=..., limit=100))</pre></div>
-<div class="way-content" id="w2"><pre class="python"># Namespace import - shorter call site
+<div class="way-content" id="w2"><pre class="python"># Namespace import - keeps the call site short, good for repeated use
 from ferogram import Client
 from ferogram.raw.functions.messages import GetHistory
 app = Client("my_session", api_id=12345, api_hash="...")
 result = await app(GetHistory(peer=..., limit=100))</pre></div>
-<div class="way-content" id="w3"><pre class="python"># Raw proxy: resolves peer strings automatically
+<div class="way-content" id="w3"><pre class="python"># Raw proxy - peer strings auto-resolved, primitives get safe defaults
+# Add raw only when a field takes a TL object (e.g. InputMedia)
 from ferogram import Client
 app = Client("my_session", api_id=12345, api_hash="...")
 result = await app.raw.messages.GetHistory(peer="@username", limit=5)</pre></div>
-<div class="way-content" id="w4"><pre class="python"># Inside an update handler
+<div class="way-content" id="w4"><pre class="python"># Inside an update handler - use client, not app
 from ferogram import Client, filters, raw
 app = Client("my_session", api_id=12345, api_hash="...")
 
-@app.on(filters.text)
+@app.on_message(filters.text)
 async def handler(client, message):
     result = await client(raw.functions.messages.GetHistory(
         peer=message.chat_id, limit=10
     ))
     print(result)</pre></div>
+<div class="way-content" id="w5"><pre class="python"># Dict invoke - no generated types needed, plain Python dicts
+# "_" key is the TL name in camelCase. Used internally by the proxy layer.
+from ferogram import Client
+app = Client("my_session", api_id=12345, api_hash="...")
+result = await app.invoke({{
+    "_": "messages.getHistory",
+    "peer": {{"_": "inputPeerSelf"}},
+    "limit": 10,
+    "offset_id": 0,
+    "offset_date": 0,
+    "add_offset": 0,
+    "max_id": 0,
+    "min_id": 0,
+    "hash": 0,
+}})</pre></div>
 
-<h3 id="int">Core types</h3>
-<table>
-<tr><td><b>int</b></td><td>32-bit signed integer.</td></tr>
-<tr><td><b id="long">long</b></td><td>64-bit signed integer.</td></tr>
-<tr><td><b id="bool">bool</b> / <b id="true">true</b></td><td>Boolean value.</td></tr>
-<tr><td><b id="string">string</b></td><td>UTF-8 string.</td></tr>
-<tr><td><b id="bytes">bytes</b></td><td>Arbitrary binary data.</td></tr>
-<tr><td><b id="double">double</b></td><td>64-bit float.</td></tr>
-<tr><td><b id="date">date</b></td><td>Unix timestamp stored as int.</td></tr>
-<tr><td><b id="vector">Vector&lt;T&gt;</b></td><td>List of T.</td></tr>
+<h3>Which way should I use?</h3>
+<table class="cmp-table">
+<thead>
+<tr>
+  <th>Way</th>
+  <th>Import needed</th>
+  <th>Peer strings</th>
+  <th>Type safety</th>
+  <th>Verdict</th>
+  <th>Use when</th>
+  <th>Avoid when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>1. Callable<br><code>await app(...)</code></td>
+  <td><code>Client, raw</code></td>
+  <td>&#10007; manual</td>
+  <td>&#10003; full</td>
+  <td><span class="badge badge-rec">&#10003; recommended</span></td>
+  <td>Default choice for scripts, bots, userbots. IDE autocomplete works. Errors are caught at construction time.</td>
+  <td>Nothing. This is the safe default.</td>
+</tr>
+<tr>
+  <td>2. invoke()<br><code>await app.invoke(...)</code></td>
+  <td><code>Client, raw</code></td>
+  <td>&#10007; manual</td>
+  <td>&#10003; full</td>
+  <td><span class="badge badge-ok">&#9654; situational</span></td>
+  <td>When you want to be explicit that a network call is happening, or when passing the method object around before invoking.</td>
+  <td>Everyday use. Way 1 is shorter and identical.</td>
+</tr>
+<tr>
+  <td>3. ns import<br><code>from ferogram.raw...</code></td>
+  <td><code>Client</code> + specific class</td>
+  <td>&#10007; manual</td>
+  <td>&#10003; full</td>
+  <td><span class="badge badge-ok">&#9654; situational</span></td>
+  <td>When you call the same method many times in one file and want to avoid repeating <code>raw.functions.messages.</code>.</td>
+  <td>Scripts that call many different methods. The import block grows fast.</td>
+</tr>
+<tr>
+  <td>4. raw proxy<br><code>await app.raw.ns.Method(...)</code></td>
+  <td><code>Client</code> (+ <code>raw</code> if TL objects needed)</td>
+  <td>&#10003; auto</td>
+  <td>&#9651; partial</td>
+  <td><span class="badge badge-ok">&#9654; situational</span></td>
+  <td>Quick scripts and exploration. Passing <code>"@username"</code> or <code>"me"</code> directly without resolving peers manually. Required primitives auto-fill to safe defaults.</td>
+  <td>Production bots. Missing required TL-object fields silently get empty defaults, which can cause unexpected Telegram errors.</td>
+</tr>
+<tr>
+  <td>5. handler<br><code>@app.on_message</code></td>
+  <td><code>Client, filters, raw</code></td>
+  <td>&#10007; manual</td>
+  <td>&#10003; full</td>
+  <td><span class="badge badge-rec">&#10003; recommended</span></td>
+  <td>All event-driven code. Use <code>client</code> (the handler argument), not the outer <code>app</code>, so the correct session context is used.</td>
+  <td>Never call <code>await app(...)</code> inside a handler. Use <code>await client(...)</code>.</td>
+</tr>
+<tr>
+  <td>6. dict<br><code>await app.invoke({{"_": ...}})</code></td>
+  <td><code>Client</code> only</td>
+  <td>&#10007; manual</td>
+  <td>&#10007; none</td>
+  <td><span class="badge badge-warn">&#9651; advanced</span></td>
+  <td>Dynamic dispatch. Use when the method name or fields are only known at runtime. Building generic tools or proxies on top of ferogram. No generated types required.</td>
+  <td>Normal bot or userbot code. No autocomplete, no type checking, typos in <code>"_"</code> fail at runtime only.</td>
+</tr>
+</tbody>
 </table>
+<p style="color:var(--muted);font-size:13px;">
+  <strong style="color:var(--text)">Rule of thumb:</strong>
+  use way 1 by default. Switch to way 4 (proxy) for quick scripts where peer strings save time.
+  Use way 5 in all handlers. Reach for way 6 only when the method name is dynamic.
+</p>
+
+<h3 id="core">Core types</h3>
+<p>Core types are the primitives from which all other Telegram types are built:</p>
+<table>
+<tr><td><strong id="int">int</strong></td><td>32-bit signed integer. Check bit length with <code>a.bit_length()</code>.</td></tr>
+<tr><td><strong id="long">long</strong></td><td>64-bit signed integer.</td></tr>
+<tr><td><strong id="int128">int128</strong></td><td>128-bit integer. Pass as a Python <code>int</code> with at most 128 bits.</td></tr>
+<tr><td><strong id="int256">int256</strong></td><td>256-bit integer. Pass as a Python <code>int</code> with at most 256 bits.</td></tr>
+<tr><td><strong id="double">double</strong></td><td>64-bit float, such as <code>123.456</code>.</td></tr>
+<tr><td><strong id="string">string</strong></td><td>Valid UTF-8 string. Python strings work as-is, no extra encoding needed.</td></tr>
+<tr><td><strong id="bytes">bytes</strong></td><td>Arbitrary binary data, e.g. <code>b'hello'</code>.</td></tr>
+<tr><td><strong id="bool">bool</strong> / <strong id="true">true</strong></td><td><code>True</code> or <code>False</code>. <code>true</code> flag fields are not sent. Any truthy value enables the flag; use <code>True</code> or omit entirely.</td></tr>
+<tr><td><strong id="date">date</strong></td><td>Unix timestamp stored as <code>int</code>. You can also pass a <code>datetime</code> or <code>date</code> object. The library uses UTC+0.</td></tr>
+<tr><td><strong id="vector">Vector&lt;T&gt;</strong></td><td>A Python <code>list</code> of <code>T</code>. For example, a valid value for <code>Vector&lt;int&gt;</code> is <code>[1, 2, 3]</code>.</td></tr>
+</table>
+
+<h3 id="example">Full example</h3>
+<p>
+  All methods shown here have dummy examples on how to write them, so you don't get confused with
+  their TL definition. However, this may not always run as-is. They are just there to show the
+  correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs, placeholder
+  TL objects) with real data before running.
+</p>
+<p>
+  See the <a href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py README</a>
+  for a complete working example.
+</p>
 """
     (out / "index.html").write_text(page("ferogram API", "", body), encoding="utf-8")
 
