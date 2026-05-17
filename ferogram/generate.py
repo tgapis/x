@@ -11,9 +11,6 @@ from collections import defaultdict
 from pathlib import Path
 from typing import NamedTuple
 
-# ---------------------------------------------------------------------------
-# TL parser
-# ---------------------------------------------------------------------------
 
 TL_LINE = re.compile(
     r"^([\w.][\w.]*)"
@@ -80,9 +77,6 @@ def parse_layer(path: Path) -> int:
     return 0
 
 
-# ---------------------------------------------------------------------------
-# Naming helpers
-# ---------------------------------------------------------------------------
 
 def tl_ns(tl_name: str) -> str:
     parts = tl_name.split(".")
@@ -137,9 +131,6 @@ def import_func(item: TLItem) -> str:
     return f"from ferogram.raw.functions.{ns} import {cls}" if ns != "_base" else f"from ferogram.raw.functions import {cls}"
 
 
-# ---------------------------------------------------------------------------
-# Field type linkifier
-# ---------------------------------------------------------------------------
 
 PRIMITIVES = {
     "int", "long", "double", "string", "bytes", "Bool",
@@ -171,9 +162,6 @@ def render_tl_def(item: TLItem, known_types: set[str], depth: str) -> str:
     return f"{header}\n{''.join(parts)} = {ret_linked}"
 
 
-# ---------------------------------------------------------------------------
-# Example value generation
-# ---------------------------------------------------------------------------
 
 KNOWN_NAMED = {
     ("message", "string"): "'Hello there!'",
@@ -233,29 +221,43 @@ def build_example(item: TLItem, required_only: bool) -> str:
     ns = tl_ns(item.tl_name)
     mod = f"functions.{ns}" if ns != "_base" else "functions"
     cls = py_class(item.tl_name)
-    lines = ["from ferogram import raw, types", ""]
+
     if required_only:
         args = [f for f in item.fields if not f.optional and f.name != "flags"]
     else:
         args = [f for f in item.fields if f.name != "flags"]
+
+    # Build the raw call lines
     if not args:
-        lines.append(f"result = await client(raw.{mod}.{cls}())")
+        call_line = f"    result = await app(raw.{mod}.{cls}())"
     else:
-        lines.append(f"result = await client(raw.{mod}.{cls}(")
+        call_lines = [f"    result = await app(raw.{mod}.{cls}("]
         for i, f in enumerate(args):
             comma = "," if i < len(args) - 1 else ""
-            lines.append(f"    {f.name}={example_value(f.name, f.ftype)}{comma}")
-        lines.append("))")
-    lines.append("print(result)")
+            call_lines.append(f"        {f.name}={example_value(f.name, f.ftype)}{comma}")
+        call_lines.append("    ))")
+        call_line = "\n".join(call_lines)
+
+    lines = [
+        "import asyncio",
+        "from ferogram import Client, raw",
+        "",
+        'app = Client("my_session", api_id=12345, api_hash="0123456789abcdef0123456789abcdef")',
+        "",
+        "async def main():",
+        "    await app.start()",
+        call_line,
+        "    print(result)",
+        "",
+        "asyncio.run(main())",
+    ]
     return "\n".join(lines)
 
 
-# ---------------------------------------------------------------------------
-# CSS (dark + light, shared structure)
-# ---------------------------------------------------------------------------
 
 CSS_COMMON = """\
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
     font-family: 'Nunito', system-ui, sans-serif;
     font-size: 15px;
@@ -356,7 +358,9 @@ ul.together {
 ul.together li { padding: 2px 0; font-size: 13px; break-inside: avoid; }
 #exactMatch { border-radius: 6px; padding: 10px 14px; margin-bottom: 16px; border-width: 1px; border-style: solid; }
 .invisible { position: absolute; left: -9999px; top: -9999px; }
-details.example > summary { cursor: pointer; font-size: 13px; user-select: none; margin-bottom: 6px; font-family: 'Source Code Pro', monospace; }
+details.example > summary { cursor: pointer; font-size: 13px; user-select: none; margin-bottom: 6px; font-family: 'Source Code Pro', monospace; list-style: none; }
+details.example > summary::-webkit-details-marker { display: none; }
+details.example > summary::marker { display: none; }
 details.example { margin-bottom: 12px; }
 @media (max-width: 600px) {
     ul.together { column-count: 1; }
@@ -437,33 +441,93 @@ button.copy-btn:hover { background: var(--btn-hover); }
 h3 { color: var(--muted); }
 """
 
-CSS_DARK = CSS_DARK_VARS + CSS_COMMON + CSS_DARK_RULES
-CSS_LIGHT = CSS_LIGHT_VARS + CSS_COMMON + CSS_LIGHT_RULES
+CSS_AMOLED_VARS = """\
+:root {
+    --bg: #000000; --surface: #0a0a0a; --border: #1a1a1a;
+    --text: #e8eaf6; --muted: #7a7e9a; --accent: #a78bfa;
+    --accent-light: #c4b5fd; --code-bg: #050505; --code-text: #d0d4e8;
+    --link: #a78bfa; --link-hover: #c4b5fd;
+    --tag-opt-bg: #0d1020; --tag-opt-text: #60a5fa;
+    --tag-req-bg: #0a1a0a; --tag-req-text: #4ade80;
+    --btn-bg: #150e2a; --btn-border: #a78bfa; --btn-text: #c4b5fd; --btn-hover: #1e1040;
+}
+"""
 
-# ---------------------------------------------------------------------------
-# HTML helpers
-# ---------------------------------------------------------------------------
+CSS_AMOLED_RULES = """\
+body { background: var(--bg); color: var(--text); }
+a { color: var(--link); } a:hover { color: var(--link-hover); }
+pre { background: var(--code-bg); color: var(--code-text); border-color: var(--border); }
+table td { border-top-color: var(--border); }
+table td:first-child { color: var(--text); }
+table td:nth-child(2) { color: var(--accent-light); }
+table td:last-child { color: var(--muted); font-size: 13px; }
+ul.horizontal { background: var(--surface); border-color: var(--border); }
+ul.horizontal li { color: var(--muted); } ul.horizontal li a { color: var(--link); }
+.sep { color: var(--border); }
+button.copy-btn { background: var(--btn-bg); color: var(--btn-text); border-color: var(--btn-border); }
+button.copy-btn:hover { background: var(--btn-hover); }
+.tag-opt { background: var(--tag-opt-bg); color: var(--tag-opt-text); }
+.tag-req { background: var(--tag-req-bg); color: var(--tag-req-text); }
+#theme-btn { background: var(--surface); border-color: var(--border); color: var(--muted); }
+#theme-btn:hover { border-color: var(--accent); color: var(--accent-light); }
+#searchBox { background: var(--surface); border-color: var(--border); color: var(--text); }
+#searchBox:focus { border-color: var(--accent); }
+#searchDiv summary.title { color: var(--muted); }
+#exactMatch { background: var(--surface); border-color: var(--accent); }
+h3 { color: var(--muted); }
+"""
+
+CSS_DARK   = CSS_DARK_VARS   + CSS_COMMON + CSS_DARK_RULES
+CSS_LIGHT  = CSS_LIGHT_VARS  + CSS_COMMON + CSS_LIGHT_RULES
+CSS_AMOLED = CSS_AMOLED_VARS + CSS_COMMON + CSS_AMOLED_RULES
+
 
 FONTS = '<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">'
 
 THEME_INIT = """\
 <script>
 (function(){
+  var labels={'dark':'\u2600 Bright','light':'\u25c9 Amoled','amoled':'\u263e Dark'};
   var t=localStorage.getItem('theme')||'dark';
-  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\\.css/,t+'.css');
-  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
 })();
 </script>"""
 
 THEME_BTN = """<button id="theme-btn" onclick="(function(){
-  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'\u2600 Bright','light':'\u25c9 Amoled','amoled':'\u263e Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
   s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
   localStorage.setItem('theme',next);
-  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
-})()">☀ Light</button>"""
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9728; Bright</button>"""
 
 CP_SCRIPT = """<textarea id="c" class="invisible"></textarea>
-<script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>"""
+<script>
+function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}
+(function(){
+  var _lpt=null;
+  function toast(){
+    var d=document.createElement('div');
+    d.textContent='Copied!';
+    d.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#a78bfa;color:#000;padding:6px 16px;border-radius:20px;font-size:13px;font-family:monospace;z-index:9999;pointer-events:none;opacity:1;transition:opacity .4s';
+    document.body.appendChild(d);
+    setTimeout(function(){d.style.opacity='0';setTimeout(function(){d.remove();},400);},1200);
+  }
+  function attach(el){
+    el.addEventListener('touchstart',function(){
+      _lpt=setTimeout(function(){cp(el.innerText||el.textContent);toast();},600);
+    },{passive:true});
+    el.addEventListener('touchend',function(){clearTimeout(_lpt);});
+    el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
+  }
+  function init(){document.querySelectorAll('pre').forEach(attach);}
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>"""
 
 
 def page(title: str, depth: str, body: str, *, show_search: bool = True) -> str:
@@ -528,9 +592,6 @@ def maybe_section(heading: str, items: list[TLItem], url_fn, depth: str) -> str:
     return f"<h3>{heading}</h3>{item_table(items, url_fn, depth)}"
 
 
-# ---------------------------------------------------------------------------
-# Page generators
-# ---------------------------------------------------------------------------
 
 def gen_constructor_page(
     item: TLItem,
@@ -703,9 +764,6 @@ def gen_section_index(section: str, ns_map: dict, out: Path) -> None:
     dest.write_text(page(section.title(), depth, body), encoding="utf-8")
 
 
-# ---------------------------------------------------------------------------
-# search.js
-# ---------------------------------------------------------------------------
 
 def gen_search_js(types_list: list, funcs_list: list, abstract_types: list, out: Path) -> None:
     requests = json.dumps([py_class(f.tl_name) for f in funcs_list])
@@ -807,37 +865,63 @@ if (qParam) {{ searchBox.value = qParam; updateSearch({{}}); }}
     (out / "js" / "search.js").write_text(js, encoding="utf-8")
 
 
-# ---------------------------------------------------------------------------
-# Root index + 404
-# ---------------------------------------------------------------------------
 
 def gen_root_index(layer: int, n_types: int, n_constructors: int, n_methods: int, out: Path) -> None:
-    body = f"""
+    body = f"""\
 <h1>ferogram API <span style="color:var(--muted);font-size:1rem">Layer {layer}</span></h1>
-<p>Raw Telegram MTProto API reference, auto-generated from TL schema (Layer {layer}).
-Search above or browse by section.</p>
 <p>
-  <a href="methods/index.html">Methods</a> ({n_methods}) &middot;
-  <a href="types/index.html">Types</a> ({n_types}) &middot;
-  <a href="constructors/index.html">Constructors</a> ({n_constructors})
+  Raw Telegram MTProto API reference, generated from the TL schema at Layer {layer}.
+  Use the search box above or browse by section.
 </p>
-<h3>Usage</h3>
-<pre># namespace import
-from ferogram.raw.functions.messages import GetHistory
-result = await client(GetHistory(peer=..., limit=100, ...))
+<p>
+  <a href="methods/index.html">Methods</a> ({n_methods})
+  &middot; <a href="types/index.html">Types</a> ({n_types})
+  &middot; <a href="constructors/index.html">Constructors</a> ({n_constructors})
+  &middot; <a href="https://github.com/ankit-chaubey/ferogram" target="_blank">ferogram (Rust)</a>
+  &middot; <a href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py</a>
+</p>
 
-# flat import
-from ferogram import raw
-result = await client(raw.functions.messages.GetHistory(peer=..., limit=100, ...))</pre>
+<h3>What is ferogram?</h3>
+<p>
+  <strong>ferogram</strong> is a from-scratch Rust implementation of the Telegram MTProto protocol.
+  <strong>ferogram-py</strong> wraps it with Python bindings so you can write Telegram bots and
+  userbots in Python with a high-level API, while raw TL functions (listed on this site) remain
+  fully accessible for anything the high-level API does not cover.
+</p>
+
+<h3>5 ways to call a raw method</h3>
+<pre># 1. Callable shorthand (recommended)
+from ferogram import Client, raw
+app = Client("my_session", api_id=12345, api_hash="...")
+result = await app(raw.functions.messages.GetHistory(peer=..., limit=100))
+
+# 2. Explicit invoke()
+result = await app.invoke(raw.functions.messages.GetHistory(peer=..., limit=100))
+
+# 3. Namespace import - shorter call site
+from ferogram.raw.functions.messages import GetHistory
+result = await app(GetHistory(peer=..., limit=100))
+
+# 4. Raw proxy (auto-resolves peer strings)
+result = await app.raw.messages.GetHistory(peer="@username", limit=5)
+
+# 5. Inside a handler
+@app.on(filters.text)
+async def handler(client, message):
+    result = await client(raw.functions.messages.GetHistory(
+        peer=message.chat_id, limit=10
+    ))
+    print(result)</pre>
+
 <h3 id="int">Core types</h3>
 <table>
-<tr><td><b>int</b></td><td>32-bit integer.</td></tr>
-<tr><td><b id="long">long</b></td><td>64-bit integer.</td></tr>
+<tr><td><b>int</b></td><td>32-bit signed integer.</td></tr>
+<tr><td><b id="long">long</b></td><td>64-bit signed integer.</td></tr>
 <tr><td><b id="bool">bool</b> / <b id="true">true</b></td><td>Boolean value.</td></tr>
 <tr><td><b id="string">string</b></td><td>UTF-8 string.</td></tr>
 <tr><td><b id="bytes">bytes</b></td><td>Arbitrary binary data.</td></tr>
 <tr><td><b id="double">double</b></td><td>64-bit float.</td></tr>
-<tr><td><b id="date">date</b></td><td>Unix timestamp (int).</td></tr>
+<tr><td><b id="date">date</b></td><td>Unix timestamp stored as int.</td></tr>
 <tr><td><b id="vector">Vector&lt;T&gt;</b></td><td>List of T.</td></tr>
 </table>
 """
@@ -849,9 +933,6 @@ def gen_404(out: Path) -> None:
     (out / "404.html").write_text(page("404", "", body, show_search=False), encoding="utf-8")
 
 
-# ---------------------------------------------------------------------------
-# Main
-# ---------------------------------------------------------------------------
 
 def main() -> None:
     tl_path = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("ferogram/raw_api.tl")
@@ -900,6 +981,7 @@ def main() -> None:
     css_dir.mkdir()
     (css_dir / "dark.css").write_text(CSS_DARK, encoding="utf-8")
     (css_dir / "light.css").write_text(CSS_LIGHT, encoding="utf-8")
+    (css_dir / "amoled.css").write_text(CSS_AMOLED, encoding="utf-8")
 
     gen_search_js(types_list, funcs_list, abstract_types_sorted, out_dir)
 
