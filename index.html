@@ -9,50 +9,104 @@
 </head>
 <body>
 <button id="theme-btn" onclick="(function(){
-  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
   s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
   localStorage.setItem('theme',next);
-  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
-})()">☀ Light</button>
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9728; Bright</button>
 <script>
 (function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
   var t=localStorage.getItem('theme')||'dark';
-  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
-  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
 })();
 </script>
 <div id="main_div">
-
 <h1>ferogram API <span style="color:var(--muted);font-size:1rem">Layer 225</span></h1>
-<p>Raw Telegram MTProto API reference, auto-generated from TL schema (Layer 225).
-Search above or browse by section.</p>
 <p>
-  <a href="methods/index.html">Methods</a> (772) &middot;
-  <a href="types/index.html">Types</a> (594) &middot;
-  <a href="constructors/index.html">Constructors</a> (1573)
+  Raw Telegram MTProto API reference, generated from the TL schema at Layer 225.
+  Use the search box above or browse by section.
 </p>
-<h3>Usage</h3>
-<pre># namespace import
-from ferogram.raw.functions.messages import GetHistory
-result = await client(GetHistory(peer=..., limit=100, ...))
+<p>
+  <a href="methods/index.html">Methods</a> (772)
+  &middot; <a href="types/index.html">Types</a> (594)
+  &middot; <a href="constructors/index.html">Constructors</a> (1573)
+  &middot; <a href="https://github.com/ankit-chaubey/ferogram" target="_blank">ferogram (Rust)</a>
+  &middot; <a href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py</a>
+</p>
 
-# flat import
-from ferogram import raw
-result = await client(raw.functions.messages.GetHistory(peer=..., limit=100, ...))</pre>
+<h3>What is ferogram?</h3>
+<p>
+  <strong>ferogram</strong> is a from-scratch Rust implementation of the Telegram MTProto protocol.
+  <strong>ferogram-py</strong> wraps it with Python bindings so you can write Telegram bots and
+  userbots in Python with a high-level API, while raw TL functions (listed on this site) remain
+  fully accessible for anything the high-level API does not cover.
+</p>
+
+<h3>5 ways to call a raw method</h3>
+<pre># 1. Callable shorthand (recommended)
+from ferogram import Client, raw
+app = Client("my_session", api_id=12345, api_hash="...")
+result = await app(raw.functions.messages.GetHistory(peer=..., limit=100))
+
+# 2. Explicit invoke()
+result = await app.invoke(raw.functions.messages.GetHistory(peer=..., limit=100))
+
+# 3. Namespace import - shorter call site
+from ferogram.raw.functions.messages import GetHistory
+result = await app(GetHistory(peer=..., limit=100))
+
+# 4. Raw proxy (auto-resolves peer strings)
+result = await app.raw.messages.GetHistory(peer="@username", limit=5)
+
+# 5. Inside a handler
+@app.on(filters.text)
+async def handler(client, message):
+    result = await client(raw.functions.messages.GetHistory(
+        peer=message.chat_id, limit=10
+    ))
+    print(result)</pre>
+
 <h3 id="int">Core types</h3>
 <table>
-<tr><td><b>int</b></td><td>32-bit integer.</td></tr>
-<tr><td><b id="long">long</b></td><td>64-bit integer.</td></tr>
+<tr><td><b>int</b></td><td>32-bit signed integer.</td></tr>
+<tr><td><b id="long">long</b></td><td>64-bit signed integer.</td></tr>
 <tr><td><b id="bool">bool</b> / <b id="true">true</b></td><td>Boolean value.</td></tr>
 <tr><td><b id="string">string</b></td><td>UTF-8 string.</td></tr>
 <tr><td><b id="bytes">bytes</b></td><td>Arbitrary binary data.</td></tr>
 <tr><td><b id="double">double</b></td><td>64-bit float.</td></tr>
-<tr><td><b id="date">date</b></td><td>Unix timestamp (int).</td></tr>
+<tr><td><b id="date">date</b></td><td>Unix timestamp stored as int.</td></tr>
 <tr><td><b id="vector">Vector&lt;T&gt;</b></td><td>List of T.</td></tr>
 </table>
 
 <textarea id="c" class="invisible"></textarea>
-<script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>
+<script>
+function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}
+(function(){
+  var _lpt=null;
+  function toast(){
+    var d=document.createElement('div');
+    d.textContent='Copied!';
+    d.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#a78bfa;color:#000;padding:6px 16px;border-radius:20px;font-size:13px;font-family:monospace;z-index:9999;pointer-events:none;opacity:1;transition:opacity .4s';
+    document.body.appendChild(d);
+    setTimeout(function(){d.style.opacity='0';setTimeout(function(){d.remove();},400);},1200);
+  }
+  function attach(el){
+    el.addEventListener('touchstart',function(){
+      _lpt=setTimeout(function(){cp(el.innerText||el.textContent);toast();},600);
+    },{passive:true});
+    el.addEventListener('touchend',function(){clearTimeout(_lpt);});
+    el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
+  }
+  function init(){document.querySelectorAll('pre').forEach(attach);}
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
 </div>
 <script>prependPath="";</script><script src="js/search.js"></script>
 </body>

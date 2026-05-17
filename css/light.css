@@ -8,6 +8,7 @@
     --btn-bg: #ede9ff; --btn-border: #7c6af7; --btn-text: #5b4fcf; --btn-hover: #ddd6ff;
 }
 * { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
     font-family: 'Nunito', system-ui, sans-serif;
     font-size: 15px;
@@ -108,7 +109,9 @@ ul.together {
 ul.together li { padding: 2px 0; font-size: 13px; break-inside: avoid; }
 #exactMatch { border-radius: 6px; padding: 10px 14px; margin-bottom: 16px; border-width: 1px; border-style: solid; }
 .invisible { position: absolute; left: -9999px; top: -9999px; }
-details.example > summary { cursor: pointer; font-size: 13px; user-select: none; margin-bottom: 6px; font-family: 'Source Code Pro', monospace; }
+details.example > summary { cursor: pointer; font-size: 13px; user-select: none; margin-bottom: 6px; font-family: 'Source Code Pro', monospace; list-style: none; }
+details.example > summary::-webkit-details-marker { display: none; }
+details.example > summary::marker { display: none; }
 details.example { margin-bottom: 12px; }
 @media (max-width: 600px) {
     ul.together { column-count: 1; }

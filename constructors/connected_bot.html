@@ -9,16 +9,21 @@
 </head>
 <body>
 <button id="theme-btn" onclick="(function(){
-  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
   s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
   localStorage.setItem('theme',next);
-  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
-})()">☀ Light</button>
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9728; Bright</button>
 <script>
 (function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
   var t=localStorage.getItem('theme')||'dark';
-  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
-  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
 })();
 </script>
 <div id="main_div">
@@ -38,7 +43,28 @@ connectedBot#cd64636c bot_id:<a href="../index.html#long">long</a> recipients:<a
 
 
 <textarea id="c" class="invisible"></textarea>
-<script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>
+<script>
+function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}
+(function(){
+  var _lpt=null;
+  function toast(){
+    var d=document.createElement('div');
+    d.textContent='Copied!';
+    d.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#a78bfa;color:#000;padding:6px 16px;border-radius:20px;font-size:13px;font-family:monospace;z-index:9999;pointer-events:none;opacity:1;transition:opacity .4s';
+    document.body.appendChild(d);
+    setTimeout(function(){d.style.opacity='0';setTimeout(function(){d.remove();},400);},1200);
+  }
+  function attach(el){
+    el.addEventListener('touchstart',function(){
+      _lpt=setTimeout(function(){cp(el.innerText||el.textContent);toast();},600);
+    },{passive:true});
+    el.addEventListener('touchend',function(){clearTimeout(_lpt);});
+    el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
+  }
+  function init(){document.querySelectorAll('pre').forEach(attach);}
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
+})();
+</script>
 </div>
 <script>prependPath="../";</script><script src="../js/search.js"></script>
 </body>
