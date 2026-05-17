@@ -4,14 +4,28 @@
 <meta charset="UTF-8">
 <title>ForwardMessages - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>ForwardMessages</li></ul>
 <h1>ForwardMessages</h1>
+<p>Both users and bots can use this request.</p>
 <pre>---functions---
 messages.forwardMessages#13704a7c silent:flags.5?<a href="../../index.html#true">true</a> background:flags.6?<a href="../../index.html#true">true</a> with_my_score:flags.8?<a href="../../index.html#true">true</a> drop_author:flags.11?<a href="../../index.html#true">true</a> drop_media_captions:flags.12?<a href="../../index.html#true">true</a> noforwards:flags.14?<a href="../../index.html#true">true</a> allow_paid_floodskip:flags.19?<a href="../../index.html#true">true</a> from_peer:<a href="../../types/input_peer.html">InputPeer</a> id:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#int">int</a>&gt; random_id:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#long">long</a>&gt; to_peer:<a href="../../types/input_peer.html">InputPeer</a> top_msg_id:flags.9?<a href="../../index.html#int">int</a> reply_to:flags.22?<a href="../../types/input_reply_to.html">InputReplyTo</a> schedule_date:flags.10?<a href="../../index.html#int">int</a> schedule_repeat_period:flags.24?<a href="../../index.html#int">int</a> send_as:flags.13?<a href="../../types/input_peer.html">InputPeer</a> quick_reply_shortcut:flags.17?<a href="../../types/input_quick_reply_shortcut.html">InputQuickReplyShortcut</a> effect:flags.18?<a href="../../index.html#long">long</a> video_timestamp:flags.20?<a href="../../index.html#int">int</a> allow_paid_stars:flags.21?<a href="../../index.html#long">long</a> suggested_post:flags.23?<a href="../../types/suggested_post.html">SuggestedPost</a> = <a href="../../types/updates.html">Updates</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.messages import ForwardMessages')">Copy import</button>
@@ -25,10 +39,10 @@ messages.forwardMessages#13704a7c silent:flags.5?<a href="../../index.html#true"
 <tr><td>drop_media_captions</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>noforwards</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>allow_paid_floodskip</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>from_peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td>Required.</td></tr>
-<tr><td>id</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#int">int</a>&gt;</td><td>Required.</td></tr>
-<tr><td>random_id</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#long">long</a>&gt;</td><td>Required.</td></tr>
-<tr><td>to_peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td>Required.</td></tr>
+<tr><td>from_peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>id</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#int">int</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+<tr><td>random_id</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#long">long</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+<tr><td>to_peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>top_msg_id</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>reply_to</td><td><a href="../../types/input_reply_to.html">InputReplyTo</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>schedule_date</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
@@ -40,6 +54,48 @@ messages.forwardMessages#13704a7c silent:flags.5?<a href="../../index.html#true"
 <tr><td>allow_paid_stars</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>suggested_post</td><td><a href="../../types/suggested_post.html">SuggestedPost</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table>
+<h3>Example</h3>
+<details class="example" open>
+  <summary>&#9654; Minimal (required fields only)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.messages.ForwardMessages(
+    from_peer=&#x27;username&#x27;,
+    id=types.Vector&lt;int&gt;(),
+    random_id=types.Vector&lt;long&gt;(),
+    to_peer=&#x27;username&#x27;
+))
+print(result)</pre>
+</details>
+<details class="example">
+  <summary>&#9654; Full (all fields)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.messages.ForwardMessages(
+    silent=True,
+    background=True,
+    with_my_score=True,
+    drop_author=True,
+    drop_media_captions=True,
+    noforwards=True,
+    allow_paid_floodskip=True,
+    from_peer=&#x27;username&#x27;,
+    id=types.Vector&lt;int&gt;(),
+    random_id=types.Vector&lt;long&gt;(),
+    to_peer=&#x27;username&#x27;,
+    top_msg_id=42,
+    reply_to=types.InputReplyTo(),
+    schedule_date=42,
+    schedule_repeat_period=42,
+    send_as=&#x27;username&#x27;,
+    quick_reply_shortcut=types.InputQuickReplyShortcut(),
+    effect=-12398745604826,
+    video_timestamp=42,
+    allow_paid_stars=-12398745604826,
+    suggested_post=types.SuggestedPost()
+))
+print(result)</pre>
+</details>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

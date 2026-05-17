@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>FoundStickers - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li><a href="../../constructors/messages/index.html">Messages</a></li><span class="sep">›</span><li>FoundStickers</li></ul>
@@ -19,9 +32,10 @@ messages.foundStickers#82c9e290 next_offset:flags.0?<a href="../../index.html#in
 <table><tr><td><a href="../../types/messages/found_stickers.html">messages.FoundStickers</a></td></tr></table>
 <h3>Members</h3>
 <table><tr><td>next_offset</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>hash</td><td><a href="../../index.html#long">long</a></td><td>Required.</td></tr>
-<tr><td>stickers</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/document.html">Document</a>&gt;</td><td>Required.</td></tr>
+<tr><td>hash</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>stickers</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/document.html">Document</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
 </table>
+
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

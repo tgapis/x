@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>InputChannelEmpty - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../css/docs.css">
+<link id="style" rel="stylesheet" href="../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputChannelEmpty</li></ul>
@@ -19,6 +32,62 @@ inputChannelEmpty#ee8c1e86 = <a href="../types/input_channel.html">InputChannel<
 <table><tr><td><a href="../types/input_channel.html">InputChannel</a></td></tr></table>
 <h3>Members</h3>
 <p>This item has no parameters.</p>
+<h3>Used by</h3><table><tr><td><a href="../methods/channels/check_username.html">CheckUsername</a></td></tr>
+<tr><td><a href="../methods/channels/convert_to_gigagroup.html">ConvertToGigagroup</a></td></tr>
+<tr><td><a href="../methods/channels/deactivate_all_usernames.html">DeactivateAllUsernames</a></td></tr>
+<tr><td><a href="../methods/channels/delete_channel.html">DeleteChannel</a></td></tr>
+<tr><td><a href="../methods/channels/delete_history.html">DeleteHistory</a></td></tr>
+<tr><td><a href="../methods/channels/delete_messages.html">DeleteMessages</a></td></tr>
+<tr><td><a href="../methods/channels/delete_participant_history.html">DeleteParticipantHistory</a></td></tr>
+<tr><td><a href="../methods/channels/edit_admin.html">EditAdmin</a></td></tr>
+<tr><td><a href="../methods/channels/edit_banned.html">EditBanned</a></td></tr>
+<tr><td><a href="../methods/channels/edit_location.html">EditLocation</a></td></tr>
+<tr><td><a href="../methods/channels/edit_photo.html">EditPhoto</a></td></tr>
+<tr><td><a href="../methods/channels/edit_title.html">EditTitle</a></td></tr>
+<tr><td><a href="../methods/channels/export_message_link.html">ExportMessageLink</a></td></tr>
+<tr><td><a href="../methods/channels/get_admin_log.html">GetAdminLog</a></td></tr>
+<tr><td><a href="../methods/stats/get_broadcast_stats.html">GetBroadcastStats</a></td></tr>
+<tr><td><a href="../methods/updates/get_channel_difference.html">GetChannelDifference</a></td></tr>
+<tr><td><a href="../methods/channels/get_channel_recommendations.html">GetChannelRecommendations</a></td></tr>
+<tr><td><a href="../methods/channels/get_full_channel.html">GetFullChannel</a></td></tr>
+<tr><td><a href="../methods/stats/get_megagroup_stats.html">GetMegagroupStats</a></td></tr>
+<tr><td><a href="../methods/channels/get_message_author.html">GetMessageAuthor</a></td></tr>
+<tr><td><a href="../methods/stats/get_message_public_forwards.html">GetMessagePublicForwards</a></td></tr>
+<tr><td><a href="../methods/stats/get_message_stats.html">GetMessageStats</a></td></tr>
+<tr><td><a href="../methods/channels/get_messages.html">GetMessages</a></td></tr>
+<tr><td><a href="../methods/channels/get_participant.html">GetParticipant</a></td></tr>
+<tr><td><a href="../methods/channels/get_participants.html">GetParticipants</a></td></tr>
+<tr><td><a href="../methods/channels/invite_to_channel.html">InviteToChannel</a></td></tr>
+<tr><td><a href="../methods/channels/join_channel.html">JoinChannel</a></td></tr>
+<tr><td><a href="../methods/channels/leave_channel.html">LeaveChannel</a></td></tr>
+<tr><td><a href="../methods/channels/read_history.html">ReadHistory</a></td></tr>
+<tr><td><a href="../methods/channels/read_message_contents.html">ReadMessageContents</a></td></tr>
+<tr><td><a href="../methods/channels/reorder_usernames.html">ReorderUsernames</a></td></tr>
+<tr><td><a href="../methods/channels/report_anti_spam_false_positive.html">ReportAntiSpamFalsePositive</a></td></tr>
+<tr><td><a href="../methods/channels/report_spam.html">ReportSpam</a></td></tr>
+<tr><td><a href="../methods/channels/restrict_sponsored_messages.html">RestrictSponsoredMessages</a></td></tr>
+<tr><td><a href="../methods/channels/set_boosts_to_unblock_restrictions.html">SetBoostsToUnblockRestrictions</a></td></tr>
+<tr><td><a href="../methods/channels/set_discussion_group.html">SetDiscussionGroup</a></td></tr>
+<tr><td><a href="../methods/channels/set_emoji_stickers.html">SetEmojiStickers</a></td></tr>
+<tr><td><a href="../methods/channels/set_main_profile_tab.html">SetMainProfileTab</a></td></tr>
+<tr><td><a href="../methods/channels/set_stickers.html">SetStickers</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_anti_spam.html">ToggleAntiSpam</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_autotranslation.html">ToggleAutotranslation</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_forum.html">ToggleForum</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_join_request.html">ToggleJoinRequest</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_join_to_send.html">ToggleJoinToSend</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_participants_hidden.html">ToggleParticipantsHidden</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_pre_history_hidden.html">TogglePreHistoryHidden</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_signatures.html">ToggleSignatures</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_slow_mode.html">ToggleSlowMode</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_username.html">ToggleUsername</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_view_forum_as_messages.html">ToggleViewForumAsMessages</a></td></tr>
+<tr><td><a href="../methods/channels/update_color.html">UpdateColor</a></td></tr>
+<tr><td><a href="../methods/channels/update_emoji_status.html">UpdateEmojiStatus</a></td></tr>
+<tr><td><a href="../methods/channels/update_paid_messages_price.html">UpdatePaidMessagesPrice</a></td></tr>
+<tr><td><a href="../methods/account/update_personal_channel.html">UpdatePersonalChannel</a></td></tr>
+<tr><td><a href="../methods/channels/update_username.html">UpdateUsername</a></td></tr>
+</table>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

@@ -4,14 +4,28 @@
 <meta charset="UTF-8">
 <title>RequestMainWebView - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>RequestMainWebView</li></ul>
 <h1>RequestMainWebView</h1>
+<p>Both users and bots can use this request.</p>
 <pre>---functions---
 messages.requestMainWebView#c9e01e7b compact:flags.7?<a href="../../index.html#true">true</a> fullscreen:flags.8?<a href="../../index.html#true">true</a> peer:<a href="../../types/input_peer.html">InputPeer</a> bot:<a href="../../types/input_user.html">InputUser</a> start_param:flags.1?<a href="../../index.html#string">string</a> theme_params:flags.0?<a href="../../types/data_json.html">DataJSON</a> platform:<a href="../../index.html#string">string</a> = <a href="../../types/web_view_result.html">WebViewResult</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.messages import RequestMainWebView')">Copy import</button>
@@ -20,12 +34,39 @@ messages.requestMainWebView#c9e01e7b compact:flags.7?<a href="../../index.html#t
 <h3>Parameters</h3>
 <table><tr><td>compact</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>fullscreen</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td>Required.</td></tr>
-<tr><td>bot</td><td><a href="../../types/input_user.html">InputUser</a></td><td>Required.</td></tr>
+<tr><td>peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>bot</td><td><a href="../../types/input_user.html">InputUser</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>start_param</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>theme_params</td><td><a href="../../types/data_json.html">DataJSON</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>platform</td><td><a href="../../index.html#string">string</a></td><td>Required.</td></tr>
+<tr><td>platform</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
 </table>
+<h3>Example</h3>
+<details class="example" open>
+  <summary>&#9654; Minimal (required fields only)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.messages.RequestMainWebView(
+    peer=&#x27;username&#x27;,
+    bot=&#x27;username&#x27;,
+    platform=&#x27;some string here&#x27;
+))
+print(result)</pre>
+</details>
+<details class="example">
+  <summary>&#9654; Full (all fields)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.messages.RequestMainWebView(
+    compact=True,
+    fullscreen=True,
+    peer=&#x27;username&#x27;,
+    bot=&#x27;username&#x27;,
+    start_param=&#x27;some string here&#x27;,
+    theme_params=types.DataJSON(),
+    platform=&#x27;some string here&#x27;
+))
+print(result)</pre>
+</details>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>InputDocumentEmpty - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../css/docs.css">
+<link id="style" rel="stylesheet" href="../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputDocumentEmpty</li></ul>
@@ -19,6 +32,23 @@ inputDocumentEmpty#72f0eaae = <a href="../types/input_document.html">InputDocume
 <table><tr><td><a href="../types/input_document.html">InputDocument</a></td></tr></table>
 <h3>Members</h3>
 <p>This item has no parameters.</p>
+<h3>Used by</h3><table><tr><td><a href="../methods/stickers/change_sticker.html">ChangeSticker</a></td></tr>
+<tr><td><a href="../methods/stickers/change_sticker_position.html">ChangeStickerPosition</a></td></tr>
+<tr><td><a href="../methods/stickers/create_sticker_set.html">CreateStickerSet</a></td></tr>
+<tr><td><a href="../methods/account/create_theme.html">CreateTheme</a></td></tr>
+<tr><td><a href="../methods/stories/edit_story.html">EditStory</a></td></tr>
+<tr><td><a href="../methods/messages/fave_sticker.html">FaveSticker</a></td></tr>
+<tr><td><a href="../methods/stickers/remove_sticker_from_set.html">RemoveStickerFromSet</a></td></tr>
+<tr><td><a href="../methods/stickers/replace_sticker.html">ReplaceSticker</a></td></tr>
+<tr><td><a href="../methods/messages/report_music_listen.html">ReportMusicListen</a></td></tr>
+<tr><td><a href="../methods/messages/save_gif.html">SaveGif</a></td></tr>
+<tr><td><a href="../methods/account/save_music.html">SaveMusic</a></td></tr>
+<tr><td><a href="../methods/messages/save_recent_sticker.html">SaveRecentSticker</a></td></tr>
+<tr><td><a href="../methods/account/save_ringtone.html">SaveRingtone</a></td></tr>
+<tr><td><a href="../methods/stories/send_story.html">SendStory</a></td></tr>
+<tr><td><a href="../methods/stickers/set_sticker_set_thumb.html">SetStickerSetThumb</a></td></tr>
+<tr><td><a href="../methods/account/update_theme.html">UpdateTheme</a></td></tr>
+</table>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

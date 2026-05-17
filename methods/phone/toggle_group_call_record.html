@@ -4,14 +4,28 @@
 <meta charset="UTF-8">
 <title>ToggleGroupCallRecord - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/phone/index.html">Phone</a></li><span class="sep">›</span><li>ToggleGroupCallRecord</li></ul>
 <h1>ToggleGroupCallRecord</h1>
+<p>Both users and bots can use this request.</p>
 <pre>---functions---
 phone.toggleGroupCallRecord#f128c708 start:flags.0?<a href="../../index.html#true">true</a> video:flags.2?<a href="../../index.html#true">true</a> call:<a href="../../types/input_group_call.html">InputGroupCall</a> title:flags.1?<a href="../../index.html#string">string</a> video_portrait:flags.2?<a href="../../index.html#bool">Bool</a> = <a href="../../types/updates.html">Updates</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.phone import ToggleGroupCallRecord')">Copy import</button>
@@ -20,10 +34,33 @@ phone.toggleGroupCallRecord#f128c708 start:flags.0?<a href="../../index.html#tru
 <h3>Parameters</h3>
 <table><tr><td>start</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>video</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>call</td><td><a href="../../types/input_group_call.html">InputGroupCall</a></td><td>Required.</td></tr>
+<tr><td>call</td><td><a href="../../types/input_group_call.html">InputGroupCall</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>title</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>video_portrait</td><td><a href="../../index.html#bool">Bool</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table>
+<h3>Example</h3>
+<details class="example" open>
+  <summary>&#9654; Minimal (required fields only)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.phone.ToggleGroupCallRecord(
+    call=types.InputGroupCall()
+))
+print(result)</pre>
+</details>
+<details class="example">
+  <summary>&#9654; Full (all fields)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.phone.ToggleGroupCallRecord(
+    start=True,
+    video=True,
+    call=types.InputGroupCall(),
+    title=&#x27;My title&#x27;,
+    video_portrait=False
+))
+print(result)</pre>
+</details>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

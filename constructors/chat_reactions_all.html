@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>ChatReactionsAll - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../css/docs.css">
+<link id="style" rel="stylesheet" href="../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>ChatReactionsAll</li></ul>
@@ -19,6 +32,8 @@ chatReactionsAll#52928bca allow_custom:flags.0?<a href="../index.html#true">true
 <table><tr><td><a href="../types/chat_reactions.html">ChatReactions</a></td></tr></table>
 <h3>Members</h3>
 <table><tr><td>allow_custom</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table>
+<h3>Used by</h3><table><tr><td><a href="../methods/messages/set_chat_available_reactions.html">SetChatAvailableReactions</a></td></tr>
 </table>
 
 <textarea id="c" class="invisible"></textarea>

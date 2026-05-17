@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>StoryReaction - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../css/docs.css">
+<link id="style" rel="stylesheet" href="../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>StoryReaction</li></ul>
@@ -18,10 +31,11 @@ storyReaction#6090d6d5 peer_id:<a href="../types/peer.html">Peer</a> date:<a hre
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/story_reaction.html">StoryReaction</a></td></tr></table>
 <h3>Members</h3>
-<table><tr><td>peer_id</td><td><a href="../types/peer.html">Peer</a></td><td>Required.</td></tr>
-<tr><td>date</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
-<tr><td>reaction</td><td><a href="../types/reaction.html">Reaction</a></td><td>Required.</td></tr>
+<table><tr><td>peer_id</td><td><a href="../types/peer.html">Peer</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>date</td><td><a href="../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>reaction</td><td><a href="../types/reaction.html">Reaction</a></td><td><span class="tag-req">required</span></td></tr>
 </table>
+
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

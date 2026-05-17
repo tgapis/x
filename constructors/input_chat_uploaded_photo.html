@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>InputChatUploadedPhoto - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../css/docs.css">
+<link id="style" rel="stylesheet" href="../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputChatUploadedPhoto</li></ul>
@@ -22,6 +35,9 @@ inputChatUploadedPhoto#bdcdaec0 file:flags.0?<a href="../types/input_file.html">
 <tr><td>video</td><td><a href="../types/input_file.html">InputFile</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>video_start_ts</td><td><a href="../index.html#double">double</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>video_emoji_markup</td><td><a href="../types/video_size.html">VideoSize</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table>
+<h3>Used by</h3><table><tr><td><a href="../methods/messages/edit_chat_photo.html">EditChatPhoto</a></td></tr>
+<tr><td><a href="../methods/channels/edit_photo.html">EditPhoto</a></td></tr>
 </table>
 
 <textarea id="c" class="invisible"></textarea>

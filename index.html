@@ -4,38 +4,51 @@
 <meta charset="UTF-8">
 <title>ferogram API - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="css/docs.css">
+<link id="style" rel="stylesheet" href="css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <h1>ferogram API <span style="color:var(--muted);font-size:1rem">Layer 225</span></h1>
-<p>Raw Telegram MTProto API reference, auto-generated from <code>raw_api.tl</code> (Layer 225).
-Use the search box below or browse by section.</p>
+<p>Raw Telegram MTProto API reference, auto-generated from TL schema (Layer 225).
+Search above or browse by section.</p>
 <p>
-  <a href="methods/index.html">Methods</a> (772) ·
-  <a href="types/index.html">Types</a> (594) ·
+  <a href="methods/index.html">Methods</a> (772) &middot;
+  <a href="types/index.html">Types</a> (594) &middot;
   <a href="constructors/index.html">Constructors</a> (1573)
 </p>
 <h3>Usage</h3>
-<pre># namespace style
+<pre># namespace import
 from ferogram.raw.functions.messages import GetHistory
 result = await client(GetHistory(peer=..., limit=100, ...))
 
-# flat style
+# flat import
 from ferogram import raw
 result = await client(raw.functions.messages.GetHistory(peer=..., limit=100, ...))</pre>
-
-<h3 id="vector">Core types</h3>
+<h3 id="int">Core types</h3>
 <table>
-<tr><td><b id="int">int</b></td><td>A 32-bit integer.</td></tr>
-<tr><td><b id="long">long</b></td><td>A 64-bit integer.</td></tr>
-<tr><td><b>bool</b> / <b>true</b></td><td>A boolean value.</td></tr>
-<tr><td><b>string</b></td><td>A UTF-8 string.</td></tr>
-<tr><td><b>bytes</b></td><td>Arbitrary binary data.</td></tr>
-<tr><td><b>double</b></td><td>A 64-bit float.</td></tr>
-<tr><td><b id="vector">Vector&lt;T&gt;</b></td><td>A list of T.</td></tr>
+<tr><td><b>int</b></td><td>32-bit integer.</td></tr>
+<tr><td><b id="long">long</b></td><td>64-bit integer.</td></tr>
+<tr><td><b id="bool">bool</b> / <b id="true">true</b></td><td>Boolean value.</td></tr>
+<tr><td><b id="string">string</b></td><td>UTF-8 string.</td></tr>
+<tr><td><b id="bytes">bytes</b></td><td>Arbitrary binary data.</td></tr>
+<tr><td><b id="double">double</b></td><td>64-bit float.</td></tr>
+<tr><td><b id="date">date</b></td><td>Unix timestamp (int).</td></tr>
+<tr><td><b id="vector">Vector&lt;T&gt;</b></td><td>List of T.</td></tr>
 </table>
 
 <textarea id="c" class="invisible"></textarea>

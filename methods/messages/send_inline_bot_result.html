@@ -4,14 +4,28 @@
 <meta charset="UTF-8">
 <title>SendInlineBotResult - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>SendInlineBotResult</li></ul>
 <h1>SendInlineBotResult</h1>
+<p>Both users and bots can use this request.</p>
 <pre>---functions---
 messages.sendInlineBotResult#c0cf7646 silent:flags.5?<a href="../../index.html#true">true</a> background:flags.6?<a href="../../index.html#true">true</a> clear_draft:flags.7?<a href="../../index.html#true">true</a> hide_via:flags.11?<a href="../../index.html#true">true</a> peer:<a href="../../types/input_peer.html">InputPeer</a> reply_to:flags.0?<a href="../../types/input_reply_to.html">InputReplyTo</a> random_id:<a href="../../index.html#long">long</a> query_id:<a href="../../index.html#long">long</a> id:<a href="../../index.html#string">string</a> schedule_date:flags.10?<a href="../../index.html#int">int</a> send_as:flags.13?<a href="../../types/input_peer.html">InputPeer</a> quick_reply_shortcut:flags.17?<a href="../../types/input_quick_reply_shortcut.html">InputQuickReplyShortcut</a> allow_paid_stars:flags.21?<a href="../../index.html#long">long</a> = <a href="../../types/updates.html">Updates</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.messages import SendInlineBotResult')">Copy import</button>
@@ -22,16 +36,50 @@ messages.sendInlineBotResult#c0cf7646 silent:flags.5?<a href="../../index.html#t
 <tr><td>background</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>clear_draft</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>hide_via</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td>Required.</td></tr>
+<tr><td>peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>reply_to</td><td><a href="../../types/input_reply_to.html">InputReplyTo</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>random_id</td><td><a href="../../index.html#long">long</a></td><td>Required.</td></tr>
-<tr><td>query_id</td><td><a href="../../index.html#long">long</a></td><td>Required.</td></tr>
-<tr><td>id</td><td><a href="../../index.html#string">string</a></td><td>Required.</td></tr>
+<tr><td>random_id</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>query_id</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>id</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>schedule_date</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>send_as</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>quick_reply_shortcut</td><td><a href="../../types/input_quick_reply_shortcut.html">InputQuickReplyShortcut</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>allow_paid_stars</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table>
+<h3>Example</h3>
+<details class="example" open>
+  <summary>&#9654; Minimal (required fields only)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.messages.SendInlineBotResult(
+    peer=&#x27;username&#x27;,
+    random_id=random.randrange(-2**63, 2**63),
+    query_id=-12398745604826,
+    id=&#x27;some string here&#x27;
+))
+print(result)</pre>
+</details>
+<details class="example">
+  <summary>&#9654; Full (all fields)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.messages.SendInlineBotResult(
+    silent=True,
+    background=True,
+    clear_draft=True,
+    hide_via=True,
+    peer=&#x27;username&#x27;,
+    reply_to=types.InputReplyTo(),
+    random_id=random.randrange(-2**63, 2**63),
+    query_id=-12398745604826,
+    id=&#x27;some string here&#x27;,
+    schedule_date=42,
+    send_as=&#x27;username&#x27;,
+    quick_reply_shortcut=types.InputQuickReplyShortcut(),
+    allow_paid_stars=-12398745604826
+))
+print(result)</pre>
+</details>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

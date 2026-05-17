@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>InputSecureValue - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../css/docs.css">
+<link id="style" rel="stylesheet" href="../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputSecureValue</li></ul>
@@ -18,7 +31,7 @@ inputSecureValue#db21d0a7 type:<a href="../types/secure_value_type.html">SecureV
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/input_secure_value.html">InputSecureValue</a></td></tr></table>
 <h3>Members</h3>
-<table><tr><td>type</td><td><a href="../types/secure_value_type.html">SecureValueType</a></td><td>Required.</td></tr>
+<table><tr><td>type</td><td><a href="../types/secure_value_type.html">SecureValueType</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>data</td><td><a href="../types/secure_data.html">SecureData</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>front_side</td><td><a href="../types/input_secure_file.html">InputSecureFile</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>reverse_side</td><td><a href="../types/input_secure_file.html">InputSecureFile</a></td><td><span class="tag-opt">optional</span></td></tr>
@@ -26,6 +39,8 @@ inputSecureValue#db21d0a7 type:<a href="../types/secure_value_type.html">SecureV
 <tr><td>translation</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_secure_file.html">InputSecureFile</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>files</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_secure_file.html">InputSecureFile</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>plain_data</td><td><a href="../types/secure_plain_data.html">SecurePlainData</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table>
+<h3>Used by</h3><table><tr><td><a href="../methods/account/save_secure_value.html">SaveSecureValue</a></td></tr>
 </table>
 
 <textarea id="c" class="invisible"></textarea>

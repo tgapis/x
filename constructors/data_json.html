@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>DataJSON - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../css/docs.css">
+<link id="style" rel="stylesheet" href="../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>DataJSON</li></ul>
@@ -18,7 +31,22 @@ dataJSON#7d748d04 data:<a href="../index.html#string">string</a> = <a href="../t
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/data_json.html">DataJSON</a></td></tr></table>
 <h3>Members</h3>
-<table><tr><td>data</td><td><a href="../index.html#string">string</a></td><td>Required.</td></tr>
+<table><tr><td>data</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+</table>
+<h3>Used by</h3><table><tr><td><a href="../methods/help/accept_terms_of_service.html">AcceptTermsOfService</a></td></tr>
+<tr><td><a href="../methods/bots/answer_webhook_json_query.html">AnswerWebhookJSONQuery</a></td></tr>
+<tr><td><a href="../methods/payments/assign_play_market_transaction.html">AssignPlayMarketTransaction</a></td></tr>
+<tr><td><a href="../methods/phone/create_conference_call.html">CreateConferenceCall</a></td></tr>
+<tr><td><a href="../methods/payments/get_payment_form.html">GetPaymentForm</a></td></tr>
+<tr><td><a href="../methods/bots/invoke_web_view_custom_method.html">InvokeWebViewCustomMethod</a></td></tr>
+<tr><td><a href="../methods/phone/join_group_call.html">JoinGroupCall</a></td></tr>
+<tr><td><a href="../methods/phone/join_group_call_presentation.html">JoinGroupCallPresentation</a></td></tr>
+<tr><td><a href="../methods/messages/request_app_web_view.html">RequestAppWebView</a></td></tr>
+<tr><td><a href="../methods/messages/request_main_web_view.html">RequestMainWebView</a></td></tr>
+<tr><td><a href="../methods/messages/request_simple_web_view.html">RequestSimpleWebView</a></td></tr>
+<tr><td><a href="../methods/messages/request_web_view.html">RequestWebView</a></td></tr>
+<tr><td><a href="../methods/phone/save_call_debug.html">SaveCallDebug</a></td></tr>
+<tr><td><a href="../methods/bots/send_custom_request.html">SendCustomRequest</a></td></tr>
 </table>
 
 <textarea id="c" class="invisible"></textarea>

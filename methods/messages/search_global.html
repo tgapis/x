@@ -4,14 +4,28 @@
 <meta charset="UTF-8">
 <title>SearchGlobal - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>SearchGlobal</li></ul>
 <h1>SearchGlobal</h1>
+<p>Both users and bots can use this request.</p>
 <pre>---functions---
 messages.searchGlobal#4bc6589a broadcasts_only:flags.1?<a href="../../index.html#true">true</a> groups_only:flags.2?<a href="../../index.html#true">true</a> users_only:flags.3?<a href="../../index.html#true">true</a> folder_id:flags.0?<a href="../../index.html#int">int</a> q:<a href="../../index.html#string">string</a> filter:<a href="../../types/messages_filter.html">MessagesFilter</a> min_date:<a href="../../index.html#int">int</a> max_date:<a href="../../index.html#int">int</a> offset_rate:<a href="../../index.html#int">int</a> offset_peer:<a href="../../types/input_peer.html">InputPeer</a> offset_id:<a href="../../index.html#int">int</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/messages/messages.html">messages.Messages</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.messages import SearchGlobal')">Copy import</button>
@@ -22,15 +36,52 @@ messages.searchGlobal#4bc6589a broadcasts_only:flags.1?<a href="../../index.html
 <tr><td>groups_only</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>users_only</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>folder_id</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>q</td><td><a href="../../index.html#string">string</a></td><td>Required.</td></tr>
-<tr><td>filter</td><td><a href="../../types/messages_filter.html">MessagesFilter</a></td><td>Required.</td></tr>
-<tr><td>min_date</td><td><a href="../../index.html#int">int</a></td><td>Required.</td></tr>
-<tr><td>max_date</td><td><a href="../../index.html#int">int</a></td><td>Required.</td></tr>
-<tr><td>offset_rate</td><td><a href="../../index.html#int">int</a></td><td>Required.</td></tr>
-<tr><td>offset_peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td>Required.</td></tr>
-<tr><td>offset_id</td><td><a href="../../index.html#int">int</a></td><td>Required.</td></tr>
-<tr><td>limit</td><td><a href="../../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>q</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>filter</td><td><a href="../../types/messages_filter.html">MessagesFilter</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>min_date</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>max_date</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>offset_rate</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>offset_peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>offset_id</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>limit</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
 </table>
+<h3>Example</h3>
+<details class="example" open>
+  <summary>&#9654; Minimal (required fields only)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.messages.SearchGlobal(
+    q=&#x27;some string here&#x27;,
+    filter=types.MessagesFilter(),
+    min_date=42,
+    max_date=42,
+    offset_rate=42,
+    offset_peer=&#x27;username&#x27;,
+    offset_id=42,
+    limit=100
+))
+print(result)</pre>
+</details>
+<details class="example">
+  <summary>&#9654; Full (all fields)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.messages.SearchGlobal(
+    broadcasts_only=True,
+    groups_only=True,
+    users_only=True,
+    folder_id=42,
+    q=&#x27;some string here&#x27;,
+    filter=types.MessagesFilter(),
+    min_date=42,
+    max_date=42,
+    offset_rate=42,
+    offset_peer=&#x27;username&#x27;,
+    offset_id=42,
+    limit=100
+))
+print(result)</pre>
+</details>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

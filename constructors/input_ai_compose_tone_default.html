@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>InputAiComposeToneDefault - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../css/docs.css">
+<link id="style" rel="stylesheet" href="../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputAiComposeToneDefault</li></ul>
@@ -18,7 +31,14 @@ inputAiComposeToneDefault#1fe9a9bf tone:<a href="../index.html#string">string</a
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/input_ai_compose_tone.html">InputAiComposeTone</a></td></tr></table>
 <h3>Members</h3>
-<table><tr><td>tone</td><td><a href="../index.html#string">string</a></td><td>Required.</td></tr>
+<table><tr><td>tone</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+</table>
+<h3>Used by</h3><table><tr><td><a href="../methods/messages/compose_message_with_ai.html">ComposeMessageWithAI</a></td></tr>
+<tr><td><a href="../methods/aicompose/delete_tone.html">DeleteTone</a></td></tr>
+<tr><td><a href="../methods/aicompose/get_tone.html">GetTone</a></td></tr>
+<tr><td><a href="../methods/aicompose/get_tone_example.html">GetToneExample</a></td></tr>
+<tr><td><a href="../methods/aicompose/save_tone.html">SaveTone</a></td></tr>
+<tr><td><a href="../methods/aicompose/update_tone.html">UpdateTone</a></td></tr>
 </table>
 
 <textarea id="c" class="invisible"></textarea>

@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>StarGiftUnique - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../css/docs.css">
+<link id="style" rel="stylesheet" href="../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>StarGiftUnique</li></ul>
@@ -23,17 +36,17 @@ starGiftUnique#85f0a9cd require_premium:flags.6?<a href="../index.html#true">tru
 <tr><td>theme_available</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>burned</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>crafted</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>id</td><td><a href="../index.html#long">long</a></td><td>Required.</td></tr>
-<tr><td>gift_id</td><td><a href="../index.html#long">long</a></td><td>Required.</td></tr>
-<tr><td>title</td><td><a href="../index.html#string">string</a></td><td>Required.</td></tr>
-<tr><td>slug</td><td><a href="../index.html#string">string</a></td><td>Required.</td></tr>
-<tr><td>num</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>id</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>gift_id</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>title</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>slug</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>num</td><td><a href="../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>owner_id</td><td><a href="../types/peer.html">Peer</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>owner_name</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>owner_address</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>attributes</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/star_gift_attribute.html">StarGiftAttribute</a>&gt;</td><td>Required.</td></tr>
-<tr><td>availability_issued</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
-<tr><td>availability_total</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>attributes</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/star_gift_attribute.html">StarGiftAttribute</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+<tr><td>availability_issued</td><td><a href="../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>availability_total</td><td><a href="../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>gift_address</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>resell_amount</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/stars_amount.html">StarsAmount</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>released_by</td><td><a href="../types/peer.html">Peer</a></td><td><span class="tag-opt">optional</span></td></tr>
@@ -46,6 +59,7 @@ starGiftUnique#85f0a9cd require_premium:flags.6?<a href="../index.html#true">tru
 <tr><td>offer_min_stars</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>craft_chance_permille</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table>
+
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

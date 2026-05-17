@@ -4,14 +4,28 @@
 <meta charset="UTF-8">
 <title>UploadProfilePhoto - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/photos/index.html">Photos</a></li><span class="sep">›</span><li>UploadProfilePhoto</li></ul>
 <h1>UploadProfilePhoto</h1>
+<p>Both users and bots can use this request.</p>
 <pre>---functions---
 photos.uploadProfilePhoto#0388a3b5 fallback:flags.3?<a href="../../index.html#true">true</a> bot:flags.5?<a href="../../types/input_user.html">InputUser</a> file:flags.0?<a href="../../types/input_file.html">InputFile</a> video:flags.1?<a href="../../types/input_file.html">InputFile</a> video_start_ts:flags.2?<a href="../../index.html#double">double</a> video_emoji_markup:flags.4?<a href="../../types/video_size.html">VideoSize</a> = <a href="../../types/photos/photo.html">photos.Photo</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.photos import UploadProfilePhoto')">Copy import</button>
@@ -25,6 +39,28 @@ photos.uploadProfilePhoto#0388a3b5 fallback:flags.3?<a href="../../index.html#tr
 <tr><td>video_start_ts</td><td><a href="../../index.html#double">double</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>video_emoji_markup</td><td><a href="../../types/video_size.html">VideoSize</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table>
+<h3>Example</h3>
+<details class="example" open>
+  <summary>&#9654; Minimal (required fields only)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.photos.UploadProfilePhoto())
+print(result)</pre>
+</details>
+<details class="example">
+  <summary>&#9654; Full (all fields)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.photos.UploadProfilePhoto(
+    fallback=True,
+    bot=&#x27;username&#x27;,
+    file=types.InputFile(),
+    video=types.InputFile(),
+    video_start_ts=7.13,
+    video_emoji_markup=types.VideoSize()
+))
+print(result)</pre>
+</details>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

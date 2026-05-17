@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>auth.SentCode - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../types/index.html">Types</a></li><span class="sep">›</span><li><a href="../../types/auth/index.html">Auth</a></li><span class="sep">›</span><li>auth.SentCode</li></ul>
@@ -15,8 +28,20 @@
 <h3>Constructors</h3>
 <p>This type can be an instance of:</p>
 <table><tr><td><a href="../../constructors/auth/sent_code.html">SentCode</a></td></tr>
-<tr><td><a href="../../constructors/auth/sent_code_success.html">SentCodeSuccess</a></td></tr>
 <tr><td><a href="../../constructors/auth/sent_code_payment_required.html">SentCodePaymentRequired</a></td></tr>
+<tr><td><a href="../../constructors/auth/sent_code_success.html">SentCodeSuccess</a></td></tr>
+</table>
+<h3>Requests returning this type</h3><table><tr><td><a href="../../methods/auth/check_paid_auth.html">CheckPaidAuth</a></td></tr>
+<tr><td><a href="../../methods/auth/resend_code.html">ResendCode</a></td></tr>
+<tr><td><a href="../../methods/auth/reset_login_email.html">ResetLoginEmail</a></td></tr>
+<tr><td><a href="../../methods/account/send_change_phone_code.html">SendChangePhoneCode</a></td></tr>
+<tr><td><a href="../../methods/auth/send_code.html">SendCode</a></td></tr>
+<tr><td><a href="../../methods/account/send_confirm_phone_code.html">SendConfirmPhoneCode</a></td></tr>
+<tr><td><a href="../../methods/account/send_verify_phone_code.html">SendVerifyPhoneCode</a></td></tr>
+</table>
+<h3>Requests accepting this type as input</h3><p>None.</p>
+<h3>Other types containing this type</h3><table><tr><td><a href="../../constructors/account/email_verified_login.html">EmailVerifiedLogin</a></td></tr>
+<tr><td><a href="../../constructors/update_sent_phone_code.html">UpdateSentPhoneCode</a></td></tr>
 </table>
 
 <textarea id="c" class="invisible"></textarea>

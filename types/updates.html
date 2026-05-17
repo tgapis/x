@@ -4,23 +4,172 @@
 <meta charset="UTF-8">
 <title>Updates - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../css/docs.css">
+<link id="style" rel="stylesheet" href="../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../types/index.html">Types</a></li><span class="sep">›</span><li>Updates</li></ul>
 <h1>Updates</h1>
 <h3>Constructors</h3>
 <p>This type can be an instance of:</p>
-<table><tr><td><a href="../constructors/updates_too_long.html">UpdatesTooLong</a></td></tr>
-<tr><td><a href="../constructors/update_short_message.html">UpdateShortMessage</a></td></tr>
+<table><tr><td><a href="../constructors/update_short.html">UpdateShort</a></td></tr>
 <tr><td><a href="../constructors/update_short_chat_message.html">UpdateShortChatMessage</a></td></tr>
-<tr><td><a href="../constructors/update_short.html">UpdateShort</a></td></tr>
-<tr><td><a href="../constructors/updates_combined.html">UpdatesCombined</a></td></tr>
-<tr><td><a href="../constructors/updates.html">Updates</a></td></tr>
+<tr><td><a href="../constructors/update_short_message.html">UpdateShortMessage</a></td></tr>
 <tr><td><a href="../constructors/update_short_sent_message.html">UpdateShortSentMessage</a></td></tr>
+<tr><td><a href="../constructors/updates.html">Updates</a></td></tr>
+<tr><td><a href="../constructors/updates_combined.html">UpdatesCombined</a></td></tr>
+<tr><td><a href="../constructors/updates_too_long.html">UpdatesTooLong</a></td></tr>
+</table>
+<h3>Requests returning this type</h3><table><tr><td><a href="../methods/contacts/accept_contact.html">AcceptContact</a></td></tr>
+<tr><td><a href="../methods/stories/activate_stealth_mode.html">ActivateStealthMode</a></td></tr>
+<tr><td><a href="../methods/contacts/add_contact.html">AddContact</a></td></tr>
+<tr><td><a href="../methods/messages/add_poll_answer.html">AddPollAnswer</a></td></tr>
+<tr><td><a href="../methods/bots/allow_send_message.html">AllowSendMessage</a></td></tr>
+<tr><td><a href="../methods/messages/append_todo_list.html">AppendTodoList</a></td></tr>
+<tr><td><a href="../methods/payments/apply_gift_code.html">ApplyGiftCode</a></td></tr>
+<tr><td><a href="../methods/payments/assign_app_store_transaction.html">AssignAppStoreTransaction</a></td></tr>
+<tr><td><a href="../methods/payments/assign_play_market_transaction.html">AssignPlayMarketTransaction</a></td></tr>
+<tr><td><a href="../methods/contacts/block_from_replies.html">BlockFromReplies</a></td></tr>
+<tr><td><a href="../methods/channels/convert_to_gigagroup.html">ConvertToGigagroup</a></td></tr>
+<tr><td><a href="../methods/payments/craft_star_gift.html">CraftStarGift</a></td></tr>
+<tr><td><a href="../methods/channels/create_channel.html">CreateChannel</a></td></tr>
+<tr><td><a href="../methods/phone/create_conference_call.html">CreateConferenceCall</a></td></tr>
+<tr><td><a href="../methods/messages/create_forum_topic.html">CreateForumTopic</a></td></tr>
+<tr><td><a href="../methods/phone/create_group_call.html">CreateGroupCall</a></td></tr>
+<tr><td><a href="../methods/phone/decline_conference_call_invite.html">DeclineConferenceCallInvite</a></td></tr>
+<tr><td><a href="../methods/channels/delete_channel.html">DeleteChannel</a></td></tr>
+<tr><td><a href="../methods/messages/delete_chat_user.html">DeleteChatUser</a></td></tr>
+<tr><td><a href="../methods/phone/delete_conference_call_participants.html">DeleteConferenceCallParticipants</a></td></tr>
+<tr><td><a href="../methods/contacts/delete_contacts.html">DeleteContacts</a></td></tr>
+<tr><td><a href="../methods/messages/delete_fact_check.html">DeleteFactCheck</a></td></tr>
+<tr><td><a href="../methods/phone/delete_group_call_messages.html">DeleteGroupCallMessages</a></td></tr>
+<tr><td><a href="../methods/phone/delete_group_call_participant_messages.html">DeleteGroupCallParticipantMessages</a></td></tr>
+<tr><td><a href="../methods/channels/delete_history.html">DeleteHistory</a></td></tr>
+<tr><td><a href="../methods/messages/delete_participant_reaction.html">DeleteParticipantReaction</a></td></tr>
+<tr><td><a href="../methods/messages/delete_poll_answer.html">DeletePollAnswer</a></td></tr>
+<tr><td><a href="../methods/messages/delete_quick_reply_messages.html">DeleteQuickReplyMessages</a></td></tr>
+<tr><td><a href="../methods/messages/delete_scheduled_messages.html">DeleteScheduledMessages</a></td></tr>
+<tr><td><a href="../methods/phone/discard_call.html">DiscardCall</a></td></tr>
+<tr><td><a href="../methods/phone/discard_group_call.html">DiscardGroupCall</a></td></tr>
+<tr><td><a href="../methods/channels/edit_admin.html">EditAdmin</a></td></tr>
+<tr><td><a href="../methods/channels/edit_banned.html">EditBanned</a></td></tr>
+<tr><td><a href="../methods/messages/edit_chat_creator.html">EditChatCreator</a></td></tr>
+<tr><td><a href="../methods/messages/edit_chat_default_banned_rights.html">EditChatDefaultBannedRights</a></td></tr>
+<tr><td><a href="../methods/messages/edit_chat_participant_rank.html">EditChatParticipantRank</a></td></tr>
+<tr><td><a href="../methods/messages/edit_chat_photo.html">EditChatPhoto</a></td></tr>
+<tr><td><a href="../methods/messages/edit_chat_title.html">EditChatTitle</a></td></tr>
+<tr><td><a href="../methods/messages/edit_fact_check.html">EditFactCheck</a></td></tr>
+<tr><td><a href="../methods/messages/edit_forum_topic.html">EditForumTopic</a></td></tr>
+<tr><td><a href="../methods/phone/edit_group_call_participant.html">EditGroupCallParticipant</a></td></tr>
+<tr><td><a href="../methods/phone/edit_group_call_title.html">EditGroupCallTitle</a></td></tr>
+<tr><td><a href="../methods/messages/edit_message.html">EditMessage</a></td></tr>
+<tr><td><a href="../methods/folders/edit_peer_folders.html">EditPeerFolders</a></td></tr>
+<tr><td><a href="../methods/channels/edit_photo.html">EditPhoto</a></td></tr>
+<tr><td><a href="../methods/stories/edit_story.html">EditStory</a></td></tr>
+<tr><td><a href="../methods/channels/edit_title.html">EditTitle</a></td></tr>
+<tr><td><a href="../methods/messages/forward_messages.html">ForwardMessages</a></td></tr>
+<tr><td><a href="../methods/messages/get_all_drafts.html">GetAllDrafts</a></td></tr>
+<tr><td><a href="../methods/stories/get_all_read_peer_stories.html">GetAllReadPeerStories</a></td></tr>
+<tr><td><a href="../methods/account/get_bot_business_connection.html">GetBotBusinessConnection</a></td></tr>
+<tr><td><a href="../methods/messages/get_extended_media.html">GetExtendedMedia</a></td></tr>
+<tr><td><a href="../methods/phone/get_group_call_chain_blocks.html">GetGroupCallChainBlocks</a></td></tr>
+<tr><td><a href="../methods/contacts/get_located.html">GetLocated</a></td></tr>
+<tr><td><a href="../methods/messages/get_messages_reactions.html">GetMessagesReactions</a></td></tr>
+<tr><td><a href="../methods/account/get_notify_exceptions.html">GetNotifyExceptions</a></td></tr>
+<tr><td><a href="../methods/messages/get_paid_reaction_privacy.html">GetPaidReactionPrivacy</a></td></tr>
+<tr><td><a href="../methods/messages/get_poll_results.html">GetPollResults</a></td></tr>
+<tr><td><a href="../methods/messages/hide_all_chat_join_requests.html">HideAllChatJoinRequests</a></td></tr>
+<tr><td><a href="../methods/messages/hide_chat_join_request.html">HideChatJoinRequest</a></td></tr>
+<tr><td><a href="../methods/messages/import_chat_invite.html">ImportChatInvite</a></td></tr>
+<tr><td><a href="../methods/phone/invite_conference_call_participant.html">InviteConferenceCallParticipant</a></td></tr>
+<tr><td><a href="../methods/phone/invite_to_group_call.html">InviteToGroupCall</a></td></tr>
+<tr><td><a href="../methods/channels/join_channel.html">JoinChannel</a></td></tr>
+<tr><td><a href="../methods/chatlists/join_chatlist_invite.html">JoinChatlistInvite</a></td></tr>
+<tr><td><a href="../methods/chatlists/join_chatlist_updates.html">JoinChatlistUpdates</a></td></tr>
+<tr><td><a href="../methods/phone/join_group_call.html">JoinGroupCall</a></td></tr>
+<tr><td><a href="../methods/phone/join_group_call_presentation.html">JoinGroupCallPresentation</a></td></tr>
+<tr><td><a href="../methods/payments/launch_prepaid_giveaway.html">LaunchPrepaidGiveaway</a></td></tr>
+<tr><td><a href="../methods/channels/leave_channel.html">LeaveChannel</a></td></tr>
+<tr><td><a href="../methods/chatlists/leave_chatlist.html">LeaveChatlist</a></td></tr>
+<tr><td><a href="../methods/phone/leave_group_call.html">LeaveGroupCall</a></td></tr>
+<tr><td><a href="../methods/phone/leave_group_call_presentation.html">LeaveGroupCallPresentation</a></td></tr>
+<tr><td><a href="../methods/messages/migrate_chat.html">MigrateChat</a></td></tr>
+<tr><td><a href="../methods/payments/refund_stars_charge.html">RefundStarsCharge</a></td></tr>
+<tr><td><a href="../methods/messages/reorder_pinned_forum_topics.html">ReorderPinnedForumTopics</a></td></tr>
+<tr><td><a href="../methods/payments/resolve_star_gift_offer.html">ResolveStarGiftOffer</a></td></tr>
+<tr><td><a href="../methods/channels/restrict_sponsored_messages.html">RestrictSponsoredMessages</a></td></tr>
+<tr><td><a href="../methods/messages/send_bot_requested_peer.html">SendBotRequestedPeer</a></td></tr>
+<tr><td><a href="../methods/phone/send_conference_call_broadcast.html">SendConferenceCallBroadcast</a></td></tr>
+<tr><td><a href="../methods/phone/send_group_call_message.html">SendGroupCallMessage</a></td></tr>
+<tr><td><a href="../methods/messages/send_inline_bot_result.html">SendInlineBotResult</a></td></tr>
+<tr><td><a href="../methods/messages/send_media.html">SendMedia</a></td></tr>
+<tr><td><a href="../methods/messages/send_message.html">SendMessage</a></td></tr>
+<tr><td><a href="../methods/messages/send_multi_media.html">SendMultiMedia</a></td></tr>
+<tr><td><a href="../methods/messages/send_paid_reaction.html">SendPaidReaction</a></td></tr>
+<tr><td><a href="../methods/messages/send_quick_reply_messages.html">SendQuickReplyMessages</a></td></tr>
+<tr><td><a href="../methods/messages/send_reaction.html">SendReaction</a></td></tr>
+<tr><td><a href="../methods/stories/send_reaction.html">SendReaction</a></td></tr>
+<tr><td><a href="../methods/messages/send_scheduled_messages.html">SendScheduledMessages</a></td></tr>
+<tr><td><a href="../methods/messages/send_screenshot_notification.html">SendScreenshotNotification</a></td></tr>
+<tr><td><a href="../methods/payments/send_star_gift_offer.html">SendStarGiftOffer</a></td></tr>
+<tr><td><a href="../methods/stories/send_story.html">SendStory</a></td></tr>
+<tr><td><a href="../methods/messages/send_vote.html">SendVote</a></td></tr>
+<tr><td><a href="../methods/messages/send_web_view_data.html">SendWebViewData</a></td></tr>
+<tr><td><a href="../methods/channels/set_boosts_to_unblock_restrictions.html">SetBoostsToUnblockRestrictions</a></td></tr>
+<tr><td><a href="../methods/phone/set_call_rating.html">SetCallRating</a></td></tr>
+<tr><td><a href="../methods/messages/set_chat_available_reactions.html">SetChatAvailableReactions</a></td></tr>
+<tr><td><a href="../methods/messages/set_chat_theme.html">SetChatTheme</a></td></tr>
+<tr><td><a href="../methods/messages/set_chat_wall_paper.html">SetChatWallPaper</a></td></tr>
+<tr><td><a href="../methods/messages/set_game_score.html">SetGameScore</a></td></tr>
+<tr><td><a href="../methods/messages/set_history_ttl.html">SetHistoryTTL</a></td></tr>
+<tr><td><a href="../methods/messages/start_bot.html">StartBot</a></td></tr>
+<tr><td><a href="../methods/stories/start_live.html">StartLive</a></td></tr>
+<tr><td><a href="../methods/phone/start_scheduled_group_call.html">StartScheduledGroupCall</a></td></tr>
+<tr><td><a href="../methods/users/suggest_birthday.html">SuggestBirthday</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_anti_spam.html">ToggleAntiSpam</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_autotranslation.html">ToggleAutotranslation</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_forum.html">ToggleForum</a></td></tr>
+<tr><td><a href="../methods/phone/toggle_group_call_record.html">ToggleGroupCallRecord</a></td></tr>
+<tr><td><a href="../methods/phone/toggle_group_call_settings.html">ToggleGroupCallSettings</a></td></tr>
+<tr><td><a href="../methods/phone/toggle_group_call_start_subscription.html">ToggleGroupCallStartSubscription</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_join_request.html">ToggleJoinRequest</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_join_to_send.html">ToggleJoinToSend</a></td></tr>
+<tr><td><a href="../methods/messages/toggle_no_forwards.html">ToggleNoForwards</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_participants_hidden.html">ToggleParticipantsHidden</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_pre_history_hidden.html">TogglePreHistoryHidden</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_signatures.html">ToggleSignatures</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_slow_mode.html">ToggleSlowMode</a></td></tr>
+<tr><td><a href="../methods/messages/toggle_suggested_post_approval.html">ToggleSuggestedPostApproval</a></td></tr>
+<tr><td><a href="../methods/messages/toggle_todo_completed.html">ToggleTodoCompleted</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_view_forum_as_messages.html">ToggleViewForumAsMessages</a></td></tr>
+<tr><td><a href="../methods/payments/transfer_star_gift.html">TransferStarGift</a></td></tr>
+<tr><td><a href="../methods/channels/update_color.html">UpdateColor</a></td></tr>
+<tr><td><a href="../methods/account/update_connected_bot.html">UpdateConnectedBot</a></td></tr>
+<tr><td><a href="../methods/channels/update_emoji_status.html">UpdateEmojiStatus</a></td></tr>
+<tr><td><a href="../methods/channels/update_paid_messages_price.html">UpdatePaidMessagesPrice</a></td></tr>
+<tr><td><a href="../methods/messages/update_pinned_forum_topic.html">UpdatePinnedForumTopic</a></td></tr>
+<tr><td><a href="../methods/messages/update_pinned_message.html">UpdatePinnedMessage</a></td></tr>
+<tr><td><a href="../methods/payments/update_star_gift_price.html">UpdateStarGiftPrice</a></td></tr>
+<tr><td><a href="../methods/payments/upgrade_star_gift.html">UpgradeStarGift</a></td></tr>
+</table>
+<h3>Requests accepting this type as input</h3><p>None.</p>
+<h3>Other types containing this type</h3><table><tr><td><a href="../constructors/messages/invited_users.html">InvitedUsers</a></td></tr>
+<tr><td><a href="../constructors/payments/payment_result.html">PaymentResult</a></td></tr>
 </table>
 
 <textarea id="c" class="invisible"></textarea>

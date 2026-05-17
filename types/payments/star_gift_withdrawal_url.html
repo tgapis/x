@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>payments.StarGiftWithdrawalUrl - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../types/index.html">Types</a></li><span class="sep">›</span><li><a href="../../types/payments/index.html">Payments</a></li><span class="sep">›</span><li>payments.StarGiftWithdrawalUrl</li></ul>
@@ -16,6 +29,10 @@
 <p>This type can be an instance of:</p>
 <table><tr><td><a href="../../constructors/payments/star_gift_withdrawal_url.html">StarGiftWithdrawalUrl</a></td></tr>
 </table>
+<h3>Requests returning this type</h3><table><tr><td><a href="../../methods/payments/get_star_gift_withdrawal_url.html">GetStarGiftWithdrawalUrl</a></td></tr>
+</table>
+<h3>Requests accepting this type as input</h3><p>None.</p>
+<h3>Other types containing this type</h3><p>None.</p>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

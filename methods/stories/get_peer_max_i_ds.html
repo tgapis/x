@@ -4,22 +4,42 @@
 <meta charset="UTF-8">
 <title>GetPeerMaxIDs - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/stories/index.html">Stories</a></li><span class="sep">›</span><li>GetPeerMaxIDs</li></ul>
 <h1>GetPeerMaxIDs</h1>
+<p>Both users and bots can use this request.</p>
 <pre>---functions---
 stories.getPeerMaxIDs#78499170 id:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/input_peer.html">InputPeer</a>&gt; = <a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/recent_story.html">RecentStory</a>&gt;</pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.stories import GetPeerMaxIDs')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/recent_story.html">RecentStory</a>&gt;</td></tr></table>
 <h3>Parameters</h3>
-<table><tr><td>id</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/input_peer.html">InputPeer</a>&gt;</td><td>Required.</td></tr>
+<table><tr><td>id</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/input_peer.html">InputPeer</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
 </table>
+<h3>Example</h3><pre>from ferogram import raw, types
+
+result = await client(raw.functions.stories.GetPeerMaxIDs(
+    id=types.Vector&lt;InputPeer&gt;()
+))
+print(result)</pre>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

@@ -4,14 +4,28 @@
 <meta charset="UTF-8">
 <title>SendReaction - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>SendReaction</li></ul>
 <h1>SendReaction</h1>
+<p>Both users and bots can use this request.</p>
 <pre>---functions---
 messages.sendReaction#d30d78d4 big:flags.1?<a href="../../index.html#true">true</a> add_to_recent:flags.2?<a href="../../index.html#true">true</a> peer:<a href="../../types/input_peer.html">InputPeer</a> msg_id:<a href="../../index.html#int">int</a> reaction:flags.0?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/reaction.html">Reaction</a>&gt; = <a href="../../types/updates.html">Updates</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.messages import SendReaction')">Copy import</button>
@@ -20,10 +34,34 @@ messages.sendReaction#d30d78d4 big:flags.1?<a href="../../index.html#true">true<
 <h3>Parameters</h3>
 <table><tr><td>big</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>add_to_recent</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td>Required.</td></tr>
-<tr><td>msg_id</td><td><a href="../../index.html#int">int</a></td><td>Required.</td></tr>
+<tr><td>peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>msg_id</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>reaction</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/reaction.html">Reaction</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
 </table>
+<h3>Example</h3>
+<details class="example" open>
+  <summary>&#9654; Minimal (required fields only)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.messages.SendReaction(
+    peer=&#x27;username&#x27;,
+    msg_id=42
+))
+print(result)</pre>
+</details>
+<details class="example">
+  <summary>&#9654; Full (all fields)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.messages.SendReaction(
+    big=True,
+    add_to_recent=True,
+    peer=&#x27;username&#x27;,
+    msg_id=42,
+    reaction=types.Vector&lt;Reaction&gt;()
+))
+print(result)</pre>
+</details>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

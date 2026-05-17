@@ -4,14 +4,28 @@
 <meta charset="UTF-8">
 <title>UploadWallPaper - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/account/index.html">Account</a></li><span class="sep">›</span><li>UploadWallPaper</li></ul>
 <h1>UploadWallPaper</h1>
+<p>Both users and bots can use this request.</p>
 <pre>---functions---
 account.uploadWallPaper#e39a8f03 for_chat:flags.0?<a href="../../index.html#true">true</a> file:<a href="../../types/input_file.html">InputFile</a> mime_type:<a href="../../index.html#string">string</a> settings:<a href="../../types/wall_paper_settings.html">WallPaperSettings</a> = <a href="../../types/wall_paper.html">WallPaper</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.account import UploadWallPaper')">Copy import</button>
@@ -19,10 +33,34 @@ account.uploadWallPaper#e39a8f03 for_chat:flags.0?<a href="../../index.html#true
 <table><tr><td><a href="../../types/wall_paper.html">WallPaper</a></td></tr></table>
 <h3>Parameters</h3>
 <table><tr><td>for_chat</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>file</td><td><a href="../../types/input_file.html">InputFile</a></td><td>Required.</td></tr>
-<tr><td>mime_type</td><td><a href="../../index.html#string">string</a></td><td>Required.</td></tr>
-<tr><td>settings</td><td><a href="../../types/wall_paper_settings.html">WallPaperSettings</a></td><td>Required.</td></tr>
+<tr><td>file</td><td><a href="../../types/input_file.html">InputFile</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>mime_type</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>settings</td><td><a href="../../types/wall_paper_settings.html">WallPaperSettings</a></td><td><span class="tag-req">required</span></td></tr>
 </table>
+<h3>Example</h3>
+<details class="example" open>
+  <summary>&#9654; Minimal (required fields only)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.account.UploadWallPaper(
+    file=types.InputFile(),
+    mime_type=&#x27;some string here&#x27;,
+    settings=types.WallPaperSettings()
+))
+print(result)</pre>
+</details>
+<details class="example">
+  <summary>&#9654; Full (all fields)</summary>
+  <pre>from ferogram import raw, types
+
+result = await client(raw.functions.account.UploadWallPaper(
+    for_chat=True,
+    file=types.InputFile(),
+    mime_type=&#x27;some string here&#x27;,
+    settings=types.WallPaperSettings()
+))
+print(result)</pre>
+</details>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>

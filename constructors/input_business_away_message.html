@@ -4,10 +4,23 @@
 <meta charset="UTF-8">
 <title>InputBusinessAwayMessage - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../css/docs.css">
+<link id="style" rel="stylesheet" href="../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputBusinessAwayMessage</li></ul>
@@ -19,9 +32,11 @@ inputBusinessAwayMessage#832175e0 offline_only:flags.0?<a href="../index.html#tr
 <table><tr><td><a href="../types/input_business_away_message.html">InputBusinessAwayMessage</a></td></tr></table>
 <h3>Members</h3>
 <table><tr><td>offline_only</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>shortcut_id</td><td><a href="../index.html#int">int</a></td><td>Required.</td></tr>
-<tr><td>schedule</td><td><a href="../types/business_away_message_schedule.html">BusinessAwayMessageSchedule</a></td><td>Required.</td></tr>
-<tr><td>recipients</td><td><a href="../types/input_business_recipients.html">InputBusinessRecipients</a></td><td>Required.</td></tr>
+<tr><td>shortcut_id</td><td><a href="../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>schedule</td><td><a href="../types/business_away_message_schedule.html">BusinessAwayMessageSchedule</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>recipients</td><td><a href="../types/input_business_recipients.html">InputBusinessRecipients</a></td><td><span class="tag-req">required</span></td></tr>
+</table>
+<h3>Used by</h3><table><tr><td><a href="../methods/account/update_business_away_message.html">UpdateBusinessAwayMessage</a></td></tr>
 </table>
 
 <textarea id="c" class="invisible"></textarea>

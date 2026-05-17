@@ -4,24 +4,46 @@
 <meta charset="UTF-8">
 <title>EditUserInfo - ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="stylesheet" href="../../css/docs.css">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
+<button id="theme-btn" onclick="(function(){
+  var s=document.getElementById('style'),cur=s.href.includes('/dark.css')?'dark':'light',next=cur==='dark'?'light':'dark';
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=next==='dark'?'☀ Light':'☾ Dark';
+})()">☀ Light</button>
+<script>
+(function(){
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light)\.css/,t+'.css');
+  if(t==='light')document.getElementById('theme-btn').textContent='☾ Dark';
+})();
+</script>
 <div id="main_div">
 
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/help/index.html">Help</a></li><span class="sep">›</span><li>EditUserInfo</li></ul>
 <h1>EditUserInfo</h1>
+<p>Both users and bots can use this request.</p>
 <pre>---functions---
 help.editUserInfo#66b91b70 user_id:<a href="../../types/input_user.html">InputUser</a> message:<a href="../../index.html#string">string</a> entities:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message_entity.html">MessageEntity</a>&gt; = <a href="../../types/help/user_info.html">help.UserInfo</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.help import EditUserInfo')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/help/user_info.html">help.UserInfo</a></td></tr></table>
 <h3>Parameters</h3>
-<table><tr><td>user_id</td><td><a href="../../types/input_user.html">InputUser</a></td><td>Required.</td></tr>
-<tr><td>message</td><td><a href="../../index.html#string">string</a></td><td>Required.</td></tr>
-<tr><td>entities</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message_entity.html">MessageEntity</a>&gt;</td><td>Required.</td></tr>
+<table><tr><td>user_id</td><td><a href="../../types/input_user.html">InputUser</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>message</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>entities</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message_entity.html">MessageEntity</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
 </table>
+<h3>Example</h3><pre>from ferogram import raw, types
+
+result = await client(raw.functions.help.EditUserInfo(
+    user_id=&#x27;username&#x27;,
+    message=&#x27;Hello there!&#x27;,
+    entities=types.Vector&lt;MessageEntity&gt;()
+))
+print(result)</pre>
 
 <textarea id="c" class="invisible"></textarea>
 <script>function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}</script>
