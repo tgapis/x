@@ -650,6 +650,13 @@ details.example[open] > summary .arrow { transform: rotate(90deg); }
 .cmp-table td:first-child { font-weight: 700; font-family: 'Source Code Pro', monospace; color: var(--accent-light); font-size: 12px; white-space: nowrap; }
 .cmp-table td code { font-size: 12px; font-family: 'Source Code Pro', monospace; }
 .cmp-table tr:hover td { background: var(--surface); }
+.tab-dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+    margin-right: 5px; vertical-align: middle; position: relative; top: -1px;
+}
+.tab-dot-rec  { background: var(--tag-req-text); }
+.tab-dot-ok   { background: var(--tag-opt-text); }
+.tab-dot-warn { background: var(--warn-text, #d4a040); }
 """
 
 CSS_DARK_VARS = """\
@@ -867,11 +874,9 @@ function toast(){
   }
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-var _wayTabs=null,_wayCon=null;
 function switchWayTab(n){
-  if(!_wayTabs){_wayTabs=document.querySelectorAll('.tabs .tab');_wayCon=document.querySelectorAll('.way-content');}
-  _wayTabs.forEach(function(t,i){t.classList.toggle('active',i===n);});
-  _wayCon.forEach(function(c,i){c.classList.toggle('active',i===n);});
+  document.querySelectorAll('.tabs .tab').forEach(function(t,i){t.classList.toggle('active',i===n);});
+  document.querySelectorAll('.way-content').forEach(function(c,i){c.classList.toggle('active',i===n);});
 }
 </script>"""
 
@@ -1318,12 +1323,12 @@ users.getUsers#0d91a548 id:Vector&lt;InputUser&gt; = Vector&lt;User&gt;</pre>
 
 <h3>6 ways to call a raw method</h3>
 <div class="tabs">
-  <button class="tab active" onclick="switchWayTab(0)">1. Callable</button>
-  <button class="tab" onclick="switchWayTab(1)">2. invoke()</button>
-  <button class="tab" onclick="switchWayTab(2)">3. ns import</button>
-  <button class="tab" onclick="switchWayTab(3)">4. raw proxy</button>
-  <button class="tab" onclick="switchWayTab(4)">5. handler</button>
-  <button class="tab" onclick="switchWayTab(5)">6. dict</button>
+  <button class="tab active" onclick="switchWayTab(0)"><span class="tab-dot tab-dot-rec"></span>1. Callable</button>
+  <button class="tab" onclick="switchWayTab(1)"><span class="tab-dot tab-dot-ok"></span>2. invoke()</button>
+  <button class="tab" onclick="switchWayTab(2)"><span class="tab-dot tab-dot-ok"></span>3. ns import</button>
+  <button class="tab" onclick="switchWayTab(3)"><span class="tab-dot tab-dot-ok"></span>4. raw proxy</button>
+  <button class="tab" onclick="switchWayTab(4)"><span class="tab-dot tab-dot-rec"></span>5. handler</button>
+  <button class="tab" onclick="switchWayTab(5)"><span class="tab-dot tab-dot-warn"></span>6. dict</button>
 </div>
 <div class="way-content active" id="w0"><pre class="python"># Recommended: call the client directly with a typed TL object
 from ferogram import Client, raw
