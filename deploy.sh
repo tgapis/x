@@ -8,7 +8,8 @@ cp scrape.py              /tmp/scrape.py
 cp schema.py              /tmp/schema.py
 cp bin.js                 /tmp/bin.js
 cp index.js               /tmp/index.js
-cp ferogram/generate.py   /tmp/ferogram_generate.py
+cp ferogram/generate.py      /tmp/ferogram_generate.py
+cp ferogram/generate_rust.py /tmp/ferogram_generate_rust.py
 cp get-all-tl.py          /tmp/get-all-tl.py
 cp tl/index.html          /tmp/tl_index.html
 cp tl/app.js              /tmp/tl_app.js
@@ -112,16 +113,25 @@ git config --global user.email "Lonami@users.noreply.github.com"
 git config --global user.name "GitHub Action <Lonami Exo> | GitHub Action <John Preston>"
 git commit -m "update TL diff" || true
 
-# ferogram raw API docs
-mkdir -p /tmp/ferogram_site
+# ferogram-py raw API docs
+mkdir -p /tmp/ferogram_py_site
 LAYER=$(grep '// LAYER' tdesktop.tl | tail -1 | grep -o '[0-9]*')
-python /tmp/ferogram_generate.py tdesktop.tl /tmp/ferogram_site/
-cp -r /tmp/ferogram_site/constructors /tmp/ferogram_site/types /tmp/ferogram_site/methods \
-      /tmp/ferogram_site/css /tmp/ferogram_site/js "${a}/"
-cp /tmp/ferogram_site/index.html /tmp/ferogram_site/404.html "${a}/"
-git add constructors/ types/ methods/ css/ js/ index.html 404.html
+python /tmp/ferogram_generate.py tdesktop.tl /tmp/ferogram_py_site/
+rm -rf "${a}/ferogram-py"
+mkdir -p "${a}/ferogram-py"
+cp -r /tmp/ferogram_py_site/. "${a}/ferogram-py/"
+git add ferogram-py/
 git config --global user.email "ankitchaubey.dev@gmail.com"
 git config --global user.name "Ankit Chaubey"
+git commit -m "update ferogram-py raw API docs (Layer ${LAYER})" || true
+
+# ferogram raw API docs (Rust)
+mkdir -p /tmp/ferogram_rs_site
+python /tmp/ferogram_generate_rust.py tdesktop.tl /tmp/ferogram_rs_site/
+rm -rf "${a}/ferogram"
+mkdir -p "${a}/ferogram"
+cp -r /tmp/ferogram_rs_site/. "${a}/ferogram/"
+git add ferogram/
 git commit -m "update ferogram raw API docs (Layer ${LAYER})" || true
 
 git push origin data
