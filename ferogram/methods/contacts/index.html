@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contacts - Methods - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li>Contacts</li></ul>
+<h1>Contacts</h1>
+<ul class='together'>
+<li><a href="../../methods/contacts/accept_contact.html">AcceptContact</a></li>
+<li><a href="../../methods/contacts/add_contact.html">AddContact</a></li>
+<li><a href="../../methods/contacts/block.html">Block</a></li>
+<li><a href="../../methods/contacts/block_from_replies.html">BlockFromReplies</a></li>
+<li><a href="../../methods/contacts/delete_by_phones.html">DeleteByPhones</a></li>
+<li><a href="../../methods/contacts/delete_contacts.html">DeleteContacts</a></li>
+<li><a href="../../methods/contacts/edit_close_friends.html">EditCloseFriends</a></li>
+<li><a href="../../methods/contacts/export_contact_token.html">ExportContactToken</a></li>
+<li><a href="../../methods/contacts/get_birthdays.html">GetBirthdays</a></li>
+<li><a href="../../methods/contacts/get_blocked.html">GetBlocked</a></li>
+<li><a href="../../methods/contacts/get_contact_i_ds.html">GetContactIds</a></li>
+<li><a href="../../methods/contacts/get_contacts.html">GetContacts</a></li>
+<li><a href="../../methods/contacts/get_located.html">GetLocated</a></li>
+<li><a href="../../methods/contacts/get_saved.html">GetSaved</a></li>
+<li><a href="../../methods/contacts/get_sponsored_peers.html">GetSponsoredPeers</a></li>
+<li><a href="../../methods/contacts/get_statuses.html">GetStatuses</a></li>
+<li><a href="../../methods/contacts/get_top_peers.html">GetTopPeers</a></li>
+<li><a href="../../methods/contacts/import_contact_token.html">ImportContactToken</a></li>
+<li><a href="../../methods/contacts/import_contacts.html">ImportContacts</a></li>
+<li><a href="../../methods/contacts/reset_saved.html">ResetSaved</a></li>
+<li><a href="../../methods/contacts/reset_top_peer_rating.html">ResetTopPeerRating</a></li>
+<li><a href="../../methods/contacts/resolve_phone.html">ResolvePhone</a></li>
+<li><a href="../../methods/contacts/resolve_username.html">ResolveUsername</a></li>
+<li><a href="../../methods/contacts/search.html">Search</a></li>
+<li><a href="../../methods/contacts/set_blocked.html">SetBlocked</a></li>
+<li><a href="../../methods/contacts/toggle_top_peers.html">ToggleTopPeers</a></li>
+<li><a href="../../methods/contacts/unblock.html">Unblock</a></li>
+<li><a href="../../methods/contacts/update_contact_note.html">UpdateContactNote</a></li>
+</ul>
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

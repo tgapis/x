@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Account - Constructors - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>Account</li></ul>
+<h1>Account</h1>
+<ul class='together'>
+<li><a href="../../constructors/account/authorization_form.html">AuthorizationForm</a></li>
+<li><a href="../../constructors/account/authorizations.html">Authorizations</a></li>
+<li><a href="../../constructors/account/auto_download_settings.html">AutoDownloadSettings</a></li>
+<li><a href="../../constructors/account/auto_save_settings.html">AutoSaveSettings</a></li>
+<li><a href="../../constructors/account/business_chat_links.html">BusinessChatLinks</a></li>
+<li><a href="../../constructors/account/chat_themes.html">ChatThemes</a></li>
+<li><a href="../../constructors/account/chat_themes_not_modified.html">ChatThemesNotModified</a></li>
+<li><a href="../../constructors/account/connected_bots.html">ConnectedBots</a></li>
+<li><a href="../../constructors/account/content_settings.html">ContentSettings</a></li>
+<li><a href="../../constructors/account/email_verified.html">EmailVerified</a></li>
+<li><a href="../../constructors/account/email_verified_login.html">EmailVerifiedLogin</a></li>
+<li><a href="../../constructors/account/emoji_statuses.html">EmojiStatuses</a></li>
+<li><a href="../../constructors/account/emoji_statuses_not_modified.html">EmojiStatusesNotModified</a></li>
+<li><a href="../../constructors/account/paid_messages_revenue.html">PaidMessagesRevenue</a></li>
+<li><a href="../../constructors/account/passkey_registration_options.html">PasskeyRegistrationOptions</a></li>
+<li><a href="../../constructors/account/passkeys.html">Passkeys</a></li>
+<li><a href="../../constructors/account/password.html">Password</a></li>
+<li><a href="../../constructors/account/password_input_settings.html">PasswordInputSettings</a></li>
+<li><a href="../../constructors/account/password_settings.html">PasswordSettings</a></li>
+<li><a href="../../constructors/account/privacy_rules.html">PrivacyRules</a></li>
+<li><a href="../../constructors/account/reset_password_failed_wait.html">ResetPasswordFailedWait</a></li>
+<li><a href="../../constructors/account/reset_password_ok.html">ResetPasswordOk</a></li>
+<li><a href="../../constructors/account/reset_password_requested_wait.html">ResetPasswordRequestedWait</a></li>
+<li><a href="../../constructors/account/resolved_business_chat_links.html">ResolvedBusinessChatLinks</a></li>
+<li><a href="../../constructors/account/saved_music_ids.html">SavedMusicIds</a></li>
+<li><a href="../../constructors/account/saved_music_ids_not_modified.html">SavedMusicIdsNotModified</a></li>
+<li><a href="../../constructors/account/saved_ringtone.html">SavedRingtone</a></li>
+<li><a href="../../constructors/account/saved_ringtone_converted.html">SavedRingtoneConverted</a></li>
+<li><a href="../../constructors/account/saved_ringtones.html">SavedRingtones</a></li>
+<li><a href="../../constructors/account/saved_ringtones_not_modified.html">SavedRingtonesNotModified</a></li>
+<li><a href="../../constructors/account/sent_email_code.html">SentEmailCode</a></li>
+<li><a href="../../constructors/account/takeout.html">Takeout</a></li>
+<li><a href="../../constructors/account/themes.html">Themes</a></li>
+<li><a href="../../constructors/account/themes_not_modified.html">ThemesNotModified</a></li>
+<li><a href="../../constructors/account/tmp_password.html">TmpPassword</a></li>
+<li><a href="../../constructors/account/wall_papers.html">WallPapers</a></li>
+<li><a href="../../constructors/account/wall_papers_not_modified.html">WallPapersNotModified</a></li>
+<li><a href="../../constructors/account/web_authorizations.html">WebAuthorizations</a></li>
+</ul>
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

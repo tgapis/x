@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>InputSavedStarGift - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../types/index.html">Types</a></li><span class="sep">›</span><li>InputSavedStarGift</li></ul>
+<h1>InputSavedStarGift</h1>
+<p style="color:var(--muted);font-size:14px;">
+Rust type: <code>enums::InputSavedStarGift</code>
+</p>
+<h3>Constructors</h3>
+<p>This is an abstract type. At runtime it will be one of the following variants:</p>
+<table><tr><td><a href="../constructors/input_saved_star_gift_chat.html">InputSavedStarGiftChat</a></td></tr>
+<tr><td><a href="../constructors/input_saved_star_gift_slug.html">InputSavedStarGiftSlug</a></td></tr>
+<tr><td><a href="../constructors/input_saved_star_gift_user.html">InputSavedStarGiftUser</a></td></tr>
+</table>
+<h3>Requests returning this type</h3><p>None.</p>
+<h3>Requests accepting this type as input</h3><table><tr><td><a href="../methods/payments/convert_star_gift.html">ConvertStarGift</a></td></tr>
+<tr><td><a href="../methods/payments/get_star_gift_withdrawal_url.html">GetStarGiftWithdrawalUrl</a></td></tr>
+<tr><td><a href="../methods/payments/save_star_gift.html">SaveStarGift</a></td></tr>
+<tr><td><a href="../methods/payments/transfer_star_gift.html">TransferStarGift</a></td></tr>
+<tr><td><a href="../methods/payments/update_star_gift_price.html">UpdateStarGiftPrice</a></td></tr>
+<tr><td><a href="../methods/payments/upgrade_star_gift.html">UpgradeStarGift</a></td></tr>
+</table>
+<h3>Other types containing this type</h3><table><tr><td><a href="../constructors/input_invoice_star_gift_drop_original_details.html">InputInvoiceStarGiftDropOriginalDetails</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_star_gift_transfer.html">InputInvoiceStarGiftTransfer</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_star_gift_upgrade.html">InputInvoiceStarGiftUpgrade</a></td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

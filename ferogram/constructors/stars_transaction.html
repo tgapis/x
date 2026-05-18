@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>StarsTransaction - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>StarsTransaction</li></ul>
+<h1>StarsTransaction</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+starsTransaction<span style="color:var(--tl-cid)">#13659eb0</span> refund:flags.3?<a href="../index.html#true">true</a> pending:flags.4?<a href="../index.html#true">true</a> failed:flags.6?<a href="../index.html#true">true</a> gift:flags.10?<a href="../index.html#true">true</a> reaction:flags.11?<a href="../index.html#true">true</a> stargift_upgrade:flags.18?<a href="../index.html#true">true</a> business_transfer:flags.21?<a href="../index.html#true">true</a> stargift_resale:flags.22?<a href="../index.html#true">true</a> posts_search:flags.24?<a href="../index.html#true">true</a> stargift_prepaid_upgrade:flags.25?<a href="../index.html#true">true</a> stargift_drop_original_details:flags.26?<a href="../index.html#true">true</a> phonegroup_message:flags.27?<a href="../index.html#true">true</a> stargift_auction_bid:flags.28?<a href="../index.html#true">true</a> offer:flags.29?<a href="../index.html#true">true</a> id:<a href="../index.html#string">string</a> amount:<a href="../types/stars_amount.html">StarsAmount</a> date:<a href="../index.html#int">int</a> peer:<a href="../types/stars_transaction_peer.html">StarsTransactionPeer</a> title:flags.0?<a href="../index.html#string">string</a> description:flags.1?<a href="../index.html#string">string</a> photo:flags.2?<a href="../types/web_document.html">WebDocument</a> transaction_date:flags.5?<a href="../index.html#int">int</a> transaction_url:flags.5?<a href="../index.html#string">string</a> bot_payload:flags.7?<a href="../index.html#bytes">bytes</a> msg_id:flags.8?<a href="../index.html#int">int</a> extended_media:flags.9?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/message_media.html">MessageMedia</a>&gt; subscription_period:flags.12?<a href="../index.html#int">int</a> giveaway_post_id:flags.13?<a href="../index.html#int">int</a> stargift:flags.14?<a href="../types/star_gift.html">StarGift</a> floodskip_number:flags.15?<a href="../index.html#int">int</a> starref_commission_permille:flags.16?<a href="../index.html#int">int</a> starref_peer:flags.17?<a href="../types/peer.html">Peer</a> starref_amount:flags.17?<a href="../types/stars_amount.html">StarsAmount</a> paid_messages:flags.19?<a href="../index.html#int">int</a> premium_gift_months:flags.20?<a href="../index.html#int">int</a> ads_proceeds_from_date:flags.23?<a href="../index.html#int">int</a> ads_proceeds_to_date:flags.23?<a href="../index.html#int">int</a> = <a href="../types/stars_transaction.html">StarsTransaction</a></pre>
+<button class="copy-btn" onclick="cp('use ferogram::tl::types::StarsTransaction;')">Copy use statement</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/stars_transaction.html">StarsTransaction</a></td></tr></table>
+<p style="color:var(--muted);font-size:14px;">
+In Rust this constructor is a variant of the <code>enums::StarsTransaction</code> enum.<br>
+Match on it with: <code>if let enums::StarsTransaction::StarsTransaction(v) = result { ... }</code>
+</p>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>refund</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>pending</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>failed</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>gift</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>reaction</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>stargift_upgrade</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>business_transfer</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>stargift_resale</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>posts_search</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>stargift_prepaid_upgrade</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>stargift_drop_original_details</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>phonegroup_message</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>stargift_auction_bid</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>offer</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>id</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>amount</td><td><a href="../types/stars_amount.html">StarsAmount</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>date</td><td><a href="../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>peer</td><td><a href="../types/stars_transaction_peer.html">StarsTransactionPeer</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>title</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>description</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>photo</td><td><a href="../types/web_document.html">WebDocument</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>transaction_date</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>transaction_url</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>bot_payload</td><td><a href="../index.html#bytes">bytes</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>msg_id</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>extended_media</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/message_media.html">MessageMedia</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>subscription_period</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>giveaway_post_id</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>stargift</td><td><a href="../types/star_gift.html">StarGift</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>floodskip_number</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>starref_commission_permille</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>starref_peer</td><td><a href="../types/peer.html">Peer</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>starref_amount</td><td><a href="../types/stars_amount.html">StarsAmount</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>paid_messages</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>premium_gift_months</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>ads_proceeds_from_date</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>ads_proceeds_to_date</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Messages - Constructors - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>Messages</li></ul>
+<h1>Messages</h1>
+<ul class='together'>
+<li><a href="../../constructors/messages/affected_found_messages.html">AffectedFoundMessages</a></li>
+<li><a href="../../constructors/messages/affected_history.html">AffectedHistory</a></li>
+<li><a href="../../constructors/messages/affected_messages.html">AffectedMessages</a></li>
+<li><a href="../../constructors/messages/all_stickers.html">AllStickers</a></li>
+<li><a href="../../constructors/messages/all_stickers_not_modified.html">AllStickersNotModified</a></li>
+<li><a href="../../constructors/messages/archived_stickers.html">ArchivedStickers</a></li>
+<li><a href="../../constructors/messages/available_effects.html">AvailableEffects</a></li>
+<li><a href="../../constructors/messages/available_effects_not_modified.html">AvailableEffectsNotModified</a></li>
+<li><a href="../../constructors/messages/available_reactions.html">AvailableReactions</a></li>
+<li><a href="../../constructors/messages/available_reactions_not_modified.html">AvailableReactionsNotModified</a></li>
+<li><a href="../../constructors/messages/bot_app.html">BotApp</a></li>
+<li><a href="../../constructors/messages/bot_callback_answer.html">BotCallbackAnswer</a></li>
+<li><a href="../../constructors/messages/bot_prepared_inline_message.html">BotPreparedInlineMessage</a></li>
+<li><a href="../../constructors/messages/bot_results.html">BotResults</a></li>
+<li><a href="../../constructors/messages/channel_messages.html">ChannelMessages</a></li>
+<li><a href="../../constructors/messages/chat_admins_with_invites.html">ChatAdminsWithInvites</a></li>
+<li><a href="../../constructors/messages/chat_full.html">ChatFull</a></li>
+<li><a href="../../constructors/messages/chat_invite_importers.html">ChatInviteImporters</a></li>
+<li><a href="../../constructors/messages/chats.html">Chats</a></li>
+<li><a href="../../constructors/messages/chats_slice.html">ChatsSlice</a></li>
+<li><a href="../../constructors/messages/checked_history_import_peer.html">CheckedHistoryImportPeer</a></li>
+<li><a href="../../constructors/messages/composed_message_with_ai.html">ComposedMessageWithAi</a></li>
+<li><a href="../../constructors/messages/dh_config.html">DhConfig</a></li>
+<li><a href="../../constructors/messages/dh_config_not_modified.html">DhConfigNotModified</a></li>
+<li><a href="../../constructors/messages/dialog_filters.html">DialogFilters</a></li>
+<li><a href="../../constructors/messages/dialogs.html">Dialogs</a></li>
+<li><a href="../../constructors/messages/dialogs_not_modified.html">DialogsNotModified</a></li>
+<li><a href="../../constructors/messages/dialogs_slice.html">DialogsSlice</a></li>
+<li><a href="../../constructors/messages/discussion_message.html">DiscussionMessage</a></li>
+<li><a href="../../constructors/messages/emoji_game_dice_info.html">EmojiGameDiceInfo</a></li>
+<li><a href="../../constructors/messages/emoji_game_outcome.html">EmojiGameOutcome</a></li>
+<li><a href="../../constructors/messages/emoji_game_unavailable.html">EmojiGameUnavailable</a></li>
+<li><a href="../../constructors/messages/emoji_groups.html">EmojiGroups</a></li>
+<li><a href="../../constructors/messages/emoji_groups_not_modified.html">EmojiGroupsNotModified</a></li>
+<li><a href="../../constructors/messages/exported_chat_invite.html">ExportedChatInvite</a></li>
+<li><a href="../../constructors/messages/exported_chat_invite_replaced.html">ExportedChatInviteReplaced</a></li>
+<li><a href="../../constructors/messages/exported_chat_invites.html">ExportedChatInvites</a></li>
+<li><a href="../../constructors/messages/faved_stickers.html">FavedStickers</a></li>
+<li><a href="../../constructors/messages/faved_stickers_not_modified.html">FavedStickersNotModified</a></li>
+<li><a href="../../constructors/messages/featured_stickers.html">FeaturedStickers</a></li>
+<li><a href="../../constructors/messages/featured_stickers_not_modified.html">FeaturedStickersNotModified</a></li>
+<li><a href="../../constructors/messages/forum_topics.html">ForumTopics</a></li>
+<li><a href="../../constructors/messages/found_sticker_sets.html">FoundStickerSets</a></li>
+<li><a href="../../constructors/messages/found_sticker_sets_not_modified.html">FoundStickerSetsNotModified</a></li>
+<li><a href="../../constructors/messages/found_stickers.html">FoundStickers</a></li>
+<li><a href="../../constructors/messages/found_stickers_not_modified.html">FoundStickersNotModified</a></li>
+<li><a href="../../constructors/messages/high_scores.html">HighScores</a></li>
+<li><a href="../../constructors/messages/history_import.html">HistoryImport</a></li>
+<li><a href="../../constructors/messages/history_import_parsed.html">HistoryImportParsed</a></li>
+<li><a href="../../constructors/messages/inactive_chats.html">InactiveChats</a></li>
+<li><a href="../../constructors/messages/invited_users.html">InvitedUsers</a></li>
+<li><a href="../../constructors/messages/message_edit_data.html">MessageEditData</a></li>
+<li><a href="../../constructors/messages/message_reactions_list.html">MessageReactionsList</a></li>
+<li><a href="../../constructors/messages/message_views.html">MessageViews</a></li>
+<li><a href="../../constructors/messages/messages.html">Messages</a></li>
+<li><a href="../../constructors/messages/messages_not_modified.html">MessagesNotModified</a></li>
+<li><a href="../../constructors/messages/messages_slice.html">MessagesSlice</a></li>
+<li><a href="../../constructors/messages/my_stickers.html">MyStickers</a></li>
+<li><a href="../../constructors/messages/peer_dialogs.html">PeerDialogs</a></li>
+<li><a href="../../constructors/messages/peer_settings.html">PeerSettings</a></li>
+<li><a href="../../constructors/messages/prepared_inline_message.html">PreparedInlineMessage</a></li>
+<li><a href="../../constructors/messages/quick_replies.html">QuickReplies</a></li>
+<li><a href="../../constructors/messages/quick_replies_not_modified.html">QuickRepliesNotModified</a></li>
+<li><a href="../../constructors/messages/reactions.html">Reactions</a></li>
+<li><a href="../../constructors/messages/reactions_not_modified.html">ReactionsNotModified</a></li>
+<li><a href="../../constructors/messages/recent_stickers.html">RecentStickers</a></li>
+<li><a href="../../constructors/messages/recent_stickers_not_modified.html">RecentStickersNotModified</a></li>
+<li><a href="../../constructors/messages/saved_dialogs.html">SavedDialogs</a></li>
+<li><a href="../../constructors/messages/saved_dialogs_not_modified.html">SavedDialogsNotModified</a></li>
+<li><a href="../../constructors/messages/saved_dialogs_slice.html">SavedDialogsSlice</a></li>
+<li><a href="../../constructors/messages/saved_gifs.html">SavedGifs</a></li>
+<li><a href="../../constructors/messages/saved_gifs_not_modified.html">SavedGifsNotModified</a></li>
+<li><a href="../../constructors/messages/saved_reaction_tags.html">SavedReactionTags</a></li>
+<li><a href="../../constructors/messages/saved_reaction_tags_not_modified.html">SavedReactionTagsNotModified</a></li>
+<li><a href="../../constructors/messages/search_counter.html">SearchCounter</a></li>
+<li><a href="../../constructors/messages/search_results_calendar.html">SearchResultsCalendar</a></li>
+<li><a href="../../constructors/messages/search_results_positions.html">SearchResultsPositions</a></li>
+<li><a href="../../constructors/messages/sent_encrypted_file.html">SentEncryptedFile</a></li>
+<li><a href="../../constructors/messages/sent_encrypted_message.html">SentEncryptedMessage</a></li>
+<li><a href="../../constructors/messages/sponsored_messages.html">SponsoredMessages</a></li>
+<li><a href="../../constructors/messages/sponsored_messages_empty.html">SponsoredMessagesEmpty</a></li>
+<li><a href="../../constructors/messages/sticker_set.html">StickerSet</a></li>
+<li><a href="../../constructors/messages/sticker_set_install_result_archive.html">StickerSetInstallResultArchive</a></li>
+<li><a href="../../constructors/messages/sticker_set_install_result_success.html">StickerSetInstallResultSuccess</a></li>
+<li><a href="../../constructors/messages/sticker_set_not_modified.html">StickerSetNotModified</a></li>
+<li><a href="../../constructors/messages/stickers.html">Stickers</a></li>
+<li><a href="../../constructors/messages/stickers_not_modified.html">StickersNotModified</a></li>
+<li><a href="../../constructors/messages/transcribed_audio.html">TranscribedAudio</a></li>
+<li><a href="../../constructors/messages/translate_result.html">TranslateResult</a></li>
+<li><a href="../../constructors/messages/votes_list.html">VotesList</a></li>
+<li><a href="../../constructors/messages/web_page.html">WebPage</a></li>
+<li><a href="../../constructors/messages/web_page_preview.html">WebPagePreview</a></li>
+</ul>
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SavedStarGift - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>SavedStarGift</li></ul>
+<h1>SavedStarGift</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+savedStarGift<span style="color:var(--tl-cid)">#41df43fc</span> name_hidden:flags.0?<a href="../index.html#true">true</a> unsaved:flags.5?<a href="../index.html#true">true</a> refunded:flags.9?<a href="../index.html#true">true</a> can_upgrade:flags.10?<a href="../index.html#true">true</a> pinned_to_top:flags.12?<a href="../index.html#true">true</a> upgrade_separate:flags.17?<a href="../index.html#true">true</a> from_id:flags.1?<a href="../types/peer.html">Peer</a> date:<a href="../index.html#int">int</a> gift:<a href="../types/star_gift.html">StarGift</a> message:flags.2?<a href="../types/text_with_entities.html">TextWithEntities</a> msg_id:flags.3?<a href="../index.html#int">int</a> saved_id:flags.11?<a href="../index.html#long">long</a> convert_stars:flags.4?<a href="../index.html#long">long</a> upgrade_stars:flags.6?<a href="../index.html#long">long</a> can_export_at:flags.7?<a href="../index.html#int">int</a> transfer_stars:flags.8?<a href="../index.html#long">long</a> can_transfer_at:flags.13?<a href="../index.html#int">int</a> can_resell_at:flags.14?<a href="../index.html#int">int</a> collection_id:flags.15?<a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#int">int</a>&gt; prepaid_upgrade_hash:flags.16?<a href="../index.html#string">string</a> drop_original_details_stars:flags.18?<a href="../index.html#long">long</a> gift_num:flags.19?<a href="../index.html#int">int</a> can_craft_at:flags.20?<a href="../index.html#int">int</a> = <a href="../types/saved_star_gift.html">SavedStarGift</a></pre>
+<button class="copy-btn" onclick="cp('use ferogram::tl::types::SavedStarGift;')">Copy use statement</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/saved_star_gift.html">SavedStarGift</a></td></tr></table>
+<p style="color:var(--muted);font-size:14px;">
+In Rust this constructor is a variant of the <code>enums::SavedStarGift</code> enum.<br>
+Match on it with: <code>if let enums::SavedStarGift::SavedStarGift(v) = result { ... }</code>
+</p>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>name_hidden</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>unsaved</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>refunded</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>can_upgrade</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>pinned_to_top</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>upgrade_separate</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>from_id</td><td><a href="../types/peer.html">Peer</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>date</td><td><a href="../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>gift</td><td><a href="../types/star_gift.html">StarGift</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>message</td><td><a href="../types/text_with_entities.html">TextWithEntities</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>msg_id</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>saved_id</td><td><a href="../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>convert_stars</td><td><a href="../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>upgrade_stars</td><td><a href="../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>can_export_at</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>transfer_stars</td><td><a href="../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>can_transfer_at</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>can_resell_at</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>collection_id</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#int">int</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>prepaid_upgrade_hash</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>drop_original_details_stars</td><td><a href="../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>gift_num</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>can_craft_at</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

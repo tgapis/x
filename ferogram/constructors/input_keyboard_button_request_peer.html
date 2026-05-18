@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>InputKeyboardButtonRequestPeer - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputKeyboardButtonRequestPeer</li></ul>
+<h1>InputKeyboardButtonRequestPeer</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+inputKeyboardButtonRequestPeer<span style="color:var(--tl-cid)">#02b78156</span> name_requested:flags.0?<a href="../index.html#true">true</a> username_requested:flags.1?<a href="../index.html#true">true</a> photo_requested:flags.2?<a href="../index.html#true">true</a> style:flags.10?<a href="../types/keyboard_button_style.html">KeyboardButtonStyle</a> text:<a href="../index.html#string">string</a> button_id:<a href="../index.html#int">int</a> peer_type:<a href="../types/request_peer_type.html">RequestPeerType</a> max_quantity:<a href="../index.html#int">int</a> = <a href="../types/keyboard_button.html">KeyboardButton</a></pre>
+<button class="copy-btn" onclick="cp('use ferogram::tl::types::InputKeyboardButtonRequestPeer;')">Copy use statement</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/keyboard_button.html">KeyboardButton</a></td></tr></table>
+<p style="color:var(--muted);font-size:14px;">
+In Rust this constructor is a variant of the <code>enums::KeyboardButton</code> enum.<br>
+Match on it with: <code>if let enums::KeyboardButton::InputKeyboardButtonRequestPeer(v) = result { ... }</code>
+</p>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>name_requested</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>username_requested</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>photo_requested</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>style</td><td><a href="../types/keyboard_button_style.html">KeyboardButtonStyle</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>text</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>button_id</td><td><a href="../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>peer_type</td><td><a href="../types/request_peer_type.html">RequestPeerType</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>max_quantity</td><td><a href="../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+</table></div>
+<h3>Used by</h3><table><tr><td><a href="../methods/bots/request_web_view_button.html">RequestWebViewButton</a></td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

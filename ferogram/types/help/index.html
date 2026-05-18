@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Help - Types - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../types/index.html">Types</a></li><span class="sep">›</span><li>Help</li></ul>
+<h1>Help</h1>
+<ul class='together'>
+<li><a href="../../types/help/app_config.html">help.AppConfig</a></li>
+<li><a href="../../types/help/app_update.html">help.AppUpdate</a></li>
+<li><a href="../../types/help/countries_list.html">help.CountriesList</a></li>
+<li><a href="../../types/help/country.html">help.Country</a></li>
+<li><a href="../../types/help/country_code.html">help.CountryCode</a></li>
+<li><a href="../../types/help/deep_link_info.html">help.DeepLinkInfo</a></li>
+<li><a href="../../types/help/invite_text.html">help.InviteText</a></li>
+<li><a href="../../types/help/passport_config.html">help.PassportConfig</a></li>
+<li><a href="../../types/help/peer_color_option.html">help.PeerColorOption</a></li>
+<li><a href="../../types/help/peer_color_set.html">help.PeerColorSet</a></li>
+<li><a href="../../types/help/peer_colors.html">help.PeerColors</a></li>
+<li><a href="../../types/help/premium_promo.html">help.PremiumPromo</a></li>
+<li><a href="../../types/help/promo_data.html">help.PromoData</a></li>
+<li><a href="../../types/help/recent_me_urls.html">help.RecentMeUrls</a></li>
+<li><a href="../../types/help/support.html">help.Support</a></li>
+<li><a href="../../types/help/support_name.html">help.SupportName</a></li>
+<li><a href="../../types/help/terms_of_service.html">help.TermsOfService</a></li>
+<li><a href="../../types/help/terms_of_service_update.html">help.TermsOfServiceUpdate</a></li>
+<li><a href="../../types/help/timezones_list.html">help.TimezonesList</a></li>
+<li><a href="../../types/help/user_info.html">help.UserInfo</a></li>
+</ul>
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

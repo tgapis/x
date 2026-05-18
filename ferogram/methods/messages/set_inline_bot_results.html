@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SetInlineBotResults - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>SetInlineBotResults</li></ul>
+<h1>SetInlineBotResults</h1>
+<pre class="tl"><span style="color:var(--muted)">---functions---</span>
+messages.setInlineBotResults<span style="color:var(--tl-cid)">#bb12a419</span> gallery:flags.0?<a href="../../index.html#true">true</a> private:flags.1?<a href="../../index.html#true">true</a> query_id:<a href="../../index.html#long">long</a> results:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/input_bot_inline_result.html">InputBotInlineResult</a>&gt; cache_time:<a href="../../index.html#int">int</a> next_offset:flags.2?<a href="../../index.html#string">string</a> switch_pm:flags.3?<a href="../../types/inline_bot_switch_pm.html">InlineBotSwitchPM</a> switch_webview:flags.4?<a href="../../types/inline_bot_web_view.html">InlineBotWebView</a> = <a href="../../index.html#bool">Bool</a></pre>
+<button class="copy-btn" onclick="cp('use ferogram::tl::functions::messages::SetInlineBotResults;')">Copy use statement</button>
+<h3>Returns</h3>
+<table><tr><td><a href="../../index.html#bool">Bool</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>gallery</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>private</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>query_id</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>results</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/input_bot_inline_result.html">InputBotInlineResult</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+<tr><td>cache_time</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>next_offset</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>switch_pm</td><td><a href="../../types/inline_bot_switch_pm.html">InlineBotSwitchPM</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>switch_webview</td><td><a href="../../types/inline_bot_web_view.html">InlineBotWebView</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+<h3>Example</h3>
+<p class="example-note">Replace placeholder values with real data before running.</p>
+<div class="tabs">
+  <button class="tab active" onclick="switchWayTab(0)"><span class="tab-dot tab-dot-rec"></span>invoke()</button>
+  <button class="tab" onclick="switchWayTab(1)"><span class="tab-dot tab-dot-ok"></span>handler</button>
+</div>
+<div class="way-content active"><pre class="rust">use ferogram::tl::functions;
+
+#[tokio::main]
+async fn main() -&gt; anyhow::Result&lt;()&gt; {
+    let (client, _) = ferogram::Client::quick_connect(
+        &quot;my.session&quot;,
+        12345,
+        &quot;0123456789abcdef0123456789abcdef&quot;,
+    )
+    .await?;
+
+    let result = client
+        .invoke(
+        &amp;functions::messages::SetInlineBotResults {
+            gallery: false,
+            private: false,
+            query_id: 0_i64,
+            results: vec![],
+            cache_time: 0_i32,
+            next_offset: None,
+            switch_pm: None,
+            switch_webview: None,
+        },
+        )
+        .await?;
+
+    println!(&quot;{result:?}&quot;);
+    Ok(())
+}</pre></div>
+<div class="way-content"><pre class="rust">use ferogram::tl::functions;
+use ferogram::update::Update;
+
+#[tokio::main]
+async fn main() -&gt; anyhow::Result&lt;()&gt; {
+    let (client, _) = ferogram::Client::quick_connect(
+        &quot;my.session&quot;,
+        12345,
+        &quot;0123456789abcdef0123456789abcdef&quot;,
+    )
+    .await?;
+
+    let mut stream = client.stream_updates();
+    while let Some(upd) = stream.next().await {
+        if let Update::NewMessage(_msg) = upd {
+            let result = client
+                .invoke(
+            &amp;functions::messages::SetInlineBotResults {
+                gallery: false,
+                private: false,
+                query_id: 0_i64,
+                results: vec![],
+                cache_time: 0_i32,
+                next_offset: None,
+                switch_pm: None,
+                switch_webview: None,
+            },
+                )
+                .await?;
+            println!(&quot;{result:?}&quot;);
+        }
+    }
+    Ok(())
+}</pre></div>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

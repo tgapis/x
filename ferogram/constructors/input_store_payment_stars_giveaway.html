@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>InputStorePaymentStarsGiveaway - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputStorePaymentStarsGiveaway</li></ul>
+<h1>InputStorePaymentStarsGiveaway</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+inputStorePaymentStarsGiveaway<span style="color:var(--tl-cid)">#751f08fa</span> only_new_subscribers:flags.0?<a href="../index.html#true">true</a> winners_are_visible:flags.3?<a href="../index.html#true">true</a> stars:<a href="../index.html#long">long</a> boost_peer:<a href="../types/input_peer.html">InputPeer</a> additional_peers:flags.1?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_peer.html">InputPeer</a>&gt; countries_iso2:flags.2?<a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#string">string</a>&gt; prize_description:flags.4?<a href="../index.html#string">string</a> random_id:<a href="../index.html#long">long</a> until_date:<a href="../index.html#int">int</a> currency:<a href="../index.html#string">string</a> amount:<a href="../index.html#long">long</a> users:<a href="../index.html#int">int</a> = <a href="../types/input_store_payment_purpose.html">InputStorePaymentPurpose</a></pre>
+<button class="copy-btn" onclick="cp('use ferogram::tl::types::InputStorePaymentStarsGiveaway;')">Copy use statement</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/input_store_payment_purpose.html">InputStorePaymentPurpose</a></td></tr></table>
+<p style="color:var(--muted);font-size:14px;">
+In Rust this constructor is a variant of the <code>enums::InputStorePaymentPurpose</code> enum.<br>
+Match on it with: <code>if let enums::InputStorePaymentPurpose::InputStorePaymentStarsGiveaway(v) = result { ... }</code>
+</p>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>only_new_subscribers</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>winners_are_visible</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>stars</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>boost_peer</td><td><a href="../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>additional_peers</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_peer.html">InputPeer</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>countries_iso2</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#string">string</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>prize_description</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>random_id</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>until_date</td><td><a href="../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>currency</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>amount</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>users</td><td><a href="../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+</table></div>
+<h3>Used by</h3><table><tr><td><a href="../methods/payments/assign_app_store_transaction.html">AssignAppStoreTransaction</a></td></tr>
+<tr><td><a href="../methods/payments/assign_play_market_transaction.html">AssignPlayMarketTransaction</a></td></tr>
+<tr><td><a href="../methods/payments/can_purchase_store.html">CanPurchaseStore</a></td></tr>
+<tr><td><a href="../methods/payments/launch_prepaid_giveaway.html">LaunchPrepaidGiveaway</a></td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

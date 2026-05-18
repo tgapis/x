@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>GetStarGiftUpgradeAttributes - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/payments/index.html">Payments</a></li><span class="sep">›</span><li>GetStarGiftUpgradeAttributes</li></ul>
+<h1>GetStarGiftUpgradeAttributes</h1>
+<pre class="tl"><span style="color:var(--muted)">---functions---</span>
+payments.getStarGiftUpgradeAttributes<span style="color:var(--tl-cid)">#6d038b58</span> gift_id:<a href="../../index.html#long">long</a> = <a href="../../types/payments/star_gift_upgrade_attributes.html">payments.StarGiftUpgradeAttributes</a></pre>
+<button class="copy-btn" onclick="cp('use ferogram::tl::functions::payments::GetStarGiftUpgradeAttributes;')">Copy use statement</button>
+<h3>Returns</h3>
+<table><tr><td><a href="../../types/payments/star_gift_upgrade_attributes.html">payments.StarGiftUpgradeAttributes</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>gift_id</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+</table></div>
+<h3>Example</h3>
+<p class="example-note">Replace placeholder values with real data before running.</p>
+<div class="tabs">
+  <button class="tab active" onclick="switchWayTab(0)"><span class="tab-dot tab-dot-rec"></span>invoke()</button>
+  <button class="tab" onclick="switchWayTab(1)"><span class="tab-dot tab-dot-ok"></span>handler</button>
+</div>
+<div class="way-content active"><pre class="rust">use ferogram::tl::functions;
+
+#[tokio::main]
+async fn main() -&gt; anyhow::Result&lt;()&gt; {
+    let (client, _) = ferogram::Client::quick_connect(
+        &quot;my.session&quot;,
+        12345,
+        &quot;0123456789abcdef0123456789abcdef&quot;,
+    )
+    .await?;
+
+    let result = client
+        .invoke(
+        &amp;functions::payments::GetStarGiftUpgradeAttributes {
+            gift_id: 0_i64,
+        },
+        )
+        .await?;
+
+    println!(&quot;{result:?}&quot;);
+    Ok(())
+}</pre></div>
+<div class="way-content"><pre class="rust">use ferogram::tl::functions;
+use ferogram::update::Update;
+
+#[tokio::main]
+async fn main() -&gt; anyhow::Result&lt;()&gt; {
+    let (client, _) = ferogram::Client::quick_connect(
+        &quot;my.session&quot;,
+        12345,
+        &quot;0123456789abcdef0123456789abcdef&quot;,
+    )
+    .await?;
+
+    let mut stream = client.stream_updates();
+    while let Some(upd) = stream.next().await {
+        if let Update::NewMessage(_msg) = upd {
+            let result = client
+                .invoke(
+            &amp;functions::payments::GetStarGiftUpgradeAttributes {
+                gift_id: 0_i64,
+            },
+                )
+                .await?;
+            println!(&quot;{result:?}&quot;);
+        }
+    }
+    Ok(())
+}</pre></div>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

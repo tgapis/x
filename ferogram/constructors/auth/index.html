@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Auth - Constructors - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>Auth</li></ul>
+<h1>Auth</h1>
+<ul class='together'>
+<li><a href="../../constructors/auth/authorization.html">Authorization</a></li>
+<li><a href="../../constructors/auth/authorization_sign_up_required.html">AuthorizationSignUpRequired</a></li>
+<li><a href="../../constructors/auth/code_type_call.html">CodeTypeCall</a></li>
+<li><a href="../../constructors/auth/code_type_flash_call.html">CodeTypeFlashCall</a></li>
+<li><a href="../../constructors/auth/code_type_fragment_sms.html">CodeTypeFragmentSms</a></li>
+<li><a href="../../constructors/auth/code_type_missed_call.html">CodeTypeMissedCall</a></li>
+<li><a href="../../constructors/auth/code_type_sms.html">CodeTypeSms</a></li>
+<li><a href="../../constructors/auth/exported_authorization.html">ExportedAuthorization</a></li>
+<li><a href="../../constructors/auth/logged_out.html">LoggedOut</a></li>
+<li><a href="../../constructors/auth/login_token.html">LoginToken</a></li>
+<li><a href="../../constructors/auth/login_token_migrate_to.html">LoginTokenMigrateTo</a></li>
+<li><a href="../../constructors/auth/login_token_success.html">LoginTokenSuccess</a></li>
+<li><a href="../../constructors/auth/passkey_login_options.html">PasskeyLoginOptions</a></li>
+<li><a href="../../constructors/auth/password_recovery.html">PasswordRecovery</a></li>
+<li><a href="../../constructors/auth/sent_code.html">SentCode</a></li>
+<li><a href="../../constructors/auth/sent_code_payment_required.html">SentCodePaymentRequired</a></li>
+<li><a href="../../constructors/auth/sent_code_success.html">SentCodeSuccess</a></li>
+<li><a href="../../constructors/auth/sent_code_type_app.html">SentCodeTypeApp</a></li>
+<li><a href="../../constructors/auth/sent_code_type_call.html">SentCodeTypeCall</a></li>
+<li><a href="../../constructors/auth/sent_code_type_email_code.html">SentCodeTypeEmailCode</a></li>
+<li><a href="../../constructors/auth/sent_code_type_firebase_sms.html">SentCodeTypeFirebaseSms</a></li>
+<li><a href="../../constructors/auth/sent_code_type_flash_call.html">SentCodeTypeFlashCall</a></li>
+<li><a href="../../constructors/auth/sent_code_type_fragment_sms.html">SentCodeTypeFragmentSms</a></li>
+<li><a href="../../constructors/auth/sent_code_type_missed_call.html">SentCodeTypeMissedCall</a></li>
+<li><a href="../../constructors/auth/sent_code_type_set_up_email_required.html">SentCodeTypeSetUpEmailRequired</a></li>
+<li><a href="../../constructors/auth/sent_code_type_sms.html">SentCodeTypeSms</a></li>
+<li><a href="../../constructors/auth/sent_code_type_sms_phrase.html">SentCodeTypeSmsPhrase</a></li>
+<li><a href="../../constructors/auth/sent_code_type_sms_word.html">SentCodeTypeSmsWord</a></li>
+</ul>
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

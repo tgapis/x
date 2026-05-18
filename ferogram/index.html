@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ferogram Rust API - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+<h1>Ferogram Rust API <span style="color:var(--muted);font-size:1rem">Layer 225</span></h1>
+<p>
+  Raw Telegram MTProto API reference for Layer 225,
+  with Rust code examples using <strong>ferogram</strong>.
+  Use the search box above or browse by section.
+</p>
+<div class="links-row">
+  <a class="pill" href="methods/index.html">Methods (772)</a>
+  <a class="pill" href="types/index.html">Types (594)</a>
+  <a class="pill" href="constructors/index.html">Constructors (1573)</a>
+</div>
+
+<h3>What is ferogram?</h3>
+<p>
+  <strong>ferogram</strong> is an async Rust Telegram MTProto client.
+  It talks to Telegram directly over MTProto with no Bot API proxy,
+  works for both bots and user accounts, and gives you full access to
+  the raw TL API through <code>client.invoke()</code>.
+</p>
+<div class="links-row">
+  <a class="pill" href="https://github.com/ankit-chaubey/ferogram" target="_blank">ferogram on GitHub</a>
+  <a class="pill" href="https://crates.io/crates/ferogram" target="_blank">crates.io</a>
+</div>
+
+<h3>How to invoke a raw method</h3>
+<div class="tabs">
+  <button class="tab active" onclick="switchWayTab(0)"><span class="tab-dot tab-dot-rec"></span>invoke()</button>
+  <button class="tab" onclick="switchWayTab(1)"><span class="tab-dot tab-dot-ok"></span>handler</button>
+</div>
+<div class="way-content active" id="w0"><pre class="rust">use ferogram::tl::{enums, functions};
+
+#[tokio::main]
+async fn main() -> anyhow::Result<()> {
+    let (client, _) = ferogram::Client::quick_connect(
+        "my.session", 12345, "0123456789abcdef0123456789abcdef",
+    ).await?;
+
+    let result = client.invoke(&functions::messages::GetHistory {
+        peer: enums::InputPeer::Empty,
+        offset_id: 0,
+        offset_date: 0,
+        add_offset: 0,
+        limit: 100,
+        max_id: 0,
+        min_id: 0,
+        hash: 0,
+    }).await?;
+
+    println!("{result:?}");
+    Ok(())
+}</pre></div>
+<div class="way-content" id="w1"><pre class="rust">use ferogram::{Client, update::Update};
+use ferogram::tl::{enums, functions};
+
+#[tokio::main]
+async fn main() -> anyhow::Result<()> {
+    let (client, _) = ferogram::Client::quick_connect(
+        "my.session", 12345, "0123456789abcdef0123456789abcdef",
+    ).await?;
+
+    let mut stream = client.stream_updates();
+    while let Some(upd) = stream.next().await {
+        if let Update::NewMessage(msg) = upd {
+            // Use client inside the handler loop
+            let result = client.invoke(&functions::messages::GetHistory {
+                peer: enums::InputPeer::Empty,
+                offset_id: 0, offset_date: 0, add_offset: 0,
+                limit: 10, max_id: 0, min_id: 0, hash: 0,
+            }).await?;
+            println!("{result:?}");
+        }
+    }
+    Ok(())
+}</pre></div>
+
+<h3 id="core">Core types</h3>
+<p>TL primitives map to Rust types as follows:</p>
+<table>
+<tr><td><strong id="int">int</strong></td><td><code>i32</code></td><td>32-bit signed integer.</td></tr>
+<tr><td><strong id="long">long</strong></td><td><code>i64</code></td><td>64-bit signed integer.</td></tr>
+<tr><td><strong id="int128">int128</strong></td><td><code>[u8; 16]</code></td><td>128-bit value as a byte array.</td></tr>
+<tr><td><strong id="int256">int256</strong></td><td><code>[u8; 32]</code></td><td>256-bit value as a byte array.</td></tr>
+<tr><td><strong id="double">double</strong></td><td><code>f64</code></td><td>64-bit float.</td></tr>
+<tr><td><strong id="string">string</strong></td><td><code>String</code></td><td>UTF-8 owned string.</td></tr>
+<tr><td><strong id="bytes">bytes</strong></td><td><code>Vec&lt;u8&gt;</code></td><td>Arbitrary binary data.</td></tr>
+<tr><td><strong id="bool">Bool</strong> / <strong id="true">true</strong></td><td><code>bool</code></td><td><code>flags.N?true</code> fields are plain <code>bool</code> in Rust. Other optional fields are <code>Option&lt;T&gt;</code>.</td></tr>
+<tr><td><strong id="date">date</strong></td><td><code>i32</code></td><td>Unix timestamp.</td></tr>
+<tr><td><strong id="vector">Vector&lt;T&gt;</strong></td><td><code>Vec&lt;T&gt;</code></td><td>Rust <code>Vec</code> of the element type.</td></tr>
+</table>
+
+<h3>Module layout</h3>
+<p>All generated types live under <code>ferogram::tl</code> (re-exported from <code>ferogram-tl-types</code>):</p>
+<table>
+<tr><td><code>ferogram::tl::functions</code></td><td>RPC function structs implementing <code>RemoteCall</code>. Pass a reference to <code>client.invoke()</code>.</td></tr>
+<tr><td><code>ferogram::tl::types</code></td><td>Concrete constructor structs (bare types). Used as enum variant payloads.</td></tr>
+<tr><td><code>ferogram::tl::enums</code></td><td>Boxed abstract types as Rust enums. Pattern-match on these to get the inner <code>types::*</code> struct.</td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="js/app.js"></script>
+</div>
+<script>prependPath="";</script><script src="js/search.js"></script>
+</body>
+</html>

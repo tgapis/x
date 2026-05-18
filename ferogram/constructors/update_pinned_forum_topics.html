@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UpdatePinnedForumTopics - Ferogram Rust API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/dark.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">&#9790; Dark</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'dark';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>UpdatePinnedForumTopics</li></ul>
+<h1>UpdatePinnedForumTopics</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+updatePinnedForumTopics<span style="color:var(--tl-cid)">#def143d0</span> peer:<a href="../types/peer.html">Peer</a> order:flags.0?<a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#int">int</a>&gt; = <a href="../types/update.html">Update</a></pre>
+<button class="copy-btn" onclick="cp('use ferogram::tl::types::UpdatePinnedForumTopics;')">Copy use statement</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/update.html">Update</a></td></tr></table>
+<p style="color:var(--muted);font-size:14px;">
+In Rust this constructor is a variant of the <code>enums::Update</code> enum.<br>
+Match on it with: <code>if let enums::Update::UpdatePinnedForumTopics(v) = result { ... }</code>
+</p>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>peer</td><td><a href="../types/peer.html">Peer</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>order</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../index.html#int">int</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>
