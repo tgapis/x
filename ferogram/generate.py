@@ -482,8 +482,8 @@ CSS_COMMON = """\
 html { scroll-behavior: smooth; }
 body {
     font-family: 'Nunito', system-ui, sans-serif;
-    font-size: 15px;
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.7;
     margin: 0;
     padding: 0;
     transition: background 0.2s, color 0.2s;
@@ -495,9 +495,9 @@ a:hover { text-decoration: underline; }
     margin: 0 auto;
     padding: 24px 20px 60px;
 }
-h1 { font-size: 1.8rem; font-weight: 700; margin: 12px 0 20px; }
+h1 { font-size: 2rem; font-weight: 700; margin: 12px 0 20px; }
 h3 {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.06em;
@@ -505,7 +505,7 @@ h3 {
 }
 pre {
     font-family: 'Source Code Pro', monospace;
-    font-size: 13px;
+    font-size: 14px;
     padding: 14px 16px;
     border-radius: 6px;
     overflow-x: auto;
@@ -513,16 +513,16 @@ pre {
     border-style: solid;
     line-height: 1.6;
 }
-code { font-family: 'Source Code Pro', monospace; font-size: 13px; }
+code { font-family: 'Source Code Pro', monospace; font-size: 14px; }
 table { width: 100%; border-collapse: collapse; margin: 0; }
 table td {
     border-top-width: 1px;
     border-top-style: solid;
-    padding: 9px 12px;
+    padding: 10px 12px;
     vertical-align: top;
-    font-size: 14px;
+    font-size: 15px;
 }
-table td:first-child { font-weight: 600; font-family: monospace; font-size: 13px; }
+table td:first-child { font-weight: 600; font-family: monospace; font-size: 14px; }
 ul.horizontal {
     list-style: none;
     padding: 8px 14px;
@@ -533,7 +533,7 @@ ul.horizontal {
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 13px;
+    font-size: 14px;
     flex-wrap: wrap;
 }
 ul.horizontal li { display: inline; }
@@ -545,31 +545,31 @@ button.copy-btn {
     border-width: 1px;
     border-style: solid;
     border-radius: 5px;
-    font-size: 13px;
+    font-size: 14px;
     font-family: 'Source Code Pro', monospace;
     cursor: pointer;
     transition: background 0.15s;
 }
-.tag-opt { border-radius: 3px; padding: 1px 5px; font-size: 11px; font-family: monospace; }
-.tag-req { border-radius: 3px; padding: 1px 5px; font-size: 11px; font-family: monospace; }
+.tag-opt { border-radius: 3px; padding: 1px 5px; font-size: 12px; font-family: monospace; }
+.tag-req { border-radius: 3px; padding: 1px 5px; font-size: 12px; font-family: monospace; }
 #theme-btn {
     position: fixed; top: 14px; right: 16px;
     padding: 5px 12px; border-radius: 20px;
     border-width: 1px; border-style: solid;
-    font-size: 12px; cursor: pointer; z-index: 999;
+    font-size: 13px; cursor: pointer; z-index: 999;
     font-family: 'Nunito', sans-serif;
     transition: background 0.2s, color 0.2s;
 }
 #searchBox {
-    width: 100%; padding: 11px 14px;
+    width: 100%; padding: 12px 16px;
     border-radius: 6px; border-width: 1px; border-style: solid;
-    font-size: 15px; font-family: 'Nunito', sans-serif;
+    font-size: 16px; font-family: 'Nunito', sans-serif;
     margin-bottom: 18px; outline: none;
 }
 #searchDiv details { margin-bottom: 16px; }
 #searchDiv summary.title {
     font-weight: 700; text-transform: uppercase;
-    letter-spacing: 0.06em; font-size: 12px;
+    letter-spacing: 0.06em; font-size: 13px;
     cursor: pointer; user-select: none; padding: 6px 0; list-style: none;
 }
 #searchDiv summary.title::-webkit-details-marker { display: none; }
@@ -577,30 +577,30 @@ ul.together {
     list-style: none; padding: 0; margin: 6px 0 0;
     column-count: 2; column-gap: 16px;
 }
-ul.together li { padding: 2px 0; font-size: 13px; break-inside: avoid; }
+ul.together li { padding: 2px 0; font-size: 14px; break-inside: avoid; }
 #exactMatch { border-radius: 6px; padding: 10px 14px; margin-bottom: 16px; border-width: 1px; border-style: solid; }
 .invisible { position: absolute; left: -9999px; top: -9999px; }
-details.example > summary { cursor: pointer; font-size: 13px; user-select: none; margin-bottom: 6px; font-family: 'Source Code Pro', monospace; list-style: none; }
+details.example > summary { cursor: pointer; font-size: 14px; user-select: none; margin-bottom: 6px; font-family: 'Source Code Pro', monospace; list-style: none; }
 details.example > summary::-webkit-details-marker { display: none; }
 details.example > summary::marker { display: none; }
 details.example { margin-bottom: 12px; }
-.example-note { font-size: 13px; color: var(--muted); margin: 6px 0 14px; font-family: 'Source Code Pro', monospace; }
+.example-note { font-size: 14px; color: var(--muted); margin: 6px 0 14px; font-family: 'Source Code Pro', monospace; }
 .example-note strong { color: var(--accent-light); }
 .tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; margin-bottom: 0; }
-.tab { padding: 7px 14px; font-size: 12px; cursor: pointer; font-family: 'Source Code Pro', monospace; color: var(--muted); border: none; background: none; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
+.tab { padding: 7px 14px; font-size: 13px; cursor: pointer; font-family: 'Source Code Pro', monospace; color: var(--muted); border: none; background: none; border-bottom: 2px solid transparent; margin-bottom: -1px; transition: color .15s, border-color .15s; }
 .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
 .way-content { display: none; }
 .way-content.active { display: block; }
 .way-content pre { border-top: none; border-radius: 0 0 8px 8px; margin-top: 0; }
 @media (max-width: 600px) {
     ul.together { column-count: 1; }
-    h1 { font-size: 1.3rem; }
+    h1 { font-size: 1.5rem; }
     #theme-btn { top: 8px; right: 8px; }
 }
 .pill {
     padding: 5px 13px; border-radius: 20px;
     border-width: 1px; border-style: solid;
-    font-size: 13px; text-decoration: none;
+    font-size: 14px; text-decoration: none;
     display: inline-block; transition: background .15s, border-color .15s;
 }
 .pill:hover { text-decoration: none; }
@@ -609,7 +609,7 @@ pre { position: relative; }
 .copy-icon {
     position: absolute; top: 8px; right: 8px;
     opacity: 0; transition: opacity .15s;
-    border-radius: 4px; padding: 2px 8px; font-size: 11px;
+    border-radius: 4px; padding: 2px 8px; font-size: 12px;
     cursor: pointer; border-width: 1px; border-style: solid;
     font-family: 'Source Code Pro', monospace; line-height: 1.6;
 }
@@ -619,7 +619,7 @@ details.example > summary .arrow {
 }
 details.example[open] > summary .arrow { transform: rotate(90deg); }
 .hint {
-    font-size: 11px; margin-bottom: 18px;
+    font-size: 12px; margin-bottom: 18px;
     font-family: 'Source Code Pro', monospace;
     padding: 5px 10px; border-radius: 6px; display: inline-block;
 }
@@ -629,27 +629,29 @@ details.example[open] > summary .arrow { transform: rotate(90deg); }
 .py-n { color: var(--hl-num); }
 .badge {
     display: inline-block; border-radius: 4px; padding: 2px 8px;
-    font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.04em;
     font-family: 'Source Code Pro', monospace; white-space: nowrap;
 }
 .badge-rec  { background: var(--tag-req-bg);  color: var(--tag-req-text); }
 .badge-ok   { background: var(--tag-opt-bg);  color: var(--tag-opt-text); }
 .badge-warn { background: var(--warn-bg, #2a2010); color: var(--warn-text, #c8922a); }
 .badge-skip { background: var(--skip-bg, #2a1010); color: var(--skip-text, #c85a5a); }
-.cmp-table { width: 100%; border-collapse: collapse; margin: 0 0 24px; font-size: 13px; }
+.cmp-table { width: 100%; border-collapse: collapse; margin: 0 0 24px; font-size: 14px; }
 .cmp-table th {
     text-align: left; padding: 8px 12px;
     border-bottom: 2px solid var(--border);
-    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
     letter-spacing: 0.06em; color: var(--muted);
 }
 .cmp-table td {
     padding: 10px 12px; vertical-align: top;
     border-top: 1px solid var(--border);
 }
-.cmp-table td:first-child { font-weight: 700; font-family: 'Source Code Pro', monospace; color: var(--accent-light); font-size: 12px; white-space: nowrap; }
-.cmp-table td code { font-size: 12px; font-family: 'Source Code Pro', monospace; }
+.cmp-table td:first-child { font-weight: 700; font-family: 'Source Code Pro', monospace; color: var(--accent-light); font-size: 13px; white-space: nowrap; }
+.cmp-table td code { font-size: 13px; font-family: 'Source Code Pro', monospace; }
 .cmp-table tr:hover td { background: var(--surface); }
+.cmp-table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-bottom: 24px; }
+.cmp-table-wrap .cmp-table { margin-bottom: 0; min-width: 640px; }
 .tab-dot {
     display: inline-block; width: 7px; height: 7px; border-radius: 50%;
     margin-right: 5px; vertical-align: middle; position: relative; top: -1px;
@@ -661,15 +663,15 @@ details.example[open] > summary .arrow { transform: rotate(90deg); }
 
 CSS_DARK_VARS = """\
 :root {
-    --bg: #0f1117; --surface: #1a1d27; --border: #2a2d3a;
+    --bg: #0f1117; --surface: #181b24; --border: #2b3040;
     --text: #e2e4f0; --muted: #8b8fa8; --accent: #7c6af7;
-    --accent-light: #a99ff8; --code-bg: #161923; --code-text: #c9d1e0;
+    --accent-light: #a99ff8; --code-bg: #141720; --code-text: #cfd5e6;
     --link: #7c6af7; --link-hover: #a99ff8;
-    --tag-opt-bg: #1a3040; --tag-opt-text: #5db8e8;
-    --tag-req-bg: #1a2e1a; --tag-req-text: #6ecb6e;
-    --btn-bg: #251f4a; --btn-border: #7c6af7; --btn-text: #a99ff8; --btn-hover: #321f7a;
-    --tl-cid: #c08858;
-    --hl-kw: #bb8af7; --hl-str: #7ec898; --hl-cmt: #5c6380; --hl-num: #e8a87c;
+    --tag-opt-bg: #1b3042; --tag-opt-text: #66bdf0;
+    --tag-req-bg: #1a3122; --tag-req-text: #72d572;
+    --btn-bg: #251f4a; --btn-border: #7c6af7; --btn-text: #b3a8ff; --btn-hover: #32285e;
+    --tl-cid: #d19a66;
+    --hl-kw: #c792ea; --hl-str: #8bd49c; --hl-cmt: #66708a; --hl-num: #f0b27a;
     --warn-bg: #2a2010; --warn-text: #d4a040;
     --skip-bg: #2a1010; --skip-text: #c85a5a;
 }
@@ -706,7 +708,7 @@ h3 { color: var(--muted); }
 
 CSS_LIGHT_VARS = """\
 :root {
-    --bg: #ffffff; --surface: #f5f6fa; --border: #d0d3e0;
+    --bg: #f7f8fc; --surface: #ffffff; --border: #d8dceb;
     --text: #1a1c2e; --muted: #6b6f87; --accent: #5b4fcf;
     --accent-light: #7c6af7; --code-bg: #f0f1f8; --code-text: #2a2d4a;
     --link: #5b4fcf; --link-hover: #7c6af7;
@@ -741,7 +743,7 @@ button.copy-btn:hover { background: var(--btn-hover); }
 #searchBox:focus { border-color: var(--accent); }
 #searchDiv summary.title { color: var(--muted); }
 #exactMatch { background: var(--surface); border-color: var(--accent); }
-h3 { color: var(--muted); }
+h3 { color: #35384a; }
 .pill { background: var(--surface); border-color: var(--border); color: var(--link); }
 .pill:hover { background: var(--btn-bg); border-color: var(--accent); }
 .copy-icon { background: var(--surface); border-color: var(--border); color: var(--muted); }
@@ -751,15 +753,15 @@ h3 { color: var(--muted); }
 
 CSS_AMOLED_VARS = """\
 :root {
-    --bg: #000000; --surface: #0a0a0a; --border: #1a1a1a;
-    --text: #e8eaf6; --muted: #7a7e9a; --accent: #a78bfa;
-    --accent-light: #c4b5fd; --code-bg: #050505; --code-text: #d0d4e8;
+    --bg: #000000; --surface: #0a0a0a; --border: #1c1c1c;
+    --text: #eceffb; --muted: #7f859d; --accent: #a78bfa;
+    --accent-light: #c4b5fd; --code-bg: #050505; --code-text: #d7dcef;
     --link: #a78bfa; --link-hover: #c4b5fd;
-    --tag-opt-bg: #0d1020; --tag-opt-text: #60a5fa;
-    --tag-req-bg: #0a1a0a; --tag-req-text: #4ade80;
-    --btn-bg: #150e2a; --btn-border: #a78bfa; --btn-text: #c4b5fd; --btn-hover: #1e1040;
-    --tl-cid: #d4a06a;
-    --hl-kw: #d4a4fc; --hl-str: #86d0aa; --hl-cmt: #3a3e5a; --hl-num: #f0b478;
+    --tag-opt-bg: #0d1526; --tag-opt-text: #6cbcff;
+    --tag-req-bg: #0d1b12; --tag-req-text: #59d98e;
+    --btn-bg: #140f28; --btn-border: #a78bfa; --btn-text: #d0c4ff; --btn-hover: #21163f;
+    --tl-cid: #d8a46d;
+    --hl-kw: #d4a4fc; --hl-str: #92d9a8; --hl-cmt: #50566f; --hl-num: #f3bc84;
     --warn-bg: #1a1200; --warn-text: #e0a030;
     --skip-bg: #1a0800; --skip-text: #e06060;
 }
@@ -805,7 +807,7 @@ THEME_INIT = """\
 <script>
 (function(){
   var labels={'dark':'\u2600 Bright','light':'\u25c9 Amoled','amoled':'\u263e Dark'};
-  var t=localStorage.getItem('theme')||'dark';
+  var t=localStorage.getItem('theme')||'light';
   document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\\.css/,t+'.css');
   document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
 })();
@@ -820,68 +822,12 @@ THEME_BTN = """<button id="theme-btn" onclick="(function(){
   s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
   localStorage.setItem('theme',next);
   document.getElementById('theme-btn').textContent=labels[next];
-})()">&#9728; Bright</button>"""
+})()">})()">&#9728; Bright</button>"""#9673; Amoled</button>"""
 
-CP_SCRIPT = """<textarea id="c" class="invisible"></textarea>
-<script>
-function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}
-/* Python syntax highlighter */
-function hlPy(t){
-  var K='import|from|as|async|def|await|return|class|if|elif|else|for|in|not|and|or|None|True|False|pass|with|try|except|raise|yield|lambda'.split('|');
-  function e(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  var o='',i=0,n=t.length;
-  while(i<n){
-    var c=t[i];
-    if(c==='#'){var j=t.indexOf('\\n',i);j=j<0?n:j;o+='<span class="py-c">'+e(t.slice(i,j))+'</span>';i=j;continue;}
-    if(c==='"'||c==="'"){var q=c,j=i+1;while(j<n&&t[j]!==q){if(t[j]==='\\\\')j++;j++;}j++;o+='<span class="py-s">'+e(t.slice(i,j))+'</span>';i=j;continue;}
-    if(/[a-zA-Z_]/.test(c)){var j=i;while(j<n&&/[a-zA-Z0-9_]/.test(t[j]))j++;var w=t.slice(i,j);o+=K.indexOf(w)>=0?'<span class="py-k">'+w+'</span>':e(w);i=j;continue;}
-    if(/[0-9]/.test(c)&&(i===0||!/[a-zA-Z_]/.test(t[i-1]))){var j=i;while(j<n&&/[0-9a-fA-FxXbBoO._]/.test(t[j]))j++;o+='<span class="py-n">'+t.slice(i,j)+'</span>';i=j;continue;}
-    o+=e(c);i++;
-  }
-  return o;
-}
-function toast(){
-  var d=document.createElement('div');
-  d.textContent='Copied!';
-  d.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px;font-family:monospace;z-index:9999;pointer-events:none;opacity:1;transition:opacity .4s';
-  document.body.appendChild(d);
-  setTimeout(function(){d.style.opacity='0';setTimeout(function(){d.remove();},400);},1200);
-}
-(function(){
-  function attachLongPress(el){
-    var _lpt=null;
-    el.addEventListener('touchstart',function(){
-      _lpt=setTimeout(function(){cp(el.innerText||el.textContent);toast();},600);
-    },{passive:true});
-    el.addEventListener('touchend',function(){clearTimeout(_lpt);});
-    el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
-  }
-  function addCopyIcon(pre){
-    var code=(pre.textContent||pre.innerText).replace(/\n$/,'');
-    var btn=document.createElement('button');
-    btn.className='copy-icon';btn.textContent='copy';
-    btn.addEventListener('click',function(ev){
-      ev.stopPropagation();
-      cp(code);
-      btn.textContent='\\u2713';toast();
-      setTimeout(function(){btn.textContent='copy';},1300);
-    });
-    pre.appendChild(btn);
-  }
-  function init(){
-    document.querySelectorAll('pre.python').forEach(function(p){p.innerHTML=hlPy(p.textContent);});
-    document.querySelectorAll('pre').forEach(function(el){addCopyIcon(el);attachLongPress(el);});
-    document.querySelectorAll('.tabs .tab').forEach(function(btn,i){
-      btn.addEventListener('touchend',function(e){e.preventDefault();switchWayTab(i);});
-    });
-  }
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
-})();
-function switchWayTab(n){
-  document.querySelectorAll('.tabs .tab').forEach(function(t,i){t.classList.toggle('active',i===n);});
-  document.querySelectorAll('.way-content').forEach(function(c,i){c.classList.toggle('active',i===n);});
-}
-</script>"""
+CP_HTML = '<textarea id="c" class="invisible"></textarea>'
+
+APP_JS = 'function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}\n/* Python syntax highlighter */\nfunction hlPy(t){\n  var K=\'import|from|as|async|def|await|return|class|if|elif|else|for|in|not|and|or|None|True|False|pass|with|try|except|raise|yield|lambda\'.split(\'|\');\n  function e(s){return s.replace(/&/g,\'&amp;\').replace(/\\x3c/g,\'&lt;\').replace(/\\x3e/g,\'&gt;\');}\n  var o=\'\',i=0,n=t.length;\n  while(i<n){\n    var c=t[i];\n    if(c===\'#\'){var j=t.indexOf(\'\\n\',i);j=j<0?n:j;o+=\'<span class="py-c">\'+e(t.slice(i,j))+\'</span>\';i=j;continue;}\n    if(c===\'"\'||c==="\'"){var q=c,j=i+1;while(j<n&&t[j]!==q){if(t[j]===\'\\\\\')j++;j++;}j++;o+=\'<span class="py-s">\'+e(t.slice(i,j))+\'</span>\';i=j;continue;}\n    if(/[a-zA-Z_]/.test(c)){var j=i;while(j<n&&/[a-zA-Z0-9_]/.test(t[j]))j++;var w=t.slice(i,j);o+=K.indexOf(w)>=0?\'<span class="py-k">\'+w+\'</span>\':e(w);i=j;continue;}\n    if(/[0-9]/.test(c)&&(i===0||!/[a-zA-Z_]/.test(t[i-1]))){var j=i;while(j<n&&/[0-9a-fA-FxXbBoO._]/.test(t[j]))j++;o+=\'<span class="py-n">\'+t.slice(i,j)+\'</span>\';i=j;continue;}\n    o+=e(c);i++;\n  }\n  return o;\n}\nfunction toast(){\n  var d=document.createElement(\'div\');\n  d.textContent=\'Copied!\';\n  d.style.cssText=\'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px;font-family:monospace;z-index:9999;pointer-events:none;opacity:1;transition:opacity .4s\';\n  document.body.appendChild(d);\n  setTimeout(function(){d.style.opacity=\'0\';setTimeout(function(){d.remove();},400);},1200);\n}\n(function(){\n  function attachLongPress(el){\n    var _lpt=null;\n    el.addEventListener(\'touchstart\',function(){\n      _lpt=setTimeout(function(){cp(el.innerText||el.textContent);toast();},600);\n    },{passive:true});\n    el.addEventListener(\'touchend\',function(){clearTimeout(_lpt);});\n    el.addEventListener(\'touchmove\',function(){clearTimeout(_lpt);});\n  }\n  function addCopyIcon(pre){\n    var code=(pre.textContent||pre.innerText).replace(/\\n$/,\'\');\n    var btn=document.createElement(\'button\');\n    btn.className=\'copy-icon\';btn.textContent=\'copy\';\n    btn.addEventListener(\'click\',function(ev){\n      ev.stopPropagation();\n      cp(code);\n      btn.textContent=\'\\u2713\';toast();\n      setTimeout(function(){btn.textContent=\'copy\';},1300);\n    });\n    pre.appendChild(btn);\n  }\n  function init(){\n    document.querySelectorAll(\'pre.python\').forEach(function(p){p.innerHTML=hlPy(p.textContent);});\n    document.querySelectorAll(\'pre\').forEach(function(el){addCopyIcon(el);attachLongPress(el);});\n    document.querySelectorAll(\'.tabs .tab\').forEach(function(btn,i){\n      btn.addEventListener(\'touchend\',function(e){e.preventDefault();switchWayTab(i);});\n    });\n  }\n  if(document.readyState===\'loading\'){document.addEventListener(\'DOMContentLoaded\',init);}else{init();}\n})();\nfunction switchWayTab(n){\n  document.querySelectorAll(\'.tabs .tab\').forEach(function(t,i){t.classList.toggle(\'active\',i===n);});\n  document.querySelectorAll(\'.way-content\').forEach(function(c,i){c.classList.toggle(\'active\',i===n);});\n}'
+
 
 
 def page(title: str, depth: str, body: str, *, show_search: bool = True) -> str:
@@ -893,9 +839,9 @@ def page(title: str, depth: str, body: str, *, show_search: bool = True) -> str:
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>{html.escape(title)} - ferogram API</title>
+<title>{html.escape(title)} - Ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link id="style" rel="stylesheet" href="{depth}css/dark.css">
+<link id="style" rel="stylesheet" href="{depth}css/light.css">
 {FONTS}
 </head>
 <body>
@@ -903,7 +849,8 @@ def page(title: str, depth: str, body: str, *, show_search: bool = True) -> str:
 {THEME_INIT}
 <div id="main_div">
 {body}
-{CP_SCRIPT}
+{CP_HTML}
+<script src="{depth}js/app.js"></script>
 </div>
 {search_script}
 </body>
@@ -929,7 +876,7 @@ def fields_table(item: TLItem, known_types: set[str], depth: str) -> str:
     for f in item.fields:
         badge = '<span class="tag-opt">optional</span>' if f.optional else '<span class="tag-req">required</span>'
         rows += f"<tr><td>{html.escape(f.name)}</td><td>{link_type(f.ftype, known_types, depth)}</td><td>{badge}</td></tr>\n"
-    return f"<table>{rows}</table>"
+    return f'<div class="cmp-table-wrap"><table>{rows}</table></div>'
 
 
 def item_table(items: list[TLItem], url_fn, depth: str) -> str:
@@ -973,7 +920,7 @@ def gen_constructor_page(
 <button class="copy-btn" onclick="cp('{imp}')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="{ret_url}">{html.escape(item.ret)}</a></td></tr></table>
-<h3>Members</h3>
+<h3>Parameters</h3>
 {fields_table(item, known_types, depth)}
 {using}
 """
@@ -1007,7 +954,7 @@ def gen_abstract_type_page(
 {breadcrumb(crumbs)}
 <h1>{html.escape(abstract)}</h1>
 <h3>Constructors</h3>
-<p>This type can be an instance of:</p>
+<p>This is an abstract type. At runtime it will be one of the following:</p>
 <table>{cons_rows}</table>
 {maybe_section("Requests returning this type", funcs_returning, method_url, depth)}
 {maybe_section("Requests accepting this type as input", funcs_accepting, method_url, depth)}
@@ -1035,8 +982,8 @@ def gen_method_page(item: TLItem, known_types: set[str], out: Path) -> None:
     ex_full = html.escape(build_example(item, required_only=False))
     has_optional = any(f.optional for f in item.fields if f.name != "flags")
 
-    note_html = """<p class="example-note">Minimal uses the raw proxy shorthand. To see the full method signature with all parameters, expand <strong>Full API</strong> below.</p>"""
-    disclaimer = """<p class="example-note">Examples show the correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs) with real data before running.</p>"""
+    note_html = """<p class="example-note">The minimal example uses Ferogram's raw proxy shorthand. Peers can be passed as strings and required primitives get safe defaults. Expand <strong>Full API</strong> to see every parameter.</p>"""
+    disclaimer = """<p class="example-note">The examples below use placeholder values. Replace them with real data before running the code.</p>"""
 
     if has_optional:
         examples_html = f"""<h3>Example</h3>
@@ -1061,7 +1008,6 @@ def gen_method_page(item: TLItem, known_types: set[str], out: Path) -> None:
     body = f"""
 {breadcrumb(crumbs)}
 <h1>{html.escape(cls)}</h1>
-<p>Both users and bots can use this request.</p>
 <pre class="tl">{render_tl_def(item, known_types, depth)}</pre>
 <button class="copy-btn" onclick="cp('{imp}')">Copy import</button>
 <h3>Returns</h3>
@@ -1241,9 +1187,9 @@ document.addEventListener('keydown', function(e) {{
 
 def gen_root_index(layer: int, n_types: int, n_constructors: int, n_methods: int, out: Path) -> None:
     body = f"""\
-<h1>ferogram API <span style="color:var(--muted);font-size:1rem">Layer {layer}</span></h1>
-<p style="color:var(--muted)">
-  Raw Telegram MTProto API reference, generated from the TL schema at Layer {layer}.
+<h1>Ferogram API <span style="color:var(--muted);font-size:1rem">Layer {layer}</span></h1>
+<p>
+  Raw Telegram MTProto API reference generated from Telegram's TL schema for Layer {layer}.
   Use the search box above or browse by section.
 </p>
 <div class="links-row">
@@ -1254,13 +1200,13 @@ def gen_root_index(layer: int, n_types: int, n_constructors: int, n_methods: int
 
 <h3>What is ferogram?</h3>
 <p>
-  <strong>ferogram</strong> is a modern Telegram MTProto library written in Rust, designed for speed,
-  reliability, and handling complex tasks with ease, while providing full access to Telegram's protocol.
+  <strong>ferogram</strong> is a modern Telegram MTProto library written in Rust, built for speed,
+  reliability, and full access to Telegram's protocol.
 </p>
 <p>
-  <strong>ferogram-py</strong>, a Python wrapper for ferogram, lets you build Telegram bots and userbots
-  using a clean and easy high-level API, while still giving you direct access to raw TL functions for
-  advanced features and complete MTProto control whenever needed.
+  <strong>ferogram-py</strong> is the Python wrapper for ferogram.
+  It lets you build Telegram bots and userbots using a clean high-level API,
+  while still giving you direct access to raw TL methods whenever needed.
 </p>
 <div class="links-row">
   <a class="pill" href="https://github.com/ankit-chaubey/ferogram" target="_blank">ferogram (Rust)</a>
@@ -1278,50 +1224,66 @@ def gen_root_index(layer: int, n_types: int, n_constructors: int, n_methods: int
 </ul>
 
 <h3 id="tl">TL definition</h3>
-<p>When you see this on a method or constructor page:</p>
+<p>Every method and constructor page shows a block like this at the top:</p>
 <pre class="tl">---functions---
 users.getUsers#0d91a548 id:Vector&lt;InputUser&gt; = Vector&lt;User&gt;</pre>
 <p>
-  This is <strong>not</strong> Python code. It's the "TL definition" : an easy-to-read line that gives
-  a quick overview of the parameters and their result type. You don't need to worry about it beyond
-  reading the parameter names and types.
+  This isn't Python code. It's Telegram's TL schema format.
+  It gives a quick overview of the parameters and the returned result type.
+</p>
+<p>
+  In most cases, you only need to look at the parameter names and their types.
 </p>
 
 <h3 id="methods">Methods</h3>
 <p>
-  Currently there are <strong>{n_methods} methods</strong> available for Layer {layer}.
-  <a href="methods/index.html">See the complete method list</a>.
+  {n_methods} methods across Layer {layer}.
+  <a href="methods/index.html">Browse the full list.</a>
 </p>
 <p>
-  Methods, also known as <em>requests</em>, are used to interact with the Telegram API itself and are
-  invoked through <code>await client(Request(...))</code> or via the raw proxy shorthand.
-  <strong>Only these</strong> can be invoked . You cannot invoke types or constructors, only requests.
-  After this, Telegram will return a <code>result</code>, which may be a bunch of messages,
-  some dialogs, users, etc.
+  Methods are used to make requests to Telegram's API.
+  You can call them using <code>await app.invoke(...)</code>,
+  <code>await app(raw.functions...)</code>,
+  or through the raw proxy shorthand.
+</p>
+<p>
+  Only methods can be executed.
+  Telegram will then return a result, such as users, chats, messages, dialogs, or updates.
 </p>
 
 <h3 id="types">Types</h3>
 <p>
-  Currently there are <strong>{n_types} types</strong>.
-  <a href="types/index.html">See the complete list of types</a>.
+  {n_types} abstract types.
+  <a href="types/index.html">See the full list.</a>
 </p>
 <p>
-  Telegram types are the <em>abstract</em> results you receive after invoking a request. They are
-  "abstract" because they can have multiple constructors. For instance, the abstract type
-  <code>User</code> can be either <code>UserEmpty</code> or <code>User</code>. You should, most of the
-  time, make sure you received the desired type by using the
-  <code>isinstance(result, Constructor)</code> Python function.
-  When a request needs a Telegram type as argument, create an instance using one of its constructors.
+  Types are abstract Telegram objects returned by the API.
+  A single type can have multiple constructors.
+</p>
+<p>
+  For example, <code>User</code> can be returned as
+  <code>User</code> or <code>UserEmpty</code>.
+</p>
+<p>
+  You can check the returned constructor using
+  <code>isinstance(result, Constructor)</code>.
+</p>
+<p>
+  When a method expects a Telegram type as a parameter,
+  you usually create it using one of its constructors.
 </p>
 
 <h3 id="constructors">Constructors</h3>
 <p>
-  Currently there are <strong>{n_constructors} constructors</strong>.
-  <a href="constructors/index.html">See the list of all constructors</a>.
+  {n_constructors} constructors.
+  <a href="constructors/index.html">See the full list.</a>
 </p>
 <p>
-  Constructors are the way you create instances of the abstract types described above, and also the
-  concrete instances actually returned from functions (they all share a common abstract type).
+  Constructors are concrete Telegram objects used throughout the API.
+</p>
+<p>
+  They are used to create request parameters,
+  and are also the actual objects returned by Telegram.
 </p>
 
 <h3>6 ways to call a raw method</h3>
@@ -1378,6 +1340,7 @@ result = await app.invoke({{
 }})</pre></div>
 
 <h3>Which way should I use?</h3>
+<div class="cmp-table-wrap">
 <table class="cmp-table">
 <thead>
 <tr>
@@ -1447,6 +1410,7 @@ result = await app.invoke({{
 </tr>
 </tbody>
 </table>
+</div>
 <p style="color:var(--muted);font-size:13px;">
   <strong style="color:var(--text)">Rule of thumb:</strong>
   use way 1 by default. Switch to way 4 (proxy) for quick scripts where peer strings save time.
@@ -1454,7 +1418,7 @@ result = await app.invoke({{
 </p>
 
 <h3 id="core">Core types</h3>
-<p>Core types are the primitives from which all other Telegram types are built:</p>
+<p>The primitive types everything else is built from:</p>
 <table>
 <tr><td><strong id="int">int</strong></td><td>32-bit signed integer. Check bit length with <code>a.bit_length()</code>.</td></tr>
 <tr><td><strong id="long">long</strong></td><td>64-bit signed integer.</td></tr>
@@ -1470,14 +1434,16 @@ result = await app.invoke({{
 
 <h3 id="example">Full example</h3>
 <p>
-  All methods shown here have dummy examples on how to write them, so you don't get confused with
-  their TL definition. However, this may not always run as-is. They are just there to show the
-  correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs, placeholder
-  TL objects) with real data before running.
+  Every method page includes a code sample. The syntax is correct, but placeholder values
+  (<code>'username'</code>, dummy IDs, empty TL objects) won't do anything useful until you swap them
+  for real data. They're there so you can see the call shape at a glance.
 </p>
 <p>
-  See the <a href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py README</a>
-  for a complete working example.
+  For real working examples, check the
+  <a href="https://github.com/ankit-chaubey/ferogram-py/tree/main/examples" target="_blank">examples folder</a>
+  on GitHub. To see what high-level APIs are already covered,
+  <a href="https://github.com/ankit-chaubey/ferogram-py/blob/main/FEATURES.md" target="_blank">FEATURES.md</a>
+  is the best place to look since friendly high-level docs are not available yet.
 </p>
 """
     (out / "index.html").write_text(page("ferogram API", "", body), encoding="utf-8")
@@ -1539,6 +1505,8 @@ def main() -> None:
     (css_dir / "amoled.css").write_text(CSS_AMOLED, encoding="utf-8")
 
     gen_search_js(types_list, funcs_list, abstract_types_sorted, out_dir)
+    (out_dir / "js").mkdir(parents=True, exist_ok=True)
+    (out_dir / "js" / "app.js").write_text(APP_JS, encoding="utf-8")
 
     cons_ns_map: dict[str, list[TLItem]] = defaultdict(list)
     for t in types_list:
