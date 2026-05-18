@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>ferogram API - ferogram API</title>
+<title>ferogram API - Ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link id="style" rel="stylesheet" href="css/dark.css">
+<link id="style" rel="stylesheet" href="css/light.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -17,19 +17,19 @@
   s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
   localStorage.setItem('theme',next);
   document.getElementById('theme-btn').textContent=labels[next];
-})()">&#9728; Bright</button>
+})()">})()">&#9728; Bright</button>
 <script>
 (function(){
   var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
-  var t=localStorage.getItem('theme')||'dark';
+  var t=localStorage.getItem('theme')||'light';
   document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
   document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
 })();
 </script>
 <div id="main_div">
-<h1>ferogram API <span style="color:var(--muted);font-size:1rem">Layer 225</span></h1>
-<p style="color:var(--muted)">
-  Raw Telegram MTProto API reference, generated from the TL schema at Layer 225.
+<h1>Ferogram API <span style="color:var(--muted);font-size:1rem">Layer 225</span></h1>
+<p>
+  Raw Telegram MTProto API reference generated from Telegram's TL schema for Layer 225.
   Use the search box above or browse by section.
 </p>
 <div class="links-row">
@@ -40,13 +40,13 @@
 
 <h3>What is ferogram?</h3>
 <p>
-  <strong>ferogram</strong> is a modern Telegram MTProto library written in Rust, designed for speed,
-  reliability, and handling complex tasks with ease, while providing full access to Telegram's protocol.
+  <strong>ferogram</strong> is a modern Telegram MTProto library written in Rust, built for speed,
+  reliability, and full access to Telegram's protocol.
 </p>
 <p>
-  <strong>ferogram-py</strong>, a Python wrapper for ferogram, lets you build Telegram bots and userbots
-  using a clean and easy high-level API, while still giving you direct access to raw TL functions for
-  advanced features and complete MTProto control whenever needed.
+  <strong>ferogram-py</strong> is the Python wrapper for ferogram.
+  It lets you build Telegram bots and userbots using a clean high-level API,
+  while still giving you direct access to raw TL methods whenever needed.
 </p>
 <div class="links-row">
   <a class="pill" href="https://github.com/ankit-chaubey/ferogram" target="_blank">ferogram (Rust)</a>
@@ -64,50 +64,66 @@
 </ul>
 
 <h3 id="tl">TL definition</h3>
-<p>When you see this on a method or constructor page:</p>
+<p>Every method and constructor page shows a block like this at the top:</p>
 <pre class="tl">---functions---
 users.getUsers#0d91a548 id:Vector&lt;InputUser&gt; = Vector&lt;User&gt;</pre>
 <p>
-  This is <strong>not</strong> Python code. It's the "TL definition" : an easy-to-read line that gives
-  a quick overview of the parameters and their result type. You don't need to worry about it beyond
-  reading the parameter names and types.
+  This isn't Python code. It's Telegram's TL schema format.
+  It gives a quick overview of the parameters and the returned result type.
+</p>
+<p>
+  In most cases, you only need to look at the parameter names and their types.
 </p>
 
 <h3 id="methods">Methods</h3>
 <p>
-  Currently there are <strong>772 methods</strong> available for Layer 225.
-  <a href="methods/index.html">See the complete method list</a>.
+  772 methods across Layer 225.
+  <a href="methods/index.html">Browse the full list.</a>
 </p>
 <p>
-  Methods, also known as <em>requests</em>, are used to interact with the Telegram API itself and are
-  invoked through <code>await client(Request(...))</code> or via the raw proxy shorthand.
-  <strong>Only these</strong> can be invoked . You cannot invoke types or constructors, only requests.
-  After this, Telegram will return a <code>result</code>, which may be a bunch of messages,
-  some dialogs, users, etc.
+  Methods are used to make requests to Telegram's API.
+  You can call them using <code>await app.invoke(...)</code>,
+  <code>await app(raw.functions...)</code>,
+  or through the raw proxy shorthand.
+</p>
+<p>
+  Only methods can be executed.
+  Telegram will then return a result, such as users, chats, messages, dialogs, or updates.
 </p>
 
 <h3 id="types">Types</h3>
 <p>
-  Currently there are <strong>594 types</strong>.
-  <a href="types/index.html">See the complete list of types</a>.
+  594 abstract types.
+  <a href="types/index.html">See the full list.</a>
 </p>
 <p>
-  Telegram types are the <em>abstract</em> results you receive after invoking a request. They are
-  "abstract" because they can have multiple constructors. For instance, the abstract type
-  <code>User</code> can be either <code>UserEmpty</code> or <code>User</code>. You should, most of the
-  time, make sure you received the desired type by using the
-  <code>isinstance(result, Constructor)</code> Python function.
-  When a request needs a Telegram type as argument, create an instance using one of its constructors.
+  Types are abstract Telegram objects returned by the API.
+  A single type can have multiple constructors.
+</p>
+<p>
+  For example, <code>User</code> can be returned as
+  <code>User</code> or <code>UserEmpty</code>.
+</p>
+<p>
+  You can check the returned constructor using
+  <code>isinstance(result, Constructor)</code>.
+</p>
+<p>
+  When a method expects a Telegram type as a parameter,
+  you usually create it using one of its constructors.
 </p>
 
 <h3 id="constructors">Constructors</h3>
 <p>
-  Currently there are <strong>1573 constructors</strong>.
-  <a href="constructors/index.html">See the list of all constructors</a>.
+  1573 constructors.
+  <a href="constructors/index.html">See the full list.</a>
 </p>
 <p>
-  Constructors are the way you create instances of the abstract types described above, and also the
-  concrete instances actually returned from functions (they all share a common abstract type).
+  Constructors are concrete Telegram objects used throughout the API.
+</p>
+<p>
+  They are used to create request parameters,
+  and are also the actual objects returned by Telegram.
 </p>
 
 <h3>6 ways to call a raw method</h3>
@@ -164,6 +180,7 @@ result = await app.invoke({
 })</pre></div>
 
 <h3>Which way should I use?</h3>
+<div class="cmp-table-wrap">
 <table class="cmp-table">
 <thead>
 <tr>
@@ -233,6 +250,7 @@ result = await app.invoke({
 </tr>
 </tbody>
 </table>
+</div>
 <p style="color:var(--muted);font-size:13px;">
   <strong style="color:var(--text)">Rule of thumb:</strong>
   use way 1 by default. Switch to way 4 (proxy) for quick scripts where peer strings save time.
@@ -240,7 +258,7 @@ result = await app.invoke({
 </p>
 
 <h3 id="core">Core types</h3>
-<p>Core types are the primitives from which all other Telegram types are built:</p>
+<p>The primitive types everything else is built from:</p>
 <table>
 <tr><td><strong id="int">int</strong></td><td>32-bit signed integer. Check bit length with <code>a.bit_length()</code>.</td></tr>
 <tr><td><strong id="long">long</strong></td><td>64-bit signed integer.</td></tr>
@@ -256,77 +274,20 @@ result = await app.invoke({
 
 <h3 id="example">Full example</h3>
 <p>
-  All methods shown here have dummy examples on how to write them, so you don't get confused with
-  their TL definition. However, this may not always run as-is. They are just there to show the
-  correct syntax. Replace placeholder values (e.g. <code>'username'</code>, dummy IDs, placeholder
-  TL objects) with real data before running.
+  Every method page includes a code sample. The syntax is correct, but placeholder values
+  (<code>'username'</code>, dummy IDs, empty TL objects) won't do anything useful until you swap them
+  for real data. They're there so you can see the call shape at a glance.
 </p>
 <p>
-  See the <a href="https://github.com/ankit-chaubey/ferogram-py" target="_blank">ferogram-py README</a>
-  for a complete working example.
+  For real working examples, check the
+  <a href="https://github.com/ankit-chaubey/ferogram-py/tree/main/examples" target="_blank">examples folder</a>
+  on GitHub. To see what high-level APIs are already covered,
+  <a href="https://github.com/ankit-chaubey/ferogram-py/blob/main/FEATURES.md" target="_blank">FEATURES.md</a>
+  is the best place to look since friendly high-level docs are not available yet.
 </p>
 
 <textarea id="c" class="invisible"></textarea>
-<script>
-function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}
-/* Python syntax highlighter */
-function hlPy(t){
-  var K='import|from|as|async|def|await|return|class|if|elif|else|for|in|not|and|or|None|True|False|pass|with|try|except|raise|yield|lambda'.split('|');
-  function e(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  var o='',i=0,n=t.length;
-  while(i<n){
-    var c=t[i];
-    if(c==='#'){var j=t.indexOf('\n',i);j=j<0?n:j;o+='<span class="py-c">'+e(t.slice(i,j))+'</span>';i=j;continue;}
-    if(c==='"'||c==="'"){var q=c,j=i+1;while(j<n&&t[j]!==q){if(t[j]==='\\')j++;j++;}j++;o+='<span class="py-s">'+e(t.slice(i,j))+'</span>';i=j;continue;}
-    if(/[a-zA-Z_]/.test(c)){var j=i;while(j<n&&/[a-zA-Z0-9_]/.test(t[j]))j++;var w=t.slice(i,j);o+=K.indexOf(w)>=0?'<span class="py-k">'+w+'</span>':e(w);i=j;continue;}
-    if(/[0-9]/.test(c)&&(i===0||!/[a-zA-Z_]/.test(t[i-1]))){var j=i;while(j<n&&/[0-9a-fA-FxXbBoO._]/.test(t[j]))j++;o+='<span class="py-n">'+t.slice(i,j)+'</span>';i=j;continue;}
-    o+=e(c);i++;
-  }
-  return o;
-}
-function toast(){
-  var d=document.createElement('div');
-  d.textContent='Copied!';
-  d.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px;font-family:monospace;z-index:9999;pointer-events:none;opacity:1;transition:opacity .4s';
-  document.body.appendChild(d);
-  setTimeout(function(){d.style.opacity='0';setTimeout(function(){d.remove();},400);},1200);
-}
-(function(){
-  function attachLongPress(el){
-    var _lpt=null;
-    el.addEventListener('touchstart',function(){
-      _lpt=setTimeout(function(){cp(el.innerText||el.textContent);toast();},600);
-    },{passive:true});
-    el.addEventListener('touchend',function(){clearTimeout(_lpt);});
-    el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
-  }
-  function addCopyIcon(pre){
-    var code=(pre.textContent||pre.innerText).replace(/
-$/,'');
-    var btn=document.createElement('button');
-    btn.className='copy-icon';btn.textContent='copy';
-    btn.addEventListener('click',function(ev){
-      ev.stopPropagation();
-      cp(code);
-      btn.textContent='\u2713';toast();
-      setTimeout(function(){btn.textContent='copy';},1300);
-    });
-    pre.appendChild(btn);
-  }
-  function init(){
-    document.querySelectorAll('pre.python').forEach(function(p){p.innerHTML=hlPy(p.textContent);});
-    document.querySelectorAll('pre').forEach(function(el){addCopyIcon(el);attachLongPress(el);});
-    document.querySelectorAll('.tabs .tab').forEach(function(btn,i){
-      btn.addEventListener('touchend',function(e){e.preventDefault();switchWayTab(i);});
-    });
-  }
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
-})();
-function switchWayTab(n){
-  document.querySelectorAll('.tabs .tab').forEach(function(t,i){t.classList.toggle('active',i===n);});
-  document.querySelectorAll('.way-content').forEach(function(c,i){c.classList.toggle('active',i===n);});
-}
-</script>
+<script src="js/app.js"></script>
 </div>
 <script>prependPath="";</script><script src="js/search.js"></script>
 </body>

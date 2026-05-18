@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>StarsGiveawayOption - ferogram API</title>
+<title>StarsGiveawayOption - Ferogram API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link id="style" rel="stylesheet" href="../css/dark.css">
+<link id="style" rel="stylesheet" href="../css/light.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -17,11 +17,11 @@
   s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
   localStorage.setItem('theme',next);
   document.getElementById('theme-btn').textContent=labels[next];
-})()">&#9728; Bright</button>
+})()">})()">&#9728; Bright</button>
 <script>
 (function(){
   var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
-  var t=localStorage.getItem('theme')||'dark';
+  var t=localStorage.getItem('theme')||'light';
   document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
   document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
 })();
@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../types/index.html">Types</a></li><span class="sep">›</span><li>StarsGiveawayOption</li></ul>
 <h1>StarsGiveawayOption</h1>
 <h3>Constructors</h3>
-<p>This type can be an instance of:</p>
+<p>This is an abstract type. At runtime it will be one of the following:</p>
 <table><tr><td><a href="../constructors/stars_giveaway_option.html">StarsGiveawayOption</a></td></tr>
 </table>
 <h3>Requests returning this type</h3><p>None.</p>
@@ -39,66 +39,7 @@
 <h3>Other types containing this type</h3><p>None.</p>
 
 <textarea id="c" class="invisible"></textarea>
-<script>
-function cp(t){var c=document.getElementById("c");c.value=t;c.select();try{document.execCommand("copy")}catch(e){}}
-/* Python syntax highlighter */
-function hlPy(t){
-  var K='import|from|as|async|def|await|return|class|if|elif|else|for|in|not|and|or|None|True|False|pass|with|try|except|raise|yield|lambda'.split('|');
-  function e(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
-  var o='',i=0,n=t.length;
-  while(i<n){
-    var c=t[i];
-    if(c==='#'){var j=t.indexOf('\n',i);j=j<0?n:j;o+='<span class="py-c">'+e(t.slice(i,j))+'</span>';i=j;continue;}
-    if(c==='"'||c==="'"){var q=c,j=i+1;while(j<n&&t[j]!==q){if(t[j]==='\\')j++;j++;}j++;o+='<span class="py-s">'+e(t.slice(i,j))+'</span>';i=j;continue;}
-    if(/[a-zA-Z_]/.test(c)){var j=i;while(j<n&&/[a-zA-Z0-9_]/.test(t[j]))j++;var w=t.slice(i,j);o+=K.indexOf(w)>=0?'<span class="py-k">'+w+'</span>':e(w);i=j;continue;}
-    if(/[0-9]/.test(c)&&(i===0||!/[a-zA-Z_]/.test(t[i-1]))){var j=i;while(j<n&&/[0-9a-fA-FxXbBoO._]/.test(t[j]))j++;o+='<span class="py-n">'+t.slice(i,j)+'</span>';i=j;continue;}
-    o+=e(c);i++;
-  }
-  return o;
-}
-function toast(){
-  var d=document.createElement('div');
-  d.textContent='Copied!';
-  d.style.cssText='position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;padding:6px 16px;border-radius:20px;font-size:13px;font-family:monospace;z-index:9999;pointer-events:none;opacity:1;transition:opacity .4s';
-  document.body.appendChild(d);
-  setTimeout(function(){d.style.opacity='0';setTimeout(function(){d.remove();},400);},1200);
-}
-(function(){
-  function attachLongPress(el){
-    var _lpt=null;
-    el.addEventListener('touchstart',function(){
-      _lpt=setTimeout(function(){cp(el.innerText||el.textContent);toast();},600);
-    },{passive:true});
-    el.addEventListener('touchend',function(){clearTimeout(_lpt);});
-    el.addEventListener('touchmove',function(){clearTimeout(_lpt);});
-  }
-  function addCopyIcon(pre){
-    var code=(pre.textContent||pre.innerText).replace(/
-$/,'');
-    var btn=document.createElement('button');
-    btn.className='copy-icon';btn.textContent='copy';
-    btn.addEventListener('click',function(ev){
-      ev.stopPropagation();
-      cp(code);
-      btn.textContent='\u2713';toast();
-      setTimeout(function(){btn.textContent='copy';},1300);
-    });
-    pre.appendChild(btn);
-  }
-  function init(){
-    document.querySelectorAll('pre.python').forEach(function(p){p.innerHTML=hlPy(p.textContent);});
-    document.querySelectorAll('pre').forEach(function(el){addCopyIcon(el);attachLongPress(el);});
-    document.querySelectorAll('.tabs .tab').forEach(function(btn,i){
-      btn.addEventListener('touchend',function(e){e.preventDefault();switchWayTab(i);});
-    });
-  }
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
-})();
-function switchWayTab(n){
-  document.querySelectorAll('.tabs .tab').forEach(function(t,i){t.classList.toggle('active',i===n);});
-  document.querySelectorAll('.way-content').forEach(function(c,i){c.classList.toggle('active',i===n);});
-}
-</script>
+<script src="../js/app.js"></script>
 </div>
 <script>prependPath="../";</script><script src="../js/search.js"></script>
 </body>
