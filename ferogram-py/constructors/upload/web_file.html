@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>WebFile - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li><a href="../../constructors/upload/index.html">Upload</a></li><span class="sep">›</span><li>WebFile</li></ul>
+<h1>WebFile</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+upload.webFile<span style="color:var(--tl-cid)">#21e753bc</span> size:<a href="../../index.html#int">int</a> mime_type:<a href="../../index.html#string">string</a> file_type:<a href="../../types/storage/file_type.html">storage.FileType</a> mtime:<a href="../../index.html#int">int</a> bytes:<a href="../../index.html#bytes">bytes</a> = <a href="../../types/upload/web_file.html">upload.WebFile</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types.upload import WebFile')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../../types/upload/web_file.html">upload.WebFile</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>size</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>mime_type</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>file_type</td><td><a href="../../types/storage/file_type.html">storage.FileType</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>mtime</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>bytes</td><td><a href="../../index.html#bytes">bytes</a></td><td><span class="tag-req">required</span></td></tr>
+</table></div>
+
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

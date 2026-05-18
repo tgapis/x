@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>InputInvoice - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../types/index.html">Types</a></li><span class="sep">›</span><li>InputInvoice</li></ul>
+<h1>InputInvoice</h1>
+<h3>Constructors</h3>
+<p>This is an abstract type. At runtime it will be one of the following:</p>
+<table><tr><td><a href="../constructors/input_invoice_business_bot_transfer_stars.html">InputInvoiceBusinessBotTransferStars</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_chat_invite_subscription.html">InputInvoiceChatInviteSubscription</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_message.html">InputInvoiceMessage</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_premium_auth_code.html">InputInvoicePremiumAuthCode</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_premium_gift_code.html">InputInvoicePremiumGiftCode</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_premium_gift_stars.html">InputInvoicePremiumGiftStars</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_slug.html">InputInvoiceSlug</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_star_gift.html">InputInvoiceStarGift</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_star_gift_auction_bid.html">InputInvoiceStarGiftAuctionBid</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_star_gift_drop_original_details.html">InputInvoiceStarGiftDropOriginalDetails</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_star_gift_prepaid_upgrade.html">InputInvoiceStarGiftPrepaidUpgrade</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_star_gift_resale.html">InputInvoiceStarGiftResale</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_star_gift_transfer.html">InputInvoiceStarGiftTransfer</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_star_gift_upgrade.html">InputInvoiceStarGiftUpgrade</a></td></tr>
+<tr><td><a href="../constructors/input_invoice_stars.html">InputInvoiceStars</a></td></tr>
+</table>
+<h3>Requests returning this type</h3><p>None.</p>
+<h3>Requests accepting this type as input</h3><table><tr><td><a href="../methods/payments/get_payment_form.html">GetPaymentForm</a></td></tr>
+<tr><td><a href="../methods/payments/send_payment_form.html">SendPaymentForm</a></td></tr>
+<tr><td><a href="../methods/payments/send_stars_form.html">SendStarsForm</a></td></tr>
+<tr><td><a href="../methods/payments/validate_requested_info.html">ValidateRequestedInfo</a></td></tr>
+</table>
+<h3>Other types containing this type</h3><p>None.</p>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

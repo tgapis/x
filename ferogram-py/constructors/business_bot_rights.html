@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BusinessBotRights - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>BusinessBotRights</li></ul>
+<h1>BusinessBotRights</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+businessBotRights<span style="color:var(--tl-cid)">#a0624cf7</span> reply:flags.0?<a href="../index.html#true">true</a> read_messages:flags.1?<a href="../index.html#true">true</a> delete_sent_messages:flags.2?<a href="../index.html#true">true</a> delete_received_messages:flags.3?<a href="../index.html#true">true</a> edit_name:flags.4?<a href="../index.html#true">true</a> edit_bio:flags.5?<a href="../index.html#true">true</a> edit_profile_photo:flags.6?<a href="../index.html#true">true</a> edit_username:flags.7?<a href="../index.html#true">true</a> view_gifts:flags.8?<a href="../index.html#true">true</a> sell_gifts:flags.9?<a href="../index.html#true">true</a> change_gift_settings:flags.10?<a href="../index.html#true">true</a> transfer_and_upgrade_gifts:flags.11?<a href="../index.html#true">true</a> transfer_stars:flags.12?<a href="../index.html#true">true</a> manage_stories:flags.13?<a href="../index.html#true">true</a> = <a href="../types/business_bot_rights.html">BusinessBotRights</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types import BusinessBotRights')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/business_bot_rights.html">BusinessBotRights</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>reply</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>read_messages</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>delete_sent_messages</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>delete_received_messages</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>edit_name</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>edit_bio</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>edit_profile_photo</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>edit_username</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>view_gifts</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>sell_gifts</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>change_gift_settings</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>transfer_and_upgrade_gifts</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>transfer_stars</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>manage_stories</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+<h3>Used by</h3><table><tr><td><a href="../methods/account/update_connected_bot.html">UpdateConnectedBot</a></td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>InputInvoiceStarGift - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputInvoiceStarGift</li></ul>
+<h1>InputInvoiceStarGift</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+inputInvoiceStarGift<span style="color:var(--tl-cid)">#e8625e92</span> hide_name:flags.0?<a href="../index.html#true">true</a> include_upgrade:flags.2?<a href="../index.html#true">true</a> peer:<a href="../types/input_peer.html">InputPeer</a> gift_id:<a href="../index.html#long">long</a> message:flags.1?<a href="../types/text_with_entities.html">TextWithEntities</a> = <a href="../types/input_invoice.html">InputInvoice</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types import InputInvoiceStarGift')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/input_invoice.html">InputInvoice</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>hide_name</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>include_upgrade</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>peer</td><td><a href="../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>gift_id</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>message</td><td><a href="../types/text_with_entities.html">TextWithEntities</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+<h3>Used by</h3><table><tr><td><a href="../methods/payments/get_payment_form.html">GetPaymentForm</a></td></tr>
+<tr><td><a href="../methods/payments/send_payment_form.html">SendPaymentForm</a></td></tr>
+<tr><td><a href="../methods/payments/send_stars_form.html">SendStarsForm</a></td></tr>
+<tr><td><a href="../methods/payments/validate_requested_info.html">ValidateRequestedInfo</a></td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

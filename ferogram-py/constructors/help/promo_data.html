@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PromoData - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li><a href="../../constructors/help/index.html">Help</a></li><span class="sep">›</span><li>PromoData</li></ul>
+<h1>PromoData</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+help.promoData<span style="color:var(--tl-cid)">#08a4d87a</span> proxy:flags.0?<a href="../../index.html#true">true</a> expires:<a href="../../index.html#int">int</a> peer:flags.3?<a href="../../types/peer.html">Peer</a> psa_type:flags.1?<a href="../../index.html#string">string</a> psa_message:flags.2?<a href="../../index.html#string">string</a> pending_suggestions:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#string">string</a>&gt; dismissed_suggestions:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#string">string</a>&gt; custom_pending_suggestion:flags.4?<a href="../../types/pending_suggestion.html">PendingSuggestion</a> chats:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/chat.html">Chat</a>&gt; users:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/user.html">User</a>&gt; = <a href="../../types/help/promo_data.html">help.PromoData</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types.help import PromoData')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../../types/help/promo_data.html">help.PromoData</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>proxy</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>expires</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>peer</td><td><a href="../../types/peer.html">Peer</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>psa_type</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>psa_message</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>pending_suggestions</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#string">string</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+<tr><td>dismissed_suggestions</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#string">string</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+<tr><td>custom_pending_suggestion</td><td><a href="../../types/pending_suggestion.html">PendingSuggestion</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>chats</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/chat.html">Chat</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+<tr><td>users</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/user.html">User</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+</table></div>
+
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

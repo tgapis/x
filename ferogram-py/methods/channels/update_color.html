@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UpdateColor - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/channels/index.html">Channels</a></li><span class="sep">›</span><li>UpdateColor</li></ul>
+<h1>UpdateColor</h1>
+<pre class="tl"><span style="color:var(--muted)">---functions---</span>
+channels.updateColor<span style="color:var(--tl-cid)">#d8aa3671</span> for_profile:flags.1?<a href="../../index.html#true">true</a> channel:<a href="../../types/input_channel.html">InputChannel</a> color:flags.2?<a href="../../index.html#int">int</a> background_emoji_id:flags.0?<a href="../../index.html#long">long</a> = <a href="../../types/updates.html">Updates</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.functions.channels import UpdateColor')">Copy import</button>
+<h3>Returns</h3>
+<table><tr><td><a href="../../types/updates.html">Updates</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>for_profile</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>channel</td><td><a href="../../types/input_channel.html">InputChannel</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>color</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>background_emoji_id</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+<h3>Example</h3>
+<p class="example-note">The examples below use placeholder values. Replace them with real data before running the code.</p>
+<details class="example" open>
+  <summary><span class="arrow">&#9654;</span> Minimal</summary>
+  <pre class="python">import asyncio
+from ferogram import Client
+
+app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
+
+async def main():
+    await app.start()
+    result = await app.raw.channels.UpdateColor(
+        channel=&#x27;username&#x27;
+    )
+    print(result)
+
+asyncio.run(main())</pre>
+</details>
+<p class="example-note">The minimal example uses Ferogram's raw proxy shorthand. Peers can be passed as strings and required primitives get safe defaults. Expand <strong>Full API</strong> to see every parameter.</p>
+<details class="example">
+  <summary><span class="arrow">&#9654;</span> Full API</summary>
+  <pre class="python">import asyncio
+from ferogram import Client, raw
+
+app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
+
+async def main():
+    await app.start()
+    result = await app(raw.functions.channels.UpdateColor(
+        for_profile=True,
+        channel=raw.types.InputPeerSelf(),
+        color=42,
+        background_emoji_id=-12398745604826
+    ))
+    print(result)
+
+asyncio.run(main())</pre>
+</details>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

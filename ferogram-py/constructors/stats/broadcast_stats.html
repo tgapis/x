@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BroadcastStats - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li><a href="../../constructors/stats/index.html">Stats</a></li><span class="sep">›</span><li>BroadcastStats</li></ul>
+<h1>BroadcastStats</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+stats.broadcastStats<span style="color:var(--tl-cid)">#396ca5fc</span> period:<a href="../../types/stats_date_range_days.html">StatsDateRangeDays</a> followers:<a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a> views_per_post:<a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a> shares_per_post:<a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a> reactions_per_post:<a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a> views_per_story:<a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a> shares_per_story:<a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a> reactions_per_story:<a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a> enabled_notifications:<a href="../../types/stats_percent_value.html">StatsPercentValue</a> growth_graph:<a href="../../types/stats_graph.html">StatsGraph</a> followers_graph:<a href="../../types/stats_graph.html">StatsGraph</a> mute_graph:<a href="../../types/stats_graph.html">StatsGraph</a> top_hours_graph:<a href="../../types/stats_graph.html">StatsGraph</a> interactions_graph:<a href="../../types/stats_graph.html">StatsGraph</a> iv_interactions_graph:<a href="../../types/stats_graph.html">StatsGraph</a> views_by_source_graph:<a href="../../types/stats_graph.html">StatsGraph</a> new_followers_by_source_graph:<a href="../../types/stats_graph.html">StatsGraph</a> languages_graph:<a href="../../types/stats_graph.html">StatsGraph</a> reactions_by_emotion_graph:<a href="../../types/stats_graph.html">StatsGraph</a> story_interactions_graph:<a href="../../types/stats_graph.html">StatsGraph</a> story_reactions_by_emotion_graph:<a href="../../types/stats_graph.html">StatsGraph</a> recent_posts_interactions:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/post_interaction_counters.html">PostInteractionCounters</a>&gt; = <a href="../../types/stats/broadcast_stats.html">stats.BroadcastStats</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types.stats import BroadcastStats')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../../types/stats/broadcast_stats.html">stats.BroadcastStats</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>period</td><td><a href="../../types/stats_date_range_days.html">StatsDateRangeDays</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>followers</td><td><a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>views_per_post</td><td><a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>shares_per_post</td><td><a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>reactions_per_post</td><td><a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>views_per_story</td><td><a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>shares_per_story</td><td><a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>reactions_per_story</td><td><a href="../../types/stats_abs_value_and_prev.html">StatsAbsValueAndPrev</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>enabled_notifications</td><td><a href="../../types/stats_percent_value.html">StatsPercentValue</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>growth_graph</td><td><a href="../../types/stats_graph.html">StatsGraph</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>followers_graph</td><td><a href="../../types/stats_graph.html">StatsGraph</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>mute_graph</td><td><a href="../../types/stats_graph.html">StatsGraph</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>top_hours_graph</td><td><a href="../../types/stats_graph.html">StatsGraph</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>interactions_graph</td><td><a href="../../types/stats_graph.html">StatsGraph</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>iv_interactions_graph</td><td><a href="../../types/stats_graph.html">StatsGraph</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>views_by_source_graph</td><td><a href="../../types/stats_graph.html">StatsGraph</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>new_followers_by_source_graph</td><td><a href="../../types/stats_graph.html">StatsGraph</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>languages_graph</td><td><a href="../../types/stats_graph.html">StatsGraph</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>reactions_by_emotion_graph</td><td><a href="../../types/stats_graph.html">StatsGraph</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>story_interactions_graph</td><td><a href="../../types/stats_graph.html">StatsGraph</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>story_reactions_by_emotion_graph</td><td><a href="../../types/stats_graph.html">StatsGraph</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>recent_posts_interactions</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/post_interaction_counters.html">PostInteractionCounters</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+</table></div>
+
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

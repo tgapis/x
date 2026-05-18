@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Stories - Methods - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li>Stories</li></ul>
+<h1>Stories</h1>
+<ul class='together'>
+<li><a href="../../methods/stories/activate_stealth_mode.html">ActivateStealthMode</a></li>
+<li><a href="../../methods/stories/can_send_story.html">CanSendStory</a></li>
+<li><a href="../../methods/stories/create_album.html">CreateAlbum</a></li>
+<li><a href="../../methods/stories/delete_album.html">DeleteAlbum</a></li>
+<li><a href="../../methods/stories/delete_stories.html">DeleteStories</a></li>
+<li><a href="../../methods/stories/edit_story.html">EditStory</a></li>
+<li><a href="../../methods/stories/export_story_link.html">ExportStoryLink</a></li>
+<li><a href="../../methods/stories/get_album_stories.html">GetAlbumStories</a></li>
+<li><a href="../../methods/stories/get_albums.html">GetAlbums</a></li>
+<li><a href="../../methods/stories/get_all_read_peer_stories.html">GetAllReadPeerStories</a></li>
+<li><a href="../../methods/stories/get_all_stories.html">GetAllStories</a></li>
+<li><a href="../../methods/stories/get_chats_to_send.html">GetChatsToSend</a></li>
+<li><a href="../../methods/stories/get_peer_max_i_ds.html">GetPeerMaxIDs</a></li>
+<li><a href="../../methods/stories/get_peer_stories.html">GetPeerStories</a></li>
+<li><a href="../../methods/stories/get_pinned_stories.html">GetPinnedStories</a></li>
+<li><a href="../../methods/stories/get_stories_archive.html">GetStoriesArchive</a></li>
+<li><a href="../../methods/stories/get_stories_by_id.html">GetStoriesByID</a></li>
+<li><a href="../../methods/stories/get_stories_views.html">GetStoriesViews</a></li>
+<li><a href="../../methods/stories/get_story_reactions_list.html">GetStoryReactionsList</a></li>
+<li><a href="../../methods/stories/get_story_views_list.html">GetStoryViewsList</a></li>
+<li><a href="../../methods/stories/increment_story_views.html">IncrementStoryViews</a></li>
+<li><a href="../../methods/stories/read_stories.html">ReadStories</a></li>
+<li><a href="../../methods/stories/reorder_albums.html">ReorderAlbums</a></li>
+<li><a href="../../methods/stories/report.html">Report</a></li>
+<li><a href="../../methods/stories/search_posts.html">SearchPosts</a></li>
+<li><a href="../../methods/stories/send_reaction.html">SendReaction</a></li>
+<li><a href="../../methods/stories/send_story.html">SendStory</a></li>
+<li><a href="../../methods/stories/start_live.html">StartLive</a></li>
+<li><a href="../../methods/stories/toggle_all_stories_hidden.html">ToggleAllStoriesHidden</a></li>
+<li><a href="../../methods/stories/toggle_peer_stories_hidden.html">TogglePeerStoriesHidden</a></li>
+<li><a href="../../methods/stories/toggle_pinned.html">TogglePinned</a></li>
+<li><a href="../../methods/stories/toggle_pinned_to_top.html">TogglePinnedToTop</a></li>
+<li><a href="../../methods/stories/update_album.html">UpdateAlbum</a></li>
+</ul>
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

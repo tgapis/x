@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PeerNotifySettings - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>PeerNotifySettings</li></ul>
+<h1>PeerNotifySettings</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+peerNotifySettings<span style="color:var(--tl-cid)">#99622c0c</span> show_previews:flags.0?<a href="../index.html#bool">Bool</a> silent:flags.1?<a href="../index.html#bool">Bool</a> mute_until:flags.2?<a href="../index.html#int">int</a> ios_sound:flags.3?<a href="../types/notification_sound.html">NotificationSound</a> android_sound:flags.4?<a href="../types/notification_sound.html">NotificationSound</a> other_sound:flags.5?<a href="../types/notification_sound.html">NotificationSound</a> stories_muted:flags.6?<a href="../index.html#bool">Bool</a> stories_hide_sender:flags.7?<a href="../index.html#bool">Bool</a> stories_ios_sound:flags.8?<a href="../types/notification_sound.html">NotificationSound</a> stories_android_sound:flags.9?<a href="../types/notification_sound.html">NotificationSound</a> stories_other_sound:flags.10?<a href="../types/notification_sound.html">NotificationSound</a> = <a href="../types/peer_notify_settings.html">PeerNotifySettings</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types import PeerNotifySettings')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/peer_notify_settings.html">PeerNotifySettings</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>show_previews</td><td><a href="../index.html#bool">Bool</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>silent</td><td><a href="../index.html#bool">Bool</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>mute_until</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>ios_sound</td><td><a href="../types/notification_sound.html">NotificationSound</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>android_sound</td><td><a href="../types/notification_sound.html">NotificationSound</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>other_sound</td><td><a href="../types/notification_sound.html">NotificationSound</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>stories_muted</td><td><a href="../index.html#bool">Bool</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>stories_hide_sender</td><td><a href="../index.html#bool">Bool</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>stories_ios_sound</td><td><a href="../types/notification_sound.html">NotificationSound</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>stories_android_sound</td><td><a href="../types/notification_sound.html">NotificationSound</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>stories_other_sound</td><td><a href="../types/notification_sound.html">NotificationSound</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

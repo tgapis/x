@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BoolTrue - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>BoolTrue</li></ul>
+<h1>BoolTrue</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+boolTrue<span style="color:var(--tl-cid)">#997275b5</span> = <a href="../index.html#bool">Bool</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types import BoolTrue')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/bool.html">Bool</a></td></tr></table>
+<h3>Parameters</h3>
+<p>This item has no parameters.</p>
+<h3>Used by</h3><table><tr><td><a href="../methods/account/change_authorization_settings.html">ChangeAuthorizationSettings</a></td></tr>
+<tr><td><a href="../methods/payments/change_stars_subscription.html">ChangeStarsSubscription</a></td></tr>
+<tr><td><a href="../methods/messages/edit_chat_admin.html">EditChatAdmin</a></td></tr>
+<tr><td><a href="../methods/messages/edit_exported_chat_invite.html">EditExportedChatInvite</a></td></tr>
+<tr><td><a href="../methods/messages/edit_forum_topic.html">EditForumTopic</a></td></tr>
+<tr><td><a href="../methods/phone/edit_group_call_participant.html">EditGroupCallParticipant</a></td></tr>
+<tr><td><a href="../methods/bots/export_bot_token.html">ExportBotToken</a></td></tr>
+<tr><td><a href="../methods/messages/fave_sticker.html">FaveSticker</a></td></tr>
+<tr><td><a href="../methods/phone/get_group_call_stream_rtmp_url.html">GetGroupCallStreamRtmpUrl</a></td></tr>
+<tr><td><a href="../methods/messages/get_messages_views.html">GetMessagesViews</a></td></tr>
+<tr><td><a href="../methods/messages/install_sticker_set.html">InstallStickerSet</a></td></tr>
+<tr><td><a href="../methods/messages/rate_transcribed_audio.html">RateTranscribedAudio</a></td></tr>
+<tr><td><a href="../methods/account/register_device.html">RegisterDevice</a></td></tr>
+<tr><td><a href="../methods/channels/restrict_sponsored_messages.html">RestrictSponsoredMessages</a></td></tr>
+<tr><td><a href="../methods/messages/save_gif.html">SaveGif</a></td></tr>
+<tr><td><a href="../methods/messages/save_recent_sticker.html">SaveRecentSticker</a></td></tr>
+<tr><td><a href="../methods/account/save_ringtone.html">SaveRingtone</a></td></tr>
+<tr><td><a href="../methods/account/save_theme.html">SaveTheme</a></td></tr>
+<tr><td><a href="../methods/aicompose/save_tone.html">SaveTone</a></td></tr>
+<tr><td><a href="../methods/account/save_wall_paper.html">SaveWallPaper</a></td></tr>
+<tr><td><a href="../methods/messages/set_chat_available_reactions.html">SetChatAvailableReactions</a></td></tr>
+<tr><td><a href="../methods/account/set_contact_sign_up_notification.html">SetContactSignUpNotification</a></td></tr>
+<tr><td><a href="../methods/messages/set_encrypted_typing.html">SetEncryptedTyping</a></td></tr>
+<tr><td><a href="../methods/stories/start_live.html">StartLive</a></td></tr>
+<tr><td><a href="../methods/stories/toggle_all_stories_hidden.html">ToggleAllStoriesHidden</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_anti_spam.html">ToggleAntiSpam</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_autotranslation.html">ToggleAutotranslation</a></td></tr>
+<tr><td><a href="../methods/messages/toggle_bot_in_attach_menu.html">ToggleBotInAttachMenu</a></td></tr>
+<tr><td><a href="../methods/account/toggle_connected_bot_paused.html">ToggleConnectedBotPaused</a></td></tr>
+<tr><td><a href="../methods/messages/toggle_dialog_filter_tags.html">ToggleDialogFilterTags</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_forum.html">ToggleForum</a></td></tr>
+<tr><td><a href="../methods/phone/toggle_group_call_record.html">ToggleGroupCallRecord</a></td></tr>
+<tr><td><a href="../methods/phone/toggle_group_call_settings.html">ToggleGroupCallSettings</a></td></tr>
+<tr><td><a href="../methods/phone/toggle_group_call_start_subscription.html">ToggleGroupCallStartSubscription</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_join_request.html">ToggleJoinRequest</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_join_to_send.html">ToggleJoinToSend</a></td></tr>
+<tr><td><a href="../methods/messages/toggle_no_forwards.html">ToggleNoForwards</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_participants_hidden.html">ToggleParticipantsHidden</a></td></tr>
+<tr><td><a href="../methods/stories/toggle_peer_stories_hidden.html">TogglePeerStoriesHidden</a></td></tr>
+<tr><td><a href="../methods/stories/toggle_pinned.html">TogglePinned</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_pre_history_hidden.html">TogglePreHistoryHidden</a></td></tr>
+<tr><td><a href="../methods/account/toggle_sponsored_messages.html">ToggleSponsoredMessages</a></td></tr>
+<tr><td><a href="../methods/contacts/toggle_top_peers.html">ToggleTopPeers</a></td></tr>
+<tr><td><a href="../methods/bots/toggle_user_emoji_status_permission.html">ToggleUserEmojiStatusPermission</a></td></tr>
+<tr><td><a href="../methods/account/toggle_username.html">ToggleUsername</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_username.html">ToggleUsername</a></td></tr>
+<tr><td><a href="../methods/bots/toggle_username.html">ToggleUsername</a></td></tr>
+<tr><td><a href="../methods/channels/toggle_view_forum_as_messages.html">ToggleViewForumAsMessages</a></td></tr>
+<tr><td><a href="../methods/messages/update_pinned_forum_topic.html">UpdatePinnedForumTopic</a></td></tr>
+<tr><td><a href="../methods/account/update_status.html">UpdateStatus</a></td></tr>
+<tr><td><a href="../methods/aicompose/update_tone.html">UpdateTone</a></td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

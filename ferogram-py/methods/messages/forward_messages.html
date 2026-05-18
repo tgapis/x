@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ForwardMessages - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>ForwardMessages</li></ul>
+<h1>ForwardMessages</h1>
+<pre class="tl"><span style="color:var(--muted)">---functions---</span>
+messages.forwardMessages<span style="color:var(--tl-cid)">#13704a7c</span> silent:flags.5?<a href="../../index.html#true">true</a> background:flags.6?<a href="../../index.html#true">true</a> with_my_score:flags.8?<a href="../../index.html#true">true</a> drop_author:flags.11?<a href="../../index.html#true">true</a> drop_media_captions:flags.12?<a href="../../index.html#true">true</a> noforwards:flags.14?<a href="../../index.html#true">true</a> allow_paid_floodskip:flags.19?<a href="../../index.html#true">true</a> from_peer:<a href="../../types/input_peer.html">InputPeer</a> id:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#int">int</a>&gt; random_id:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#long">long</a>&gt; to_peer:<a href="../../types/input_peer.html">InputPeer</a> top_msg_id:flags.9?<a href="../../index.html#int">int</a> reply_to:flags.22?<a href="../../types/input_reply_to.html">InputReplyTo</a> schedule_date:flags.10?<a href="../../index.html#int">int</a> schedule_repeat_period:flags.24?<a href="../../index.html#int">int</a> send_as:flags.13?<a href="../../types/input_peer.html">InputPeer</a> quick_reply_shortcut:flags.17?<a href="../../types/input_quick_reply_shortcut.html">InputQuickReplyShortcut</a> effect:flags.18?<a href="../../index.html#long">long</a> video_timestamp:flags.20?<a href="../../index.html#int">int</a> allow_paid_stars:flags.21?<a href="../../index.html#long">long</a> suggested_post:flags.23?<a href="../../types/suggested_post.html">SuggestedPost</a> = <a href="../../types/updates.html">Updates</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.functions.messages import ForwardMessages')">Copy import</button>
+<h3>Returns</h3>
+<table><tr><td><a href="../../types/updates.html">Updates</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>silent</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>background</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>with_my_score</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>drop_author</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>drop_media_captions</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>noforwards</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>allow_paid_floodskip</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>from_peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>id</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#int">int</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+<tr><td>random_id</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#long">long</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+<tr><td>to_peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>top_msg_id</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>reply_to</td><td><a href="../../types/input_reply_to.html">InputReplyTo</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>schedule_date</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>schedule_repeat_period</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>send_as</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>quick_reply_shortcut</td><td><a href="../../types/input_quick_reply_shortcut.html">InputQuickReplyShortcut</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>effect</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>video_timestamp</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>allow_paid_stars</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>suggested_post</td><td><a href="../../types/suggested_post.html">SuggestedPost</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+<h3>Example</h3>
+<p class="example-note">The examples below use placeholder values. Replace them with real data before running the code.</p>
+<details class="example" open>
+  <summary><span class="arrow">&#9654;</span> Minimal</summary>
+  <pre class="python">import asyncio
+from ferogram import Client
+
+app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
+
+async def main():
+    await app.start()
+    result = await app.raw.messages.ForwardMessages(
+        from_peer=&#x27;username&#x27;,
+        id=[42],
+        random_id=[random.randrange(-2**63, 2**63)],
+        to_peer=&#x27;username&#x27;
+    )
+    print(result)
+
+asyncio.run(main())</pre>
+</details>
+<p class="example-note">The minimal example uses Ferogram's raw proxy shorthand. Peers can be passed as strings and required primitives get safe defaults. Expand <strong>Full API</strong> to see every parameter.</p>
+<details class="example">
+  <summary><span class="arrow">&#9654;</span> Full API</summary>
+  <pre class="python">import asyncio
+from ferogram import Client, raw
+
+app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
+
+async def main():
+    await app.start()
+    result = await app(raw.functions.messages.ForwardMessages(
+        silent=True,
+        background=True,
+        with_my_score=True,
+        drop_author=True,
+        drop_media_captions=True,
+        noforwards=True,
+        allow_paid_floodskip=True,
+        from_peer=raw.types.InputPeerSelf(),
+        id=[42],
+        random_id=[random.randrange(-2**63, 2**63)],
+        to_peer=raw.types.InputPeerSelf(),
+        top_msg_id=42,
+        reply_to=raw.types.InputReplyToMessage(reply_to_msg_id=42),
+        schedule_date=42,
+        schedule_repeat_period=42,
+        send_as=raw.types.InputPeerSelf(),
+        quick_reply_shortcut=raw.types.InputQuickReplyShortcutId(shortcut_id=0),
+        effect=-12398745604826,
+        video_timestamp=42,
+        allow_paid_stars=-12398745604826,
+        suggested_post=raw.types.SuggestedPost(date=0)
+    ))
+    print(result)
+
+asyncio.run(main())</pre>
+</details>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

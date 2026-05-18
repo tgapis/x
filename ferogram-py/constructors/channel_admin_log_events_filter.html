@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ChannelAdminLogEventsFilter - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>ChannelAdminLogEventsFilter</li></ul>
+<h1>ChannelAdminLogEventsFilter</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+channelAdminLogEventsFilter<span style="color:var(--tl-cid)">#ea107ae4</span> join:flags.0?<a href="../index.html#true">true</a> leave:flags.1?<a href="../index.html#true">true</a> invite:flags.2?<a href="../index.html#true">true</a> ban:flags.3?<a href="../index.html#true">true</a> unban:flags.4?<a href="../index.html#true">true</a> kick:flags.5?<a href="../index.html#true">true</a> unkick:flags.6?<a href="../index.html#true">true</a> promote:flags.7?<a href="../index.html#true">true</a> demote:flags.8?<a href="../index.html#true">true</a> info:flags.9?<a href="../index.html#true">true</a> settings:flags.10?<a href="../index.html#true">true</a> pinned:flags.11?<a href="../index.html#true">true</a> edit:flags.12?<a href="../index.html#true">true</a> delete:flags.13?<a href="../index.html#true">true</a> group_call:flags.14?<a href="../index.html#true">true</a> invites:flags.15?<a href="../index.html#true">true</a> send:flags.16?<a href="../index.html#true">true</a> forums:flags.17?<a href="../index.html#true">true</a> sub_extend:flags.18?<a href="../index.html#true">true</a> edit_rank:flags.19?<a href="../index.html#true">true</a> = <a href="../types/channel_admin_log_events_filter.html">ChannelAdminLogEventsFilter</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types import ChannelAdminLogEventsFilter')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/channel_admin_log_events_filter.html">ChannelAdminLogEventsFilter</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>join</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>leave</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>invite</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>ban</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>unban</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>kick</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>unkick</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>promote</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>demote</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>info</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>settings</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>pinned</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>edit</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>delete</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>group_call</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>invites</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>send</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>forums</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>sub_extend</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>edit_rank</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+<h3>Used by</h3><table><tr><td><a href="../methods/channels/get_admin_log.html">GetAdminLog</a></td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

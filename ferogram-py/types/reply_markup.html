@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ReplyMarkup - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../types/index.html">Types</a></li><span class="sep">›</span><li>ReplyMarkup</li></ul>
+<h1>ReplyMarkup</h1>
+<h3>Constructors</h3>
+<p>This is an abstract type. At runtime it will be one of the following:</p>
+<table><tr><td><a href="../constructors/reply_inline_markup.html">ReplyInlineMarkup</a></td></tr>
+<tr><td><a href="../constructors/reply_keyboard_force_reply.html">ReplyKeyboardForceReply</a></td></tr>
+<tr><td><a href="../constructors/reply_keyboard_hide.html">ReplyKeyboardHide</a></td></tr>
+<tr><td><a href="../constructors/reply_keyboard_markup.html">ReplyKeyboardMarkup</a></td></tr>
+</table>
+<h3>Requests returning this type</h3><p>None.</p>
+<h3>Requests accepting this type as input</h3><table><tr><td><a href="../methods/messages/edit_inline_bot_message.html">EditInlineBotMessage</a></td></tr>
+<tr><td><a href="../methods/messages/edit_message.html">EditMessage</a></td></tr>
+<tr><td><a href="../methods/messages/send_media.html">SendMedia</a></td></tr>
+<tr><td><a href="../methods/messages/send_message.html">SendMessage</a></td></tr>
+</table>
+<h3>Other types containing this type</h3><table><tr><td><a href="../constructors/bot_inline_message_media_auto.html">BotInlineMessageMediaAuto</a></td></tr>
+<tr><td><a href="../constructors/bot_inline_message_media_contact.html">BotInlineMessageMediaContact</a></td></tr>
+<tr><td><a href="../constructors/bot_inline_message_media_geo.html">BotInlineMessageMediaGeo</a></td></tr>
+<tr><td><a href="../constructors/bot_inline_message_media_invoice.html">BotInlineMessageMediaInvoice</a></td></tr>
+<tr><td><a href="../constructors/bot_inline_message_media_venue.html">BotInlineMessageMediaVenue</a></td></tr>
+<tr><td><a href="../constructors/bot_inline_message_media_web_page.html">BotInlineMessageMediaWebPage</a></td></tr>
+<tr><td><a href="../constructors/bot_inline_message_text.html">BotInlineMessageText</a></td></tr>
+<tr><td><a href="../constructors/input_bot_inline_message_game.html">InputBotInlineMessageGame</a></td></tr>
+<tr><td><a href="../constructors/input_bot_inline_message_media_auto.html">InputBotInlineMessageMediaAuto</a></td></tr>
+<tr><td><a href="../constructors/input_bot_inline_message_media_contact.html">InputBotInlineMessageMediaContact</a></td></tr>
+<tr><td><a href="../constructors/input_bot_inline_message_media_geo.html">InputBotInlineMessageMediaGeo</a></td></tr>
+<tr><td><a href="../constructors/input_bot_inline_message_media_invoice.html">InputBotInlineMessageMediaInvoice</a></td></tr>
+<tr><td><a href="../constructors/input_bot_inline_message_media_venue.html">InputBotInlineMessageMediaVenue</a></td></tr>
+<tr><td><a href="../constructors/input_bot_inline_message_media_web_page.html">InputBotInlineMessageMediaWebPage</a></td></tr>
+<tr><td><a href="../constructors/input_bot_inline_message_text.html">InputBotInlineMessageText</a></td></tr>
+<tr><td><a href="../constructors/message.html">Message</a></td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

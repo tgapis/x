@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Help - Methods - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li>Help</li></ul>
+<h1>Help</h1>
+<ul class='together'>
+<li><a href="../../methods/help/accept_terms_of_service.html">AcceptTermsOfService</a></li>
+<li><a href="../../methods/help/dismiss_suggestion.html">DismissSuggestion</a></li>
+<li><a href="../../methods/help/edit_user_info.html">EditUserInfo</a></li>
+<li><a href="../../methods/help/get_app_config.html">GetAppConfig</a></li>
+<li><a href="../../methods/help/get_app_update.html">GetAppUpdate</a></li>
+<li><a href="../../methods/help/get_cdn_config.html">GetCdnConfig</a></li>
+<li><a href="../../methods/help/get_config.html">GetConfig</a></li>
+<li><a href="../../methods/help/get_countries_list.html">GetCountriesList</a></li>
+<li><a href="../../methods/help/get_deep_link_info.html">GetDeepLinkInfo</a></li>
+<li><a href="../../methods/help/get_invite_text.html">GetInviteText</a></li>
+<li><a href="../../methods/help/get_nearest_dc.html">GetNearestDc</a></li>
+<li><a href="../../methods/help/get_passport_config.html">GetPassportConfig</a></li>
+<li><a href="../../methods/help/get_peer_colors.html">GetPeerColors</a></li>
+<li><a href="../../methods/help/get_peer_profile_colors.html">GetPeerProfileColors</a></li>
+<li><a href="../../methods/help/get_premium_promo.html">GetPremiumPromo</a></li>
+<li><a href="../../methods/help/get_promo_data.html">GetPromoData</a></li>
+<li><a href="../../methods/help/get_recent_me_urls.html">GetRecentMeUrls</a></li>
+<li><a href="../../methods/help/get_support.html">GetSupport</a></li>
+<li><a href="../../methods/help/get_support_name.html">GetSupportName</a></li>
+<li><a href="../../methods/help/get_terms_of_service_update.html">GetTermsOfServiceUpdate</a></li>
+<li><a href="../../methods/help/get_timezones_list.html">GetTimezonesList</a></li>
+<li><a href="../../methods/help/get_user_info.html">GetUserInfo</a></li>
+<li><a href="../../methods/help/hide_promo_data.html">HidePromoData</a></li>
+<li><a href="../../methods/help/save_app_log.html">SaveAppLog</a></li>
+<li><a href="../../methods/help/set_bot_updates_status.html">SetBotUpdatesStatus</a></li>
+</ul>
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

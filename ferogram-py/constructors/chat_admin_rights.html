@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ChatAdminRights - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>ChatAdminRights</li></ul>
+<h1>ChatAdminRights</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+chatAdminRights<span style="color:var(--tl-cid)">#5fb224d5</span> change_info:flags.0?<a href="../index.html#true">true</a> post_messages:flags.1?<a href="../index.html#true">true</a> edit_messages:flags.2?<a href="../index.html#true">true</a> delete_messages:flags.3?<a href="../index.html#true">true</a> ban_users:flags.4?<a href="../index.html#true">true</a> invite_users:flags.5?<a href="../index.html#true">true</a> pin_messages:flags.7?<a href="../index.html#true">true</a> add_admins:flags.9?<a href="../index.html#true">true</a> anonymous:flags.10?<a href="../index.html#true">true</a> manage_call:flags.11?<a href="../index.html#true">true</a> other:flags.12?<a href="../index.html#true">true</a> manage_topics:flags.13?<a href="../index.html#true">true</a> post_stories:flags.14?<a href="../index.html#true">true</a> edit_stories:flags.15?<a href="../index.html#true">true</a> delete_stories:flags.16?<a href="../index.html#true">true</a> manage_direct_messages:flags.17?<a href="../index.html#true">true</a> manage_ranks:flags.18?<a href="../index.html#true">true</a> = <a href="../types/chat_admin_rights.html">ChatAdminRights</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types import ChatAdminRights')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../types/chat_admin_rights.html">ChatAdminRights</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>change_info</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>post_messages</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>edit_messages</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>delete_messages</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>ban_users</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>invite_users</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>pin_messages</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>add_admins</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>anonymous</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>manage_call</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>other</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>manage_topics</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>post_stories</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>edit_stories</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>delete_stories</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>manage_direct_messages</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>manage_ranks</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+<h3>Used by</h3><table><tr><td><a href="../methods/channels/edit_admin.html">EditAdmin</a></td></tr>
+<tr><td><a href="../methods/bots/set_bot_broadcast_default_admin_rights.html">SetBotBroadcastDefaultAdminRights</a></td></tr>
+<tr><td><a href="../methods/bots/set_bot_group_default_admin_rights.html">SetBotGroupDefaultAdminRights</a></td></tr>
+</table>
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../js/app.js"></script>
+</div>
+<script>prependPath="../";</script><script src="../js/search.js"></script>
+</body>
+</html>

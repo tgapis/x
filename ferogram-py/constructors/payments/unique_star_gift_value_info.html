@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>UniqueStarGiftValueInfo - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li><a href="../../constructors/payments/index.html">Payments</a></li><span class="sep">›</span><li>UniqueStarGiftValueInfo</li></ul>
+<h1>UniqueStarGiftValueInfo</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+payments.uniqueStarGiftValueInfo<span style="color:var(--tl-cid)">#512fe446</span> last_sale_on_fragment:flags.1?<a href="../../index.html#true">true</a> value_is_average:flags.6?<a href="../../index.html#true">true</a> currency:<a href="../../index.html#string">string</a> value:<a href="../../index.html#long">long</a> initial_sale_date:<a href="../../index.html#int">int</a> initial_sale_stars:<a href="../../index.html#long">long</a> initial_sale_price:<a href="../../index.html#long">long</a> last_sale_date:flags.0?<a href="../../index.html#int">int</a> last_sale_price:flags.0?<a href="../../index.html#long">long</a> floor_price:flags.2?<a href="../../index.html#long">long</a> average_price:flags.3?<a href="../../index.html#long">long</a> listed_count:flags.4?<a href="../../index.html#int">int</a> fragment_listed_count:flags.5?<a href="../../index.html#int">int</a> fragment_listed_url:flags.5?<a href="../../index.html#string">string</a> = <a href="../../types/payments/unique_star_gift_value_info.html">payments.UniqueStarGiftValueInfo</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types.payments import UniqueStarGiftValueInfo')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../../types/payments/unique_star_gift_value_info.html">payments.UniqueStarGiftValueInfo</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>last_sale_on_fragment</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>value_is_average</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>currency</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>value</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>initial_sale_date</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>initial_sale_stars</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>initial_sale_price</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>last_sale_date</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>last_sale_price</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>floor_price</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>average_price</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>listed_count</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>fragment_listed_count</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>fragment_listed_url</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>
