@@ -1,33 +1,33 @@
-# x
+# tgapis/x
 
-Scrapes and tracks Telegram API schemas. Runs every 5 hours via GitHub Actions.
+Scrapes Telegram API schemas every 5 hours via GitHub Actions and generates docs for a few libraries. Everything generated lands on the `data` branch, so `main` stays clean with just the scripts.
 
-## Data branch
+Live at: https://tgapis.github.io/x/
 
-All generated files live on the `data` branch:
+## What's on the data branch
 
-- `botapi.json` / `botapi.min.json`: Bot API docs
-- `core.tl` / `corefork.tl` / `blogfork.tl`: TL schemas from core.telegram.org
-- `tdesktop.tl` / `tdlib.tl`: TL schemas from tdesktop / tdlib
-- `*.json`: parsed TL schemas
-- `telethon/`: Telethon HTML docs generated from tdesktop.tl
-- `TL/diff/`: TL diff viewer (tdesktop + TDLib)
-- `constructors/` `types/` `methods/`: ferogram raw API docs (`tl.ferogram.dev`)
+Raw TL schemas and parsed JSON for tDesktop, TDLib, core, corefork, and blogfork. `botapi.json` covers the Bot API. There's also a layer-by-layer TL diff viewer for both tDesktop and TDLib, Telethon HTML docs built from the tDesktop schema, and raw API references for ferogram (Rust) and ferogram-py.
 
-## Scripts (main branch)
+## How it works
 
-| File | Purpose |
-|------|---------|
-| `deploy.sh` | Main deploy script run by CI |
-| `scrape.py` | Scrapes Bot API docs |
-| `schema.py` | Scrapes TL schema from telegram.org |
-| `get-all-tl.py` | Builds TL diff viewer (tdesktop + TDLib modes via env vars) |
-| `bin.js` / `index.js` | TL → JSON parser |
-| `ferogram/generate.py` | Generates ferogram raw API docs site |
+`deploy.sh` is the main entry point that CI runs. It calls `scrape.py` to pull the Bot API docs, `schema.py` to grab TL schemas from telegram.org, and `get-all-tl.py` to build the diff viewer. Parsing `.tl` files into JSON is handled by `bin.js` and `index.js`. The ferogram doc generators live in `ferogram/generate.py` for Python and `ferogram/generate_rust.py` for Rust.
 
-## Secrets required
+When the `data` branch changes, a dispatch is sent to `tgapis/pipeline` and `ankit-chaubey/ferobot` to kick off any downstream builds.
 
-| Secret | Used for |
-|--------|---------|
-| `TGAPIS_PAT` | Dispatch to `tgapis/pipeline` |
-| `AC_PAT` | Dispatch to `ankit-chaubey/tgbotrs` |
+## Running locally
+
+```bash
+pip install -r requirements.txt
+
+# grab the latest schema and generate ferogram docs
+curl -fsSL https://raw.githubusercontent.com/tgapis/x/data/tdesktop.tl -o tdesktop.tl
+python ferogram/generate.py tdesktop.tl /tmp/site/
+```
+
+## Lineage
+
+This is part of a longer line of projects doing the same thing. Worth checking out [TelegramPlayground/TG-APIs](https://github.com/TelegramPlayground/TG-APIs) and [PaulSonOfLars/telegram-bot-api-spec](https://github.com/PaulSonOfLars/telegram-bot-api-spec) if you're into this space.
+
+---
+
+Developed by [Ankit Chaubey](https://github.com/ankit-chaubey).
