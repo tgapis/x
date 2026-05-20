@@ -302,7 +302,11 @@ def main():
         fd.write(repr(json.dumps(deltas, separators=(',', ':'), sort_keys=True)))
         fd.write(');\n')
 
-    now = datetime.datetime.now(datetime.timezone.utc)
+    if deltas:
+        latest_ts = max(d['date'] for d in deltas)
+        now = datetime.datetime.fromtimestamp(latest_ts, datetime.timezone.utc)
+    else:
+        now = datetime.datetime.now(datetime.timezone.utc)
     with open(out_atom, 'w') as fd:
         fd.write(f'''<?xml version="1.0" encoding="UTF-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">

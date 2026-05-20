@@ -92,7 +92,8 @@ mkdir -p /tmp/tldiff
 cd /tmp/tldiff
 
 FQDN="https://tgapis.github.io/x/TL/diff" GH="https://github.com/telegramdesktop/tdesktop/" python /tmp/get-all-tl.py
-cp /tmp/tl_app.js atom.xml diff.js "${a}/TL/diff/"
+cp atom.xml diff.js "${a}/TL/diff/"
+cp /tmp/tl_app.js "${a}/TL/diff/app.js"
 cp /tmp/tl_index.html "${a}/TL/diff/tdesktop.html"
 mkdir -p "${a}/TL/diff/schemes/tDesktop"
 mv schemes/* "${a}/TL/diff/schemes/tDesktop/"
@@ -101,6 +102,8 @@ rm -rf tdesktop schemes
 FQDN="https://tgapis.github.io/x/TL/diff" TDLIBGH="https://github.com/tdlib/td" python /tmp/get-all-tl.py
 cp tdatom.xml tddiff.js "${a}/TL/diff/"
 cp /tmp/tl_index.html "${a}/TL/diff/tdlib.html"
+sed -i 's/src="diff\.js"/src="tddiff.js"/' "${a}/TL/diff/tdlib.html"
+sed -i 's/src="app\.js"/src="tdapp.js"/' "${a}/TL/diff/tdlib.html"
 cp /tmp/tl_app.js "${a}/TL/diff/tdapp.js"
 mkdir -p "${a}/TL/diff/schemes/TDLib"
 mv schemes/* "${a}/TL/diff/schemes/TDLib/"
