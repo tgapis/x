@@ -31,12 +31,14 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/contacts/index.html">Contacts</a></li><span class="sep">›</span><li>Search</li></ul>
 <h1>Search</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-contacts.search<span style="color:var(--tl-cid)">#11f812d8</span> q:<a href="../../index.html#string">string</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/contacts/found.html">contacts.Found</a></pre>
+contacts.search<span style="color:var(--tl-cid)">#05f58d0f</span> broadcasts:flags.0?<a href="../../index.html#true">true</a> bots:flags.1?<a href="../../index.html#true">true</a> q:<a href="../../index.html#string">string</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/contacts/found.html">contacts.Found</a></pre>
 <button class="copy-btn" onclick="cp('use ferogram::tl::functions::contacts::Search;')">Copy use statement</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/contacts/found.html">contacts.Found</a></td></tr></table>
 <h3>Parameters</h3>
-<div class="cmp-table-wrap"><table><tr><td>q</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<div class="cmp-table-wrap"><table><tr><td>broadcasts</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>bots</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>q</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>limit</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
 </table></div>
 <h3>Example</h3>
@@ -59,6 +61,8 @@ async fn main() -&gt; anyhow::Result&lt;()&gt; {
     let result = client
         .invoke(
         &amp;functions::contacts::Search {
+            broadcasts: false,
+            bots: false,
             q: &quot;&quot;.to_string(),
             limit: 100_i32,
         },
@@ -86,6 +90,8 @@ async fn main() -&gt; anyhow::Result&lt;()&gt; {
             let result = client
                 .invoke(
             &amp;functions::contacts::Search {
+                broadcasts: false,
+                bots: false,
                 q: &quot;&quot;.to_string(),
                 limit: 100_i32,
             },

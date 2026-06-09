@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>ConnectedBot</li></ul>
 <h1>ConnectedBot</h1>
 <pre class="tl"><span style="color:var(--muted)">---types---</span>
-connectedBot<span style="color:var(--tl-cid)">#cd64636c</span> bot_id:<a href="../index.html#long">long</a> recipients:<a href="../types/business_bot_recipients.html">BusinessBotRecipients</a> rights:<a href="../types/business_bot_rights.html">BusinessBotRights</a> = <a href="../types/connected_bot.html">ConnectedBot</a></pre>
+connectedBot<span style="color:var(--tl-cid)">#033ed001</span> bot_id:<a href="../index.html#long">long</a> recipients:<a href="../types/business_bot_recipients.html">BusinessBotRecipients</a> rights:<a href="../types/business_bot_rights.html">BusinessBotRights</a> device:flags.0?<a href="../index.html#string">string</a> date:flags.1?<a href="../index.html#int">int</a> location:flags.2?<a href="../index.html#string">string</a> = <a href="../types/connected_bot.html">ConnectedBot</a></pre>
 <button class="copy-btn" onclick="cp('use ferogram::tl::types::ConnectedBot;')">Copy use statement</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/connected_bot.html">ConnectedBot</a></td></tr></table>
@@ -43,6 +43,9 @@ Match on it with: <code>if let enums::ConnectedBot::ConnectedBot(v) = result { .
 <div class="cmp-table-wrap"><table><tr><td>bot_id</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>recipients</td><td><a href="../types/business_bot_recipients.html">BusinessBotRecipients</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>rights</td><td><a href="../types/business_bot_rights.html">BusinessBotRights</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>device</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>date</td><td><a href="../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>location</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table></div>
 
 

@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>PageBlockPhoto</li></ul>
 <h1>PageBlockPhoto</h1>
 <pre class="tl"><span style="color:var(--muted)">---types---</span>
-pageBlockPhoto<span style="color:var(--tl-cid)">#1759c560</span> photo_id:<a href="../index.html#long">long</a> caption:<a href="../types/page_caption.html">PageCaption</a> url:flags.0?<a href="../index.html#string">string</a> webpage_id:flags.0?<a href="../index.html#long">long</a> = <a href="../types/page_block.html">PageBlock</a></pre>
+pageBlockPhoto<span style="color:var(--tl-cid)">#1759c560</span> spoiler:flags.1?<a href="../index.html#true">true</a> photo_id:<a href="../index.html#long">long</a> caption:<a href="../types/page_caption.html">PageCaption</a> url:flags.0?<a href="../index.html#string">string</a> webpage_id:flags.0?<a href="../index.html#long">long</a> = <a href="../types/page_block.html">PageBlock</a></pre>
 <button class="copy-btn" onclick="cp('use ferogram::tl::types::PageBlockPhoto;')">Copy use statement</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/page_block.html">PageBlock</a></td></tr></table>
@@ -40,7 +40,8 @@ In Rust this constructor is a variant of the <code>enums::PageBlock</code> enum.
 Match on it with: <code>if let enums::PageBlock::PageBlockPhoto(v) = result { ... }</code>
 </p>
 <h3>Parameters</h3>
-<div class="cmp-table-wrap"><table><tr><td>photo_id</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<div class="cmp-table-wrap"><table><tr><td>spoiler</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>photo_id</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>caption</td><td><a href="../types/page_caption.html">PageCaption</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>url</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>webpage_id</td><td><a href="../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>

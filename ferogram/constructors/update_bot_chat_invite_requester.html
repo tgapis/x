@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>UpdateBotChatInviteRequester</li></ul>
 <h1>UpdateBotChatInviteRequester</h1>
 <pre class="tl"><span style="color:var(--muted)">---types---</span>
-updateBotChatInviteRequester<span style="color:var(--tl-cid)">#11dfa986</span> peer:<a href="../types/peer.html">Peer</a> date:<a href="../index.html#int">int</a> user_id:<a href="../index.html#long">long</a> about:<a href="../index.html#string">string</a> invite:<a href="../types/exported_chat_invite.html">ExportedChatInvite</a> qts:<a href="../index.html#int">int</a> = <a href="../types/update.html">Update</a></pre>
+updateBotChatInviteRequester<span style="color:var(--tl-cid)">#7cb34d79</span> peer:<a href="../types/peer.html">Peer</a> date:<a href="../index.html#int">int</a> user_id:<a href="../index.html#long">long</a> about:<a href="../index.html#string">string</a> invite:<a href="../types/exported_chat_invite.html">ExportedChatInvite</a> qts:<a href="../index.html#int">int</a> query_id:flags.0?<a href="../index.html#long">long</a> = <a href="../types/update.html">Update</a></pre>
 <button class="copy-btn" onclick="cp('use ferogram::tl::types::UpdateBotChatInviteRequester;')">Copy use statement</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/update.html">Update</a></td></tr></table>
@@ -46,6 +46,7 @@ Match on it with: <code>if let enums::Update::UpdateBotChatInviteRequester(v) = 
 <tr><td>about</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>invite</td><td><a href="../types/exported_chat_invite.html">ExportedChatInvite</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>qts</td><td><a href="../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>query_id</td><td><a href="../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table></div>
 
 

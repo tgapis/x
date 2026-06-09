@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>PageListItemBlocks</li></ul>
 <h1>PageListItemBlocks</h1>
 <pre class="tl"><span style="color:var(--muted)">---types---</span>
-pageListItemBlocks<span style="color:var(--tl-cid)">#25e073fc</span> blocks:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/page_block.html">PageBlock</a>&gt; = <a href="../types/page_list_item.html">PageListItem</a></pre>
+pageListItemBlocks<span style="color:var(--tl-cid)">#63ca67aa</span> checkbox:flags.0?<a href="../index.html#true">true</a> checked:flags.1?<a href="../index.html#true">true</a> blocks:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/page_block.html">PageBlock</a>&gt; = <a href="../types/page_list_item.html">PageListItem</a></pre>
 <button class="copy-btn" onclick="cp('use ferogram::tl::types::PageListItemBlocks;')">Copy use statement</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/page_list_item.html">PageListItem</a></td></tr></table>
@@ -40,7 +40,9 @@ In Rust this constructor is a variant of the <code>enums::PageListItem</code> en
 Match on it with: <code>if let enums::PageListItem::PageListItemBlocks(v) = result { ... }</code>
 </p>
 <h3>Parameters</h3>
-<div class="cmp-table-wrap"><table><tr><td>blocks</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/page_block.html">PageBlock</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+<div class="cmp-table-wrap"><table><tr><td>checkbox</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>checked</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>blocks</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/page_block.html">PageBlock</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
 </table></div>
 
 
