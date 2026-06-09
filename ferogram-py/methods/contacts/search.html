@@ -31,18 +31,20 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/contacts/index.html">Contacts</a></li><span class="sep">›</span><li>Search</li></ul>
 <h1>Search</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-contacts.search<span style="color:var(--tl-cid)">#11f812d8</span> q:<a href="../../index.html#string">string</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/contacts/found.html">contacts.Found</a></pre>
+contacts.search<span style="color:var(--tl-cid)">#05f58d0f</span> broadcasts:flags.0?<a href="../../index.html#true">true</a> bots:flags.1?<a href="../../index.html#true">true</a> q:<a href="../../index.html#string">string</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/contacts/found.html">contacts.Found</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.contacts import Search')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/contacts/found.html">contacts.Found</a></td></tr></table>
 <h3>Parameters</h3>
-<div class="cmp-table-wrap"><table><tr><td>q</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<div class="cmp-table-wrap"><table><tr><td>broadcasts</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>bots</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>q</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>limit</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
 </table></div>
 <h3>Example</h3>
 <p class="example-note">The examples below use placeholder values. Replace them with real data before running the code.</p>
 <details class="example" open>
-  <summary><span class="arrow">&#9654;</span> Example</summary>
+  <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
 from ferogram import Client
 
@@ -54,6 +56,26 @@ async def main():
         q=&#x27;some string here&#x27;,
         limit=100
     )
+    print(result)
+
+asyncio.run(main())</pre>
+</details>
+<p class="example-note">The minimal example uses Ferogram's raw proxy shorthand. Peers can be passed as strings and required primitives get safe defaults. Expand <strong>Full API</strong> to see every parameter.</p>
+<details class="example">
+  <summary><span class="arrow">&#9654;</span> Full API</summary>
+  <pre class="python">import asyncio
+from ferogram import Client, raw
+
+app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
+
+async def main():
+    await app.start()
+    result = await app(raw.functions.contacts.Search(
+        broadcasts=True,
+        bots=True,
+        q=&#x27;some string here&#x27;,
+        limit=100
+    ))
     print(result)
 
 asyncio.run(main())</pre>

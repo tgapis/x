@@ -31,18 +31,20 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/channels/index.html">Channels</a></li><span class="sep">›</span><li>ToggleJoinRequest</li></ul>
 <h1>ToggleJoinRequest</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-channels.toggleJoinRequest<span style="color:var(--tl-cid)">#4c2985b6</span> channel:<a href="../../types/input_channel.html">InputChannel</a> enabled:<a href="../../index.html#bool">Bool</a> = <a href="../../types/updates.html">Updates</a></pre>
+channels.toggleJoinRequest<span style="color:var(--tl-cid)">#0ecc2618</span> apply_to_invites:flags.1?<a href="../../index.html#true">true</a> channel:<a href="../../types/input_channel.html">InputChannel</a> enabled:<a href="../../index.html#bool">Bool</a> guard_bot:flags.0?<a href="../../types/input_user.html">InputUser</a> = <a href="../../types/updates.html">Updates</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.channels import ToggleJoinRequest')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/updates.html">Updates</a></td></tr></table>
 <h3>Parameters</h3>
-<div class="cmp-table-wrap"><table><tr><td>channel</td><td><a href="../../types/input_channel.html">InputChannel</a></td><td><span class="tag-req">required</span></td></tr>
+<div class="cmp-table-wrap"><table><tr><td>apply_to_invites</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>channel</td><td><a href="../../types/input_channel.html">InputChannel</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>enabled</td><td><a href="../../index.html#bool">Bool</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>guard_bot</td><td><a href="../../types/input_user.html">InputUser</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table></div>
 <h3>Example</h3>
 <p class="example-note">The examples below use placeholder values. Replace them with real data before running the code.</p>
 <details class="example" open>
-  <summary><span class="arrow">&#9654;</span> Example</summary>
+  <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
 from ferogram import Client
 
@@ -54,6 +56,26 @@ async def main():
         channel=&#x27;username&#x27;,
         enabled=False
     )
+    print(result)
+
+asyncio.run(main())</pre>
+</details>
+<p class="example-note">The minimal example uses Ferogram's raw proxy shorthand. Peers can be passed as strings and required primitives get safe defaults. Expand <strong>Full API</strong> to see every parameter.</p>
+<details class="example">
+  <summary><span class="arrow">&#9654;</span> Full API</summary>
+  <pre class="python">import asyncio
+from ferogram import Client, raw
+
+app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
+
+async def main():
+    await app.start()
+    result = await app(raw.functions.channels.ToggleJoinRequest(
+        apply_to_invites=True,
+        channel=raw.types.InputPeerSelf(),
+        enabled=False,
+        guard_bot=raw.types.InputPeerSelf()
+    ))
     print(result)
 
 asyncio.run(main())</pre>

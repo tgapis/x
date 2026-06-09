@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>SendMessage</li></ul>
 <h1>SendMessage</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-messages.sendMessage<span style="color:var(--tl-cid)">#545cd15a</span> no_webpage:flags.1?<a href="../../index.html#true">true</a> silent:flags.5?<a href="../../index.html#true">true</a> background:flags.6?<a href="../../index.html#true">true</a> clear_draft:flags.7?<a href="../../index.html#true">true</a> noforwards:flags.14?<a href="../../index.html#true">true</a> update_stickersets_order:flags.15?<a href="../../index.html#true">true</a> invert_media:flags.16?<a href="../../index.html#true">true</a> allow_paid_floodskip:flags.19?<a href="../../index.html#true">true</a> peer:<a href="../../types/input_peer.html">InputPeer</a> reply_to:flags.0?<a href="../../types/input_reply_to.html">InputReplyTo</a> message:<a href="../../index.html#string">string</a> random_id:<a href="../../index.html#long">long</a> reply_markup:flags.2?<a href="../../types/reply_markup.html">ReplyMarkup</a> entities:flags.3?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message_entity.html">MessageEntity</a>&gt; schedule_date:flags.10?<a href="../../index.html#int">int</a> schedule_repeat_period:flags.24?<a href="../../index.html#int">int</a> send_as:flags.13?<a href="../../types/input_peer.html">InputPeer</a> quick_reply_shortcut:flags.17?<a href="../../types/input_quick_reply_shortcut.html">InputQuickReplyShortcut</a> effect:flags.18?<a href="../../index.html#long">long</a> allow_paid_stars:flags.21?<a href="../../index.html#long">long</a> suggested_post:flags.22?<a href="../../types/suggested_post.html">SuggestedPost</a> = <a href="../../types/updates.html">Updates</a></pre>
+messages.sendMessage<span style="color:var(--tl-cid)">#fef48f62</span> no_webpage:flags.1?<a href="../../index.html#true">true</a> silent:flags.5?<a href="../../index.html#true">true</a> background:flags.6?<a href="../../index.html#true">true</a> clear_draft:flags.7?<a href="../../index.html#true">true</a> noforwards:flags.14?<a href="../../index.html#true">true</a> update_stickersets_order:flags.15?<a href="../../index.html#true">true</a> invert_media:flags.16?<a href="../../index.html#true">true</a> allow_paid_floodskip:flags.19?<a href="../../index.html#true">true</a> peer:<a href="../../types/input_peer.html">InputPeer</a> reply_to:flags.0?<a href="../../types/input_reply_to.html">InputReplyTo</a> message:<a href="../../index.html#string">string</a> random_id:<a href="../../index.html#long">long</a> reply_markup:flags.2?<a href="../../types/reply_markup.html">ReplyMarkup</a> entities:flags.3?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message_entity.html">MessageEntity</a>&gt; schedule_date:flags.10?<a href="../../index.html#int">int</a> schedule_repeat_period:flags.24?<a href="../../index.html#int">int</a> send_as:flags.13?<a href="../../types/input_peer.html">InputPeer</a> quick_reply_shortcut:flags.17?<a href="../../types/input_quick_reply_shortcut.html">InputQuickReplyShortcut</a> effect:flags.18?<a href="../../index.html#long">long</a> allow_paid_stars:flags.21?<a href="../../index.html#long">long</a> suggested_post:flags.22?<a href="../../types/suggested_post.html">SuggestedPost</a> rich_message:flags.23?<a href="../../types/input_rich_message.html">InputRichMessage</a> = <a href="../../types/updates.html">Updates</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.messages import SendMessage')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/updates.html">Updates</a></td></tr></table>
@@ -57,6 +57,7 @@ messages.sendMessage<span style="color:var(--tl-cid)">#545cd15a</span> no_webpag
 <tr><td>effect</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>allow_paid_stars</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>suggested_post</td><td><a href="../../types/suggested_post.html">SuggestedPost</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>rich_message</td><td><a href="../../types/input_rich_message.html">InputRichMessage</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table></div>
 <h3>Example</h3>
 <p class="example-note">The examples below use placeholder values. Replace them with real data before running the code.</p>
@@ -111,7 +112,8 @@ async def main():
         quick_reply_shortcut=raw.types.InputQuickReplyShortcutId(shortcut_id=0),
         effect=-12398745604826,
         allow_paid_stars=-12398745604826,
-        suggested_post=raw.types.SuggestedPost(date=0)
+        suggested_post=raw.types.SuggestedPost(date=0),
+        rich_message=raw.types.InputRichMessage()
     ))
     print(result)
 

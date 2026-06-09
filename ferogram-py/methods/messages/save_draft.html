@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>SaveDraft</li></ul>
 <h1>SaveDraft</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-messages.saveDraft<span style="color:var(--tl-cid)">#54ae308e</span> no_webpage:flags.1?<a href="../../index.html#true">true</a> invert_media:flags.6?<a href="../../index.html#true">true</a> reply_to:flags.4?<a href="../../types/input_reply_to.html">InputReplyTo</a> peer:<a href="../../types/input_peer.html">InputPeer</a> message:<a href="../../index.html#string">string</a> entities:flags.3?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message_entity.html">MessageEntity</a>&gt; media:flags.5?<a href="../../types/input_media.html">InputMedia</a> effect:flags.7?<a href="../../index.html#long">long</a> suggested_post:flags.8?<a href="../../types/suggested_post.html">SuggestedPost</a> = <a href="../../index.html#bool">Bool</a></pre>
+messages.saveDraft<span style="color:var(--tl-cid)">#ad0fa15c</span> no_webpage:flags.1?<a href="../../index.html#true">true</a> invert_media:flags.6?<a href="../../index.html#true">true</a> reply_to:flags.4?<a href="../../types/input_reply_to.html">InputReplyTo</a> peer:<a href="../../types/input_peer.html">InputPeer</a> message:<a href="../../index.html#string">string</a> entities:flags.3?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message_entity.html">MessageEntity</a>&gt; media:flags.5?<a href="../../types/input_media.html">InputMedia</a> effect:flags.7?<a href="../../index.html#long">long</a> suggested_post:flags.8?<a href="../../types/suggested_post.html">SuggestedPost</a> rich_message:flags.9?<a href="../../types/input_rich_message.html">InputRichMessage</a> = <a href="../../index.html#bool">Bool</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.messages import SaveDraft')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../index.html#bool">Bool</a></td></tr></table>
@@ -45,6 +45,7 @@ messages.saveDraft<span style="color:var(--tl-cid)">#54ae308e</span> no_webpage:
 <tr><td>media</td><td><a href="../../types/input_media.html">InputMedia</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>effect</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>suggested_post</td><td><a href="../../types/suggested_post.html">SuggestedPost</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>rich_message</td><td><a href="../../types/input_rich_message.html">InputRichMessage</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table></div>
 <h3>Example</h3>
 <p class="example-note">The examples below use placeholder values. Replace them with real data before running the code.</p>
@@ -84,7 +85,8 @@ async def main():
         entities=[raw.types.MessageEntityUnknown(offset=0, length=1)],
         media=raw.types.InputMediaEmpty(),
         effect=-12398745604826,
-        suggested_post=raw.types.SuggestedPost(date=0)
+        suggested_post=raw.types.SuggestedPost(date=0),
+        rich_message=raw.types.InputRichMessage()
     ))
     print(result)
 
