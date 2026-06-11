@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputRichMessageHTML</li></ul>
 <h1>InputRichMessageHTML</h1>
 <pre class="tl"><span style="color:var(--muted)">---types---</span>
-inputRichMessageHTML<span style="color:var(--tl-cid)">#d4eab551</span> rtl:flags.0?<a href="../index.html#true">true</a> noautolink:flags.1?<a href="../index.html#true">true</a> html:<a href="../index.html#string">string</a> photos:flags.2?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_photo.html">InputPhoto</a>&gt; documents:flags.3?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_document.html">InputDocument</a>&gt; users:flags.4?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_user.html">InputUser</a>&gt; = <a href="../types/input_rich_message.html">InputRichMessage</a></pre>
+inputRichMessageHTML<span style="color:var(--tl-cid)">#dacb836a</span> rtl:flags.0?<a href="../index.html#true">true</a> noautolink:flags.1?<a href="../index.html#true">true</a> html:<a href="../index.html#string">string</a> files:flags.2?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_rich_file.html">InputRichFile</a>&gt; = <a href="../types/input_rich_message.html">InputRichMessage</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import InputRichMessageHTML')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/input_rich_message.html">InputRichMessage</a></td></tr></table>
@@ -39,9 +39,7 @@ inputRichMessageHTML<span style="color:var(--tl-cid)">#d4eab551</span> rtl:flags
 <div class="cmp-table-wrap"><table><tr><td>rtl</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>noautolink</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>html</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
-<tr><td>photos</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_photo.html">InputPhoto</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>documents</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_document.html">InputDocument</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>users</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_user.html">InputUser</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>files</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/input_rich_file.html">InputRichFile</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
 </table></div>
 <h3>Used by</h3><table><tr><td><a href="../methods/messages/edit_inline_bot_message.html">EditInlineBotMessage</a></td></tr>
 <tr><td><a href="../methods/messages/edit_message.html">EditMessage</a></td></tr>
