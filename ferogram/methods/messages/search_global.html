@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>SearchGlobal</li></ul>
 <h1>SearchGlobal</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-messages.searchGlobal<span style="color:var(--tl-cid)">#4bc6589a</span> broadcasts_only:flags.1?<a href="../../index.html#true">true</a> groups_only:flags.2?<a href="../../index.html#true">true</a> users_only:flags.3?<a href="../../index.html#true">true</a> folder_id:flags.0?<a href="../../index.html#int">int</a> q:<a href="../../index.html#string">string</a> filter:<a href="../../types/messages_filter.html">MessagesFilter</a> min_date:<a href="../../index.html#int">int</a> max_date:<a href="../../index.html#int">int</a> offset_rate:<a href="../../index.html#int">int</a> offset_peer:<a href="../../types/input_peer.html">InputPeer</a> offset_id:<a href="../../index.html#int">int</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/messages/messages.html">messages.Messages</a></pre>
+messages.searchGlobal<span style="color:var(--tl-cid)">#6126a43c</span> broadcasts_only:flags.1?<a href="../../index.html#true">true</a> groups_only:flags.2?<a href="../../index.html#true">true</a> users_only:flags.3?<a href="../../index.html#true">true</a> folder_id:flags.0?<a href="../../index.html#int">int</a> community:flags.4?<a href="../../types/input_channel.html">InputChannel</a> q:<a href="../../index.html#string">string</a> filter:<a href="../../types/messages_filter.html">MessagesFilter</a> min_date:<a href="../../index.html#int">int</a> max_date:<a href="../../index.html#int">int</a> offset_rate:<a href="../../index.html#int">int</a> offset_peer:<a href="../../types/input_peer.html">InputPeer</a> offset_id:<a href="../../index.html#int">int</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/messages/messages.html">messages.Messages</a></pre>
 <button class="copy-btn" onclick="cp('use ferogram::tl::functions::messages::SearchGlobal;')">Copy use statement</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/messages/messages.html">messages.Messages</a></td></tr></table>
@@ -40,6 +40,7 @@ messages.searchGlobal<span style="color:var(--tl-cid)">#4bc6589a</span> broadcas
 <tr><td>groups_only</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>users_only</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>folder_id</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>community</td><td><a href="../../types/input_channel.html">InputChannel</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>q</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>filter</td><td><a href="../../types/messages_filter.html">MessagesFilter</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>min_date</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
@@ -74,6 +75,7 @@ async fn main() -&gt; anyhow::Result&lt;()&gt; {
             groups_only: false,
             users_only: false,
             folder_id: None,
+            community: None,
             q: &quot;&quot;.to_string(),
             filter: enums::MessagesFilter::Empty,
             min_date: 0_i32,
@@ -112,6 +114,7 @@ async fn main() -&gt; anyhow::Result&lt;()&gt; {
                 groups_only: false,
                 users_only: false,
                 folder_id: None,
+                community: None,
                 q: &quot;&quot;.to_string(),
                 filter: enums::MessagesFilter::Empty,
                 min_date: 0_i32,
