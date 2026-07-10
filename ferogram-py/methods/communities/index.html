@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Communities - Methods - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li>Communities</li></ul>
+<h1>Communities</h1>
+<ul class='together'>
+<li><a href="../../methods/communities/create.html">Create</a></li>
+<li><a href="../../methods/communities/get_joined_communities.html">GetJoinedCommunities</a></li>
+<li><a href="../../methods/communities/get_participant_joined_chats.html">GetParticipantJoinedChats</a></li>
+<li><a href="../../methods/communities/get_peer_link_requests.html">GetPeerLinkRequests</a></li>
+<li><a href="../../methods/communities/toggle_all_peer_link_request_approval.html">ToggleAllPeerLinkRequestApproval</a></li>
+<li><a href="../../methods/communities/toggle_community_collapsed_in_dialogs.html">ToggleCommunityCollapsedInDialogs</a></li>
+<li><a href="../../methods/communities/toggle_participant_banned.html">ToggleParticipantBanned</a></li>
+<li><a href="../../methods/communities/toggle_peer_link.html">TogglePeerLink</a></li>
+<li><a href="../../methods/communities/toggle_peer_link_request_approval.html">TogglePeerLinkRequestApproval</a></li>
+</ul>
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/channels/index.html">Channels</a></li><span class="sep">›</span><li>GetAdminedPublicChannels</li></ul>
 <h1>GetAdminedPublicChannels</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-channels.getAdminedPublicChannels<span style="color:var(--tl-cid)">#f8b036af</span> by_location:flags.0?<a href="../../index.html#true">true</a> check_limit:flags.1?<a href="../../index.html#true">true</a> for_personal:flags.2?<a href="../../index.html#true">true</a> = <a href="../../types/messages/chats.html">messages.Chats</a></pre>
+channels.getAdminedPublicChannels<span style="color:var(--tl-cid)">#f8b036af</span> by_location:flags.0?<a href="../../index.html#true">true</a> check_limit:flags.1?<a href="../../index.html#true">true</a> for_personal:flags.2?<a href="../../index.html#true">true</a> for_community_peer:flags.3?<a href="../../index.html#true">true</a> = <a href="../../types/messages/chats.html">messages.Chats</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.channels import GetAdminedPublicChannels')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/messages/chats.html">messages.Chats</a></td></tr></table>
@@ -39,6 +39,7 @@ channels.getAdminedPublicChannels<span style="color:var(--tl-cid)">#f8b036af</sp
 <div class="cmp-table-wrap"><table><tr><td>by_location</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>check_limit</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>for_personal</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>for_community_peer</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table></div>
 <h3>Example</h3>
 <p class="example-note">The examples below use placeholder values. Replace them with real data before running the code.</p>
@@ -69,7 +70,8 @@ async def main():
     result = await app(raw.functions.channels.GetAdminedPublicChannels(
         by_location=True,
         check_limit=True,
-        for_personal=True
+        for_personal=True,
+        for_community_peer=True
     ))
     print(result)
 
