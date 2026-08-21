@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>KeyboardButtonSwitchInline - Ferogram Rust API</title>
+<title>InlineButtonTypeSwitchInline - Ferogram Rust API</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link id="style" rel="stylesheet" href="../css/dark.css">
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -28,26 +28,23 @@
 </script>
 <div id="main_div">
 
-<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>KeyboardButtonSwitchInline</li></ul>
-<h1>KeyboardButtonSwitchInline</h1>
+<ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InlineButtonTypeSwitchInline</li></ul>
+<h1>InlineButtonTypeSwitchInline</h1>
 <pre class="tl"><span style="color:var(--muted)">---types---</span>
-keyboardButtonSwitchInline<span style="color:var(--tl-cid)">#991399fc</span> same_peer:flags.0?<a href="../index.html#true">true</a> style:flags.10?<a href="../types/keyboard_button_style.html">KeyboardButtonStyle</a> text:<a href="../index.html#string">string</a> query:<a href="../index.html#string">string</a> peer_types:flags.1?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/inline_query_peer_type.html">InlineQueryPeerType</a>&gt; = <a href="../types/keyboard_button.html">KeyboardButton</a></pre>
-<button class="copy-btn" onclick="cp('use ferogram::tl::types::KeyboardButtonSwitchInline;')">Copy use statement</button>
+inlineButtonTypeSwitchInline<span style="color:var(--tl-cid)">#93773ff5</span> same_peer:flags.0?<a href="../index.html#true">true</a> query:<a href="../index.html#string">string</a> peer_types:flags.1?<a href="../index.html#vector">Vector</a>&lt;<a href="../types/inline_query_peer_type.html">InlineQueryPeerType</a>&gt; = <a href="../types/inline_button_type.html">InlineButtonType</a></pre>
+<button class="copy-btn" onclick="cp('use ferogram::tl::types::InlineButtonTypeSwitchInline;')">Copy use statement</button>
 <h3>Belongs to</h3>
-<table><tr><td><a href="../types/keyboard_button.html">KeyboardButton</a></td></tr></table>
+<table><tr><td><a href="../types/inline_button_type.html">InlineButtonType</a></td></tr></table>
 <p style="color:var(--muted);font-size:14px;">
-In Rust this constructor is a variant of the <code>enums::KeyboardButton</code> enum.<br>
-Match on it with: <code>if let enums::KeyboardButton::KeyboardButtonSwitchInline(v) = result { ... }</code>
+In Rust this constructor is a variant of the <code>enums::InlineButtonType</code> enum.<br>
+Match on it with: <code>if let enums::InlineButtonType::InlineButtonTypeSwitchInline(v) = result { ... }</code>
 </p>
 <h3>Parameters</h3>
 <div class="cmp-table-wrap"><table><tr><td>same_peer</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>style</td><td><a href="../types/keyboard_button_style.html">KeyboardButtonStyle</a></td><td><span class="tag-opt">optional</span></td></tr>
-<tr><td>text</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>query</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>peer_types</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/inline_query_peer_type.html">InlineQueryPeerType</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
 </table></div>
-<h3>Used by</h3><table><tr><td><a href="../methods/bots/request_web_view_button.html">RequestWebViewButton</a></td></tr>
-</table>
+
 
 <textarea id="c" class="invisible"></textarea>
 <script src="../js/app.js"></script>

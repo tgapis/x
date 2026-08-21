@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>ReplyKeyboardMarkup</li></ul>
 <h1>ReplyKeyboardMarkup</h1>
 <pre class="tl"><span style="color:var(--muted)">---types---</span>
-replyKeyboardMarkup<span style="color:var(--tl-cid)">#85dd99d1</span> resize:flags.0?<a href="../index.html#true">true</a> single_use:flags.1?<a href="../index.html#true">true</a> selective:flags.2?<a href="../index.html#true">true</a> persistent:flags.4?<a href="../index.html#true">true</a> rows:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/keyboard_button_row.html">KeyboardButtonRow</a>&gt; placeholder:flags.3?<a href="../index.html#string">string</a> = <a href="../types/reply_markup.html">ReplyMarkup</a></pre>
+replyKeyboardMarkup<span style="color:var(--tl-cid)">#85dd99d1</span> resize:flags.0?<a href="../index.html#true">true</a> single_use:flags.1?<a href="../index.html#true">true</a> selective:flags.2?<a href="../index.html#true">true</a> persistent:flags.4?<a href="../index.html#true">true</a> force_reply:flags.5?<a href="../index.html#true">true</a> rows:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/keyboard_button_row.html">KeyboardButtonRow</a>&gt; placeholder:flags.3?<a href="../index.html#string">string</a> = <a href="../types/reply_markup.html">ReplyMarkup</a></pre>
 <button class="copy-btn" onclick="cp('use ferogram::tl::types::ReplyKeyboardMarkup;')">Copy use statement</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/reply_markup.html">ReplyMarkup</a></td></tr></table>
@@ -44,11 +44,13 @@ Match on it with: <code>if let enums::ReplyMarkup::ReplyKeyboardMarkup(v) = resu
 <tr><td>single_use</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>selective</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>persistent</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>force_reply</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>rows</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/keyboard_button_row.html">KeyboardButtonRow</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
 <tr><td>placeholder</td><td><a href="../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table></div>
 <h3>Used by</h3><table><tr><td><a href="../methods/messages/edit_inline_bot_message.html">EditInlineBotMessage</a></td></tr>
 <tr><td><a href="../methods/messages/edit_message.html">EditMessage</a></td></tr>
+<tr><td><a href="../methods/ephemeral/edit_message.html">EditMessage</a></td></tr>
 <tr><td><a href="../methods/messages/send_media.html">SendMedia</a></td></tr>
 <tr><td><a href="../methods/messages/send_message.html">SendMessage</a></td></tr>
 <tr><td><a href="../methods/ephemeral/send_message.html">SendMessage</a></td></tr>
