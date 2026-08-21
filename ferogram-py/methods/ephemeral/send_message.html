@@ -31,12 +31,16 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/ephemeral/index.html">Ephemeral</a></li><span class="sep">›</span><li>SendMessage</li></ul>
 <h1>SendMessage</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-ephemeral.sendMessage<span style="color:var(--tl-cid)">#68cbd09f</span> peer:<a href="../../types/input_peer.html">InputPeer</a> receiver_id:<a href="../../types/input_user.html">InputUser</a> query_id:flags.0?<a href="../../index.html#long">long</a> message:<a href="../../index.html#string">string</a> entities:flags.1?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message_entity.html">MessageEntity</a>&gt; media:flags.2?<a href="../../types/input_media.html">InputMedia</a> reply_markup:flags.3?<a href="../../types/reply_markup.html">ReplyMarkup</a> rich_message:flags.4?<a href="../../types/input_rich_message.html">InputRichMessage</a> random_id:<a href="../../index.html#long">long</a> reply_to:flags.5?<a href="../../types/input_reply_to.html">InputReplyTo</a> = <a href="../../types/updates.html">Updates</a></pre>
+ephemeral.sendMessage<span style="color:var(--tl-cid)">#ba8d5f35</span> invert_media:flags.6?<a href="../../index.html#true">true</a> welcome:flags.7?<a href="../../index.html#true">true</a> anchor:flags.9?<a href="../../index.html#true">true</a> noforwards:flags.10?<a href="../../index.html#true">true</a> peer:flags.8?<a href="../../types/input_peer.html">InputPeer</a> receiver_id:<a href="../../types/input_user.html">InputUser</a> query_id:flags.0?<a href="../../index.html#long">long</a> message:<a href="../../index.html#string">string</a> entities:flags.1?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message_entity.html">MessageEntity</a>&gt; media:flags.2?<a href="../../types/input_media.html">InputMedia</a> reply_markup:flags.3?<a href="../../types/reply_markup.html">ReplyMarkup</a> rich_message:flags.4?<a href="../../types/input_rich_message.html">InputRichMessage</a> random_id:<a href="../../index.html#long">long</a> reply_to:flags.5?<a href="../../types/input_reply_to.html">InputReplyTo</a> = <a href="../../types/updates.html">Updates</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.ephemeral import SendMessage')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/updates.html">Updates</a></td></tr></table>
 <h3>Parameters</h3>
-<div class="cmp-table-wrap"><table><tr><td>peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
+<div class="cmp-table-wrap"><table><tr><td>invert_media</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>welcome</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>anchor</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>noforwards</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>receiver_id</td><td><a href="../../types/input_user.html">InputUser</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>query_id</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>message</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
@@ -60,7 +64,6 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app.raw.ephemeral.SendMessage(
-        peer=&#x27;username&#x27;,
         receiver_id=&#x27;username&#x27;,
         message=&#x27;Hello there!&#x27;,
         random_id=random.randrange(-2**63, 2**63)
@@ -81,6 +84,10 @@ app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcd
 async def main():
     await app.start()
     result = await app(raw.functions.ephemeral.SendMessage(
+        invert_media=True,
+        welcome=True,
+        anchor=True,
+        noforwards=True,
         peer=raw.types.InputPeerSelf(),
         receiver_id=raw.types.InputPeerSelf(),
         query_id=-12398745604826,

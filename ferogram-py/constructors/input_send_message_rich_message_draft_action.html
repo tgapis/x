@@ -31,12 +31,14 @@
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputSendMessageRichMessageDraftAction</li></ul>
 <h1>InputSendMessageRichMessageDraftAction</h1>
 <pre class="tl"><span style="color:var(--muted)">---types---</span>
-inputSendMessageRichMessageDraftAction<span style="color:var(--tl-cid)">#e2b23b51</span> random_id:<a href="../index.html#long">long</a> rich_message:<a href="../types/input_rich_message.html">InputRichMessage</a> = <a href="../types/send_message_action.html">SendMessageAction</a></pre>
+inputSendMessageRichMessageDraftAction<span style="color:var(--tl-cid)">#a937c7be</span> can_stop:flags.0?<a href="../index.html#true">true</a> keep_on_stop:flags.1?<a href="../index.html#true">true</a> random_id:<a href="../index.html#long">long</a> rich_message:<a href="../types/input_rich_message.html">InputRichMessage</a> = <a href="../types/send_message_action.html">SendMessageAction</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import InputSendMessageRichMessageDraftAction')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/send_message_action.html">SendMessageAction</a></td></tr></table>
 <h3>Parameters</h3>
-<div class="cmp-table-wrap"><table><tr><td>random_id</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<div class="cmp-table-wrap"><table><tr><td>can_stop</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>keep_on_stop</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>random_id</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>rich_message</td><td><a href="../types/input_rich_message.html">InputRichMessage</a></td><td><span class="tag-req">required</span></td></tr>
 </table></div>
 <h3>Used by</h3><table><tr><td><a href="../methods/messages/set_typing.html">SetTyping</a></td></tr>

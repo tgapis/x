@@ -31,14 +31,16 @@
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>InputInvoiceStarGiftResale</li></ul>
 <h1>InputInvoiceStarGiftResale</h1>
 <pre class="tl"><span style="color:var(--muted)">---types---</span>
-inputInvoiceStarGiftResale<span style="color:var(--tl-cid)">#c39f5324</span> ton:flags.0?<a href="../index.html#true">true</a> slug:<a href="../index.html#string">string</a> to_id:<a href="../types/input_peer.html">InputPeer</a> = <a href="../types/input_invoice.html">InputInvoice</a></pre>
+inputInvoiceStarGiftResale<span style="color:var(--tl-cid)">#e9b0c658</span> ton:flags.0?<a href="../index.html#true">true</a> show_name:flags.2?<a href="../index.html#true">true</a> slug:<a href="../index.html#string">string</a> to_id:<a href="../types/input_peer.html">InputPeer</a> message:flags.1?<a href="../types/text_with_entities.html">TextWithEntities</a> = <a href="../types/input_invoice.html">InputInvoice</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import InputInvoiceStarGiftResale')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/input_invoice.html">InputInvoice</a></td></tr></table>
 <h3>Parameters</h3>
 <div class="cmp-table-wrap"><table><tr><td>ton</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>show_name</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>slug</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>to_id</td><td><a href="../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>message</td><td><a href="../types/text_with_entities.html">TextWithEntities</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table></div>
 <h3>Used by</h3><table><tr><td><a href="../methods/payments/get_payment_form.html">GetPaymentForm</a></td></tr>
 <tr><td><a href="../methods/payments/send_payment_form.html">SendPaymentForm</a></td></tr>

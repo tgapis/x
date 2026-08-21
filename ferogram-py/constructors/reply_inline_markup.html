@@ -31,15 +31,17 @@
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>ReplyInlineMarkup</li></ul>
 <h1>ReplyInlineMarkup</h1>
 <pre class="tl"><span style="color:var(--muted)">---types---</span>
-replyInlineMarkup<span style="color:var(--tl-cid)">#48a30254</span> rows:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/keyboard_button_row.html">KeyboardButtonRow</a>&gt; = <a href="../types/reply_markup.html">ReplyMarkup</a></pre>
+replyInlineMarkup<span style="color:var(--tl-cid)">#b2b15770</span> force_reply:flags.5?<a href="../index.html#true">true</a> rows:<a href="../index.html#vector">Vector</a>&lt;<a href="../types/keyboard_inline_button_row.html">KeyboardInlineButtonRow</a>&gt; = <a href="../types/reply_markup.html">ReplyMarkup</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types import ReplyInlineMarkup')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/reply_markup.html">ReplyMarkup</a></td></tr></table>
 <h3>Parameters</h3>
-<div class="cmp-table-wrap"><table><tr><td>rows</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/keyboard_button_row.html">KeyboardButtonRow</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
+<div class="cmp-table-wrap"><table><tr><td>force_reply</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>rows</td><td><a href="../index.html#vector">Vector</a>&lt;<a href="../types/keyboard_inline_button_row.html">KeyboardInlineButtonRow</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
 </table></div>
 <h3>Used by</h3><table><tr><td><a href="../methods/messages/edit_inline_bot_message.html">EditInlineBotMessage</a></td></tr>
 <tr><td><a href="../methods/messages/edit_message.html">EditMessage</a></td></tr>
+<tr><td><a href="../methods/ephemeral/edit_message.html">EditMessage</a></td></tr>
 <tr><td><a href="../methods/messages/send_media.html">SendMedia</a></td></tr>
 <tr><td><a href="../methods/messages/send_message.html">SendMessage</a></td></tr>
 <tr><td><a href="../methods/ephemeral/send_message.html">SendMessage</a></td></tr>
