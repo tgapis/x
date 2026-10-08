@@ -31,18 +31,19 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/auth/index.html">Auth</a></li><span class="sep">›</span><li>InitFirebasePnvLogin</li></ul>
 <h1>InitFirebasePnvLogin</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-auth.initFirebasePnvLogin<span style="color:var(--tl-cid)">#777df37a</span> api_id:<a href="../../index.html#int">int</a> api_hash:<a href="../../index.html#string">string</a> = <a href="../../types/auth/firebase_pnv_intent.html">auth.FirebasePnvIntent</a></pre>
+auth.initFirebasePnvLogin<span style="color:var(--tl-cid)">#644f15c0</span> except_ids:flags.0?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#long">long</a>&gt; api_id:<a href="../../index.html#int">int</a> api_hash:<a href="../../index.html#string">string</a> = <a href="../../types/auth/firebase_pnv_intent.html">auth.FirebasePnvIntent</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.auth import InitFirebasePnvLogin')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/auth/firebase_pnv_intent.html">auth.FirebasePnvIntent</a></td></tr></table>
 <h3>Parameters</h3>
-<div class="cmp-table-wrap"><table><tr><td>api_id</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<div class="cmp-table-wrap"><table><tr><td>except_ids</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../index.html#long">long</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>api_id</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>api_hash</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
 </table></div>
 <h3>Example</h3>
 <p class="example-note">The examples below use placeholder values. Replace them with real data before running the code.</p>
 <details class="example" open>
-  <summary><span class="arrow">&#9654;</span> Example</summary>
+  <summary><span class="arrow">&#9654;</span> Minimal</summary>
   <pre class="python">import asyncio
 from ferogram import Client
 
@@ -54,6 +55,25 @@ async def main():
         api_id=42,
         api_hash=&#x27;some string here&#x27;
     )
+    print(result)
+
+asyncio.run(main())</pre>
+</details>
+<p class="example-note">The minimal example uses Ferogram's raw proxy shorthand. Peers can be passed as strings and required primitives get safe defaults. Expand <strong>Full API</strong> to see every parameter.</p>
+<details class="example">
+  <summary><span class="arrow">&#9654;</span> Full API</summary>
+  <pre class="python">import asyncio
+from ferogram import Client, raw
+
+app = Client(&quot;my_session&quot;, api_id=12345, api_hash=&quot;0123456789abcdef0123456789abcdef&quot;)
+
+async def main():
+    await app.start()
+    result = await app(raw.functions.auth.InitFirebasePnvLogin(
+        except_ids=[-12398745604826],
+        api_id=42,
+        api_hash=&#x27;some string here&#x27;
+    ))
     print(result)
 
 asyncio.run(main())</pre>
