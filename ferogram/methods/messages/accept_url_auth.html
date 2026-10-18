@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>AcceptUrlAuth</li></ul>
 <h1>AcceptUrlAuth</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-messages.acceptUrlAuth<span style="color:var(--tl-cid)">#67a3f0de</span> write_allowed:flags.0?<a href="../../index.html#true">true</a> share_phone_number:flags.3?<a href="../../index.html#true">true</a> peer:flags.1?<a href="../../types/input_peer.html">InputPeer</a> msg_id:flags.1?<a href="../../index.html#int">int</a> button_id:flags.1?<a href="../../index.html#int">int</a> url:flags.2?<a href="../../index.html#string">string</a> match_code:flags.4?<a href="../../index.html#string">string</a> = <a href="../../types/url_auth_result.html">UrlAuthResult</a></pre>
+messages.acceptUrlAuth<span style="color:var(--tl-cid)">#18dd4e92</span> write_allowed:flags.0?<a href="../../index.html#true">true</a> share_phone_number:flags.3?<a href="../../index.html#true">true</a> peer:flags.1?<a href="../../types/input_peer.html">InputPeer</a> msg_id:flags.1?<a href="../../index.html#int">int</a> button_id:flags.1?<a href="../../index.html#int">int</a> url:flags.2?<a href="../../index.html#string">string</a> match_code:flags.4?<a href="../../index.html#string">string</a> tonconnect_session:flags.5?<a href="../../types/input_ton_connect_oauth_session.html">InputTonConnectOauthSession</a> = <a href="../../types/url_auth_result.html">UrlAuthResult</a></pre>
 <button class="copy-btn" onclick="cp('use ferogram::tl::functions::messages::AcceptUrlAuth;')">Copy use statement</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/url_auth_result.html">UrlAuthResult</a></td></tr></table>
@@ -43,6 +43,7 @@ messages.acceptUrlAuth<span style="color:var(--tl-cid)">#67a3f0de</span> write_a
 <tr><td>button_id</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>url</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>match_code</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>tonconnect_session</td><td><a href="../../types/input_ton_connect_oauth_session.html">InputTonConnectOauthSession</a></td><td><span class="tag-opt">optional</span></td></tr>
 </table></div>
 <h3>Example</h3>
 <p class="example-note">Replace placeholder values with real data before running.</p>
@@ -71,6 +72,7 @@ async fn main() -&gt; anyhow::Result&lt;()&gt; {
             button_id: None,
             url: None,
             match_code: None,
+            tonconnect_session: None,
         },
         )
         .await?;
@@ -103,6 +105,7 @@ async fn main() -&gt; anyhow::Result&lt;()&gt; {
                 button_id: None,
                 url: None,
                 match_code: None,
+                tonconnect_session: None,
             },
                 )
                 .await?;
