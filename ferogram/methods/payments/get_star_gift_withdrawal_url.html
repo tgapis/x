@@ -31,13 +31,13 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/payments/index.html">Payments</a></li><span class="sep">›</span><li>GetStarGiftWithdrawalUrl</li></ul>
 <h1>GetStarGiftWithdrawalUrl</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-payments.getStarGiftWithdrawalUrl<span style="color:var(--tl-cid)">#d06e93a8</span> stargift:<a href="../../types/input_saved_star_gift.html">InputSavedStarGift</a> password:<a href="../../types/input_check_password_srp.html">InputCheckPasswordSRP</a> = <a href="../../types/payments/star_gift_withdrawal_url.html">payments.StarGiftWithdrawalUrl</a></pre>
+payments.getStarGiftWithdrawalUrl<span style="color:var(--tl-cid)">#c8ca817b</span> stargift:<a href="../../types/input_saved_star_gift.html">InputSavedStarGift</a> tmp_password:<a href="../../index.html#bytes">bytes</a> = <a href="../../types/payments/star_gift_withdrawal_url.html">payments.StarGiftWithdrawalUrl</a></pre>
 <button class="copy-btn" onclick="cp('use ferogram::tl::functions::payments::GetStarGiftWithdrawalUrl;')">Copy use statement</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/payments/star_gift_withdrawal_url.html">payments.StarGiftWithdrawalUrl</a></td></tr></table>
 <h3>Parameters</h3>
 <div class="cmp-table-wrap"><table><tr><td>stargift</td><td><a href="../../types/input_saved_star_gift.html">InputSavedStarGift</a></td><td><span class="tag-req">required</span></td></tr>
-<tr><td>password</td><td><a href="../../types/input_check_password_srp.html">InputCheckPasswordSRP</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>tmp_password</td><td><a href="../../index.html#bytes">bytes</a></td><td><span class="tag-req">required</span></td></tr>
 </table></div>
 <h3>Example</h3>
 <p class="example-note">Replace placeholder values with real data before running.</p>
@@ -61,7 +61,7 @@ async fn main() -&gt; anyhow::Result&lt;()&gt; {
         .invoke(
         &amp;functions::payments::GetStarGiftWithdrawalUrl {
             stargift: todo!() /* enums::InputSavedStarGift */,
-            password: todo!() /* enums::InputCheckPasswordSRP */,
+            tmp_password: vec![],
         },
         )
         .await?;
@@ -89,7 +89,7 @@ async fn main() -&gt; anyhow::Result&lt;()&gt; {
                 .invoke(
             &amp;functions::payments::GetStarGiftWithdrawalUrl {
                 stargift: todo!() /* enums::InputSavedStarGift */,
-                password: todo!() /* enums::InputCheckPasswordSRP */,
+                tmp_password: vec![],
             },
                 )
                 .await?;
