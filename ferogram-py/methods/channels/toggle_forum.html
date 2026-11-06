@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/channels/index.html">Channels</a></li><span class="sep">›</span><li>ToggleForum</li></ul>
 <h1>ToggleForum</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-channels.toggleForum<span style="color:var(--tl-cid)">#3ff75734</span> channel:<a href="../../types/input_channel.html">InputChannel</a> enabled:<a href="../../index.html#bool">Bool</a> tabs:<a href="../../index.html#bool">Bool</a> = <a href="../../types/updates.html">Updates</a></pre>
+channels.toggleForum<span style="color:var(--tl-cid)">#a2952b54</span> channel:<a href="../../types/input_channel.html">InputChannel</a> enabled:<a href="../../index.html#bool">Bool</a> tabs:<a href="../../index.html#bool">Bool</a> sidebar:<a href="../../index.html#bool">Bool</a> = <a href="../../types/updates.html">Updates</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.channels import ToggleForum')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/updates.html">Updates</a></td></tr></table>
@@ -39,6 +39,7 @@ channels.toggleForum<span style="color:var(--tl-cid)">#3ff75734</span> channel:<
 <div class="cmp-table-wrap"><table><tr><td>channel</td><td><a href="../../types/input_channel.html">InputChannel</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>enabled</td><td><a href="../../index.html#bool">Bool</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>tabs</td><td><a href="../../index.html#bool">Bool</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>sidebar</td><td><a href="../../index.html#bool">Bool</a></td><td><span class="tag-req">required</span></td></tr>
 </table></div>
 <h3>Example</h3>
 <p class="example-note">The examples below use placeholder values. Replace them with real data before running the code.</p>
@@ -54,7 +55,8 @@ async def main():
     result = await app.raw.channels.ToggleForum(
         channel=&#x27;username&#x27;,
         enabled=False,
-        tabs=False
+        tabs=False,
+        sidebar=False
     )
     print(result)
 
