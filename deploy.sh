@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-pip install -q -r requirements.txt
+pip install -q -r requirements.txt setuptools
 
 # stash scripts before switching branches
 cp scrape.py              /tmp/scrape.py
