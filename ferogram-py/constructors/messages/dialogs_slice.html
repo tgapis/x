@@ -31,12 +31,13 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li><a href="../../constructors/messages/index.html">Messages</a></li><span class="sep">›</span><li>DialogsSlice</li></ul>
 <h1>DialogsSlice</h1>
 <pre class="tl"><span style="color:var(--muted)">---types---</span>
-messages.dialogsSlice<span style="color:var(--tl-cid)">#71e094f3</span> count:<a href="../../index.html#int">int</a> dialogs:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/dialog.html">Dialog</a>&gt; messages:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message.html">Message</a>&gt; chats:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/chat.html">Chat</a>&gt; users:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/user.html">User</a>&gt; = <a href="../../types/messages/dialogs.html">messages.Dialogs</a></pre>
+messages.dialogsSlice<span style="color:var(--tl-cid)">#d1747044</span> count:<a href="../../index.html#int">int</a> topics:flags.0?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/forum_topic.html">ForumTopic</a>&gt; dialogs:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/dialog.html">Dialog</a>&gt; messages:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message.html">Message</a>&gt; chats:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/chat.html">Chat</a>&gt; users:<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/user.html">User</a>&gt; = <a href="../../types/messages/dialogs.html">messages.Dialogs</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.types.messages import DialogsSlice')">Copy import</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../../types/messages/dialogs.html">messages.Dialogs</a></td></tr></table>
 <h3>Parameters</h3>
 <div class="cmp-table-wrap"><table><tr><td>count</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>topics</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/forum_topic.html">ForumTopic</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>dialogs</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/dialog.html">Dialog</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
 <tr><td>messages</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/message.html">Message</a>&gt;</td><td><span class="tag-req">required</span></td></tr>
 <tr><td>chats</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/chat.html">Chat</a>&gt;</td><td><span class="tag-req">required</span></td></tr>

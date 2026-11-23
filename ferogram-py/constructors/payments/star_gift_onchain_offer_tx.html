@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>StarGiftOnchainOfferTx - Ferogram API</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link id="style" rel="stylesheet" href="../../css/light.css">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+</head>
+<body>
+<button id="theme-btn" onclick="(function(){
+  var themes=['dark','light','amoled'];
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var s=document.getElementById('style');
+  var cur=themes.find(function(x){return s.href.includes('/'+x+'.css');})||'dark';
+  var next=themes[(themes.indexOf(cur)+1)%themes.length];
+  s.href=s.href.replace('/'+cur+'.css','/'+next+'.css');
+  localStorage.setItem('theme',next);
+  document.getElementById('theme-btn').textContent=labels[next];
+})()">})()">&#9728; Bright</button>
+<script>
+(function(){
+  var labels={'dark':'☀ Bright','light':'◉ Amoled','amoled':'☾ Dark'};
+  var t=localStorage.getItem('theme')||'light';
+  document.getElementById('style').href=document.getElementById('style').href.replace(/(dark|light|amoled)\.css/,t+'.css');
+  document.getElementById('theme-btn').textContent=labels[t]||labels['dark'];
+})();
+</script>
+<div id="main_div">
+
+<ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../constructors/index.html">Constructors</a></li><span class="sep">›</span><li><a href="../../constructors/payments/index.html">Payments</a></li><span class="sep">›</span><li>StarGiftOnchainOfferTx</li></ul>
+<h1>StarGiftOnchainOfferTx</h1>
+<pre class="tl"><span style="color:var(--muted)">---types---</span>
+payments.starGiftOnchainOfferTx<span style="color:var(--tl-cid)">#fe5681cf</span> offer_id:<a href="../../index.html#long">long</a> offer_address:<a href="../../index.html#string">string</a> expires_at:<a href="../../index.html#int">int</a> message:<a href="../../types/payments/star_gift_onchain_offer_tx_message.html">payments.StarGiftOnchainOfferTxMessage</a> gasless_message:flags.3?<a href="../../types/payments/star_gift_onchain_offer_tx_message.html">payments.StarGiftOnchainOfferTxMessage</a> rent_budget:flags.0?<a href="../../index.html#long">long</a> execution_allowance:flags.0?<a href="../../index.html#long">long</a> forward_amount:flags.1?<a href="../../index.html#long">long</a> fine:flags.2?<a href="../../index.html#long">long</a> = <a href="../../types/payments/star_gift_onchain_offer_tx.html">payments.StarGiftOnchainOfferTx</a></pre>
+<button class="copy-btn" onclick="cp('from ferogram.raw.types.payments import StarGiftOnchainOfferTx')">Copy import</button>
+<h3>Belongs to</h3>
+<table><tr><td><a href="../../types/payments/star_gift_onchain_offer_tx.html">payments.StarGiftOnchainOfferTx</a></td></tr></table>
+<h3>Parameters</h3>
+<div class="cmp-table-wrap"><table><tr><td>offer_id</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>offer_address</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>expires_at</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>message</td><td><a href="../../types/payments/star_gift_onchain_offer_tx_message.html">payments.StarGiftOnchainOfferTxMessage</a></td><td><span class="tag-req">required</span></td></tr>
+<tr><td>gasless_message</td><td><a href="../../types/payments/star_gift_onchain_offer_tx_message.html">payments.StarGiftOnchainOfferTxMessage</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>rent_budget</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>execution_allowance</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>forward_amount</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>fine</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+</table></div>
+
+
+<textarea id="c" class="invisible"></textarea>
+<script src="../../js/app.js"></script>
+</div>
+<script>prependPath="../../";</script><script src="../../js/search.js"></script>
+</body>
+</html>

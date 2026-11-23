@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/payments/index.html">Payments</a></li><span class="sep">›</span><li>GetResaleStarGifts</li></ul>
 <h1>GetResaleStarGifts</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-payments.getResaleStarGifts<span style="color:var(--tl-cid)">#7a5fa236</span> sort_by_price:flags.1?<a href="../../index.html#true">true</a> sort_by_num:flags.2?<a href="../../index.html#true">true</a> for_craft:flags.4?<a href="../../index.html#true">true</a> stars_only:flags.5?<a href="../../index.html#true">true</a> attributes_hash:flags.0?<a href="../../index.html#long">long</a> gift_id:<a href="../../index.html#long">long</a> attributes:flags.3?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/star_gift_attribute_id.html">StarGiftAttributeId</a>&gt; offset:<a href="../../index.html#string">string</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/payments/resale_star_gifts.html">payments.ResaleStarGifts</a></pre>
+payments.getResaleStarGifts<span style="color:var(--tl-cid)">#7a5fa236</span> sort_by_price:flags.1?<a href="../../index.html#true">true</a> sort_by_num:flags.2?<a href="../../index.html#true">true</a> for_craft:flags.4?<a href="../../index.html#true">true</a> stars_only:flags.5?<a href="../../index.html#true">true</a> ton_only:flags.6?<a href="../../index.html#true">true</a> fragment_only:flags.7?<a href="../../index.html#true">true</a> attributes_hash:flags.0?<a href="../../index.html#long">long</a> gift_id:<a href="../../index.html#long">long</a> attributes:flags.3?<a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/star_gift_attribute_id.html">StarGiftAttributeId</a>&gt; offset:<a href="../../index.html#string">string</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/payments/resale_star_gifts.html">payments.ResaleStarGifts</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.payments import GetResaleStarGifts')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/payments/resale_star_gifts.html">payments.ResaleStarGifts</a></td></tr></table>
@@ -40,6 +40,8 @@ payments.getResaleStarGifts<span style="color:var(--tl-cid)">#7a5fa236</span> so
 <tr><td>sort_by_num</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>for_craft</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>stars_only</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>ton_only</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>fragment_only</td><td><a href="../../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>attributes_hash</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>gift_id</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>attributes</td><td><a href="../../index.html#vector">Vector</a>&lt;<a href="../../types/star_gift_attribute_id.html">StarGiftAttributeId</a>&gt;</td><td><span class="tag-opt">optional</span></td></tr>
@@ -81,6 +83,8 @@ async def main():
         sort_by_num=True,
         for_craft=True,
         stars_only=True,
+        ton_only=True,
+        fragment_only=True,
         attributes_hash=-12398745604826,
         gift_id=-12398745604826,
         attributes=[raw.types.StarGiftAttributeId()],

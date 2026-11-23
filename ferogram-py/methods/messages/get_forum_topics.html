@@ -31,13 +31,15 @@
 <ul class="horizontal"><li><a href="../../index.html">API</a></li><span class="sep">›</span><li><a href="../../methods/index.html">Methods</a></li><span class="sep">›</span><li><a href="../../methods/messages/index.html">Messages</a></li><span class="sep">›</span><li>GetForumTopics</li></ul>
 <h1>GetForumTopics</h1>
 <pre class="tl"><span style="color:var(--muted)">---functions---</span>
-messages.getForumTopics<span style="color:var(--tl-cid)">#3ba47bff</span> peer:<a href="../../types/input_peer.html">InputPeer</a> q:flags.0?<a href="../../index.html#string">string</a> offset_date:<a href="../../index.html#int">int</a> offset_id:<a href="../../index.html#int">int</a> offset_topic:<a href="../../index.html#int">int</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/messages/forum_topics.html">messages.ForumTopics</a></pre>
+messages.getForumTopics<span style="color:var(--tl-cid)">#c68c219a</span> peer:<a href="../../types/input_peer.html">InputPeer</a> q:flags.0?<a href="../../index.html#string">string</a> icon_emoji_id:flags.1?<a href="../../index.html#long">long</a> closed:flags.2?<a href="../../index.html#bool">Bool</a> offset_date:<a href="../../index.html#int">int</a> offset_id:<a href="../../index.html#int">int</a> offset_topic:<a href="../../index.html#int">int</a> limit:<a href="../../index.html#int">int</a> = <a href="../../types/messages/forum_topics.html">messages.ForumTopics</a></pre>
 <button class="copy-btn" onclick="cp('from ferogram.raw.functions.messages import GetForumTopics')">Copy import</button>
 <h3>Returns</h3>
 <table><tr><td><a href="../../types/messages/forum_topics.html">messages.ForumTopics</a></td></tr></table>
 <h3>Parameters</h3>
 <div class="cmp-table-wrap"><table><tr><td>peer</td><td><a href="../../types/input_peer.html">InputPeer</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>q</td><td><a href="../../index.html#string">string</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>icon_emoji_id</td><td><a href="../../index.html#long">long</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>closed</td><td><a href="../../index.html#bool">Bool</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>offset_date</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>offset_id</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>offset_topic</td><td><a href="../../index.html#int">int</a></td><td><span class="tag-req">required</span></td></tr>
@@ -78,6 +80,8 @@ async def main():
     result = await app(raw.functions.messages.GetForumTopics(
         peer=raw.types.InputPeerSelf(),
         q=&#x27;some string here&#x27;,
+        icon_emoji_id=-12398745604826,
+        closed=False,
         offset_date=42,
         offset_id=42,
         offset_topic=42,
