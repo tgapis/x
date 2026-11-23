@@ -31,7 +31,7 @@
 <ul class="horizontal"><li><a href="../index.html">API</a></li><span class="sep">›</span><li><a href="../constructors/index.html">Constructors</a></li><span class="sep">›</span><li>WalletTransaction</li></ul>
 <h1>WalletTransaction</h1>
 <pre class="tl"><span style="color:var(--muted)">---types---</span>
-walletTransaction<span style="color:var(--tl-cid)">#952dc143</span> incoming:flags.0?<a href="../index.html#true">true</a> gasless:flags.1?<a href="../index.html#true">true</a> failed:flags.2?<a href="../index.html#true">true</a> key_change:flags.5?<a href="../index.html#true">true</a> comment_encrypted:flags.6?<a href="../index.html#true">true</a> id:<a href="../index.html#string">string</a> amount:<a href="../index.html#long">long</a> fee:<a href="../index.html#long">long</a> date:<a href="../index.html#int">int</a> peer:<a href="../types/wallet_transaction_peer.html">WalletTransactionPeer</a> comment:flags.3?<a href="../index.html#string">string</a> tx_hash:flags.4?<a href="../index.html#string">string</a> nft:flags.7?<a href="../types/wallet/nft_item.html">wallet.NftItem</a> = <a href="../types/wallet_transaction.html">WalletTransaction</a></pre>
+walletTransaction<span style="color:var(--tl-cid)">#952dc143</span> incoming:flags.0?<a href="../index.html#true">true</a> gasless:flags.1?<a href="../index.html#true">true</a> failed:flags.2?<a href="../index.html#true">true</a> key_change:flags.5?<a href="../index.html#true">true</a> comment_encrypted:flags.6?<a href="../index.html#true">true</a> suspected_spam:flags.8?<a href="../index.html#true">true</a> id:<a href="../index.html#string">string</a> amount:<a href="../index.html#long">long</a> fee:<a href="../index.html#long">long</a> date:<a href="../index.html#int">int</a> peer:<a href="../types/wallet_transaction_peer.html">WalletTransactionPeer</a> comment:flags.3?<a href="../index.html#string">string</a> tx_hash:flags.4?<a href="../index.html#string">string</a> nft:flags.7?<a href="../types/wallet/nft_item.html">wallet.NftItem</a> = <a href="../types/wallet_transaction.html">WalletTransaction</a></pre>
 <button class="copy-btn" onclick="cp('use ferogram::tl::types::WalletTransaction;')">Copy use statement</button>
 <h3>Belongs to</h3>
 <table><tr><td><a href="../types/wallet_transaction.html">WalletTransaction</a></td></tr></table>
@@ -45,6 +45,7 @@ Match on it with: <code>if let enums::WalletTransaction::WalletTransaction(v) = 
 <tr><td>failed</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>key_change</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>comment_encrypted</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
+<tr><td>suspected_spam</td><td><a href="../index.html#true">true</a></td><td><span class="tag-opt">optional</span></td></tr>
 <tr><td>id</td><td><a href="../index.html#string">string</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>amount</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
 <tr><td>fee</td><td><a href="../index.html#long">long</a></td><td><span class="tag-req">required</span></td></tr>
